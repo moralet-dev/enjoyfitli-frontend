@@ -3,6 +3,7 @@ import {authModule} from "@/store/modules/authModule";
 
 const store = createStore({
     state: {
+        isAuth: localStorage.getItem('isAuthenticated') || null,
     },
     mutations: {
     },

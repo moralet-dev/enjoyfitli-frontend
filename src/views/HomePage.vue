@@ -1,6 +1,6 @@
 <template>
-  <h1>TESTING</h1>
-  <router-link to="/login">Login</router-link>
+  <h1>YOUR PERSONAL COUCH</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis corporis culpa, delectus est fuga.</p>
 </template>
 
 <script>

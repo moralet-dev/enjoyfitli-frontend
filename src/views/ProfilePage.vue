@@ -17,16 +17,18 @@ export default {
       me: null
     }
   },
-  beforeMount() {
-    if (!this.$store.getters['authModule/isAuthenticated']) {
-      console.log(this.$store.getters['authModule/isAuthenticated'])
+  beforeCreate() {
+    if (this.$store.getters['authModule/isAuthenticated'] === 'false'
+        || !this.$store.getters['authModule/isAuthenticated']) {
       this.$router.push('/login')
     }
+  },
+  beforeMount() {
     this.getMe()
   },
   methods: {
     getMe() {
-      authAPI.getMe().then(response => this.me = response.data).catch(() => this.me = 'null')
+      authAPI.getMe().then(response => this.me = response.data).catch(() => this.me = null)
     }
   }
 }

@@ -15,6 +15,13 @@ export const authAPI = {
 
     logout(){
 
-    }
+    },
+
+    register(email, phone, password, re_password){
+        const url = '/auth/users/'
+        const data = {email, phone, password, re_password}
+        console.log(password, re_password)
+        return loginAPIInstance.post(url, data)
+    },
 
 }
