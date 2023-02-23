@@ -105,6 +105,9 @@ header{
     box-shadow: 0 0 45px var(--color-header-shadow);
     padding: 0 9rem;
 }
+main{
+    padding: 6rem 9rem;
+}
 a {
     color: var(--color-link);
     text-decoration: none;

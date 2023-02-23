@@ -13,6 +13,10 @@ export const authAPI = {
         return defaultAPIInstance.get(url)
     },
 
+    getCurrentUserData(id){
+        const url = `users/${id}`
+        return defaultAPIInstance.get(url)
+    },
     logout(){
 
     },
