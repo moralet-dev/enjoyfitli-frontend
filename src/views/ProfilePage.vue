@@ -10,20 +10,19 @@
         <h3>Hi{{ `, ${this.currentUserData.first_name || 'dear athlete'}` }} {{ this.currentUserData.last_name }}!</h3>
       </div>
     </div>
-    <div class="">
-    </div>
+    <ProfilePagesWrapper/>
   </div>
 
 </template>
 
 <script>
 import {authAPI} from "@/api/authAPI";
-import Logout from "@/components/Logout.vue";
-import DownloadIcon from "@/components/DownloadIcon.vue";
+import DownloadIcon from "@/components/icons/DownloadIcon.vue";
+import ProfilePagesWrapper from "@/views/profile-pages/ProfilePagesWrapper.vue";
 
 export default {
   name: "ProfilePage",
-  components: {DownloadIcon, Logout},
+  components: {ProfilePagesWrapper, DownloadIcon},
   data() {
     return {
       me: null,

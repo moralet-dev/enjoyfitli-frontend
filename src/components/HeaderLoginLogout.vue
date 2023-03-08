@@ -1,14 +1,14 @@
 <template>
   <div class="login-container" >
-    <router-link v-if="getIsAuth" to="profile">Profile</router-link>
+    <router-link v-if="getIsAuth" :to="{name: 'profile'}">Profile</router-link>
     <span v-if="getIsAuth" v-on:click="onLogoutClick"><LogoutIcon width="15" height="15"/></span>
-    <router-link v-else-if="!getIsAuth" to="login">Login</router-link>
+    <router-link v-else-if="!getIsAuth" to="/login">Login</router-link>
   </div>
 </template>
 
 
 <script>
-import LogoutIcon from "@/components/LogoutIcon.vue";
+import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 
 export default {
   name: "HeaderLoginLogout",
@@ -57,8 +57,9 @@ export default {
   transition: 0.4s;
 }
 .login-container a:hover, .login-container span:hover{
+  color: rgb(24, 24, 24);
   background-color: transparent;
-  box-shadow: 0 0 10px #000000;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
   text-decoration: underline;
 }
 </style>

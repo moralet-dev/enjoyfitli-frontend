@@ -24,7 +24,7 @@ export const authModule = {
             localStorage.setItem('access', access)
         },
         setRefresh(state, refresh) {
-            state.credentials.role = refresh
+            state.credentials.refresh = refresh
             localStorage.setItem('refresh', refresh)
         },
         setIsAuthenticated(state, isAuthenticated){

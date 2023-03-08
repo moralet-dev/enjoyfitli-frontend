@@ -1,17 +1,17 @@
 <template>
     <div class="header-label">
-      <router-link to="/">Liza Bukhtiyarova</router-link>
+      <router-link :to="{name:'home'}">Liza Bukhtiyarova</router-link>
     </div>
     <nav>
       <ul class="nav-list">
         <li>
-          <router-link to="/abonements">Abonements</router-link>
+<!--          <router-link to="member">Memberships</router-link>-->
         </li>
         <li>
-          <router-link to="/sheldue">Sheldue</router-link>
+          <router-link :to="{name: 'schedule'}">Schedule</router-link>
         </li>
         <li>
-          <router-link to="/about">About me</router-link>
+<!--          <router-link to="about">About me</router-link>-->
         </li>
       </ul>
     </nav>
@@ -22,7 +22,7 @@
 import HeaderLoginLogout from "@/components/HeaderLoginLogout.vue";
 
 export default {
-  name: "HeaderComponent",
+  name: "Header",
   components: {HeaderLoginLogout},
 }
 </script>
@@ -30,22 +30,13 @@ export default {
 <style scoped>
 a {
   padding: 3px;
+  font-size: 16px;
 }
 
 a:hover {
   background-color: transparent;
+  color: rgb(24, 24, 24);
   box-shadow: 0 0 10px #000000;
-}
-
-h1 {
-  text-align: center;
-  font-size: 24px;
-}
-
-h1 a:hover {
-  background-color: transparent;
-  box-shadow: none;
-  text-decoration: underline;
 }
 
 .header-label {
@@ -58,6 +49,8 @@ h1 a:hover {
   padding: 2rem 0;
   font-size: 24px;
   min-height: 100%;
+  font-weight: bold;
+
 }
 .header-label a:hover{
   background-color: transparent;

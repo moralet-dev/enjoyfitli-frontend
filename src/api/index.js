@@ -21,10 +21,8 @@ if (access && refresh) {
             const accessStatus = await axios.post('/auth/jwt/verify/', {'token': access}, defaultConfig)
                 .then((response) => {
                     config.headers['authorization'] = `JWT ${access}`
-                    console.log(response.status)
                     return response.status
                 }).catch(reason => {
-                    console.log(reason.request.status)
                     return reason.request.status
                 })
             if (accessStatus === 401) {
@@ -32,7 +30,6 @@ if (access && refresh) {
                 await axios.post('auth/jwt/refresh/',
                     {'refresh': refresh}, defaultConfig)
                     .then(response => {
-                        console.log(response.status)
                         config.headers['authorization'] = `JWT ${response.data.access}`
                         localStorage.setItem('access', response.data.access)
                     })
