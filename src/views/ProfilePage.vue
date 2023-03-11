@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {authAPI} from "@/api/authAPI";
+import {authAPI} from "@/api/authAPI/authAPI";
 import DownloadIcon from "@/components/icons/DownloadIcon.vue";
 import ProfilePagesWrapper from "@/views/profile-pages/ProfilePagesWrapper.vue";
 
@@ -49,7 +49,6 @@ export default {
         this.me = response.data
         authAPI.getCurrentUserData(this.me.id).then(response => {
           this.currentUserData = {...response.data}
-          console.log(this.currentUserData)
 
         })
       }).catch(() => this.me = null)

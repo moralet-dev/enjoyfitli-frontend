@@ -27,7 +27,7 @@
 
 
     --vt-c-text-light-1: rgb(24, 24, 24);
-    --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
+    --vt-c-text-light-2: rgb(97, 97, 97);
     --vt-c-link-light-1: rgb(24, 24, 24);
     --vt-c-link-light-2: rgb(248, 248, 248);
     --vt-c-text-dark-1: rgb(248, 248, 248);
@@ -48,7 +48,7 @@
     --color-border-hover: var(--vt-c-divider-light-1);
 
     --color-headings: var(--vt-c-text-light-1);
-    --color-text: var(--vt-c-text-light-1);
+    --color-text: var(--vt-c-text-light-2);
     --color-link: var(--vt-c-link-light-1);
     --color-link-hover: var(--vt-c-link-light-2);
     --color-header-shadow: rgba(0, 0, 0, 0.05);

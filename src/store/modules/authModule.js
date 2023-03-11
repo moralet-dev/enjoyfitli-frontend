@@ -1,4 +1,4 @@
-import {authAPI} from "@/api/authAPI";
+import {authAPI} from "@/api/authAPI/authAPI";
 import {defaultAPIInstance} from "@/api";
 
 export const authModule = {
@@ -11,11 +11,13 @@ export const authModule = {
                 access: localStorage.getItem('access') || null,
             },
             isAuthenticated: localStorage.getItem('isAuthenticated') || null,
+            isSessionExpired: false,
         }
     },
 
     getters: {
-        isAuthenticated: (state) => state.isAuthenticated
+        isAuthenticated: (state) => state.isAuthenticated,
+        isSessionExpired: (state) => state.isSessionExpired,
     },
 
     mutations: {
@@ -38,6 +40,9 @@ export const authModule = {
             localStorage.removeItem('refresh')
             localStorage.removeItem('isAuthenticated')
             delete defaultAPIInstance.defaults.headers['authorization']
+        },
+        setSessionExpired(state, isExpired){
+            state.isSessionExpired = isExpired
         }
     },
 
@@ -58,6 +63,9 @@ export const authModule = {
             return authAPI.register(
                 email, phone, password, re_password
             ).then(response => response)
-        }
+        },
+        onSessionExpired({commit}, isExpired){
+            commit('setSessionExpired', isExpired)
+        },
     }
 }

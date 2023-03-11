@@ -30,7 +30,9 @@
           </router-link>
         </div>
     </aside>
-    <router-view></router-view>
+    <div class="pages-content-wrapper">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -56,7 +58,7 @@ export default {
 aside{
   display: flex;
   flex-direction: column;
-  border-right: solid 1px grey;
+  border-right: solid 1px rgb(217, 217, 217);
 }
 aside div{
   display: flex;
@@ -70,5 +72,10 @@ a{
 }
 a span{
   margin: 0 10px;
+}
+.pages-content-wrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 7rem;
 }
 </style>

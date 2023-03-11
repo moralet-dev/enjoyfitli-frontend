@@ -1,50 +1,116 @@
 <template>
-  <div class="">
-    <h3>My Memberships</h3>
-    <div v-if="isMembList">
-      {{ membList }}
-    </div>
-    <div v-else-if="!isMembList">
-      <p>You are haven't any memberships</p>
-    </div>
-    <button v-on:click="getMemberships">cloa</button>
+  <div class="title-wrapper">
+    <h3>My Memberships:</h3>
   </div>
+  <div v-if="isMembList">
+    <div v-for="m in membList" :key="m.id">
+      <div class="membership-info">
+        <span class="m-name">{{ m.membership.name }}</span>
+        <div class="m-count-block">
+          <p>Trainings count</p>
+          <span>{{ m.membership.count }}</span>
+        </div>
+      </div>
+      <div class="membership-info-current">
+        <span class="trainings-title">Trainings:</span>
+        <div class="trainings-info">
+          <TrainingsLeftCircle :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
+                               width="180" height="180"/>
+          <span>Trainings left: {{ m.trainings_left }}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div v-else-if="!isMembList">
+    <p>You are haven't any memberships</p>
+  </div>
+  <button v-on:click="circle">circle</button>
 </template>
 
 <script>
-import {profileAPI} from "@/api/profileAPI";
+import {profileAPI} from "@/api/profileAPI/profileAPI";
+import TrainingsLeftCircle from "@/components/TrainingsLeftCircle.vue";
 
 export default {
   name: "MembershipPage",
+  components: {TrainingsLeftCircle},
   data() {
     return {
       membList: null,
     }
   },
   beforeMount() {
-    console.log('before mount')
     this.getMemberships()
   },
   computed: {
-    isMembList(){
-      console.log('computed')
-      if (this.membList){
+    isMembList() {
+      if (this.membList) {
         return this.membList.length > 0;
       } else {
         return false
       }
     }
   },
-  methods:{
-    async getMemberships(){
+  methods: {
+    async getMemberships() {
       this.membList = await profileAPI.getMyMemberships().then(response => {
         return response.data.results
       })
-    }
+    },
   }
 }
 </script>
 
 <style scoped>
+.title-wrapper {
+  padding: 0.5em 0 2rem 0;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+.membership-info, .membership-info-current {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.membership-info-current{
+  border-bottom: solid 1px rgb(217, 217, 217);
+}
+.m-name {
+  font-weight: 700;
+  font-size: 24px;
+  padding: 1.5rem 0 1.5rem 0;
+}
+
+.m-count-block {
+  padding: 0 0 1.5rem 0;
+}
+
+.m-count-block p {
+  font-size: 18px;
+  padding: 0 0 0.75rem 0;
+}
+
+.m-count-block span, .trainings-title {
+  font-family: 'Futura New', sans-serif;
+  font-weight: 700;
+  font-size: 50px;
+  letter-spacing: 0.02em;
+  color: #181818;
+}
+
+.trainings-title {
+  font-size: 30px;
+  padding: 0 0 1.5rem 0;
+}
+
+.trainings-info {
+  display: flex;
+  align-items: center;
+  padding: 0 0 1.5rem 0;
+}
 
 </style>

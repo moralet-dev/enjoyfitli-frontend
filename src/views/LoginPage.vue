@@ -5,6 +5,9 @@
         <div v-if="loginErrors">
           {{ loginErrors.detail }}
         </div>
+        <div v-if="isExpired">
+          <p>Session is expired, re-login please:)</p>
+        </div>
         <div class="form-element">
           <label for="email">E-mail</label>
           <input id="email" type="email" v-model="loginData.email"/>
@@ -28,7 +31,6 @@
 </template>
 
 <script>
-
 export default {
   name: "LoginPage",
   data() {
@@ -38,7 +40,8 @@ export default {
         password: null,
         rememberMe: null,
       },
-      loginErrors: null
+      loginErrors: null,
+      isExpired: false,
     }
   },
   beforeCreate() {
@@ -46,12 +49,19 @@ export default {
       this.$router.push('/profile')
     }
   },
+  mounted () {
+    this.isExpired = this.$store.getters['authModule/isSessionExpired']
+  },
+  unmounted() {
+    this.isExpired = this.$store.dispatch('authModule/onSessionExpired', false)
+  },
   methods: {
     async onSubmit() {
       await this.$store.dispatch('authModule/onLogin', {
         email: this.loginData.email,
         password: this.loginData.password,
       }).then(() => {
+        this.isExpired = false
         this.$router.push('/profile')
       }).catch(reason => {
         this.loginErrors = reason.response.data
