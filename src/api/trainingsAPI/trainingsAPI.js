@@ -3,10 +3,14 @@ import {defaultAPIInstance} from "@/api";
 export const trainingsAPI = {
     getGroupTrainings() {
         const url = '/group-trainings/'
-        return defaultAPIInstance(url)
+        return defaultAPIInstance.get(url)
     },
     getMyGroupTrainings(){
         const url = '/group-trainings/me'
-        return defaultAPIInstance(url)
-    }
+        return defaultAPIInstance.get(url)
+    },
+    unsignGroupTraining(id){
+        const url = `/group-trainings/${id}/unsign`
+        return defaultAPIInstance.delete(url)
+    },
 }
