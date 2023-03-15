@@ -1,7 +1,7 @@
 <template>
   <div class="login-container" >
     <router-link v-if="getIsAuth" :to="{name: 'profile'}">Profile</router-link>
-    <span v-if="getIsAuth" v-on:click="onLogoutClick"><LogoutIcon width="15" height="15"/></span>
+    <a v-if="getIsAuth" v-on:click="onLogoutClick"><LogoutIcon width="15" height="15"/></a>
     <router-link v-else-if="!getIsAuth" to="/login">Login</router-link>
   </div>
 </template>
@@ -44,22 +44,20 @@ export default {
   justify-content: end;
 
 }
-.login-container a, .login-container span{
+.login-container a{
   display: flex;
   min-height: 100%;
   align-items: center;
   justify-content: center;
   padding: 0 2rem;
   font-weight: bold;
+  cursor: pointer;
 }
 .login-container span{
   cursor: pointer;
   transition: 0.4s;
 }
 .login-container a:hover, .login-container span:hover{
-  color: rgb(24, 24, 24);
-  background-color: transparent;
-  box-shadow: 0 0 10px rgb(0, 0, 0);
   text-decoration: underline;
 }
 </style>

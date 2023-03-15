@@ -6,11 +6,9 @@
 </template>
 
 <script>
-import {h} from "vue";
 
 export default {
   name: "LogoutIcon",
-  methods: {h},
   props:{
     width:{
       type: [Number, String],

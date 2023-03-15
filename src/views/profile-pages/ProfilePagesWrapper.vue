@@ -7,7 +7,7 @@
           </router-link>
         </div>
         <div>
-          <router-link :to="{name: 'schedule'}">
+          <router-link :to="{name: 'my-schedule'}">
             <ScheduleIcon/><span>Schedule</span>
           </router-link>
         </div>

@@ -8,7 +8,7 @@
         <span class="m-name">{{ m.membership.name }}</span>
         <div class="m-count-block">
           <p>Trainings count</p>
-          <span>{{ m.membership.count }}</span>
+          <h4>{{ m.membership.count }}</h4>
         </div>
       </div>
       <div class="membership-info-current">
@@ -55,6 +55,7 @@ export default {
   methods: {
     async getMemberships() {
       this.membList = await profileAPI.getMyMemberships().then(response => {
+
         return response.data.results
       })
     },
@@ -64,7 +65,7 @@ export default {
 
 <style scoped>
 .title-wrapper {
-  padding: 0.5em 0 2rem 0;
+  padding: 0.5em 0 1rem 0;
 }
 
 h3 {
@@ -94,12 +95,11 @@ h3 {
   padding: 0 0 0.75rem 0;
 }
 
-.m-count-block span, .trainings-title {
+.m-count-block h4, .trainings-title {
   font-family: 'Futura New', sans-serif;
   font-weight: 700;
   font-size: 50px;
   letter-spacing: 0.02em;
-  color: #181818;
 }
 
 .trainings-title {

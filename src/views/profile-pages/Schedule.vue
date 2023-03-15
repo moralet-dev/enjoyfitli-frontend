@@ -1,0 +1,70 @@
+<template>
+  <div class="title-wrapper">
+    <h3>My Trainings:</h3>
+  </div>
+  <div class="trainings-block" v-for="t in trainingsList">
+    <h4>Training:</h4>
+    <div class="training" >
+      <div class="item"><span>Name:</span> {{ t.name }}</div>
+      <div class="item"><span>Type:</span> {{ t.type.name }}</div>
+      <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
+      <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
+      <div class="item"><span>Where:</span> {{ t.where }}</div>
+
+    </div>
+  </div>
+</template>
+
+<script>
+import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
+
+export default {
+  name: "SchedulePage",
+  data() {
+    return {
+      trainingsList: null,
+    }
+  },
+  beforeMount() {
+    this.getGroupTrainingsList()
+  },
+  methods: {
+    async getGroupTrainingsList() {
+      this.trainingsList = await trainingsAPI.getMyGroupTrainings().then(response => {
+        console.log(response.data)
+        return response.data.results
+      })
+    }
+  }
+}
+</script>
+
+<style scoped>
+.title-wrapper {
+  padding: 0.5em 0 1rem 0;
+}
+
+h3 {
+  font-size: 30px;
+}
+.trainings-block{
+  padding: 1rem 0;
+}
+.training {
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr;
+  border-bottom: solid 1px rgb(217, 217, 217);
+
+}
+.item{
+  padding: 1rem 0;
+  text-align: center;
+
+}
+.item span{
+  display: block;
+  font-weight: 600;
+  padding: 0 0 0.5rem 0;
+  color: var(--color-headings);
+}
+</style>
