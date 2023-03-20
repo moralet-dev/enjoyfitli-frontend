@@ -31,6 +31,7 @@ export default {
         last_name: null,
         phone:null,
         photo:null,
+        id: null,
       },
     }
   },
@@ -40,19 +41,14 @@ export default {
       this.$router.push('/login')
     }
   },
-  beforeMount() {
+  mounted() {
     this.getMe()
   },
   methods: {
     async getMe() {
       await authAPI.getMe().then(response => {
-        this.me = response.data
-        authAPI.getCurrentUserData(this.me.id).then(response => {
-          this.currentUserData = {...response.data}
-
-        })
-      }).catch(() => this.me = null)
-
+        this.currentUserData = response.data
+      }).catch(() => this.currentUserData = null)
     }
   }
 }

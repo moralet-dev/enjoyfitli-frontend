@@ -26,6 +26,7 @@ export default {
       trainingsList: null,
     }
   },
+
   beforeMount() {
     this.getGroupTrainingsList()
   },
@@ -83,7 +84,7 @@ h3 {
   transition-timing-function: ease-in-out;
   border-radius: 10px;
   color: var(--color-link);
-  border: 1px solid var(--color-link);
+  border: 2px solid darkred;
 }
 .unsign button:hover{
   border: none;

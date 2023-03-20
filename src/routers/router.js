@@ -8,12 +8,13 @@ import Schedule from "@/views/profile-pages/Schedule.vue";
 import MyNutritionBalance from "@/views/profile-pages/MyNutritionBalance.vue";
 import PurchaseHistory from "@/views/profile-pages/PurchaseHistory.vue";
 import Settings from "@/views/profile-pages/SettingsPage.vue";
+import SchedulePage from "@/views/SchedulePage.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
     {path: '/login', component: LoginPage, name: 'login'},
     {path: '/registration', component: RegistrationPage, name: 'registration'},
-    {path: '/schedule', component: Schedule, name: 'schedule'},
+    {path: '/schedule', component: SchedulePage, name: 'schedule'},
 
     {
         path: '/profile', component: ProfilePage, name: 'profile', children: [

@@ -25,7 +25,6 @@
   <div v-else-if="!isMembList">
     <p>You are haven't any memberships</p>
   </div>
-  <button v-on:click="circle">circle</button>
 </template>
 
 <script>
@@ -55,7 +54,6 @@ export default {
   methods: {
     async getMemberships() {
       this.membList = await profileAPI.getMyMemberships().then(response => {
-
         return response.data.results
       })
     },

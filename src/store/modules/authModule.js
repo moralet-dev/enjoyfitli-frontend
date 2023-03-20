@@ -12,12 +12,18 @@ export const authModule = {
             },
             isAuthenticated: localStorage.getItem('isAuthenticated') || null,
             isSessionExpired: false,
+            currentUser:{
+                id: null,
+                firstName: null,
+                lastName: null,
+            }
         }
     },
 
     getters: {
         isAuthenticated: (state) => state.isAuthenticated,
         isSessionExpired: (state) => state.isSessionExpired,
+        getCurrentUser: (state) => state.currentUser,
     },
 
     mutations: {
@@ -43,6 +49,11 @@ export const authModule = {
         },
         setSessionExpired(state, isExpired){
             state.isSessionExpired = isExpired
+        },
+        setCurrentUser(state, id, firstName, lastName){
+            state.currentUser.id = id
+            state.currentUser.firstName = firstName
+            state.currentUser.lastName = lastName
         }
     },
 
