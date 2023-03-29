@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="wrapper">
     <div class="form-wrapper">
       <form @submit.prevent="onSubmit">
         <div v-if="loginErrors">
@@ -72,6 +72,9 @@ export default {
 </script>
 
 <style scoped>
+.wrapper{
+  padding: 0 9rem;
+}
 .form-wrapper {
   display: flex;
   width: 100%;

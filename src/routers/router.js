@@ -9,16 +9,18 @@ import MyNutritionBalance from "@/views/profile-pages/MyNutritionBalance.vue";
 import PurchaseHistory from "@/views/profile-pages/PurchaseHistory.vue";
 import Settings from "@/views/profile-pages/SettingsPage.vue";
 import SchedulePage from "@/views/SchedulePage.vue";
+import MembershipsPage from "@/views/MembershipsPage.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
     {path: '/login', component: LoginPage, name: 'login'},
     {path: '/registration', component: RegistrationPage, name: 'registration'},
     {path: '/schedule', component: SchedulePage, name: 'schedule'},
+    {path: '/memberships', component: MembershipsPage, name: 'memberships'},
 
     {
         path: '/profile', component: ProfilePage, name: 'profile', children: [
-            {path: 'memberships', component: Memberships, name: 'memberships'},
+            {path: 'memberships', component: Memberships, name: 'my-memberships'},
             {path: 'schedule', component: Schedule, name: 'my-schedule'},
             {path: 'my-nutrition-balance', component: MyNutritionBalance, name: 'my-nutrition-balance'},
             {path: 'purchase-history', component: PurchaseHistory, name: 'purchase-history'},

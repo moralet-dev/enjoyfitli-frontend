@@ -5,7 +5,7 @@
     <nav>
       <ul class="nav-list">
         <li>
-<!--          <router-link to="member">Memberships</router-link>-->
+          <router-link :to="{name: 'memberships'}">Memberships</router-link>
         </li>
         <li>
           <router-link :to="{name: 'schedule'}">Schedule</router-link>

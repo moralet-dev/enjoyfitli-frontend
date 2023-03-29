@@ -7,12 +7,13 @@
       <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
       <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
       <div class="item"><span>Where:</span> {{ t.where }}</div>
-      <div class="item"><span>Visitors:</span> {{ t.visitors.forEach(item => item.visitor) }}</div>
+      <div class="item"><span>Visitors:</span> {{ t.visitors.length }}/{{ t.max_people}}</div>
       <div class="item unsign" v-if="isSigned(t)">
         <button type="button" v-on:click="onUnsign(t.id)">Unsing</button>
       </div>
       <div class="item sign" v-else>
-        <button type="button" v-on:click="onSign(t.id)">Sing</button>
+        <button type="button" class="disabled" v-if="t.visitors.length >= t.max_people" disabled>People's count reached</button>
+        <button type="button" v-else v-on:click="onSign(t.id)">Sing</button>
       </div>
     </div>
   </div>
@@ -120,7 +121,14 @@ export default {
   background-color: rgba(0, 156, 6, 1);
   color: var(--color-link-hover);
 }
-
+.sign .disabled{
+  cursor: default;
+  border: 2px solid rgb(102, 117, 102);
+}
+.sign .disabled:hover{
+  background-color: inherit;
+  color: var(--color-link);
+}
 .unsign button {
   border: 2px solid darkred;
 }

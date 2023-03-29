@@ -59,6 +59,7 @@ export default {
   display: grid;
   grid-template-columns: 12fr;
   min-width: 100%;
+  padding: 0 9rem;
 }
 
 .welcome-block {

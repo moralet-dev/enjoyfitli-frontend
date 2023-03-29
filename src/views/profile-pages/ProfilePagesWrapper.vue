@@ -2,7 +2,7 @@
   <div class="pages-wrapper">
     <aside>
         <div>
-          <router-link :to="{name: 'memberships'}">
+          <router-link :to="{name: 'my-memberships'}">
             <MembershipIcon/><span>Memberships</span>
           </router-link>
         </div>
