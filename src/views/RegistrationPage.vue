@@ -16,6 +16,15 @@
           <input id="phone" type="tel" v-model="formData.phone" placeholder="380..." required/>
         </div>
         <div class="form-element">
+          <label for="first_name">First Name</label>
+          <input id="first_name" v-model="formData.first_name" required/>
+        </div>
+        <div class="form-element">
+          <label for="last_name">Last Name</label>
+          <input id="last_name" v-model="formData.last_name" required/>
+        </div>
+
+        <div class="form-element">
           <label for="rememberMe">Password</label>
           <input id="password" type="password" v-model="formData.password" required/>
         </div>
@@ -41,6 +50,8 @@ export default {
       formData: {
         email: null,
         phone: null,
+        first_name: null,
+        last_name: null,
         password: null,
         re_password: null,
       },

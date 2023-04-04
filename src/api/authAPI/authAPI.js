@@ -21,10 +21,9 @@ export const authAPI = {
 
     },
 
-    register(email, phone, password, re_password){
+    register(data){
         const url = '/auth/users/'
-        const data = {email, phone, password, re_password}
-        console.log(password, re_password)
+        console.log(data)
         return loginAPIInstance.post(url, data)
     },
 

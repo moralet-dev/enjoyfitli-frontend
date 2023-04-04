@@ -70,9 +70,9 @@ export const authModule = {
             commit('deleteTokens')
             commit('setIsAuthenticated', 'false')
         },
-        onRegister({commit}, {email, phone, password, re_password}){
+        onRegister({commit}, {email, phone, first_name, last_name, password, re_password}){
             return authAPI.register(
-                email, phone, password, re_password
+                {email, phone, first_name, last_name, password, re_password}
             ).then(response => response)
         },
         onSessionExpired({commit}, isExpired){
