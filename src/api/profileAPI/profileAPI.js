@@ -13,5 +13,13 @@ export const profileAPI = {
     createUserMembership(pk){
         const url = `/memberships/${pk}/create/`
         return defaultAPIInstance.post(url)
+    },
+    requestMembership(pk){
+        const url = `/memberships/${pk}/request/`
+        return defaultAPIInstance.post(url)
+    },
+    getRequestsHistory(){
+        const url = `/memberships-requests/`
+        return defaultAPIInstance.get(url)
     }
 }

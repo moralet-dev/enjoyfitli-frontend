@@ -89,8 +89,7 @@ export default defineComponent({
       this.$refs.carousel.prev()
     },
     async getNewMembership(pk) {
-      console.log('123')
-      await profileAPI.createUserMembership(pk).then(() => {
+      await profileAPI.requestMembership(pk).then(() => {
         this.nextMessage = 'Thank you for your request.\nWe will connect you to confirm the details.'
         this.showModal = false
         this.showNextModal = true
@@ -100,7 +99,6 @@ export default defineComponent({
           this.showModal = false
           this.showNextModal = true
         }
-        console.log()
       })
     }
   }
