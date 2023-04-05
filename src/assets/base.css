@@ -129,3 +129,9 @@ a:hover{
     color: var(--color-link-hover);
     background-color: var(--color-link);
 }
+form input{
+    background: transparent;
+    color: var(--color-link);
+    border: none;
+    border-bottom: solid 2px var(--color-link);
+}

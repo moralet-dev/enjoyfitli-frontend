@@ -2,17 +2,17 @@
   <div class="wrapper">
     <div class="welcome-block">
       <div class="user-avatar">
-        <img v-if="currentUserData.photo" :src="currentUserData.photo" alt="">
+        <img v-if="this.$store.getters['authModule/getCurrentUser'].photo" :src="currentUserData.photo" alt="">
         <DownloadIcon class="user-avatar_download-icon" width="35" height="35" icon-color="green"/>
       </div>
       <div class="welcome-block_text">
         <h1>Profile</h1>
-        <h3>Hi{{ `, ${this.currentUserData.first_name || 'dear athlete'}` }} {{ this.currentUserData.last_name }}!</h3>
+        <h3>Hi{{ `, ${this.$store.getters['authModule/getCurrentUser'].first_name || 'dear athlete'}` }}
+          {{ this.$store.getters['authModule/getCurrentUser'].last_name }}!</h3>
       </div>
     </div>
-    <ProfilePagesWrapper/>
+    <ProfilePagesWrapper :me="this.$store.getters['authModule/getCurrentUser']"/>
   </div>
-
 </template>
 
 <script>
@@ -24,16 +24,7 @@ export default {
   name: "ProfilePage",
   components: {ProfilePagesWrapper, DownloadIcon},
   data() {
-    return {
-      me: null,
-      currentUserData: {
-        first_name: null,
-        last_name: null,
-        phone:null,
-        photo:null,
-        id: null,
-      },
-    }
+    return {}
   },
   beforeCreate() {
     if (this.$store.getters['authModule/isAuthenticated'] === 'false'
@@ -41,14 +32,14 @@ export default {
       this.$router.push('/login')
     }
   },
-  mounted() {
+  beforeMount() {
     this.getMe()
   },
   methods: {
     async getMe() {
       await authAPI.getMe().then(response => {
-        this.currentUserData = response.data
-      }).catch(() => this.currentUserData = null)
+        this.$store.dispatch('authModule/onCurrentUserSet', response.data)
+      }).catch(() => null)
     }
   }
 }
@@ -64,6 +55,7 @@ export default {
 
 .welcome-block {
   display: flex;
+  transition: all 5s ease;
 
 }
 

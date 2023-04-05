@@ -13,11 +13,6 @@ const defaultConfig = {
 
 export const defaultAPIInstance = axios.create(defaultConfig);
 
-// const access = !!localStorage.getItem('access')
-// const refresh = !!localStorage.getItem('refresh')
-//
-// console.log(access, refresh)
-// if (access && refresh) {
 defaultAPIInstance.interceptors.request.use(
     async (config) => {
         const access = !!localStorage.getItem('access')
@@ -41,7 +36,6 @@ defaultAPIInstance.interceptors.request.use(
                         config.headers['authorization'] = `JWT ${response.data.access}`
                         localStorage.setItem('access', response.data.access)
                     }).catch(() => {
-                        console.log('removing')
                         store.dispatch('authModule/onLogout')
                         store.dispatch('authModule/onSessionExpired', true)
                         router.push('/login')

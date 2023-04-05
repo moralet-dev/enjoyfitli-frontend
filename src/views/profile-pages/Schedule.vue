@@ -1,19 +1,22 @@
 <template>
-  <div class="title-wrapper">
-    <h3>My Trainings:</h3>
-  </div>
-  <div class="trainings-block" v-for="t in trainingsList">
-    <h4>Training:</h4>
-    <div class="training" >
-      <div class="item"><span>Name:</span> {{ t.name }}</div>
-      <div class="item"><span>Type:</span> {{ t.type.name }}</div>
-      <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
-      <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
-      <div class="item"><span>Where:</span> {{ t.where }}</div>
-      <div class="item unsign"><button type="button" v-on:click="onUnsign(t.id)">X Unsign</button></div>
+  <div class="">
+    <div class="title-wrapper">
+      <h3>My Trainings:</h3>
+    </div>
+    <div v-if="trainingsList" class="trainings-block" v-for="t in trainingsList">
+      <h4>Training:</h4>
+      <div class="training" >
+        <div class="item"><span>Name:</span> {{ t.name }}</div>
+        <div class="item"><span>Type:</span> {{ t.type.name }}</div>
+        <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
+        <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
+        <div class="item"><span>Where:</span> {{ t.where }}</div>
+        <div class="item unsign"><button type="button" v-on:click="onUnsign(t.id)">X Unsign</button></div>
 
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -33,7 +36,6 @@ export default {
   methods: {
     async getGroupTrainingsList() {
       this.trainingsList = await trainingsAPI.getMyGroupTrainings().then(response => {
-        console.log(response.data)
         return response.data.results
       })
     },

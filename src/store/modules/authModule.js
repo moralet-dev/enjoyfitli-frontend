@@ -12,10 +12,12 @@ export const authModule = {
             },
             isAuthenticated: localStorage.getItem('isAuthenticated') || null,
             isSessionExpired: false,
-            currentUser:{
+            currentUser: {
                 id: null,
                 firstName: null,
                 lastName: null,
+                phone: null,
+                photo: null,
             }
         }
     },
@@ -35,7 +37,7 @@ export const authModule = {
             state.credentials.refresh = refresh
             localStorage.setItem('refresh', refresh)
         },
-        setIsAuthenticated(state, isAuthenticated){
+        setIsAuthenticated(state, isAuthenticated) {
             state.isAuthenticated = isAuthenticated
             localStorage.setItem('isAuthenticated', isAuthenticated)
         },
@@ -47,13 +49,14 @@ export const authModule = {
             localStorage.removeItem('isAuthenticated')
             delete defaultAPIInstance.defaults.headers['authorization']
         },
-        setSessionExpired(state, isExpired){
+        setSessionExpired(state, isExpired) {
             state.isSessionExpired = isExpired
         },
-        setCurrentUser(state, id, firstName, lastName){
-            state.currentUser.id = id
-            state.currentUser.firstName = firstName
-            state.currentUser.lastName = lastName
+        setCurrentUser(state, data) {
+            state.currentUser = {...data}
+            // state.currentUser.first_name = first_name
+            // state.currentUser.last_name = last_name
+            // state.currentUser.phone = phone
         }
     },
 
@@ -70,13 +73,16 @@ export const authModule = {
             commit('deleteTokens')
             commit('setIsAuthenticated', 'false')
         },
-        onRegister({commit}, {email, phone, first_name, last_name, password, re_password}){
+        onRegister({commit}, {email, phone, first_name, last_name, password, re_password}) {
             return authAPI.register(
                 {email, phone, first_name, last_name, password, re_password}
             ).then(response => response)
         },
-        onSessionExpired({commit}, isExpired){
+        onSessionExpired({commit}, isExpired) {
             commit('setSessionExpired', isExpired)
         },
+        onCurrentUserSet({commit}, data) {
+            commit('setCurrentUser', data)
+        }
     }
 }

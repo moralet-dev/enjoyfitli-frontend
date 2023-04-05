@@ -1,29 +1,29 @@
 <template>
-  <div class="title-wrapper">
-    <h3>My Memberships:</h3>
-  </div>
-  <div v-if="isMembList">
-    <div v-for="m in membList" :key="m.id">
-      <div class="membership-info">
-        <span class="m-name">{{ m.membership.name }}</span>
-        <div class="m-count-block">
-          <p>Trainings count</p>
-          <h4>{{ m.membership.count }}</h4>
-        </div>
-      </div>
-      <div class="membership-info-current">
-        <span class="trainings-title">Trainings:</span>
-        <div class="trainings-info">
-          <TrainingsLeftCircle :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
-                               width="180" height="180"/>
-          <span>Trainings left: {{ m.trainings_left }}</span>
-        </div>
-      </div>
-
+  <div class="">
+    <div class="title-wrapper">
+      <h3>My Memberships:</h3>
     </div>
-  </div>
-  <div v-else-if="!isMembList">
-    <p>You are haven't any memberships</p>
+    <div v-if="isMembList">
+      <div v-for="m in membList" :key="m.id">
+        <div class="membership-info">
+          <span class="m-name">{{ m.membership.name }}</span>
+          <div class="m-count-block">
+            <p>Trainings count</p>
+            <h4>{{ m.membership.count }}</h4>
+          </div>
+        </div>
+        <div class="membership-info-current">
+          <span class="trainings-title">Trainings:</span>
+          <div class="trainings-info">
+            <TrainingsLeftCircle :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
+                                 width="180" height="180"/>
+            <span>Trainings left: {{ m.trainings_left }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div v-else>You haven't any payed and activated memberships:( Choose the best one for you on -&lt;"here"&lt;- or waiting for our call, if you already sent request for membership</div>
   </div>
 </template>
 
@@ -75,9 +75,11 @@ h3 {
   flex-direction: column;
   padding: 1rem 0;
 }
-.membership-info-current{
+
+.membership-info-current {
   border-bottom: solid 1px rgb(217, 217, 217);
 }
+
 .m-name {
   font-weight: 700;
   font-size: 24px;
@@ -110,5 +112,4 @@ h3 {
   align-items: center;
   padding: 0 0 1.5rem 0;
 }
-
 </style>

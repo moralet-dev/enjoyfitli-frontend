@@ -12,18 +12,15 @@ export const authAPI = {
         const url = 'auth/users/me/'
         return defaultAPIInstance.get(url)
     },
-
-    getCurrentUserData(id){
-        const url = `users/${id}`
-        return defaultAPIInstance.get(url)
+    updateMe(first_name, last_name, phone){
+        const url = 'auth/users/me/'
+        const data = {first_name, last_name, phone}
+        return defaultAPIInstance.patch(url, data)
     },
     logout(){
-
     },
-
     register(data){
         const url = '/auth/users/'
-        console.log(data)
         return loginAPIInstance.post(url, data)
     },
 
