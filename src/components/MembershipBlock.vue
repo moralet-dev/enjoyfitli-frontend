@@ -56,7 +56,7 @@ import {Carousel, Slide} from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon.vue";
 import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon.vue";
-import ModalMembership from "@/components/ModalMembership.vue";
+import ModalMembership from "@/components/Modal.vue";
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 
 

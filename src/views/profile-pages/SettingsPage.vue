@@ -8,21 +8,21 @@
       <form @submit.prevent="onSubmit">
         <div v-if="errors">
         </div>
-        <div class="form-element">
+        <div class="form-group">
           <label for="phone">Phone</label>
           <input id="phone" type="tel" v-model="formData.phone" required/>
           <div v-if="errors != null">
             {{ errors.phone }}
           </div>
         </div>
-        <div class="form-element">
+        <div class="form-group">
           <label for="first_name">First Name</label>
           <input id="first_name" v-model="formData.first_name" required/>
           <div v-if="errors != null">
             {{ errors.first_name }}
           </div>
         </div>
-        <div class="form-element">
+        <div class="form-group">
           <label for="last_name">Last Name</label>
           <input id="last_name" v-model="formData.last_name" required/>
           <div v-if="errors != null">
@@ -61,8 +61,7 @@ export default {
 
   methods: {
     async onSubmit() {
-      await authAPI.updateMe(this.formData.first_name, this.formData.last_name, this.formData.phone).then(response => {
-        console.log({...response.data})
+      await authAPI.updateMe({...this.formData}).then(response => {
         this.$store.dispatch('authModule/onCurrentUserSet', response.data)
         return response.data
       }).catch(reason => {
@@ -80,5 +79,10 @@ export default {
 
 h3 {
   font-size: 30px;
+}
+.form-group{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
 }
 </style>

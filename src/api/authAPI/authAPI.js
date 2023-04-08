@@ -9,13 +9,14 @@ export const authAPI = {
     },
 
     getMe() {
-        const url = 'auth/users/me/'
+        const url = '/users/me/'
         return defaultAPIInstance.get(url)
     },
-    updateMe(first_name, last_name, phone){
-        const url = 'auth/users/me/'
-        const data = {first_name, last_name, phone}
-        return defaultAPIInstance.patch(url, data)
+    updateMe(data){
+        const url = '/users/me/'
+        return defaultAPIInstance.patch(url, data, {headers: {
+            'Content-Type': 'multipart/form-data'
+        }})
     },
     logout(){
     },

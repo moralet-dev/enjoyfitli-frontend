@@ -21,7 +21,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: 'currentColor'
+      default: 'rgba(0, 156, 6, 1)'
     },
   },
 

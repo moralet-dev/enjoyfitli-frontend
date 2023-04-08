@@ -133,5 +133,34 @@ form input{
     background: transparent;
     color: var(--color-link);
     border: none;
+    font-size: 18px;
+
+    padding: 6px 5px;
     border-bottom: solid 2px var(--color-link);
+
+}
+form select {
+    border: none;
+    color: var(--color-link);
+    font-size: 18px;
+    padding: 7px 5px;
+
+    border-bottom: solid 2px var(--color-link);
+    background-color: transparent;
+}
+form select option{
+    background: var(--color-background-soft);
+}
+form select option:hover {
+    background-color: rebeccapurple;
+    color: #fff;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }

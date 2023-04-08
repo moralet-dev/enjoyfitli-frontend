@@ -14,8 +14,8 @@ export const authModule = {
             isSessionExpired: false,
             currentUser: {
                 id: null,
-                firstName: null,
-                lastName: null,
+                first_name: null,
+                last_name: null,
                 phone: null,
                 photo: null,
             }
@@ -53,10 +53,7 @@ export const authModule = {
             state.isSessionExpired = isExpired
         },
         setCurrentUser(state, data) {
-            state.currentUser = {...data}
-            // state.currentUser.first_name = first_name
-            // state.currentUser.last_name = last_name
-            // state.currentUser.phone = phone
+            state.currentUser = {...state.currentUser, ...data}
         }
     },
 

@@ -17,7 +17,10 @@
           <div class="trainings-info">
             <TrainingsLeftCircle :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
                                  width="180" height="180"/>
-            <span>Trainings left: {{ m.trainings_left }}</span>
+            <div class="trainings-info__description">
+              <span>Trainings left: {{ m.trainings_left }}</span>
+              <span>Expired at: {{ new Date(m.date_end).toLocaleString() }}</span>
+            </div>
           </div>
         </div>
 
@@ -30,10 +33,11 @@
 <script>
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 import TrainingsLeftCircle from "@/components/TrainingsLeftCircle.vue";
+import SchedulePage from "@/views/profile-pages/Schedule.vue";
 
 export default {
   name: "MembershipPage",
-  components: {TrainingsLeftCircle},
+  components: {SchedulePage, TrainingsLeftCircle},
   data() {
     return {
       membList: null,
@@ -111,5 +115,12 @@ h3 {
   display: flex;
   align-items: center;
   padding: 0 0 1.5rem 0;
+}
+.trainings-info__description{
+  display: flex;
+  flex-direction: column;
+}
+.trainings-info__description span{
+  padding: 1rem;
 }
 </style>

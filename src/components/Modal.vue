@@ -44,22 +44,33 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  width: 35%;
   margin: auto;
   padding: 20px 30px;
-  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-background-soft);
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+.modal-header{
+  font-family: 'Futura New', sans-serif;
 }
-
 .modal-body {
-  margin: 20px 0;
+  padding: 2rem 0;
+}
+.modal-footer{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.modal-footer button{
+  border: none;
+
+  border-radius: 15px;
+  padding: 5px 10px;
 }
 
 .modal-default-button {
