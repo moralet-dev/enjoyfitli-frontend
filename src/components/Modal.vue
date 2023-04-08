@@ -1,5 +1,8 @@
 <script>
+import InstagramLogo from "@/components/icons/InstagramLogo.vue";
+import TikTokLogo from "@/components/icons/TikTokLogo.vue";
 export default {
+  components:{InstagramLogo, TikTokLogo},
   props: {
     show: Boolean,
   }
@@ -25,6 +28,14 @@ export default {
             </button>
           </slot>
         </div>
+        <div class="post-info">
+          <h4>Social networks</h4>
+          <div class="">
+            <InstagramLogo />
+            <TikTokLogo />
+          </div>
+        </div>
+
       </div>
     </div>
   </Transition>
@@ -44,31 +55,45 @@ export default {
 }
 
 .modal-container {
-  width: 35%;
   margin: auto;
-  padding: 20px 30px;
+  padding: 1rem 2rem;
+  font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--color-background-soft);
-  border-radius: 2px;
+  border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
 .modal-header{
   font-family: 'Futura New', sans-serif;
+  font-size: 30px;
+  color: var(--color-headings);
+  padding: 1rem 0 0 0;
 }
 .modal-body {
   padding: 2rem 0;
 }
 .modal-footer{
   display: flex;
+}
+.post-info{
   width: 100%;
-  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 0 0;
+  border-top: solid 1px grey;
+  margin: 2rem 0 0 0;
+}
+.post-info svg{
+  margin: 10px 10px;
 }
 .modal-footer button{
   border: none;
-
+  margin: 0 10px;
   border-radius: 15px;
   padding: 5px 10px;
 }
