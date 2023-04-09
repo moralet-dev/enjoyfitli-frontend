@@ -150,7 +150,7 @@ form{
 .form-group{
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
 }
 .form-group input{
 }

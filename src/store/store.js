@@ -3,17 +3,45 @@ import {authModule} from "@/store/modules/authModule";
 
 const store = createStore({
     state: {
-        isAuth: localStorage.getItem('isAuthenticated') || null,
+        triggerLoginPopup: false,
+        triggerRegPopup: false,
+    },
+    getters: {
+        getTriggerLoginPopup: (state)=>state.triggerLoginPopup,
+        getTriggerRegPopup: (state)=>state.triggerRegPopup
     },
     mutations: {
+        openLoginPopup(state){
+            state.triggerLoginPopup = true
+        },
+        closeLoginPopup(state){
+            state.triggerLoginPopup = false
+        },
+        openRegPopup(state){
+            state.triggerRegPopup = true
+        },
+        closeRegPopup(state){
+            state.triggerRegPopup = false
+        }
     },
-    actions:{},
+    actions:{
+        onOpenLoginPopup({commit}){
+            commit('openLoginPopup')
+        },
+        onCloseLoginPopup({commit}){
+            commit('closeLoginPopup')
+        },
+        onOpenRegPopup({commit}){
+            commit('openRegPopup')
+        },
+        onCloseRegPopup({commit}){
+            commit('closeRegPopup')
+        }
+    },
     modules:{
         authModule: authModule,
     },
-    getters: {
 
-    },
 })
 
 export default store

@@ -1,22 +1,27 @@
 <template>
-  <div class="trainings-block" v-for="t in trainingsList">
-    <h4>Training:</h4>
-    <div class="training">
-      <div class="item"><span>Name:</span> {{ t.name }}</div>
-      <div class="item"><span>Type:</span> {{ t.type.name }}</div>
-      <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
-      <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
-      <div class="item"><span>Where:</span> {{ t.where }}</div>
-      <div class="item"><span>Visitors:</span> {{ t.visitors.length }}/{{ t.max_people}}</div>
-      <div class="item unsign" v-if="isSigned(t)">
-        <button type="button" v-on:click="onUnsign(t.id)">Unsing</button>
-      </div>
-      <div class="item sign" v-else>
-        <button type="button" class="disabled" v-if="t.visitors.length >= t.max_people" disabled>People's count reached</button>
-        <button type="button" v-else v-on:click="onSign(t.id)">Sing</button>
+  <div class="wrapper">
+    <div class="trainings-block" v-for="t in trainingsList">
+      <h4>Training:</h4>
+      <div class="training">
+        <div class="item"><span>Name:</span> {{ t.name }}</div>
+        <div class="item"><span>Type:</span> {{ t.type.name }}</div>
+        <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
+        <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
+        <div class="item"><span>Where:</span> {{ t.where }}</div>
+        <div class="item"><span>Visitors:</span> {{ t.visitors.length }}/{{ t.max_people }}</div>
+        <div class="item unsign" v-if="isSigned(t)">
+          <button type="button" v-on:click="onUnsign(t.id)">Unsing</button>
+        </div>
+        <div class="item sign" v-else>
+          <button type="button" class="disabled" v-if="t.visitors.length >= t.max_people" disabled>People's count
+            reached
+          </button>
+          <button type="button" v-else v-on:click="onSign(t.id)">Sing</button>
+        </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -40,10 +45,11 @@ export default {
   beforeCreate() {
     if (this.$store.getters['authModule/isAuthenticated'] === 'false'
         || !this.$store.getters['authModule/isAuthenticated']) {
-      this.$router.push('/login')
+      this.$router.push({name: 'home'})
+      this.$store.commit('openLoginPopup')
     }
   },
-  beforeMount() {
+  mounted() {
     this.getGroupTrainingsList()
     this.getMe()
   },
@@ -121,14 +127,17 @@ export default {
   background-color: rgba(0, 156, 6, 1);
   color: var(--color-link-hover);
 }
-.sign .disabled{
+
+.sign .disabled {
   cursor: default;
   border: 2px solid rgb(102, 117, 102);
 }
-.sign .disabled:hover{
+
+.sign .disabled:hover {
   background-color: inherit;
   color: var(--color-link);
 }
+
 .unsign button {
   border: 2px solid darkred;
 }

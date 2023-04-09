@@ -1,14 +1,14 @@
 @import './base.css';
 
 #app {
-  margin: 0 auto;
-  font-weight: normal;
-  display: grid;
-  grid-template-columns: 12fr;
+    margin: 0 auto;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
 @media (min-width: 1024px) {
-  #app {
-    display: grid;
-    grid-template-columns: 12fr;
-  }
+    #app {
+    }
 }

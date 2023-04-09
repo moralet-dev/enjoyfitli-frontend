@@ -19,7 +19,7 @@
                                  width="180" height="180"/>
             <div class="trainings-info__description">
               <span>Trainings left: {{ m.trainings_left }}</span>
-              <span>Expired at: {{ new Date(m.date_end).toLocaleString() }}</span>
+              <span class="expired">Expired at: {{ new Date(m.date_end).toLocaleString() }}</span>
             </div>
           </div>
         </div>
@@ -118,9 +118,14 @@ h3 {
 }
 .trainings-info__description{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 .trainings-info__description span{
   padding: 1rem;
+}
+.expired{
+  border: 2px solid orangered;
+  border-radius: 15px;
+
 }
 </style>

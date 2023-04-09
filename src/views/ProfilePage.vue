@@ -14,7 +14,7 @@
       </div>
       <div class="welcome-block_text">
         <h1>Profile</h1>
-        <h3>Hi, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
+        <h3 >Hi, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
           {{ this.$store.getters['authModule/getCurrentUser'].last_name }}!</h3>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <Teleport to="body">
       <Modal :show="showModalUpload" @close="showModalUpload = false" class="modal_upload">
         <template #header>
-          <span>  Confirm changes</span>
+          <span>Confirm changes</span>
         </template>
         <template #body>
           Are you sure that you want to update photo?
@@ -53,7 +53,8 @@ export default {
   beforeCreate() {
     if (this.$store.getters['authModule/isAuthenticated'] === 'false'
         || !this.$store.getters['authModule/isAuthenticated']) {
-      this.$router.push('/login')
+      this.$router.push({name:'home'})
+      this.$store.commit('openLoginPopup')
     }
   },
   mounted() {
@@ -105,6 +106,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   padding: 0 2rem;
+  word-wrap: break-word;
 }
 
 h1 {
@@ -113,6 +115,8 @@ h1 {
 
 h3 {
   font-size: 30px;
+  word-wrap: break-word;
+
 }
 
 .user-avatar {
@@ -145,17 +149,17 @@ h3 {
   cursor: pointer;
   border-radius: 50%;
   transition: 0.5s;
-  opacity: 0.3;
+  opacity: 1;
 }
 .user-avatar label:hover{
   opacity: 1;
-  background: rgba(0, 156, 6, 0.53);
+  background: rgb(77, 161, 241, 0.8);
 }
 .user-avatar_download-icon {
   width: 100%;
   height: 100%;
   padding: 1.5rem;
-  opacity: 0.3;
+  opacity: 0.5;
   transition: 0.5s;
 }
 .user-avatar_download-icon:hover {

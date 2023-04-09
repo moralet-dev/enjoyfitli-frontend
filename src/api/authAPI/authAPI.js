@@ -7,7 +7,11 @@ export const authAPI = {
         const data = {email, password}
         return loginAPIInstance.post(url, data)
     },
-
+    activate(uid, token){
+        const url = '/auth/users/activation/'
+        const data = {uid, token}
+        return loginAPIInstance.post(url, data)
+    },
     getMe() {
         const url = '/users/me/'
         return defaultAPIInstance.get(url)

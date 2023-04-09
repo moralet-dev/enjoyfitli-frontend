@@ -1,50 +1,85 @@
 <template>
-  <div class="login-container" >
-    <router-link v-if="getIsAuth" :to="{name: 'profile'}">Profile</router-link>
-    <a class="logout-button" v-if="getIsAuth" v-on:click="onLogoutClick"><LogoutIcon width="15" height="15"/></a>
-    <router-link v-else-if="!getIsAuth" to="/login">Login</router-link>
+  <div class="login-container" v-if="getIsAuth" :class="{'slide-in-left': getIsAuth,'slide-out-right': !getIsAuth}">
+    <router-link :to="{name: 'profile'}">Profile</router-link>
+    <a class="logout-button" v-on:click="onLogoutClick">
+      <LogoutIcon width="15" height="15"/>
+    </a>
   </div>
+  <div v-else class="login-container" :class="{'slide-in-left': !getIsAuth, 'slide-out-right': getIsAuth}">
+    <a ref="login-popup" v-on:click="openPopup('login')">Login</a>
+    <a v-on:click="openPopup('reg')">Registration</a>
+  </div>
+  <ModalLogin :show="this.$store.getters['getTriggerLoginPopup']" @close="closePopup('login')"/>
+  <ModalReg :show="this.$store.getters['getTriggerRegPopup']" @close="closePopup('reg')"/>
 </template>
 
 
 <script>
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
+import ModalLogin from "@/components/Modals/ModalLogin.vue";
+import ModalReg from "@/components/Modals/ModalReg.vue";
 
 export default {
   name: "HeaderLoginLogout",
-  components: {LogoutIcon},
-  data(){
+  components: {ModalLogin, LogoutIcon, ModalReg},
+  data() {
     return {
-      isAuth: this.$store.getters['authModule/isAuthenticated'],
+      currentUserId: this.$store.getters['authModule/getCurrentUser'].id,
+      showLoginModal: false,
     }
   },
 
   computed: {
     getIsAuth() {
-      this.isAuth = this.$store.getters['authModule/isAuthenticated']
-      return this.isAuth !== 'false'
-    }
+      this.currentUserId = this.$store.getters['authModule/getCurrentUser'].id
+      return Boolean(this.currentUserId)
+    },
   },
 
   methods: {
-    onLogoutClick(){
+    onLogoutClick() {
       this.$store.dispatch('authModule/onLogout')
-      this.isAuth = 'false'
-      this.$router.push('/login')
+      this.currentUserId = null
+      this.$router.push('/')
     },
+    openPopup(t) {
+      switch (t) {
+        case 'login': {
+          this.$store.dispatch('onOpenLoginPopup')
+          break
+        }
+        case 'reg': {
+          this.$store.dispatch('onOpenRegPopup')
+          break
+        }
+      }
+    },
+    closePopup(t) {
+      switch (t) {
+        case 'login': {
+          this.$store.dispatch('onCloseLoginPopup')
+          break
+        }
+        case 'reg': {
+          this.$store.dispatch('onCloseRegPopup')
+          break
+        }
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-.login-container{
+.login-container {
   display: flex;
   min-height: 100%;
   align-items: center;
   justify-content: end;
 
 }
-.login-container a{
+
+.login-container a {
   display: flex;
   min-height: 100%;
   align-items: center;
@@ -53,14 +88,50 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
-.login-container span{
+
+.login-container span {
   cursor: pointer;
   transition: 0.4s;
 }
-.login-container a:hover, .login-container span:hover{
+
+.login-container a:hover, .login-container span:hover {
   text-decoration: underline;
 }
-.logout-button{
+
+.logout-button {
   background-color: transparent;
+}
+
+.slide-in-left {
+  animation: slide-in-left .9s ease-out both;
+}
+
+.slide-out-right {
+  animation: slide-out-right .9s ease-out both;
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+
+  }
+}
+
+@keyframes slide-out-right {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 1;
+
+  }
 }
 </style>

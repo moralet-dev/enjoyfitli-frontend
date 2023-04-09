@@ -5,7 +5,7 @@ export default {
   components:{InstagramLogo, TikTokLogo},
   props: {
     show: Boolean,
-  }
+  },
 }
 </script>
 
@@ -41,7 +41,7 @@ export default {
   </Transition>
 </template>
 
-<style>
+<style scoped>
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -57,6 +57,7 @@ export default {
 .modal-container {
   margin: auto;
   padding: 1rem 2rem;
+  min-width: 400px;
   font-size: 18px;
   display: flex;
   flex-direction: column;

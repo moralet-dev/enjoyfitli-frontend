@@ -54,7 +54,17 @@ export const authModule = {
         },
         setCurrentUser(state, data) {
             state.currentUser = {...state.currentUser, ...data}
-        }
+        },
+        unsetCurrentUser(state) {
+            state.currentUser = {
+                id: null,
+                first_name: null,
+                last_name: null,
+                phone: null,
+                photo: null,
+            }
+        },
+
     },
 
     actions: {
@@ -69,6 +79,7 @@ export const authModule = {
         onLogout({commit}) {
             commit('deleteTokens')
             commit('setIsAuthenticated', 'false')
+            commit('unsetCurrentUser')
         },
         onRegister({commit}, {email, phone, first_name, last_name, password, re_password}) {
             return authAPI.register(
@@ -80,6 +91,6 @@ export const authModule = {
         },
         onCurrentUserSet({commit}, data) {
             commit('setCurrentUser', data)
-        }
+        },
     }
 }

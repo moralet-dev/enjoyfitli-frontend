@@ -53,7 +53,7 @@
     --color-text: var(--vt-c-text-light-2);
     --color-link: var(--vt-c-link-light-1);
     --color-link-hover: var(--vt-c-link-light-2);
-    --color-header-shadow: rgba(0, 0, 0, 0.05);
+    --color-header-shadow: var(--vt-c-header-shadow-light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -75,7 +75,6 @@
 
     }
 }
-
 *,
 *::before,
 *::after {
@@ -83,6 +82,8 @@
     margin: 0;
     position: relative;
     font-weight: normal;
+    scrollbar-color: var(--color-link) var(--color-background);
+    scrollbar-width: thin;
 }
 
 body {
@@ -97,6 +98,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -113,10 +115,15 @@ header{
 main{
     padding: 6rem 0;
 }
+footer{
+    padding: 0 9rem;
+    margin-top: auto;
+    background: #000000;
+}
 a {
     color: var(--color-link);
     text-decoration: none;
-    transition: 600ms;
+    transition: .4s;
 }
 a:hover{
     color: var(--color-link-hover);
@@ -134,10 +141,12 @@ form input{
     color: var(--color-link);
     border: none;
     font-size: 18px;
-
-    padding: 6px 5px;
+    padding: 6px 0 2px 0;
     border-bottom: solid 2px var(--color-link);
-
+    transition: .6s;
+}
+form input:focus{
+    border-bottom: solid 2px #005BE3;
 }
 form select {
     border: none;
@@ -147,13 +156,15 @@ form select {
 
     border-bottom: solid 2px var(--color-link);
     background-color: transparent;
+    transition: .6s;
+}
+form select:focus{
+    border-bottom: solid 2px #005BE3;
 }
 form select option{
     background: var(--color-background-soft);
 }
 form select option:hover {
-    background-color: rebeccapurple;
-    color: #fff;
 }
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
@@ -163,4 +174,33 @@ input[type=number]::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance: textfield;
+}
+button{
+    width: fit-content;
+    padding: 1rem 2rem;
+    background-color: var(--color-background-soft);
+    color: var(--color-link);
+    font-size: 16px;
+    font-weight: 700;
+    border: 1px solid var(--color-link);
+    transition: .3s;
+    border-radius: 15px;
+}
+button:hover{
+    color: var(--color-link-hover);
+    background-color: var(--color-link);
+    border: 1px solid var(--color-link);
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Колір полоси прокрутки */
+::-webkit-scrollbar-track {
+    background-color: var(--color-background-soft);
+}
+
+/* Колір скрол-бару */
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-headings);
 }
