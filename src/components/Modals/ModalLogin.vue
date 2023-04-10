@@ -18,7 +18,7 @@
                   <input id="email" type="email" placeholder="Enter your e-mail" v-model="formData.email" required/>
                 </div>
                 <div class="form-group">
-                  <label for="rememberMe">Password:</label>
+                  <label for="password">Password:</label>
                   <input id="password" type="password" placeholder="Enter your password" v-model="formData.password"
                          required/>
                 </div>
@@ -28,7 +28,7 @@
                 <!--                </div>-->
                 <div class="login-block">
                   <button type="submit" value="Log-in">Log-in</button>
-                  <router-link :to="{name:'reset-password'}">Forgot password?</router-link>
+                  <a v-on:click="$emit('close'); this.$router.push({name:'reset-password'})">Forgot password?</a>
                 </div>
               </form>
             </div>

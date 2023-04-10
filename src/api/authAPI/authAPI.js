@@ -12,6 +12,16 @@ export const authAPI = {
         const data = {uid, token}
         return loginAPIInstance.post(url, data)
     },
+    passwordReset(email){
+        const url = 'auth/users/reset_password/'
+        const data = {email}
+        return loginAPIInstance.post(url, data)
+    },
+    passwordResetConfirm(uid, token, new_password){
+        const url = 'auth/users/reset_password_confirm/'
+        const data = {uid, token, new_password}
+        return loginAPIInstance.post(url, data)
+    },
     getMe() {
         const url = '/users/me/'
         return defaultAPIInstance.get(url)

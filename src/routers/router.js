@@ -8,14 +8,16 @@ import PurchaseHistory from "@/views/profile-pages/PurchaseHistory.vue";
 import Settings from "@/views/profile-pages/SettingsPage.vue";
 import SchedulePage from "@/views/SchedulePage.vue";
 import MembershipsPage from "@/views/MembershipsPage.vue";
-import ResetPasswordPage from "@/views/ResetPasswordPage.vue";
+import ResetPasswordConfirm from "@/views/ResetPasswordConfirm.vue";
 import ActivationPage from "@/views/ActivationPage.vue";
+import ResetPassword from "@/views/ResetPassword.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
     {path: '/schedule', component: SchedulePage, name: 'schedule'},
     {path: '/memberships', component: MembershipsPage, name: 'memberships'},
-    {path: '/reset-password', component: ResetPasswordPage, name: 'reset-password'},
+    {path: '/password-reset', component: ResetPassword, name: 'reset-password'},
+    {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
     {path: '/activate/:uid/:token', component: ActivationPage, name: 'activate'},
     {
         path: '/profile', component: ProfilePage, name: 'profile', children: [
