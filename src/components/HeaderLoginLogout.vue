@@ -76,7 +76,7 @@ export default {
   min-height: 100%;
   align-items: center;
   justify-content: end;
-
+  font-size: 14px;
 }
 
 .login-container a {
@@ -118,7 +118,6 @@ export default {
   100% {
     transform: translateY(0);
     opacity: 1;
-
   }
 }
 

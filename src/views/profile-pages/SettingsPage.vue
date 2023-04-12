@@ -48,7 +48,7 @@
 
 <script>
 import {authAPI} from "@/api/authAPI/authAPI";
-import Modal from "@/components/Modal.vue";
+import Modal from "@/components/Modals/Modal.vue";
 
 export default {
   name: "SettingsPage",

@@ -23,8 +23,8 @@
           <h3>Almost done</h3>
         </template>
         <template #body>
-          <p>We have sent you an email with instructions to reset your password.
-            Please, check your inbox (or spam, if necessary) and follow the instructions.</p>
+          <p>{{`We have sent you an email with instructions on '${formData.email}' to reset your password.
+          Please, check your inbox (or spam, if necessary) and follow the instructions.`}}</p>
         </template>
         <template #footer></template>
       </Modal>
@@ -34,7 +34,7 @@
 
 <script>
 import {authAPI} from "@/api/authAPI/authAPI";
-import Modal from "@/components/Modal.vue";
+import Modal from "@/components/Modals/Modal.vue";
 
 export default {
   name: "ResetPassword",

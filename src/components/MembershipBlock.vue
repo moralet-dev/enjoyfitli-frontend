@@ -1,6 +1,6 @@
 <template>
   <Carousel :itemsToShow="3" :wrapAround="true" ref="carousel" v-model="currentSlide">
-    <Slide v-for="m in memberships" :key="slide">
+    <Slide v-for="m in memberships" :key="m.id">
       <div class="carousel__item">
         <div class="carousel__card">
           <span class="carousel__card__title">{{ m.name.toUpperCase() }}</span>
@@ -56,7 +56,7 @@ import {Carousel, Slide} from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon.vue";
 import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon.vue";
-import ModalMembership from "@/components/Modal.vue";
+import ModalMembership from "@/components/Modals/Modal.vue";
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 
 
@@ -109,13 +109,15 @@ export default defineComponent({
 .carousel {
   display: grid;
   grid-template-columns: 12fr;
-  margin: 4rem 10rem 2rem 10rem;
+  margin: 0 10rem 0 10rem;
+  height: fit-content;
 }
-
+.carousel__viewport{
+}
 .carousel__item {
   min-height: 200px;
   width: 100%;
-  background: grey;
+  background: linear-gradient(to bottom right, rgb(244, 150, 73), rgb(220, 20, 60));
   color: var(--color-link-hover);
   border-radius: 25px;
   display: flex;
@@ -151,9 +153,7 @@ export default defineComponent({
 
 .carousel__card button {
   display: flex;
-  background: var(--vt-c-white-soft);
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
+  /*padding: 0.5rem 1rem;*/
   text-transform: uppercase;
 
 }
@@ -172,26 +172,26 @@ export default defineComponent({
 
 .carousel__slide {
   opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
+  transform: rotateY(-20deg) scale(0.1);
 }
 
 .carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(20deg) scale(0.75);
+  transform: rotateY(40deg) scale(0.75);
 }
 
 .carousel__slide--prev {
   opacity: 1;
-  transform: rotateY(-20deg) scale(0.75);
+  transform: rotateY(-40deg) scale(0.75);
 }
 
-.carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(20deg) scale(0.75);
-}
+/*.carousel__slide--next {*/
+/*  opacity: 1;*/
+/*  transform: rotateY(20deg) scale(0.15);*/
+/*}*/
 
 .carousel__slide--active {
   opacity: 1;
-  transform: rotateY(0) scale(1.1);
+  transform: rotateY(0) scale(1);
 }
 
 .carousel__nav {
@@ -204,6 +204,12 @@ export default defineComponent({
 .carousel__nav__arrow {
   padding: 0 1rem;
   background-color: transparent;
+  border: none;
+}
+.carousel__nav__arrow:hover {
+  background-color: transparent;
+  border: none;
+  transform: scale(120%);
 }
 
 .carousel__pagination-button::after {

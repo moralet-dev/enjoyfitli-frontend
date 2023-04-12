@@ -8,9 +8,9 @@ import Footer from "@/views/Footer.vue";
     <Header/>
   </header>
   <main>
-    <router-view  v-slot="{Component}">
+    <router-view v-slot="{Component}">
       <transition name="fade" mode="out-in">
-        <component :is="Component" />
+        <component :is="Component"/>
       </transition>
     </router-view>
   </main>

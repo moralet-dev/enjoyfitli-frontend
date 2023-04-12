@@ -40,7 +40,7 @@
 import {authAPI} from "@/api/authAPI/authAPI";
 import DownloadIcon from "@/components/icons/DownloadIcon.vue";
 import ProfilePagesWrapper from "@/views/profile-pages/ProfilePagesWrapper.vue";
-import Modal from "@/components/Modal.vue";
+import Modal from "@/components/Modals/Modal.vue";
 
 export default {
   name: "ProfilePage",
@@ -92,7 +92,7 @@ export default {
   display: grid;
   grid-template-columns: 12fr;
   min-width: 100%;
-  padding: 0 9rem;
+  padding: 12rem 9rem 0 9rem;
 }
 
 .welcome-block {

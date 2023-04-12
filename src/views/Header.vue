@@ -1,6 +1,8 @@
 <template>
     <div class="header-label">
-      <router-link :to="{name:'home'}">Liza Bukhtiyarova</router-link>
+      <router-link :to="{name:'home'}">
+        <img src="../assets/logos/logo_transparent_1.png" alt=""/>
+      </router-link>
     </div>
     <nav>
       <ul class="nav-list">
@@ -11,7 +13,7 @@
           <router-link :to="{name: 'schedule'}">Schedule</router-link>
         </li>
         <li>
-<!--          <router-link to="about">About me</router-link>-->
+          <router-link :to="{name: 'about'}">About me</router-link>
         </li>
       </ul>
     </nav>
@@ -30,7 +32,7 @@ export default {
 <style scoped>
 a {
   padding: 3px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 a:hover {
@@ -42,16 +44,16 @@ a:hover {
   justify-content: start;
 }
 
-.header-label a {
-  padding: 2rem 1rem;
-  font-size: 24px;
-  min-height: 100%;
-  font-weight: bold;
-
-}
-.header-label a:hover{
+.header-label a,
+.header-label a.router-link-active,
+.header-label a.router-link-exact-active{
   box-shadow: none;
-  text-decoration: underline;
+  background: transparent;
+}
+
+.header-label a img{
+  height: 86px;
+  max-width: 100%;
 }
 .nav-list {
   display: grid;

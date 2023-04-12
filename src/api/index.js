@@ -38,7 +38,7 @@ defaultAPIInstance.interceptors.request.use(
                     }).catch(() => {
                         store.dispatch('authModule/onLogout')
                         store.dispatch('authModule/onSessionExpired', true)
-                        router.push('/login')
+                        router.push({name: 'home'})
                     })
             }
         }

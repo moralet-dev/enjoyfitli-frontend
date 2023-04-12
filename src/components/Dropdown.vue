@@ -1,0 +1,89 @@
+<template>
+  <div class="dropdown">
+    <div class="top-content" @click="toggle">
+      <slot name="heading">
+        <span class="title">{{ heading }}</span>
+      </slot>
+      <slot>
+        <div class="toggle-button" @click="toggle">
+          <PlusIcon :is-minus="isOpen"/>
+        </div>
+      </slot>
+    </div>
+
+    <transition name="fade">
+      <div class="dropdown-content" v-if="isOpen">
+        <slot name="content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus deserunt, distinctio doloribus eveniet
+            facere illo illum impedit officiis totam. Iste nostrum praesentium vero voluptatem. A incidunt minima nemo
+            placeat quibusdam?</p>
+        </slot>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<script>
+import PlusIcon from "@/components/icons/PlusIcon.vue";
+
+export default {
+  name: "Dropdown",
+  components: {PlusIcon},
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  props: {
+    heading: {
+      type: String,
+    },
+  },
+  computed: {},
+  methods: {
+    toggle() {
+      this.isOpen = !this.isOpen
+    }
+  }
+};
+</script>
+
+<style scoped>
+.dropdown-content {
+  max-height: 200vh;
+  padding: 1rem 0;
+}
+.top-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-headings);
+  font-family: 'Futura New', sans-serif;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.fade-enter-active {
+  transition: all .5s ease-in-out;
+}
+
+.fade-leave-active {
+  max-height: 0;
+  padding: 0;
+  transition: all .5s ease-in-out;
+
+}
+
+.fade-enter-from {
+  opacity: 0;
+  padding: 0;
+  max-height: 0;
+}
+
+.fade-leave-to {
+  max-height: 0;
+  padding: 0;
+  opacity: 0;
+}
+</style>

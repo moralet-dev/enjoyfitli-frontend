@@ -87,9 +87,10 @@ export default {
 </script>
 
 <style scoped>
+.wrapper{
+  padding: 12rem 0 0 0;
+}
 h1, h4 {
-  font-family: "Futura New", sans-serif;
-  padding: 1.5rem 0;
   font-size: 50px;
 }
 h4 {
