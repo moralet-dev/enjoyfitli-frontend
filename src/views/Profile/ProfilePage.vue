@@ -39,7 +39,7 @@
 <script>
 import {authAPI} from "@/api/authAPI/authAPI";
 import DownloadIcon from "@/components/icons/DownloadIcon.vue";
-import ProfilePagesWrapper from "@/views/profile-pages/ProfilePagesWrapper.vue";
+import ProfilePagesWrapper from "@/views/Profile/profile-pages/ProfilePagesWrapper.vue";
 import Modal from "@/components/Modals/Modal.vue";
 
 export default {

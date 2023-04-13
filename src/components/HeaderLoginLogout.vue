@@ -31,8 +31,16 @@ export default {
 
   computed: {
     getIsAuth() {
-      this.currentUserId = this.$store.getters['authModule/getCurrentUser'].id
-      return Boolean(this.currentUserId)
+      if(this.currentUserId) {
+        this.currentUserId = this.$store.getters['authModule/getCurrentUser'].id
+        console.log(this.currentUserId)
+        return Boolean(this.currentUserId)
+      } else {
+        if (this.$store.getters['authModule/isAuthenticated'] === 'true'){
+          return true
+        }
+      }
+      return false
     },
   },
 

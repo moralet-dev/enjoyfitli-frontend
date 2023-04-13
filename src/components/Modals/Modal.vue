@@ -1,18 +1,50 @@
 <script>
 import InstagramLogo from "@/components/icons/InstagramLogo.vue";
 import TikTokLogo from "@/components/icons/TikTokLogo.vue";
+import vClickOutside from "click-outside-vue3";
+
 export default {
-  components:{InstagramLogo, TikTokLogo},
+  components: {InstagramLogo, TikTokLogo},
   props: {
     show: Boolean,
+    autoHide: {
+      type: Boolean,
+      default: false
+    },
+    autoHideTime: {
+      type: Number,
+      default: 5,
+    }
   },
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
+  methods: {
+    onClose() {
+      this.$emit('close')
+    }
+  },
+  updated() {
+    if (this.autoHide){
+      setTimeout(()=>{
+        this.$emit('close')
+      }, this.autoHideTime*1000)
+    }
+  },
+  mounted() {
+    if (this.autoHide){
+      setTimeout(()=>{
+        this.$emit('close')
+      }, this.autoHideTime*1000)
+    }
+  }
 }
 </script>
 
 <template>
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
-      <div class="modal-container">
+      <div class="modal-container" v-click-outside="onClose">
         <div class="modal-header">
           <slot name="header">default header</slot>
         </div>
@@ -23,7 +55,7 @@ export default {
 
         <div class="modal-footer">
           <slot name="footer">
-            <button class="modal-default-button" @click="$emit('close')">
+            <button class="modal-default-button" @click="onClose">
               Cancel
             </button>
           </slot>
@@ -31,8 +63,8 @@ export default {
         <div class="post-info">
           <h4>Social networks</h4>
           <div class="">
-            <InstagramLogo />
-            <TikTokLogo />
+            <InstagramLogo/>
+            <TikTokLogo/>
           </div>
         </div>
 
@@ -67,19 +99,23 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
-.modal-header{
+
+.modal-header {
   font-family: 'Futura New', sans-serif;
   font-size: 30px;
   color: var(--color-headings);
   padding: 1rem 0 0 0;
 }
+
 .modal-body {
   padding: 2rem 0;
 }
-.modal-footer{
+
+.modal-footer {
   display: flex;
 }
-.post-info{
+
+.post-info {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -89,10 +125,12 @@ export default {
   border-top: solid 1px grey;
   margin: 2rem 0 0 0;
 }
-.post-info svg{
+
+.post-info svg {
   margin: 10px 10px;
 }
-.modal-footer button{
+
+.modal-footer button {
   border: none;
   margin: 0 10px;
   border-radius: 15px;

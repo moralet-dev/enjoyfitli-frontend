@@ -33,7 +33,7 @@
 <script>
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 import TrainingsLeftCircle from "@/components/TrainingsLeftCircle.vue";
-import SchedulePage from "@/views/profile-pages/Schedule.vue";
+import SchedulePage from "@/views/Profile/profile-pages/Schedule.vue";
 
 export default {
   name: "MembershipPage",
