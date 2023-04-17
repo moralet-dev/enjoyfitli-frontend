@@ -1,13 +1,13 @@
 <template>
   <div class="login-container" v-if="getIsAuth" :class="{'slide-in-left': getIsAuth,'slide-out-right': !getIsAuth}">
-    <router-link :to="{name: 'profile'}">Profile</router-link>
-    <a class="logout-button" v-on:click="onLogoutClick">
+    <router-link :to="{name: 'profile'}" @click="this.$emit('closeBurger')">Profile</router-link>
+    <a class="logout-button" @click="onLogoutClick">
       <LogoutIcon width="15" height="15"/>
     </a>
   </div>
   <div v-else class="login-container" :class="{'slide-in-left': !getIsAuth, 'slide-out-right': getIsAuth}">
-    <a ref="login-popup" v-on:click="openPopup('login')">Login</a>
-    <a v-on:click="openPopup('reg')">Registration</a>
+    <a ref="login-popup" @click="openPopup('login')">Login</a>
+    <a @click="openPopup('reg')">Registration</a>
   </div>
   <ModalLogin :show="this.$store.getters['getTriggerLoginPopup']" @close="closePopup('login')"/>
   <ModalReg :show="this.$store.getters['getTriggerRegPopup']" @close="closePopup('reg')"/>
@@ -33,7 +33,6 @@ export default {
     getIsAuth() {
       if(this.currentUserId) {
         this.currentUserId = this.$store.getters['authModule/getCurrentUser'].id
-        console.log(this.currentUserId)
         return Boolean(this.currentUserId)
       } else {
         if (this.$store.getters['authModule/isAuthenticated'] === 'true'){
@@ -48,6 +47,7 @@ export default {
     onLogoutClick() {
       this.$store.dispatch('authModule/onLogout')
       this.currentUserId = null
+      this.$emit('closeBurger')
       this.$router.push('/')
     },
     openPopup(t) {
@@ -118,6 +118,22 @@ export default {
   animation: slide-out-right .9s ease-out both;
 }
 
+@media (min-width: 768px) and (max-width: 991px) {
+  .login-container{
+    justify-content: center;
+  }
+}
+@media (max-width: 767px) {
+  .login-container{
+    height: fit-content;
+    min-height: fit-content;
+  }
+  .login-container a{
+    width: 100%;
+    padding: 2rem 1rem;
+
+  }
+}
 @keyframes slide-in-left {
   0% {
     transform: translateY(-100%);

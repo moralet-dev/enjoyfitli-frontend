@@ -6,16 +6,15 @@ import Schedule from "@/views/Profile/profile-pages/Schedule.vue";
 import MyNutritionBalance from "@/views/Profile/profile-pages/MyNutritionBalance.vue";
 import PurchaseHistory from "@/views/Profile/profile-pages/PurchaseHistory.vue";
 import Settings from "@/views/Profile/profile-pages/SettingsPage.vue";
-import SchedulePage from "@/views/Shcedule/SchedulePage.vue";
 import MembershipsPage from "@/views/Memberships/MembershipsPage.vue";
 import ResetPasswordConfirm from "@/views/ResetPasswordConfirm.vue";
 import ActivationPage from "@/views/ActivationPage.vue";
 import ResetPassword from "@/views/ResetPassword.vue";
 import AboutMePage from "@/views/AboutMePage.vue";
+import SchedulePage from "@/views/Schedule/SchedulePage.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
-    {path: '/schedule', component: SchedulePage, name: 'schedule'},
     {path: '/memberships', component: MembershipsPage, name: 'memberships'},
     {path: '/password-reset', component: ResetPassword, name: 'reset-password'},
     {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
@@ -30,6 +29,7 @@ const routes = [
             {path: 'settings', component: Settings, name: 'settings'},
         ]
     },
+    {path: '/schedule', component: SchedulePage, name: 'schedule'},
 ]
 
 export const router = createRouter(

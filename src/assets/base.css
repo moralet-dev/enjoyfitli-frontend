@@ -1,4 +1,5 @@
 @import "nullStyle.css";
+
 @font-face {
     font-family: 'Futura New';
     src: local('Futura New Bold Reg'), local('Futura-New-Bold-Reg'),
@@ -75,6 +76,7 @@
 
     }
 }
+
 *,
 *::before,
 *::after {
@@ -101,54 +103,42 @@ body {
 
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6 {
     color: var(--color-headings);
     font-family: 'Futura New', sans-serif;
     letter-spacing: 0.02em;
     cursor: default;
 }
-header{
-    display: grid;
-    height: fit-content;
-    width: 100%;
-    background-color: rgb(0, 0, 0, 0.8);
-    grid-template-columns: 4fr 4fr 4fr;
-    box-shadow: 0 0 45px var(--color-header-shadow);
-    padding: 0 9rem;
-    position: fixed;
-    z-index: 9995;
-    text-transform: uppercase;
-}
-header a{
-    color: rgb(255, 127, 80);
-}
-main{
-    /*margin: 0px 0 0 0;*/
-    /*padding: 6rem 0 0 0;*/
-}
-footer{
+
+
+footer {
     padding: 0 9rem;
     margin-top: auto;
     background: #000000;
 }
+
 a {
     color: var(--color-link);
     text-decoration: none;
     transition: .4s;
 }
-a:hover{
+
+a:hover {
     color: var(--color-link-hover);
     background-color: var(--color-link);
 }
-.router-link-active{
+
+.router-link-active {
     color: var(--color-link-hover);
     background-color: var(--color-link);
 }
+
 .router-link-exact-active {
     color: var(--color-link-hover);
     background-color: var(--color-link);
 }
-form input{
+
+form input {
     background: transparent;
     color: var(--color-link);
     border: none;
@@ -157,9 +147,11 @@ form input{
     border-bottom: solid 2px var(--color-link);
     transition: .6s;
 }
-form input:focus{
+
+form input:focus {
     border-bottom: solid 2px #005BE3;
 }
+
 form select {
     border: none;
     color: var(--color-link);
@@ -170,14 +162,18 @@ form select {
     background-color: transparent;
     transition: .6s;
 }
-form select:focus{
+
+form select:focus {
     border-bottom: solid 2px #005BE3;
 }
-form select option{
+
+form select option {
     background: var(--color-background-soft);
 }
+
 form select option:hover {
 }
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -187,7 +183,8 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
-button{
+
+button {
     width: fit-content;
     padding: 1rem 2rem;
     background-color: var(--vt-c-black-soft);
@@ -198,11 +195,13 @@ button{
     transition: .3s;
     border-radius: 15px;
 }
-button:hover{
+
+button:hover {
     color: var(--vt-c-black-soft);
     background-color: var(--vt-c-white-soft);
     border: 2px solid var(--vt-c-black-soft);
 }
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -216,6 +215,23 @@ button:hover{
 ::-webkit-scrollbar-thumb {
     background-color: var(--color-headings);
 }
-.wrapper{
+
+.wrapper {
     padding: 6rem 9rem 0 9rem;
 }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    /* styles for screens between 992px and 1199px wide */
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .wrapper{
+        padding: 6rem 0 0 0;
+    }
+
+}
+
+@media (max-width: 767px) {
+    /* styles for screens up to 767px wide */
+}
+

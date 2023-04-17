@@ -4,9 +4,7 @@ import Footer from "@/views/Footer.vue";
 </script>
 
 <template>
-  <header>
-    <Header/>
-  </header>
+  <Header/>
   <main>
     <router-view v-slot="{Component}">
       <transition name="fade" mode="out-in">

@@ -39,10 +39,10 @@
 <script>
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 import {authAPI} from "@/api/authAPI/authAPI";
-import Calendar from "@/views/Shcedule/Calendar.vue";
+import Calendar from "@/views/Schedule/Calendar.vue";
 import Modal from "@/components/Modals/Modal.vue";
 import Switcher from "@/components/Switcher.vue";
-import ListedTrainings from "@/views/Shcedule/ListedTrainings.vue";
+import ListedTrainings from "@/views/Schedule/ListedTrainings.vue";
 
 export default {
   name: "SchedulePage",
@@ -56,7 +56,7 @@ export default {
       showCalendar: false,
     }
   },
-  created() {
+  beforeCreate() {
     if (this.$store.getters['authModule/isAuthenticated'] === 'false'
         || !this.$store.getters['authModule/isAuthenticated']) {
       this.$router.push({name: 'home'})
