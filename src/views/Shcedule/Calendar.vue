@@ -51,7 +51,6 @@ export default {
       days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',],
       startDay: null,
       openDate: null,
-      // dailyTrainings: null,
       showPopup: false,
       hasTrLi: null,
       loading: true,
@@ -62,7 +61,6 @@ export default {
       type: Array,
       required: true,
     },
-    test: String,
   },
 
   computed: {
@@ -100,12 +98,13 @@ export default {
   updated() {
     if (this.trList) {
       this.loading = false
+      this.hasTrainings()
     }
-    this.hasTrainings()
   },
   mounted() {
     if (this.trList) {
       this.loading = false
+      this.hasTrainings()
     }
   },
   methods: {
@@ -149,7 +148,6 @@ export default {
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1);
     },
     nextMonth() {
-      // this.currentDate.setMonth(this.currentDate.getMonth() + 1);
       this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
     },
     listenSign(id) {

@@ -114,8 +114,8 @@ export default {
   z-index: 9999;
   padding: 1rem;
 }
-.close:hover{
-  background: none;
+button.close:hover{
+  background-color: transparent;
 }
 .modal-mask {
   position: fixed;

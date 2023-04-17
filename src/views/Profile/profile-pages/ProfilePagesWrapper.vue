@@ -92,6 +92,7 @@ a span {
 .pages-content-wrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100%;
   padding: 0 0 0 7rem;
 }
 

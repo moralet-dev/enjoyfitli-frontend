@@ -18,7 +18,11 @@ export const profileAPI = {
         const url = `/memberships/${pk}/request/`
         return defaultAPIInstance.post(url)
     },
-    getRequestsHistory(){
+    getRequestsHistory(page){
+        if (page){
+            const url = `/memberships-requests/?page=${page}`
+            return defaultAPIInstance.get(url)
+        }
         const url = `/memberships-requests/`
         return defaultAPIInstance.get(url)
     }

@@ -1,8 +1,13 @@
 import {defaultAPIInstance} from "@/api";
 
 export const trainingsAPI = {
-    getGroupTrainings() {
+    getGroupTrainings(params) {
         const url = '/group-trainings/'
+        if (params){
+            return defaultAPIInstance.get(url, {
+                params: params
+            })
+        }
         return defaultAPIInstance.get(url)
     },
     getMyGroupTrainings(){

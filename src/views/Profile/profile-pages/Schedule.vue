@@ -9,7 +9,8 @@
         <div class="item"><span>Name:</span> {{ t.name }}</div>
         <div class="item"><span>Type:</span> {{ t.type.name }}</div>
         <div class="item"><span>Specification:</span> {{ t.specification.name }}</div>
-        <div class="item"><span>When:</span> {{ new Date(t.when).toLocaleString() }}</div>
+        <div class="item"><span>When:</span> {{new Date(t.when).toLocaleString('uk',
+            {weekday: 'short', day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit'}) }}</div>
         <div class="item"><span>Where:</span> {{ t.where }}</div>
         <div class="item unsign"><button type="button" v-on:click="onUnsign(t.id)">X Unsign</button></div>
 

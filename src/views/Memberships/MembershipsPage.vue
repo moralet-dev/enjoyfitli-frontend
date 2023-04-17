@@ -88,7 +88,7 @@ export default {
 
 <style scoped>
 .wrapper{
-  padding: 12rem 9rem;
+  padding: 12rem 0;
 }
 h1, h4 {
   font-size: 50px;
@@ -100,13 +100,13 @@ p{
   line-height: 31px;
 }
 .title {
-  padding: 0 0 5rem 0;
+  padding: 0 9rem 5rem 9rem;
 }
 
 .membership-block {
   display: grid;
   grid-template-columns: 4fr 8fr;
-  padding: 9rem 0;
+  padding: 9rem 9rem;
 }
 .dark{
   background: var(--color-background-section-dark);

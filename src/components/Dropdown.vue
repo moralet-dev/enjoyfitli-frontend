@@ -6,7 +6,7 @@
       </slot>
       <slot>
         <div class="toggle-button" @click="toggle">
-          <PlusIcon :is-minus="isOpen"/>
+          <PlusIcon @click="toggle" :is-minus="isOpen"/>
         </div>
       </slot>
     </div>

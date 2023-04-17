@@ -34,8 +34,8 @@ export default {
   mounted() {
     if (this.autoHide){
       setTimeout(()=>{
-        this.$emit('close')
-      }, this.autoHideTime*1000)
+      }, (this.autoHideTime*1000))
+      // this.$emit('close')
     }
   }
 }
