@@ -4,6 +4,9 @@
       <div v-if="show" class="modal-mask">
         <div class="modal-container">
           <div class="modal-content">
+            <button class="mobile-close" @click="nullFormData">
+              <CloseIcon/>
+            </button>
             <div class="modal-header">
               <span>Hello!</span>
               <h3>Enter to personal cabinet</h3>
@@ -167,7 +170,7 @@ export default {
   margin: 2rem 0 0 0;
 }
 
-.post-info svg {
+.post-info a {
   margin: 10px 10px;
 }
 
@@ -188,7 +191,12 @@ form button {
   border: 1px solid var(--color-link);
   transition: .3s;
 }
-
+@media (min-width: 768px) and (max-width: 991px) {
+  form button{
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+  }
+}
 form button:hover {
   color: var(--color-link-hover);
   background-color: var(--color-link);
@@ -249,7 +257,28 @@ form button:hover {
   background: transparent;
   width: fit-content;
 }
+.mobile-close{
+  display: none;
+}
+@media (max-width: 767px) {
+  .modal-content{
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .modal-bg{
+    display: none;
+  }
+  .mobile-close {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    z-index: 9999;
 
+  }
+}
 .error-msg {
   font-size: 14px;
   color: rgb(255, 69, 0);

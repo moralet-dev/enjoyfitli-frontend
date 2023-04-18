@@ -145,6 +145,7 @@ button.close:hover{
 .modal-header {
   font-family: 'Futura New', sans-serif;
   font-size: 30px;
+  padding: 1rem 0;
   color: var(--color-headings);
   display: flex;
   align-items: center;
@@ -167,6 +168,7 @@ button.close:hover{
 .info {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
 }
 
 .title, .info-item-title {
@@ -183,8 +185,28 @@ button.close:hover{
   flex-direction: column;
   justify-content: end;
   align-items: center;
+  text-align: center;
 }
-
+@media (max-width: 767px) {
+  .modal-container{
+    padding: 0;
+  }
+  .modal-body{
+    padding: 1rem 0;
+  }
+  .training{
+    margin: 1rem 0;
+  }
+  .modal-header{
+    font-size: 25px;
+  }
+  .title{
+    font-size: 20px;
+  }
+  .info-item{
+    font-size: 16px;
+  }
+}
 .helpers button {
   transition: .5s;
 }

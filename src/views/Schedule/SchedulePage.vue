@@ -6,8 +6,8 @@
     </div>
     <transition-group name="fade">
       <div v-if="showCalendar" class="page-view">
-        <Calendar :trList="trainingsList" @p-sign="onSign" @unsign="onUnsign"/>
         <div class="warning"><span>Зверніть увагу</span>, що календарний тиждень розпочинається з НЕДІЛІ!</div>
+        <Calendar :trList="trainingsList" @p-sign="onSign" @unsign="onUnsign"/>
         <Modal :show="showModal" @close="showModal = false" >
           <template #header>
             Confirmed
@@ -130,7 +130,7 @@ export default {
 }
 .warning{
   display: inline-block;
-  margin: 2rem 0 0 0;
+  margin: 0 0 1rem 0;
   padding: 1rem;
   border: 2px solid coral;
 }
@@ -138,6 +138,19 @@ export default {
   font-weight: 700;
   color: crimson;
 }
+@media (max-width: 767px) {
+  .wrapper{
+    padding: 8rem 1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .wrapper{
+    padding: 10rem 1rem;
+  }
+}
+
+
+
 .fade-enter-active {
   transition: all .7s ease-in-out;
 }

@@ -38,4 +38,20 @@ h1 {
 .content p{
   margin: 1rem 0;
 }
+@media (max-width: 767px) {
+  .wrapper{
+    padding: 8rem 1rem;
+  }
+  h1{
+    font-size: 30px;
+  }
+  .content{
+    width: 100%;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .wrapper{
+    padding: 10rem 5rem 5rem 5rem;
+  }
+}
 </style>

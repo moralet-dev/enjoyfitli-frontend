@@ -1,5 +1,5 @@
 <template>
-  <div v-if="trList">
+  <div v-if="trList" class="table-container">
     <table>
       <thead>
       <tr>
@@ -107,7 +107,6 @@ table {
   width: 100%;
   table-layout: fixed;
 }
-
 th,
 td {
   padding: 1rem;
@@ -116,7 +115,23 @@ td {
   text-align: center;
   word-wrap: break-word;
 }
+@media (max-width: 767px) {
+  table{
+    table-layout: auto;
 
+  }
+  .table-container{
+    overflow-x: scroll;
+  }
+  th, td{
+    font-size: 18px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  th, td{
+    font-size: 18px;
+  }
+}
 th {
   text-transform: uppercase;
 }

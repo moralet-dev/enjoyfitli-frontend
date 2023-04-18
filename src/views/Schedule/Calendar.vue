@@ -187,9 +187,17 @@ export default {
   font-weight: bold;
   margin: 0 2rem;
   text-transform: uppercase;
+  text-align: center;
   color: var(--color-headings);
 }
-
+@media (max-width: 767px) {
+  .calendar-header{
+    align-items: center;
+  }
+  .calendar-month{
+    font-size: 20px;
+  }
+}
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);

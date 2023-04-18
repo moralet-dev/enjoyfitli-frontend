@@ -4,6 +4,9 @@
       <div v-if="show" class="modal-mask">
         <div class="modal-container">
           <div class="modal-content">
+            <button class="mobile-close" @click="nullFormData">
+              <CloseIcon/>
+            </button>
             <div class="modal-header">
               <span>Welcome!</span>
               <h3>Create personal cabinet</h3>
@@ -176,6 +179,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   transition: opacity 0.3s ease;
+  overflow-y: auto;
 }
 
 .modal-container {
@@ -190,14 +194,15 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
-
+.mobile-close{
+  display: none;
+}
 .modal-content {
-  flex-direction: column;
-  align-items: center;
   padding: 0 3rem;
-  justify-content: center;
   width: 50%;
   border-radius: 15px;
+  overflow-y: auto;
+
 }
 
 .modal-header {
@@ -235,21 +240,39 @@ export default {
   margin: 2rem 0 0 0;
 }
 
-.post-info svg {
-  margin: 10px 10px;
-}
-
 form {
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
 }
-
 .fields-container {
   display: grid;
   grid-template-columns: 6fr 6fr;
   grid-column-gap: 10px;
 
+}
+@media (max-width: 767px) {
+  .modal-content{
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .modal-bg{
+    display: none;
+  }
+  .fields-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-close {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+    border: none;
+    z-index: 9999;
+
+  }
 }
 
 form button {
