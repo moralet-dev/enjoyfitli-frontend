@@ -22,7 +22,7 @@
           </li>
         </ul>
       </nav>
-      <HeaderLoginLogout :closeBurger="closeBurger"/>
+      <HeaderLoginLogout @closeMenu="this.isOpened=false"/>
     </div>
   </header>
 
@@ -44,6 +44,7 @@ export default {
   },
   methods:{
     closeBurger(){
+      console.log('111')
       this.isOpened = false
     },
     toggleOpen(){
@@ -147,7 +148,7 @@ export default {
     width: 100%;
     height: 70px;
     padding: 0;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
   .header::before{
@@ -161,6 +162,7 @@ export default {
     cursor: pointer;
     z-index: 3;
     padding: 1rem;
+    margin: 0 2rem 0 0;
   }
   .header__burger::before,
   .header__burger::after {

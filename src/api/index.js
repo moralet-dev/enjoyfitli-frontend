@@ -1,6 +1,6 @@
 import axios from "axios";
 import store from "@/store/store";
-import {router} from "@/routers/router";
+// import {router} from "@/routers/router";
 
 const loginConfig = {
     baseURL: "http://localhost:8000/api",
@@ -38,7 +38,7 @@ defaultAPIInstance.interceptors.request.use(
                     }).catch(() => {
                         store.dispatch('authModule/onLogout')
                         store.dispatch('authModule/onSessionExpired', true)
-                        router.push({name: 'home'})
+                        // router.push({name: 'home'})
                     })
             }
         }

@@ -56,7 +56,7 @@ export default {
       showCalendar: false,
     }
   },
-  beforeCreate() {
+  created() {
     if (this.$store.getters['authModule/isAuthenticated'] === 'false'
         || !this.$store.getters['authModule/isAuthenticated']) {
       this.$router.push({name: 'home'})

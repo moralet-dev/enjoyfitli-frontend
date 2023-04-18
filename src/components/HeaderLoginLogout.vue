@@ -1,6 +1,6 @@
 <template>
   <div class="login-container" v-if="getIsAuth" :class="{'slide-in-left': getIsAuth,'slide-out-right': !getIsAuth}">
-    <router-link :to="{name: 'profile'}" @click="this.$emit('closeBurger')">Profile</router-link>
+    <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">Profile</router-link>
     <a class="logout-button" @click="onLogoutClick">
       <LogoutIcon width="15" height="15"/>
     </a>
@@ -31,11 +31,11 @@ export default {
 
   computed: {
     getIsAuth() {
-      if(this.currentUserId) {
+      if (this.currentUserId) {
         this.currentUserId = this.$store.getters['authModule/getCurrentUser'].id
         return Boolean(this.currentUserId)
       } else {
-        if (this.$store.getters['authModule/isAuthenticated'] === 'true'){
+        if (this.$store.getters['authModule/isAuthenticated'] === 'true') {
           return true
         }
       }
@@ -47,17 +47,19 @@ export default {
     onLogoutClick() {
       this.$store.dispatch('authModule/onLogout')
       this.currentUserId = null
-      this.$emit('closeBurger')
+      this.$emit('closeMenu')
       this.$router.push('/')
     },
     openPopup(t) {
       switch (t) {
         case 'login': {
           this.$store.dispatch('onOpenLoginPopup')
+          this.$emit('closeMenu')
           break
         }
         case 'reg': {
           this.$store.dispatch('onOpenRegPopup')
+          this.$emit('closeMenu')
           break
         }
       }
@@ -119,21 +121,24 @@ export default {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-  .login-container{
+  .login-container {
     justify-content: center;
   }
 }
+
 @media (max-width: 767px) {
-  .login-container{
+  .login-container {
     height: fit-content;
     min-height: fit-content;
   }
-  .login-container a{
+
+  .login-container a {
     width: 100%;
     padding: 2rem 1rem;
 
   }
 }
+
 @keyframes slide-in-left {
   0% {
     transform: translateY(-100%);
