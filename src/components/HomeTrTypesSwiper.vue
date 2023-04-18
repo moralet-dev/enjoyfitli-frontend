@@ -1,11 +1,10 @@
 <template>
-  <Carousel :itemsToShow="3" :wrapAround="true" ref="carousel" v-model="currentSlide">
-    <Slide v-for="m in memberships" :key="m.id">
+  <Carousel :itemsToShow="1" :wrapAround="false" ref="carousel" v-model="currentSlide">
+    <Slide v-for="m in types" :key="m.id">
       <div class="carousel__item">
         <div class="carousel__card">
           <span class="carousel__card__title">{{ m.name.toUpperCase() }}</span>
-          <span class="carousel__card__price">{{ m.price }} &#8372;</span>
-          <button @click="showModal = true; current = m">Придбати</button>
+          <p class="carousel__card__descr">{{ m.description }}</p>
         </div>
       </div>
     </Slide>
@@ -20,33 +19,6 @@
       </div>
     </template>
   </Carousel>
-  <Teleport to="body">
-    <ModalMembership :show="showModal" @close="showModal = false">
-      <template #header>
-        <h3>Confirmation</h3>
-      </template>
-      <template #body>
-        {{ current.name }}
-      </template>
-      <template #footer>
-        <button @click="showModal = false">Cancel</button>
-        <button @click="getNewMembership(current.id)">Confirm</button>
-      </template>
-    </ModalMembership>
-  </Teleport>
-  <Teleport to="body">
-    <ModalMembership :show="showNextModal" @close="showNextModal = false">
-      <template #header>
-        <h3>Confirmation</h3>
-      </template>
-      <template #body>
-        {{ nextMessage }}
-      </template>
-      <template #footer>
-        <button @click="showNextModal = false">Close</button>
-      </template>
-    </ModalMembership>
-  </Teleport>
 </template>
 
 <script>
@@ -61,7 +33,7 @@ import {profileAPI} from "@/api/profileAPI/profileAPI";
 
 
 export default defineComponent({
-  name: "MembershipBlock",
+  name: "HomeTrTypesSwiper",
   components: {
     ArrowRightIcon,
     ArrowLeftIcon,
@@ -70,8 +42,8 @@ export default defineComponent({
     ModalMembership,
   },
   props: {
-    memberships: Array,
-    arrowColor: {type: String, default: 'var(--color-headings)'}
+    arrowColor: {type: String, default: 'var(--color-headings)'},
+    types: Array,
   },
   data() {
     return {
@@ -105,12 +77,12 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 .carousel {
   display: grid;
   grid-template-columns: 12fr;
-  margin: 0 10rem 0 10rem;
   height: fit-content;
+  margin: 0;
 }
 .carousel__viewport{
 }
@@ -146,7 +118,10 @@ export default defineComponent({
 .carousel__card__title {
   font-weight: 700;
 }
-
+.carousel__card__descr{
+  font-weight: 400;
+  padding: 0 2rem;
+}
 .carousel__card__price {
   font-size: 25px;
 }
@@ -197,7 +172,7 @@ export default defineComponent({
 .carousel__nav {
   padding: 1rem 0 0 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: start;
 }
 

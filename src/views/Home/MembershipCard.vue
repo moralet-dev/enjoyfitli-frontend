@@ -61,4 +61,18 @@ export default {
 .card-price {
   font-size: 40px;
 }
+@media (max-width: 767px) {
+  .card-box{
+  }
+  .card-title{
+    font-size: 16px;
+  }
+  .card-price{
+    font-size: 20px;
+  }
+  .card button{
+    font-size: 14px;
+    padding: 5px 1rem;
+  }
+}
 </style>

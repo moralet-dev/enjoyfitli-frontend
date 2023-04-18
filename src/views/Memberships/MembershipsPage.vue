@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import MembershipBlock from "@/components/MembershipBlock.vue";
+import MembershipBlock from "@/views/Memberships/MembershipBlock.vue";
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 
 export default {
@@ -95,6 +95,7 @@ h1, h4 {
 }
 h4 {
   font-size: 30px;
+  margin-bottom: 2rem;
 }
 p{
   line-height: 31px;
@@ -113,5 +114,48 @@ p{
 }
 .dark h1, .dark h4{
   color: var(--vt-c-white-soft);
+}
+@media (max-width: 767px) {
+  .wrapper{
+    padding: 8rem 0 0 0 ;
+  }
+  .title{
+    padding: 0 1rem 3rem 1rem;
+  }
+  h1{
+    font-size: 30px;
+  }
+  h4{
+    font-size: 25px;
+  }
+  .membership-block{
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 1rem;
+  }
+  p{
+    line-height: inherit;
+  }
+}
+@media (min-width: 678px) and (max-width: 991px) {
+  .wrapper{
+    padding: 10rem 0 0 0;
+  }
+  .title{
+    padding: 0 5rem 3rem 5rem;
+  }
+  .membership-block{
+    padding: 5rem;
+    grid-template-columns: 6fr 6fr;
+  }
+  p{
+    line-height: 25px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1440px) {
+  .membership-block{
+    padding: 5rem 9rem;
+    grid-template-columns: 6fr 6fr;
+  }
 }
 </style>

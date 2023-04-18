@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="content-block-media">
+    <div class="content-block-media reverse">
       <div class="content-block-media-l">
         <div class="content-block-media-l__video">
 
@@ -95,6 +95,9 @@
             title="Party Group"
             desc="Тренуйся під наглядом тренера,спілкуйся у топовій компанії та отримуй максимум задоволення від процесу!"
         />
+      </div>
+      <div class="cards-swiper">
+        <HomeTrTypesSwiper :types="types"/>
       </div>
     </div>
     <div class="content-block">
@@ -171,23 +174,30 @@ import TrainingTypeCard from "@/views/Home/TrainingTypeCardsList.vue";
 import MembershipCardsBlock from "@/views/Home/MembershipCardsBlock.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import Preloader from "@/components/Preloader.vue";
+import HomeTrTypesSwiper from "@/components/HomeTrTypesSwiper.vue";
+import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 
 export default {
   name: "HomePage",
-  components: {Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard},
+  components: {HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard},
   mounted() {
     this.loaded()
+    this.getTrTypes()
   },
-  data(){
+  data() {
     return {
-      loading: true
+      loading: true,
+      types: null,
     }
   },
-  methods:{
-    loaded(){
+  methods: {
+    loaded() {
       setTimeout(
-          ()=>(this.loading = false), 0
+          () => (this.loading = false), 0
       )
+    },
+    async getTrTypes(){
+      this.types = await trainingsAPI.getTrTypes().then(response=>response.data.results)
     }
   }
 }
@@ -197,6 +207,7 @@ export default {
 .wrapper {
   padding: 0;
 }
+
 h1 {
   text-transform: uppercase;
   font-size: 70px;
@@ -215,6 +226,14 @@ h4 {
 p {
   font-size: 20px;
   margin: 0 0 2rem 0;
+}
+@media (max-width: 767px) {
+  h2{
+    font-size: 30px;
+  }
+  p{
+    font-size: 16px;
+  }
 }
 .banner {
   background: url("../../assets/bg-images/home_banner_bg.jpg") center no-repeat;
@@ -238,12 +257,39 @@ p {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.banner h1, .banner h4{
+.banner h1, .banner h4 {
   color: var(--vt-c-white-soft);
+}
+
+@media (max-width: 767px) {
+  .banner {
+    padding: 10rem 0;
+  }
+
+  .banner h1, .banner h4 {
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .banner h1 {
+    font-size: 40px;
+    padding: 0 1rem;
+  }
 }
 
 .content-block {
   padding: 3rem 9rem;
+}
+
+@media (max-width: 767px) {
+  .content-block {
+    padding: 0 1rem;
+  }
+
+  p {
+    font-size: 16px;
+  }
 }
 
 .title {
@@ -260,6 +306,18 @@ p {
 
 .full > .title {
   padding: 3rem 9rem;
+}
+@media (max-width: 767px) {
+  .title {
+    padding: 0;
+  }
+  .title h2{
+
+  }
+  .full .title{
+    padding: 0 0 2rem 0;
+    text-align: center;
+  }
 }
 
 .content-block-media {
@@ -297,6 +355,25 @@ span.title {
   font-size: 30px;
 }
 
+@media (max-width: 767px) {
+  .content-block-media {
+    flex-direction: column;
+  }
+  .content-block-media.reverse{
+    flex-direction: column-reverse;
+  }
+  .content-block-media-l__text, .content-block-media-r__text {
+    padding: 2rem 1rem;
+  }
+  .content-block-media-r__video, .content-block-media-l__video{
+    height: 300px;
+    margin: 0 0 2rem 0;
+  }
+  span.title {
+    font-size: 24px;
+  }
+}
+
 .cards {
   display: flex;
   flex-direction: row;
@@ -304,13 +381,26 @@ span.title {
   width: 100%;
   transition: .5s;
 }
-.dropdown-block{
+.cards-swiper{
+  display: none;
+}
+@media (max-width: 767px){
+  .cards{
+    display: none;
+  }
+  .cards-swiper{
+    display: block;
+  }
+}
+.dropdown-block {
   display: flex;
   flex-direction: column;
 }
-.dropdown-block .dropdown{
+
+.dropdown-block .dropdown {
   margin: 2rem 0 1rem 0;
 }
+
 .preloader-enter-active {
   transition: all 0.0s;
 }

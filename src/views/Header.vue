@@ -209,7 +209,7 @@ export default {
     opacity: 0;
     top: -100%;
     width: 100%;
-    max-height: 60%;
+    max-height: 100%;
     padding: 6rem 0 3rem 0;
     background-color: #616161;
     display: flex;

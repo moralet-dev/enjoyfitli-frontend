@@ -87,6 +87,7 @@ ul.training-types {
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin: 0 0 4rem 0;
 }
 
@@ -96,8 +97,19 @@ ul.training-types li {
   cursor: pointer;
   text-align: center;
   padding: 1rem 3rem;
+  margin: 0 0 1rem 0;
 }
+@media (max-width: 767px) {
+  ul.training-types li{
+    font-size: 18px;
+    border-bottom: 2px solid transparent;
+  }
+  .active-membership {
+    color: var(--color-headings);
+    border-bottom: solid 2px var(--color-headings) !important;
+  }
 
+}
 .active-membership {
   color: var(--color-headings);
   border-bottom: solid 2px var(--color-headings);

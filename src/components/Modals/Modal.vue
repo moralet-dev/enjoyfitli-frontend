@@ -89,7 +89,7 @@ export default {
 .modal-container {
   margin: auto;
   padding: 1rem 2rem;
-  min-width: 400px;
+  min-width: 40%;
   font-size: 18px;
   display: flex;
   flex-direction: column;

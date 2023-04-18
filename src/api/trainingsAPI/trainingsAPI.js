@@ -22,4 +22,8 @@ export const trainingsAPI = {
         const url = `/group-trainings/${id}/unsign`
         return defaultAPIInstance.delete(url)
     },
+    getTrTypes(){
+        const  url = `/tr-types/`
+        return defaultAPIInstance.get(url)
+    }
 }
