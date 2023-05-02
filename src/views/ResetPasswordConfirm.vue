@@ -84,7 +84,7 @@ h1{
 .wrapper{
   display: flex;
   flex-direction: column;
-  padding: 0 9rem;
+  padding: 12rem 9rem 0 9rem;
   justify-content: center;
   align-items: center;
   margin: auto;
@@ -111,5 +111,13 @@ form button{
   font-size: 14px;
   color: rgb(255, 69, 0);
   word-wrap: break-word;
+}
+@media (max-width: 767px){
+  .wrapper{
+    padding: 8rem 1rem 0 1rem;
+  }
+  h1{
+    font-size: 30px;
+  }
 }
 </style>

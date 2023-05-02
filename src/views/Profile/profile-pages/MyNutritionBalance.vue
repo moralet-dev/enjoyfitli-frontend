@@ -27,11 +27,11 @@
         <div class="form-group">
           <label for="activity">Рівень активності</label>
           <select v-model="activity" id="activity" required>
-            <option value="sedentary">Сидячий спосіб життя</option>
-            <option value="lightlyActive">Легка активність (тренування 1-2 рази на тиждень)</option>
-            <option value="moderatelyActive">Середня активність (тренування 3-5 разів на тиждень)</option>
-            <option value="veryActive">Висока активність (тренування 6-7 разів на тиждень)</option>
-            <option value="1.9">Дуже висока активність (тренування 2 рази на день)</option>
+            <option value="sedentary" title="Сидячий спосіб життя">0 тр./тиж.</option>
+            <option value="lightlyActive" title="Легка активність (тренування 1-2 рази на тиждень)">1-2 тр./тиж.</option>
+            <option value="moderatelyActive" title="Середня активність (тренування 3-5 разів на тиждень)">3-5 тр./тиж.</option>
+            <option value="veryActive" title="Висока активність (тренування 6-7 разів на тиждень)">6-7 тр./тиж.</option>
+            <option value="1.9" title="Дуже висока активність (тренування 2 рази на день)"> 2тр./день</option>
           </select>
         </div>
         <div class="form-group">
@@ -146,17 +146,44 @@ form{
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
+  width: 100%;
 }
 .form-group{
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
+  width: 100%;
+
 }
 .form-group input{
+  width: 100%;
 }
 .result{
   display: flex;
   flex-direction: column;
   padding: 1rem 2rem;
+}
+.result h3{
+  margin: 0 0 1rem 0;
+}
+@media (max-width: 767px) {
+  .title-wrapper{
+    padding: 1rem 0 0 0;
+  }
+  h3{
+    font-size: 25px;
+  }
+  form{
+    display: grid;
+    grid-template-columns: 12fr;
+    grid-gap: 10px;
+    font-size: 16px;
+  }
+  .form-group select{
+    font-size: 16px;
+  }
+  .result{
+    padding: 0;
+  }
 }
 </style>

@@ -160,6 +160,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .calendar {
   display: flex;
@@ -190,14 +191,7 @@ export default {
   text-align: center;
   color: var(--color-headings);
 }
-@media (max-width: 767px) {
-  .calendar-header{
-    align-items: center;
-  }
-  .calendar-month{
-    font-size: 20px;
-  }
-}
+
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -216,7 +210,18 @@ export default {
   pointer-events: none;
   background: #2c3e50;
 }
-
+@media (max-width: 767px) {
+  .calendar-header{
+    align-items: center;
+  }
+  .calendar-month{
+    font-size: 20px;
+  }
+  .calendar-cell{
+    font-size: 16px;
+    height: 40px;
+  }
+}
 .disabled {
   background: #616161;
 

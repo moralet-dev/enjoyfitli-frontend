@@ -73,6 +73,7 @@ h3 {
   display: block;
   font-weight: 600;
   padding: 0 0 0.5rem 0;
+  word-wrap: break-word;
   color: var(--color-headings);
 }
 .unsign{
@@ -93,5 +94,19 @@ h3 {
   border: none;
   background-color: darkred;
   color: var(--color-link-hover);
+}
+@media (max-width: 767px) {
+  h3{
+    font-size: 25px;
+  }
+  .training{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /*grid-template-columns: 6fr 6fr;*/
+  }
+  .item{
+    flex:0 0 25%;
+  }
 }
 </style>

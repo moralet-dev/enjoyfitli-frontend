@@ -1,40 +1,85 @@
 <template>
   <div class="pages-wrapper">
     <aside>
-      <div>
-        <router-link :to="{name: 'my-memberships'}">
+      <div class="pages-link">
+        <router-link :to="{name: 'my-memberships'}" @click="goBack">
           <MembershipIcon/>
           <span>Memberships</span>
         </router-link>
+        <router-view class="pages-content-wrapper"
+                     v-if="$vuetify.display.smAndDown"
+                     name="mob_membership"
+                     v-slot="{Component, route}"
+        >
+          <transition name="slide-down">
+            <component :is="Component" :key="route.path"/>
+          </transition>
+        </router-view>
       </div>
-      <div>
+      <div class="pages-link">
         <router-link :to="{name: 'my-schedule'}">
           <ScheduleIcon/>
           <span>Schedule</span>
         </router-link>
+        <router-view class="pages-content-wrapper"
+                     v-if="$vuetify.display.smAndDown"
+                     name="mob_schedule"
+                     v-slot="{Component, route}"
+        >
+          <transition name="slide-down">
+            <component :is="Component" :key="route.path"/>
+          </transition>
+        </router-view>
       </div>
-      <div>
+      <div class="pages-link">
         <router-link :to="{name:'my-nutrition-balance'}">
           <MyPFCCIcon/>
           <span>My Nutrition Balance</span>
         </router-link>
+        <router-view class="pages-content-wrapper"
+                     v-if="$vuetify.display.smAndDown"
+                     name="mob_my_nutrition_balance"
+                     v-slot="{Component, route}"
+        >
+          <transition name="slide-down">
+            <component :is="Component" :key="route.path"/>
+          </transition>
+        </router-view>
       </div>
-      <div>
+      <div class="pages-link">
         <router-link :to="{name: 'purchase-history'}">
           <PurchaseHistoryIcon/>
           <span>Purchase History</span>
         </router-link>
       </div>
-      <div>
+      <router-view class="pages-content-wrapper"
+                   v-if="$vuetify.display.smAndDown"
+                   name="mob_purchase_history"
+                   v-slot="{Component, route}"
+      >
+        <transition name="slide-down">
+          <component :is="Component" :key="route.path"/>
+        </transition>
+      </router-view>
+      <div class="pages-link">
         <router-link :to="{name: 'settings'}">
           <EditIcon/>
           <span>Settings</span>
         </router-link>
       </div>
+      <router-view class="pages-content-wrapper"
+                   v-if="$vuetify.display.smAndDown"
+                   name="mob_settings"
+                   v-slot="{Component, route}"
+      >
+        <transition name="slide-down">
+          <component :me="me" :is="Component" :key="route.path"/>
+        </transition>
+      </router-view>
     </aside>
 
-    <div class="pages-content-wrapper">
-      <router-view  v-slot="{Component, route}">
+    <div v-if="$vuetify.display.mdAndUp" class="pages-content-wrapper">
+      <router-view v-slot="{Component, route}">
         <transition name="fade" translate="yes" mode="out-in">
           <component :me="me" :is="Component" :key="route.path"/>
         </transition>
@@ -50,13 +95,18 @@ import ScheduleIcon from "@/components/icons/ScheduleIcon.vue";
 import MyPFCCIcon from "@/components/icons/MyPFCCIcon.vue";
 import PurchaseHistoryIcon from "@/components/icons/PurchaseHistoryIcon.vue";
 import EditIcon from "@/components/icons/EditIcon.vue";
+import 'animate.css'
 
 export default {
   name: "ProfilePagesWrapper",
   components: {EditIcon, PurchaseHistoryIcon, MyPFCCIcon, ScheduleIcon, MembershipIcon},
   props: {
     me: {type: Object}
-  }
+  },
+  methods: {
+    goBack() {
+    },
+  },
 }
 </script>
 
@@ -73,7 +123,7 @@ aside {
   border-right: solid 1px rgb(217, 217, 217);
 }
 
-aside div {
+.pages-link {
   display: flex;
   padding: 0 0 1.25em 0;
 }
@@ -91,9 +141,36 @@ a span {
 
 .pages-content-wrapper {
   display: flex;
+  max-width: 100%;
   flex-direction: column;
-  min-height: 100%;
   padding: 0 0 0 7rem;
+}
+
+@media (max-width: 767px) {
+  aside {
+    border: none;
+  }
+
+  .pages-wrapper {
+    display: grid;
+    grid-template-columns: 12fr;
+    padding: 6rem 0 0 0;
+  }
+
+  .pages-link {
+    flex-direction: column;
+  }
+
+  .pages-link a {
+  }
+
+  .pages-wrapper {
+  }
+
+  .pages-content-wrapper {
+    /*max-height: 200vh;*/
+    padding: 0 0 2rem 0;
+  }
 }
 
 .fade-enter-active {
@@ -108,5 +185,29 @@ a span {
 .fade-leave-to {
   transform: translateX(-40px);
   opacity: 0;
+}
+
+.slide-down-enter-active, .slide-down-leave-active {
+  transition: all .7s;
+}
+
+.slide-down-enter-from {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+}
+
+.slide-down-enter-to {
+  max-height: 200vh;
+}
+
+.slide-down-leave-from {
+  max-height: 200vh;
+}
+
+.slide-down-leave-to {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
 }
 </style>

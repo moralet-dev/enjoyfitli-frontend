@@ -1,5 +1,5 @@
 <template>
-  <div class="animate__animated animate__slideInLeft">
+  <div>
     <div class="title-wrapper">
       <h3>My Purchases:</h3>
     </div>
@@ -72,9 +72,10 @@ h3 {
 
 .purchase .block {
   display: flex;
-  flex: 0 0 25%;
+  flex: 0 0 20%;
   flex-direction: column;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin: 1rem 0;
   text-align: center;
   align-items: center;
@@ -87,5 +88,11 @@ h3 {
   height: 100%;
   width: 100%;
   text-align: center;
+}
+@media (max-width: 767px) {
+  .purchase{
+    flex-wrap: wrap;
+
+  }
 }
 </style>

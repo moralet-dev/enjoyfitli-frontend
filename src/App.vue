@@ -12,9 +12,7 @@ import Footer from "@/views/Footer.vue";
       </transition>
     </router-view>
   </main>
-  <footer>
     <Footer/>
-  </footer>
 </template>
 
 <style scoped>

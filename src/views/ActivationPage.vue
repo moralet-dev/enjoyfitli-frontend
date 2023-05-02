@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h2>Activate Account</h2>
+    <h1>Activate Account</h1>
     <div class="content" v-if="status === 'pending'">
       <p>Activating your account...</p>
     </div>
@@ -8,7 +8,7 @@
       <p>Your account has been activated. Now you can <a v-on:click="toLogin">LOG-IN</a> in your account</p>
     </div>
     <div class="content" v-else>
-      <p>An error occurred while activating your account. Please, contact our support. <a v-on:click="toLogin">LOG-IN</a></p>
+      <p>An error occurred while activating your account. Please, contact our support.</p>
     </div>
   </div>
 </template>
@@ -51,12 +51,12 @@ export default {
 .wrapper{
   display: flex;
   flex-direction: column;
-  padding: 0 9rem;
+  padding: 12rem 9rem 0 9rem;
   justify-content: center;
   margin: auto;
 }
-h2{
-  font-size: 30px;
+h1{
+  font-size: 50px;
   margin: 4rem 0;
 }
 .content p a{
@@ -67,5 +67,14 @@ h2{
 }
 .content p a:hover{
   background: transparent;
+}
+@media (max-width: 767px) {
+  .wrapper{
+    padding: 8rem 1rem 0 1rem;
+  }
+  h1{
+    font-size: 30px;
+    margin: 1rem 0;
+  }
 }
 </style>

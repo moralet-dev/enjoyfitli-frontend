@@ -63,7 +63,11 @@ export default {
   font-size: 24px;
   cursor: pointer;
 }
-
+@media (max-width: 767px) {
+  .top-content{
+    font-size: 20px;
+  }
+}
 .fade-enter-active {
   transition: all .5s ease-in-out;
 }

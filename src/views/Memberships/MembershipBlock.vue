@@ -237,7 +237,11 @@ export default defineComponent({
   justify-content: center;
   align-items: start;
 }
-
+@media (max-width: 767px) {
+  .carousel__nav{
+    justify-content: space-between;
+  }
+}
 .carousel__nav__arrow {
   padding: 0 1rem;
   background-color: transparent;

@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header-label">
-      <router-link :to="{name:'home'}" >
+      <router-link :to="{name:'home'}" @click="isOpened=false">
         <img src="../assets/logos/logo_transparent_1.png" alt=""/>
       </router-link>
     </div>

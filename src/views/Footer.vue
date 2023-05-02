@@ -1,14 +1,16 @@
 <template>
-<div class="wrapper">
-  <div class="footer-block icons">
-    <TikTokLogo :border="'white'"/>
-    <InstagramLogo :border="'white'"/>
-  </div>
-  <div class="footer-block">
-    <span>м.Шулявка, ТЦ Мармелад</span>
-    <span>Борщагівська 154, Київ</span>
-  </div>
-</div>
+  <footer>
+    <div class="wrapper">
+      <div class="footer-block icons">
+        <TikTokLogo :border="'white'"/>
+        <InstagramLogo :border="'white'"/>
+      </div>
+      <div class="footer-block">
+        <span>м.Шулявка, ТЦ Мармелад</span>
+        <span>Борщагівська 154, Київ</span>
+      </div>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -38,7 +40,15 @@ export default {
 .icons{
   flex-direction: row;
 }
-.icons svg{
+.icons a{
   margin: 0 1rem;
+}
+@media (max-width: 767px) {
+  footer{
+    padding: 0;
+  }
+  .wrapper{
+
+  }
 }
 </style>

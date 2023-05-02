@@ -15,11 +15,13 @@
         <div class="membership-info-current">
           <span class="trainings-title">Trainings:</span>
           <div class="trainings-info">
-            <TrainingsLeftCircle :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
+            <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
                                  width="180" height="180"/>
+            <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="40"
+                                 width="100" height="100"/>
             <div class="trainings-info__description">
               <span>Trainings left: {{ m.trainings_left }}</span>
-              <span class="expired">Expired at: {{ new Date(m.date_end).toLocaleString() }}</span>
+              <span class="expired">Expiring at:<br>{{ new Date(m.date_end).toLocaleString() }}</span>
             </div>
           </div>
         </div>
@@ -126,6 +128,32 @@ h3 {
 .expired{
   border: 2px solid orangered;
   border-radius: 15px;
+}
+@media (max-width: 767px) {
+  .title-wrapper{
+    padding: 1rem 0;
+  }
+  .membership-info, .membership-info-current{
+    padding: 0;
+  }
+  .m-name{
+    font-size: 22px;
+    text-align: center;
+  }
+  .m-count-block{
 
+  }
+  .m-count-block h4, .trainings-title{
+    font-size: 22px;
+  }
+  .trainings-info{
+    flex-direction: column;
+    align-items: start;
+  }
+  .trainings-info__description{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 </style>

@@ -254,7 +254,7 @@ form {
 @media (max-width: 767px) {
   .modal-content{
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 2rem;
   }
   .modal-bg{
     display: none;

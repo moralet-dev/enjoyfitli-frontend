@@ -97,8 +97,7 @@ export default {
 
 .welcome-block {
   display: flex;
-  transition: all 5s ease;
-
+  transition: 5s;
 }
 
 .welcome-block_text {
@@ -175,5 +174,25 @@ h3 {
 }
 .modal_upload button{
 
+}
+@media (max-width: 767px) {
+  .wrapper{
+    padding: 8rem 1rem 0 1rem;
+  }
+  .welcome-block{
+  }
+  h1{
+    font-size: 30px;
+  }
+  h3{
+    font-size: 20px;
+  }
+  .user-avatar{
+    width: 60px;
+    height: 60px;
+  }
+  .pages-wrapper{
+    flex-direction: column;
+  }
 }
 </style>
