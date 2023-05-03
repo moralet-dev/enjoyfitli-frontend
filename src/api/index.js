@@ -2,12 +2,12 @@ import axios from "axios";
 import store from "@/store/store";
 
 const loginConfig = {
-    baseURL: "http://localhost:1337/en/api",
+    baseURL: "http://localhost/en/api",
 }
 export const loginAPIInstance = axios.create(loginConfig);
 
 const defaultConfig = {
-    baseURL: "http://localhost:1337/en/api",
+    baseURL: "http://localhost/en/api",
 }
 
 export const defaultAPIInstance = axios.create(defaultConfig);
