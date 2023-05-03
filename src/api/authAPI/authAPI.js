@@ -13,12 +13,12 @@ export const authAPI = {
         return loginAPIInstance.post(url, data)
     },
     passwordReset(email){
-        const url = 'auth/users/reset_password/'
+        const url = '/auth/users/reset_password/'
         const data = {email}
         return loginAPIInstance.post(url, data)
     },
     passwordResetConfirm(uid, token, new_password){
-        const url = 'auth/users/reset_password_confirm/'
+        const url = '/auth/users/reset_password_confirm/'
         const data = {uid, token, new_password}
         return loginAPIInstance.post(url, data)
     },
