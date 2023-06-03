@@ -1,5 +1,9 @@
 <template>
   <div class="login-container" v-if="getIsAuth" :class="{'slide-in-left': getIsAuth,'slide-out-right': !getIsAuth}">
+    <div class="locale">
+      <div class="lang" @click="setLocale('uk')">UK</div>
+      <div class="lang" @click="setLocale('en')">EN</div>
+    </div>
     <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">Profile</router-link>
     <a class="logout-button" @click="onLogoutClick">
       <LogoutIcon width="15" height="15"/>
@@ -75,6 +79,11 @@ export default {
           break
         }
       }
+    },
+    setLocale(lang){
+      this.$store.state.locale = lang
+      console.log(this.$store.state.locale)
+      this.$i18n.locale = lang
     }
   }
 }
@@ -119,7 +128,9 @@ export default {
 .slide-out-right {
   animation: slide-out-right .9s ease-out both;
 }
-
+.lang{
+  cursor: pointer;
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .login-container {
     justify-content: center;

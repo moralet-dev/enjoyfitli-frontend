@@ -44,7 +44,6 @@ export default {
   },
   methods:{
     closeBurger(){
-      console.log('111')
       this.isOpened = false
     },
     toggleOpen(){

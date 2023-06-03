@@ -5,10 +5,12 @@ const store = createStore({
     state: {
         triggerLoginPopup: false,
         triggerRegPopup: false,
+        locale: 'uk',
     },
     getters: {
         getTriggerLoginPopup: (state)=>state.triggerLoginPopup,
-        getTriggerRegPopup: (state)=>state.triggerRegPopup
+        getTriggerRegPopup: (state)=>state.triggerRegPopup,
+        getLocale: (state)=>state.locale,
     },
     mutations: {
         openLoginPopup(state){

@@ -1,5 +1,5 @@
 import {authAPI} from "@/api/authAPI/authAPI";
-import {defaultAPIInstance} from "@/api";
+import {defaultAPIInstance, deleteCookie, setCookie} from "@/api";
 
 export const authModule = {
     namespaced: true,
@@ -31,11 +31,11 @@ export const authModule = {
     mutations: {
         setAccess(state, access) {
             state.credentials.access = access
-            localStorage.setItem('access', access)
+            setCookie('access', access)
         },
         setRefresh(state, refresh) {
             state.credentials.refresh = refresh
-            localStorage.setItem('refresh', refresh)
+            setCookie('refresh', refresh)
         },
         setIsAuthenticated(state, isAuthenticated) {
             state.isAuthenticated = isAuthenticated
@@ -44,8 +44,8 @@ export const authModule = {
         deleteTokens(state) {
             [state.credentials.access, state.credentials.refresh] = [null, null]
             state.isAuthenticated = 'false'
-            localStorage.removeItem('access')
-            localStorage.removeItem('refresh')
+            deleteCookie('access')
+            deleteCookie('refresh')
             localStorage.removeItem('isAuthenticated')
             delete defaultAPIInstance.defaults.headers['authorization']
         },

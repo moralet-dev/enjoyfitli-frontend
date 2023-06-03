@@ -13,7 +13,7 @@
 
       </div>
       <div class="welcome-block_text">
-        <h1>Profile</h1>
+        <h1>{{ this.$t('profile.Profile') }}</h1>
         <h3 >Hi, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
           {{ this.$store.getters['authModule/getCurrentUser'].last_name }}!</h3>
       </div>
@@ -70,7 +70,9 @@ export default {
     async getMe() {
       await authAPI.getMe().then(response => {
         this.$store.dispatch('authModule/onCurrentUserSet', response.data)
-      }).catch(() => null)
+      }).catch((reason) => {
+        console.log(reason.response)
+      })
     },
     async changePhoto() {
       const photo = this.$refs.profilePhoto.files[0]

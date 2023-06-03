@@ -76,12 +76,12 @@
       </div>
       <div class="cards">
         <TrainingTypeCard
-            :imageSrc="'src/assets/bg-images/personal-card-bg.jpg'"
+            :imageSrc="'assets/personal-card-bg.jpg'"
             title="Personal"
             desc="Тренувальний комплекс повністю налаштовується під тебе, адже головний герой - ти!"
         />
         <TrainingTypeCard
-            :imageSrc="'src/assets/bg-images/split-card-bg.jpg'"
+            :imageSrc="'assets/split-card-bg.jpg'"
             title="Split"
             desc="Тренування для двох, а саме: закохана пара, друзі, рідні люди або з тим, з ким хочеться проводити час"
         />

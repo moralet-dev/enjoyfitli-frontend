@@ -28,15 +28,19 @@ export const authAPI = {
     },
     updateMe(data){
         const url = '/users/me/'
-        return defaultAPIInstance.patch(url, data, {headers: {
-            'Content-Type': 'multipart/form-data'
-        }})
+        return defaultAPIInstance.patch(
+            url,
+            data,
+            {headers: {'Content-Type': 'multipart/form-data'}}
+        )
     },
     logout(){
     },
     register(data){
         const url = '/auth/users/'
-        return loginAPIInstance.post(url, data)
+        // HOW IT WORKS?!!
+        return loginAPIInstance.post(url, data,{headers: {'X-CSRFToken': '{{ csrf_token }}'}})
+        // HOW IT WORKS?!!
     },
 
 }
