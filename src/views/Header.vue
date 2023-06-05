@@ -12,13 +12,13 @@
       <nav>
         <ul class="nav-list">
           <li>
-            <router-link :to="{name: 'memberships'}" @click="isOpened=false">Memberships</router-link>
+            <router-link :to="{name: 'memberships'}" @click="isOpened=false">{{ this.$t('memberships') }}</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'schedule'}" @click="isOpened=false">Schedule</router-link>
+            <router-link :to="{name: 'schedule'}" @click="isOpened=false">{{ this.$t('schedule') }}</router-link>
           </li>
           <li>
-            <router-link :to="{name: 'about'}" @click="isOpened=false">About</router-link>
+            <router-link :to="{name: 'about'}" @click="isOpened=false">{{ this.$t('about') }}</router-link>
           </li>
         </ul>
       </nav>

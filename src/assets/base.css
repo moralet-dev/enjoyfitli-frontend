@@ -108,6 +108,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Futura New', sans-serif;
     letter-spacing: 0.02em;
     cursor: default;
+    text-transform: capitalize;
 }
 
 
@@ -205,6 +206,7 @@ button {
     border: 2px solid var(--vt-c-black-soft);
     transition: .3s;
     border-radius: 15px;
+    text-transform: capitalize;
 }
 
 button:hover {

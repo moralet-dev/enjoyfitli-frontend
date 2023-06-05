@@ -4,14 +4,14 @@
       <div class="lang" @click="setLocale('uk')">UK</div>
       <div class="lang" @click="setLocale('en')">EN</div>
     </div>
-    <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">Profile</router-link>
+    <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">{{ this.$t('profile')}}</router-link>
     <a class="logout-button" @click="onLogoutClick">
       <LogoutIcon width="15" height="15"/>
     </a>
   </div>
   <div v-else class="login-container" :class="{'slide-in-left': !getIsAuth, 'slide-out-right': getIsAuth}">
-    <a ref="login-popup" @click="openPopup('login')">Login</a>
-    <a @click="openPopup('reg')">Registration</a>
+    <a ref="login-popup" @click="openPopup('login')">{{ this.$t('login')}}</a>
+    <a @click="openPopup('reg')">{{ this.$t('registration')}}</a>
   </div>
   <ModalLogin :show="this.$store.getters['getTriggerLoginPopup']" @close="closePopup('login')"/>
   <ModalReg :show="this.$store.getters['getTriggerRegPopup']" @close="closePopup('reg')"/>

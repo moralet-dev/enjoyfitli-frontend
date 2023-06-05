@@ -3,7 +3,7 @@
     <Slide v-for="m in memberships" :key="m.id">
       <div class="carousel__item">
         <div class="carousel__card">
-          <span class="carousel__card__title">{{ m.name.toUpperCase() }}</span>
+          <span class="carousel__card__title">{{ m[`name_${this.$store.getters.getLocale}`].toUpperCase() }}</span>
           <span class="carousel__card__price">{{ m.price }} &#8372;</span>
           <button @click="showModal = true; current = m">Придбати</button>
         </div>
@@ -23,27 +23,27 @@
   <Teleport to="body">
     <ModalMembership :show="showModal" @close="showModal = false">
       <template #header>
-        <h3>Confirmation</h3>
+        <h3>{{ this.$t('confirmation') }}</h3>
       </template>
       <template #body>
-        {{ current.name }}
+        <p>{{ current.name }}</p>
       </template>
       <template #footer>
-        <button @click="showModal = false">Cancel</button>
-        <button @click="getNewMembership(current.id)">Confirm</button>
+        <button @click="showModal = false">{{ this.$t('cancel') }}</button>
+        <button @click="getNewMembership(current.id)">{{ this.$t('confirm')}}</button>
       </template>
     </ModalMembership>
   </Teleport>
   <Teleport to="body">
     <ModalMembership :show="showNextModal" @close="showNextModal = false">
       <template #header>
-        <h3>Confirmation</h3>
+        <h3>{{ this.$t('confirmation') }}</h3>
       </template>
       <template #body>
-        {{ nextMessage }}
+        <p>{{ nextMessage }}</p>
       </template>
       <template #footer>
-        <button @click="showNextModal = false">Close</button>
+        <button @click="showNextModal = false">{{ this.$t('close') }}</button>
       </template>
     </ModalMembership>
   </Teleport>
@@ -108,12 +108,12 @@ export default defineComponent({
     },
     async getNewMembership(pk) {
       await profileAPI.requestMembership(pk).then(() => {
-        this.nextMessage = 'Thank you for your request.\nWe will connect you to confirm the details.'
+        this.nextMessage = this.$t('MembershipsPage.requestAccepted')
         this.showModal = false
         this.showNextModal = true
       }).catch(reason => {
         if (reason.response.data.status === 'ASR'){
-          this.nextMessage = 'Sorry, but you are already sent request for that type of membership.\nIf you think that here is some mistake - connect to us.'
+          this.nextMessage = this.$t('MembershipsPage.requestDeclined')
           this.showModal = false
           this.showNextModal = true
         }

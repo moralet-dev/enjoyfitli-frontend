@@ -1,27 +1,24 @@
 <template>
-  <div class="preloader">
-    <div class="loader"></div>
+  <div class="preloader-small">
+    <div class="loader-small"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Preloader",
+  name: "PreloaderSmall",
 }
 </script>
 
 <style scoped>
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
+.preloader-small {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 1);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 9999;
 }
 
-.loader {
+.loader-small {
   border: 5px solid grey;
   border-top: 5px solid coral;
   border-radius: 50%;

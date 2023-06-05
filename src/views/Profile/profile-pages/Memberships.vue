@@ -1,48 +1,67 @@
 <template>
-  <div class="">
-    <div class="title-wrapper">
-      <h3>My Memberships:</h3>
+  <div>
+    <div v-if="loading">
+      <PreloaderSmall/>
     </div>
-    <div v-if="isMembList">
-      <div v-for="m in membList" :key="m.id">
-        <div class="membership-info">
-          <span class="m-name">{{ m.membership.name }}</span>
-          <div class="m-count-block">
-            <p>Trainings count</p>
-            <h4>{{ m.membership.count }}</h4>
-          </div>
-        </div>
-        <div class="membership-info-current">
-          <span class="trainings-title">Trainings:</span>
-          <div class="trainings-info">
-            <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="80"
-                                 width="180" height="180"/>
-            <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="m.membership.count" radius="40"
-                                 width="100" height="100"/>
-            <div class="trainings-info__description">
-              <span>Trainings left: {{ m.trainings_left }}</span>
-              <span class="expired">Expiring at:<br>{{ new Date(m.date_end).toLocaleString() }}</span>
+    <div v-else class="animate__animated animate__fadeIn">
+      <div class="title-wrapper">
+        <h3>{{ this.$t('ProfilePage.myMemberships') }}</h3>
+      </div>
+      <div v-if="isMembList">
+        <div v-for="m in membList" :key="m.id">
+          <div class="membership-info">
+            <span class="m-name">{{ m.membership[`name_${this.$store.getters.getLocale}`] }}</span>
+            <div class="m-count-block">
+              <p>{{ this.$t('ProfilePage.trainingsCount') }}</p>
+              <h4>{{ m.membership.count }}</h4>
             </div>
           </div>
-        </div>
+          <div class="membership-info-current">
+            <span class="trainings-title">{{ this.$t('ProfilePage.trainingsStatus') }}:</span>
+            <div class="trainings-info">
+              <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left"
+                                   :trainings-count="m.membership.count" radius="80"
+                                   width="180" height="180"/>
+              <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="m.membership.count"
+                                   radius="40"
+                                   width="100" height="100"/>
+              <div class="trainings-info__description">
+                <span>{{ this.$t('ProfilePage.trainingsLeft') }}: {{ m.trainings_left }}</span>
+                <span class="expired">{{ this.$t('ProfilePage.expiringAt') }}:<br>{{
+                    new Date(m.date_end).toLocaleString()
+                  }}</span>
+              </div>
+            </div>
+          </div>
 
+        </div>
+      </div>
+      <div v-else>
+        <p>{{ this.$t('ProfilePage.noMembershipText') }}
+        </p>
+        <br>
+        <div class="">
+          <router-link :to="{name: 'memberships'}">{{ this.$t('ProfilePage.chooseMembership') }}</router-link>
+        </div>
       </div>
     </div>
-    <div v-else>You haven't any payed and activated memberships:( Choose the best one for you on -&lt;"here"&lt;- or waiting for our call, if you already sent request for membership</div>
   </div>
+
 </template>
 
 <script>
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 import TrainingsLeftCircle from "@/components/TrainingsLeftCircle.vue";
 import SchedulePage from "@/views/Profile/profile-pages/Schedule.vue";
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "MembershipPage",
-  components: {SchedulePage, TrainingsLeftCircle},
+  components: {PreloaderSmall, SchedulePage, TrainingsLeftCircle},
   data() {
     return {
       membList: null,
+      loading: true
     }
   },
   beforeMount() {
@@ -60,6 +79,7 @@ export default {
   methods: {
     async getMemberships() {
       this.membList = await profileAPI.getMyMemberships().then(response => {
+        this.loading = false
         return response.data.results
       })
     },
@@ -118,42 +138,52 @@ h3 {
   align-items: center;
   padding: 0 0 1.5rem 0;
 }
-.trainings-info__description{
+
+.trainings-info__description {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
 }
-.trainings-info__description span{
+
+.trainings-info__description span {
   padding: 1rem;
+  margin: 1rem;
 }
-.expired{
+
+.expired {
   border: 2px solid orangered;
   border-radius: 15px;
 }
+
 @media (max-width: 767px) {
-  .title-wrapper{
+  .title-wrapper {
     padding: 1rem 0;
   }
-  .membership-info, .membership-info-current{
+
+  .membership-info, .membership-info-current {
     padding: 0;
   }
-  .m-name{
+
+  .m-name {
     font-size: 22px;
     text-align: center;
   }
-  .m-count-block{
+
+  .m-count-block {
 
   }
-  .m-count-block h4, .trainings-title{
+
+  .m-count-block h4, .trainings-title {
     font-size: 22px;
   }
-  .trainings-info{
+
+  .trainings-info {
     flex-direction: column;
     align-items: start;
   }
-  .trainings-info__description{
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
+
+  .trainings-info__description span {
+    margin: 0;
   }
 }
 </style>

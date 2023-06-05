@@ -1,18 +1,20 @@
 <template>
   <div class="wrapper">
-    <div class="title">
-      <h1>Memberships</h1>
-      <p>Choose most comfortable variant for you</p>
+    <div class="title animate__animated animate__fadeIn">
+      <h1>{{ this.$t('memberships') }}</h1>
+      <p>{{ this.$t('MembershipsPage.mainDescription')}}</p>
     </div>
-    <div v-for="type in types" class="membership-block">
+    <div v-for="type in types" v-if="memberships" class="membership-block animate__animated animate__fadeIn">
       <div class="descr">
-        <h4>{{ type.name }}</h4>
+        <h4>{{ type[`name_${this.$store.getters.getLocale}`] }}</h4>
         <p>
-          {{ type.description }}
+          {{ type[`description_${this.$store.getters.getLocale}`] }}
         </p>
       </div>
       <MembershipBlock :memberships="memberships.filter(el => el.type.id === type.id)" />
     </div>
+    <PreloaderSmall v-else/>
+
   </div>
 </template>
 
@@ -20,18 +22,16 @@
 import MembershipBlock from "@/views/Memberships/MembershipBlock.vue";
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
+import Preloader from "@/components/Preloader.vue";
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "MembershipsPage",
-  components: {MembershipBlock},
+  components: {PreloaderSmall, Preloader, MembershipBlock},
   data() {
     return {
       types: null,
       memberships: null,
-      personalMemberships: null,
-      groupMemberships: null,
-      onlineMemberships: null,
-      forGirlsMemberships: null,
     }
   },
   mounted() {
@@ -44,15 +44,8 @@ export default {
     async getTypes(){
       this.types = await trainingsAPI.getTrTypes().then(response => response.data.results)
     },
-
     async getMemberships() {
-      this.memberships = await profileAPI.getMemberships().then(response => {
-        this.personalMemberships = response.data.results.filter(el => el.type.name === 'Personal')
-        this.groupMemberships = response.data.results.filter(el => el.type.name === 'Group' || 'Групове')
-        this.forGirlsMemberships = response.data.results.filter(el => el.type.name === '4girls')
-        this.onlineMemberships = response.data.results.filter(el => el.type.name === 'Online')
-        return response.data.results
-      })
+      this.memberships = await profileAPI.getMemberships().then(response => response.data.results)
     }
   }
 }

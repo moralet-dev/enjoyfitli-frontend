@@ -1,10 +1,10 @@
 <template>
   <div class="pages-wrapper">
-    <aside>
+    <aside class="animate__animated animate__fadeIn">
       <div class="pages-link">
         <router-link :to="{name: 'my-memberships'}" @click="goBack">
           <MembershipIcon/>
-          <span>Memberships</span>
+          <span>{{this.$t('memberships')}}</span>
         </router-link>
         <router-view class="pages-content-wrapper"
                      v-if="$vuetify.display.smAndDown"
@@ -19,7 +19,7 @@
       <div class="pages-link">
         <router-link :to="{name: 'my-schedule'}">
           <ScheduleIcon/>
-          <span>Schedule</span>
+          <span>{{this.$t('schedule')}}</span>
         </router-link>
         <router-view class="pages-content-wrapper"
                      v-if="$vuetify.display.smAndDown"
@@ -34,7 +34,7 @@
       <div class="pages-link">
         <router-link :to="{name:'my-nutrition-balance'}">
           <MyPFCCIcon/>
-          <span>My Nutrition Balance</span>
+          <span>{{this.$t('myNutritionBalance')}}</span>
         </router-link>
         <router-view class="pages-content-wrapper"
                      v-if="$vuetify.display.smAndDown"
@@ -49,7 +49,7 @@
       <div class="pages-link">
         <router-link :to="{name: 'purchase-history'}">
           <PurchaseHistoryIcon/>
-          <span>Purchase History</span>
+          <span>{{ this.$t('purchaseHistory') }}</span>
         </router-link>
       </div>
       <router-view class="pages-content-wrapper"
@@ -64,7 +64,7 @@
       <div class="pages-link">
         <router-link :to="{name: 'settings'}">
           <EditIcon/>
-          <span>Settings</span>
+          <span>{{ this.$t('settings') }}</span>
         </router-link>
       </div>
       <router-view class="pages-content-wrapper"
@@ -96,9 +96,15 @@ import MyPFCCIcon from "@/components/icons/MyPFCCIcon.vue";
 import PurchaseHistoryIcon from "@/components/icons/PurchaseHistoryIcon.vue";
 import EditIcon from "@/components/icons/EditIcon.vue";
 import 'animate.css'
+import {th} from "vuetify/locale";
 
 export default {
   name: "ProfilePagesWrapper",
+  computed: {
+    th() {
+      return th
+    }
+  },
   components: {EditIcon, PurchaseHistoryIcon, MyPFCCIcon, ScheduleIcon, MembershipIcon},
   props: {
     me: {type: Object}
@@ -137,6 +143,7 @@ a {
 
 a span {
   margin: 0 10px;
+  text-transform: capitalize;
 }
 
 .pages-content-wrapper {

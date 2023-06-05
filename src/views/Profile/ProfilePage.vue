@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <div class="welcome-block">
+  <div class="wrapper" v-if="this.$store.getters['authModule/getCurrentUser'].id">
+    <div class="welcome-block animate__animated animate__fadeIn">
       <div class="user-avatar">
         <img ref="photo" v-bind:src="this.$store.getters['authModule/getCurrentUser'].photo" alt="">
         <label for="photo_input">
@@ -13,8 +13,8 @@
 
       </div>
       <div class="welcome-block_text">
-        <h1>{{ this.$t('profile.Profile') }}</h1>
-        <h3 >Hi, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
+        <h1>{{ this.$t('profile') }}</h1>
+        <h3 >{{ this.$t('welcome') }}, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
           {{ this.$store.getters['authModule/getCurrentUser'].last_name }}!</h3>
       </div>
     </div>
@@ -22,17 +22,20 @@
     <Teleport to="body">
       <Modal :show="showModalUpload" @close="showModalUpload = false" class="modal_upload">
         <template #header>
-          <span>Confirm changes</span>
+          <span>{{ this.$t('confirmChanges') }}</span>
         </template>
         <template #body>
-          Are you sure that you want to update photo?
+          {{ this.$t('ProfilePage.updatePhotoText') }}
         </template>
         <template #footer>
-          <button @click="showModalUpload = false">Close</button>
-          <button @click="changePhoto">Confirm</button>
+          <button @click="showModalUpload = false">{{ this.$t('close') }}</button>
+          <button @click="changePhoto">{{ this.$t('confirm') }}</button>
         </template>
       </Modal>
     </Teleport>
+  </div>
+  <div class="wrapper" v-else>
+    <PreloaderSmall />
   </div>
 </template>
 
@@ -41,16 +44,24 @@ import {authAPI} from "@/api/authAPI/authAPI";
 import DownloadIcon from "@/components/icons/DownloadIcon.vue";
 import ProfilePagesWrapper from "@/views/Profile/profile-pages/ProfilePagesWrapper.vue";
 import Modal from "@/components/Modals/Modal.vue";
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "ProfilePage",
-  components: {ProfilePagesWrapper, DownloadIcon, Modal},
+  components: {PreloaderSmall, ProfilePagesWrapper, DownloadIcon, Modal},
   data() {
     return {
       showModalUpload: false,
     }
   },
-  beforeCreate() {
+  beforeMount() {
+    if (this.$store.getters['authModule/isAuthenticated'] === 'false'
+        || !this.$store.getters['authModule/isAuthenticated']) {
+      this.$router.push({name:'home'})
+      this.$store.commit('openLoginPopup')
+    }
+  },
+  updated() {
     if (this.$store.getters['authModule/isAuthenticated'] === 'false'
         || !this.$store.getters['authModule/isAuthenticated']) {
       this.$router.push({name:'home'})
@@ -59,12 +70,13 @@ export default {
   },
   mounted() {
     this.getMe()
-    this.$store.watch(
-        () => this.$store.getters['authModule/getCurrentUser'].photo,
-        (newVal) => {
-          this.$refs.photo.src = newVal;
-        }
-    );
+    // console.log(this.$store.getters['authModule/getCurrentUser'].photo)
+    // this.$store.watch(
+    //     () => this.$store.getters['authModule/getCurrentUser'].photo,
+    //     (newVal) => {
+    //       this.$refs.photo.src = newVal;
+    //     }
+    // );
   },
   methods: {
     async getMe() {
