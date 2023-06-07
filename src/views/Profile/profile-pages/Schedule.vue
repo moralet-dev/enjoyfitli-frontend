@@ -3,7 +3,7 @@
     <div class="title-wrapper">
       <h3>{{ this.$t('ProfilePage.myTrainings') }}:</h3>
     </div>
-    <div v-if="trainingsList" class="trainings-block" v-for="t in trainingsList">
+    <div v-if="trainingsList" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
       <h4>{{ this.$t('ProfilePage.training') }}:</h4>
       <div class="training">
         <div class="item"><span>{{ this.$t('ProfilePage.name') }}:</span> {{ t[`name_${this.$store.getters.getLocale}`] }}</div>
@@ -24,15 +24,20 @@
 
       </div>
     </div>
+    <div v-else>
+      <PreloaderSmall/>
+    </div>
   </div>
 
 </template>
 
 <script>
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "SchedulePage",
+  components: {PreloaderSmall},
   data() {
     return {
       trainingsList: null,

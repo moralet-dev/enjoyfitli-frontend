@@ -1,21 +1,24 @@
 <template>
   <div>
     <div class="title-wrapper">
-      <h3>My Purchases:</h3>
+      <h3>{{ this.$t('ProfilePage.myPurchases') }}:</h3>
     </div>
     <div class="purchase">
-      <div class="block"><span>Purchase id</span></div>
-      <div class="block"><span>Status</span></div>
-      <div class="block"><span>Membership</span></div>
-      <div class="block"><span>Date</span></div>
+      <div class="block"><span>{{ this.$t('ProfilePage.purchaseID') }}</span></div>
+      <div class="block"><span>{{ this.$t('status') }}</span></div>
+      <div class="block"><span>{{ this.$t('membership') }}</span></div>
+      <div class="block"><span>{{ this.$t('date') }}</span></div>
     </div>
-    <div v-for="i in purchaseList" class="purchase animate__animated animate__fadeIn" :key="i.id">
+    <div v-if="purchaseList" v-for="i in purchaseList" class="purchase animate__animated animate__fadeIn" :key="i.id">
       <div class="block"> {{ i.id }}</div>
-      <div class="block"> {{ i.status }}</div>
+      <div class="block"> {{ this.$t(`ProfilePage.${i.status}`) }}</div>
       <div class="block"> {{ i.membership }}</div>
       <div class="block"> {{ new Date(i.date).toLocaleString() }}</div>
     </div>
-    <div class="">
+    <div class="loader animate__animated animate__fadeIn" v-else>
+      <PreloaderSmall/>
+    </div>
+    <div class="" v-if="purchaseList?.length > 10">
       <Pagination :pageCount="pageCount" @page="toPage"/>
     </div>
   </div>
@@ -25,10 +28,11 @@
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 import Pagination from "@/components/Pagination.vue";
 import 'animate.css'
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "PurchaseHistoryPage",
-  components: {Pagination},
+  components: {PreloaderSmall, Pagination},
   data() {
     return {
       purchaseList: null,
@@ -67,7 +71,7 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom: 2px solid crimson;
+  border-bottom: 2px solid #f2f2f2;
 }
 
 .purchase .block {
@@ -89,10 +93,13 @@ h3 {
   width: 100%;
   text-align: center;
 }
+.loader{
+  display: flex;
+  margin-top: 1rem;
+}
 @media (max-width: 767px) {
   .purchase{
     flex-wrap: wrap;
-
   }
 }
 </style>

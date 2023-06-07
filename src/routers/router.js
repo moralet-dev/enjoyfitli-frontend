@@ -12,6 +12,7 @@ import ActivationPage from "@/views/ActivationPage.vue";
 import ResetPassword from "@/views/ResetPassword.vue";
 import AboutMePage from "@/views/AboutMePage.vue";
 import SchedulePage from "@/views/Schedule/SchedulePage.vue";
+import NotFound from "@/views/NotFound.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -21,6 +22,7 @@ const routes = [
     {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
     {path: '/activate/:uid/:token', component: ActivationPage, name: 'activate'},
     {path: '/about', component: AboutMePage, name: 'about'},
+
     {
         path: '/profile',
         component: ProfilePage,
@@ -52,6 +54,11 @@ const routes = [
                 name: 'settings'
             },
         ]
+    },
+    {
+        path: "/:catchAll(.*)*",
+        name: "NotFound",
+        component: NotFound,
     },
 ]
 

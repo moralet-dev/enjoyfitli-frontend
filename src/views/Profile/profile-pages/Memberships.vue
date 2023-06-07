@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div v-if="loading">
-      <PreloaderSmall/>
-    </div>
-    <div v-else class="animate__animated animate__fadeIn">
+
       <div class="title-wrapper">
         <h3>{{ this.$t('ProfilePage.myMemberships') }}</h3>
       </div>
-      <div v-if="isMembList">
+    <div class="" v-if="loading">
+      <PreloaderSmall/>
+    </div>
+    <div class="loading" v-else>
+      <div v-if="isMembList" class="animate__animated animate__fadeIn">
         <div v-for="m in membList" :key="m.id">
           <div class="membership-info">
             <span class="m-name">{{ m.membership[`name_${this.$store.getters.getLocale}`] }}</span>
@@ -154,7 +155,9 @@ h3 {
   border: 2px solid orangered;
   border-radius: 15px;
 }
-
+.loading{
+  margin-top: 1rem;
+}
 @media (max-width: 767px) {
   .title-wrapper {
     padding: 1rem 0;

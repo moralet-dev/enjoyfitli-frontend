@@ -230,7 +230,7 @@ button:hover {
 }
 
 .wrapper {
-    padding: 6rem 9rem 0 9rem;
+    padding: 9rem 9rem 0 9rem;
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

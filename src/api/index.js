@@ -62,3 +62,8 @@ export function setCookie(name, value, days = 7) {
 export function deleteCookie(name) {
     document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
+
+export function pingRequest(){
+    const url = '/ping/'
+    return defaultAPIInstance.get(url)
+}

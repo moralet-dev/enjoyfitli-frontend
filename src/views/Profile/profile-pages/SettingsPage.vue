@@ -1,45 +1,45 @@
 <template>
   <div class="">
     <div class="title-wrapper">
-      <h3>Settings:</h3>
+      <h3>{{ this.$t('settings') }}:</h3>
     </div>
     <div class="main_info">
-      <h4>Main Info</h4>
+      <h4>{{ this.$t('ProfilePage.mainInfo')}}</h4>
       <form @submit.prevent="onSubmit">
         <div class="form-group">
-          <label for="phone">Phone</label>
+          <label for="phone">{{ this.$t('ProfilePage.phone') }}</label>
           <input id="phone" type="tel" v-model="formData.phone" required/>
           <div class="error-msg" v-if="errors.phone">
             {{ errors.phone[0] }}
           </div>
         </div>
         <div class="form-group">
-          <label for="first_name">First name</label>
+          <label for="first_name">{{ this.$t('ProfilePage.firstName') }}</label>
           <input id="first_name" maxlength="30" v-model="formData.first_name" required/>
           <div class="error-msg" v-if="errors.first_name">
             {{ errors.first_name[0] }}
           </div>
         </div>
         <div class="form-group">
-          <label for="last_name">Last name</label>
+          <label for="last_name">{{ this.$t('ProfilePage.lastName') }}</label>
           <input id="last_name" maxlength="30" v-model="formData.last_name" required/>
           <div class="error-msg" v-if="errors.last_name">
             {{ errors.last_name[0]  }}
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">{{ this.$t('ProfilePage.submit') }}</button>
       </form>
     </div>
     <Teleport to="body">
       <Modal :show="showModal" @close="showModal = false" class="modal_upload">
         <template #header>
-          <span>Confirmed</span>
+          <h6>{{ this.$t('ProfilePage.confirmed') }}</h6>
         </template>
         <template #body>
           Data updated
         </template>
         <template #footer>
-          <button @click="showModal = false">Close</button>
+          <button @click="showModal = false">{{ this.$t('close') }}</button>
         </template>
       </Modal>
     </Teleport>
@@ -105,6 +105,9 @@ form{
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
+}
+form label{
+  text-transform: capitalize;
 }
 .form-group{
   display: flex;

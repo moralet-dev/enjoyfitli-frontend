@@ -1,57 +1,57 @@
 <template>
   <div class="">
     <div class="title-wrapper">
-      <h3>Калькулятор КБЖУ</h3>
+      <h3>{{this.$t('ProfilePage.nutritionCalc')}}</h3>
     </div>
     <div class="table">
       <form @submit.prevent="calculate">
         <div class="form-group">
-          <label for="weight">Вага (кг)</label>
+          <label for="weight">{{ this.$t('ProfilePage.weightKG') }}</label>
           <input type="number" v-model="weight" min="30" max="150" id="weight" required>
         </div>
         <div class="form-group">
-          <label for="height">Зріст (см)</label>
+          <label for="height">{{ this.$t('ProfilePage.heightKG') }}</label>
           <input type="number" v-model="height" min="140" max="205" id="height" required>
         </div>
         <div class="form-group">
-          <label for="age">Вік (років)</label>
+          <label for="age">{{ this.$t('ProfilePage.age') }}</label>
           <input type="number" v-model="age" min="10" max="100" id="age" required>
         </div>
         <div class="form-group">
-          <label>Стать</label>
+          <label>{{ this.$t('ProfilePage.gender') }}</label>
           <select v-model="gender" id="gender" required>
-            <option value="male">Чоловік</option>
-            <option value="female">Жінка</option>
+            <option value="male">{{ this.$t('ProfilePage.male') }}</option>
+            <option value="female">{{ this.$t('ProfilePage.female') }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="activity">Рівень активності</label>
+          <label for="activity">{{ this.$t('ProfilePage.activityLVL') }}</label>
           <select v-model="activity" id="activity" required>
-            <option value="sedentary" title="Сидячий спосіб життя">0 тр./тиж.</option>
-            <option value="lightlyActive" title="Легка активність (тренування 1-2 рази на тиждень)">1-2 тр./тиж.</option>
-            <option value="moderatelyActive" title="Середня активність (тренування 3-5 разів на тиждень)">3-5 тр./тиж.</option>
-            <option value="veryActive" title="Висока активність (тренування 6-7 разів на тиждень)">6-7 тр./тиж.</option>
-            <option value="1.9" title="Дуже висока активність (тренування 2 рази на день)"> 2тр./день</option>
+            <option value="sedentary" title="Сидячий спосіб життя">{{ this.$t('ProfilePage.week0') }}</option>
+            <option value="lightlyActive" title="Легка активність (тренування 1-2 рази на тиждень)">{{ this.$t('ProfilePage.week12') }}</option>
+            <option value="moderatelyActive" title="Середня активність (тренування 3-5 разів на тиждень)">{{ this.$t('ProfilePage.week35') }}</option>
+            <option value="veryActive" title="Висока активність (тренування 6-7 разів на тиждень)">{{ this.$t('ProfilePage.week67') }}</option>
+            <option value="1.9" title="Дуже висока активність (тренування 2 рази на день)">{{ this.$t('ProfilePage.day2') }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label>Мета</label>
+          <label>{{ this.$t('ProfilePage.goal') }}</label>
           <select v-model="goal" id="goal" required>
-            <option value="weightLoss">Схуднення</option>
-            <option value="weightMaintenance">Підтримка</option>
+            <option value="weightLoss">{{ this.$t('ProfilePage.weightLoss') }}</option>
+            <option value="weightMaintenance">{{ this.$t('ProfilePage.weightKeep') }}</option>
           </select>
         </div>
         <div class="form-group">
-          <button type="submit">Розрахувати</button>
+          <button type="submit">{{ this.$t('ProfilePage.calculate') }}</button>
         </div>
 
       </form>
       <div class="result" v-if="result">
-        <h3>Результат:</h3>
-        <p>Калорії: {{ result.calories }}</p>
-        <p>Білки: {{ result.protein }}</p>
-        <p>Жири: {{ result.fat }}</p>
-        <p>Вуглеводи: {{ result.carbs }}</p>
+        <h3>{{ this.$t('ProfilePage.result') }}:</h3>
+        <p>{{ this.$t('ProfilePage.calories') }}: {{ result.calories }}</p>
+        <p>{{ this.$t('ProfilePage.protein') }}: {{ result.protein }}</p>
+        <p>{{ this.$t('ProfilePage.fats') }}: {{ result.fat }}</p>
+        <p>{{ this.$t('ProfilePage.carbs') }}: {{ result.carbs }}</p>
       </div>
     </div>
 
@@ -165,6 +165,12 @@ form{
 }
 .result h3{
   margin: 0 0 1rem 0;
+}
+label:first-letter{
+  text-transform: uppercase;
+}
+.result p:first-letter {
+  text-transform: uppercase;
 }
 @media (max-width: 767px) {
   .title-wrapper{
