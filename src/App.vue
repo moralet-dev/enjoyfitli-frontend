@@ -20,6 +20,7 @@ import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import axios from "axios";
 import GearAnimatedIcon from "@/components/icons/GearAnimatedIcon.vue";
+import {pingRequest} from "@/api";
 
 export default {
   components: {
@@ -35,7 +36,7 @@ export default {
 
   async beforeCreate() {
     try {
-      await axios.get("http://localhost:8000/en/api/ping");
+      await pingRequest();
       this.serverAvailable = true;
     } catch (error) {
       this.serverAvailable = false;

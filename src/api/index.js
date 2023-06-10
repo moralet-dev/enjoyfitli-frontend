@@ -4,20 +4,20 @@ import store from "@/store/store";
 const locale = store.getters.getLocale;
 
 const loginConfig = {
-    baseURL: `http://localhost:8000/${locale}/api`,
+    baseURL: `http://localhost:80/${locale}/api`,
 };
 
 export const loginAPIInstance = axios.create(loginConfig);
 
 const defaultConfig = {
-    baseURL: `http://localhost:8000/${locale}/api`,
+    baseURL: `http://localhost:80/${locale}/api`,
 }
 
 export const defaultAPIInstance = axios.create(defaultConfig);
 
 defaultAPIInstance.interceptors.request.use(
     async (config) => {
-        config.baseURL = `http://localhost:8000/${store.getters.getLocale}/api`
+        config.baseURL = `http://localhost:80/${store.getters.getLocale}/api`
         const access = !!getCookie("access");
         const refresh = !!getCookie("refresh");
         if (access && refresh) {
