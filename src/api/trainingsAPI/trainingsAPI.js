@@ -25,5 +25,13 @@ export const trainingsAPI = {
     getTrTypes(){
         const  url = `/tr-types/`
         return defaultAPIInstance.get(url)
-    }
+    },
+    getPersonalTrainings(){
+        const url= `personal-trainings/`
+        return defaultAPIInstance.get(url)
+    },
+    userConfirmPersonal(id){
+        const url= `personal-trainings/${id}/confirm/`
+        return defaultAPIInstance.get(url)
+    },
 }

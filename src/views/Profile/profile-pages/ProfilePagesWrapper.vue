@@ -32,6 +32,21 @@
         </router-view>
       </div>
       <div class="pages-link">
+        <router-link :to="{name: 'personal'}">
+          <ScheduleIcon/>
+          <span>{{this.$t('ProfilePage.personalTrainings')}}</span>
+        </router-link>
+        <router-view class="pages-content-wrapper"
+                     v-if="$vuetify.display.smAndDown"
+                     name="mob_personal"
+                     v-slot="{Component, route}"
+        >
+          <transition name="slide-down">
+            <component :is="Component" :key="route.path"/>
+          </transition>
+        </router-view>
+      </div>
+      <div class="pages-link">
         <router-link :to="{name:'my-nutrition-balance'}">
           <MyPFCCIcon/>
           <span>{{this.$t('myNutritionBalance')}}</span>
@@ -51,31 +66,31 @@
           <PurchaseHistoryIcon/>
           <span>{{ this.$t('purchaseHistory') }}</span>
         </router-link>
+        <router-view class="pages-content-wrapper"
+                     v-if="$vuetify.display.smAndDown"
+                     name="mob_purchase_history"
+                     v-slot="{Component, route}"
+        >
+          <transition name="slide-down">
+            <component :is="Component" :key="route.path"/>
+          </transition>
+        </router-view>
       </div>
-      <router-view class="pages-content-wrapper"
-                   v-if="$vuetify.display.smAndDown"
-                   name="mob_purchase_history"
-                   v-slot="{Component, route}"
-      >
-        <transition name="slide-down">
-          <component :is="Component" :key="route.path"/>
-        </transition>
-      </router-view>
       <div class="pages-link">
         <router-link :to="{name: 'settings'}">
           <EditIcon/>
           <span>{{ this.$t('settings') }}</span>
         </router-link>
+        <router-view class="pages-content-wrapper"
+                     v-if="$vuetify.display.smAndDown"
+                     name="mob_settings"
+                     v-slot="{Component, route}"
+        >
+          <transition name="slide-down">
+            <component :me="me" :is="Component" :key="route.path"/>
+          </transition>
+        </router-view>
       </div>
-      <router-view class="pages-content-wrapper"
-                   v-if="$vuetify.display.smAndDown"
-                   name="mob_settings"
-                   v-slot="{Component, route}"
-      >
-        <transition name="slide-down">
-          <component :me="me" :is="Component" :key="route.path"/>
-        </transition>
-      </router-view>
     </aside>
 
     <div v-if="$vuetify.display.mdAndUp" class="pages-content-wrapper">

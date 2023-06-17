@@ -13,6 +13,7 @@ import ResetPassword from "@/views/ResetPassword.vue";
 import AboutMePage from "@/views/AboutMePage.vue";
 import SchedulePage from "@/views/Schedule/SchedulePage.vue";
 import NotFound from "@/views/NotFound.vue";
+import Personal from "@/views/Profile/profile-pages/Personal.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -37,6 +38,11 @@ const routes = [
                 path: 'schedule',
                 components: {default: Schedule, mob_schedule: Schedule},
                 name: 'my-schedule'
+            },
+            {
+                path: 'personal',
+                components: {default: Personal, mob_personal: Personal},
+                name: 'personal'
             },
             {
                 path: 'my-nutrition-balance',

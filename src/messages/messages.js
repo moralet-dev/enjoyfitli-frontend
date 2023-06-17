@@ -48,7 +48,12 @@ export default {
             calories: 'calories',
             protein: 'protein',
             fats: 'fats',
-            carbs: 'carbohydrates'
+            carbs: 'carbohydrates',
+            personalTrainings: 'personal trainings',
+            myPersonalTrainings: 'my personal trainings',
+            personalTraining: 'personal training',
+            check: 'i\'ll be',
+            uncheck: 'uncheck',
         },
         MembershipsPage: {
             mainDescription: 'Choose most comfortable variant for you',
@@ -129,6 +134,12 @@ export default {
             protein: 'білки',
             fats: 'жири',
             carbs: 'вуглеводи',
+            personalTrainings: 'персональні тренування',
+            myPersonalTrainings: 'мої персональні тренування',
+            personalTraining: 'персональне тренування',
+            checkIn: 'Відмітитись',
+            check: 'буду',
+            uncheck: 'відмінити',
         },
         MembershipsPage: {
             mainDescription: 'Оберіть найбільш привабливий варіант для вас',
