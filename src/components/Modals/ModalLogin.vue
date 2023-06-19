@@ -184,11 +184,11 @@ form button {
   width: fit-content;
   padding: 1rem 2rem;
   background-color: var(--color-background-soft);
-  color: var(--color-link);
+  color: var(--color-link-text);
   font-size: 16px;
   font-weight: 700;
   border-radius: 100px;
-  border: 1px solid var(--color-link);
+  border: 1px solid var(--color-link-text);
   transition: .3s;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -198,9 +198,9 @@ form button {
   }
 }
 form button:hover {
-  color: var(--color-link-hover);
-  background-color: var(--color-link);
-  border: 1px solid var(--color-link);
+  color: var(--color-link-bg);
+  background-color: var(--color-link-text);
+  border: 1px solid var(--color-link-text);
 }
 
 .form-group {
@@ -230,7 +230,7 @@ form button:hover {
 }
 
 .login-block a {
-  color: var(--color-link);
+  color: var(--color-link-text);
   cursor: pointer;
 }
 

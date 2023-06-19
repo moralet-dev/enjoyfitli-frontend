@@ -1,15 +1,15 @@
 <template>
-  <div class="login-container" v-if="getIsAuth" :class="{'slide-in-left': getIsAuth,'slide-out-right': !getIsAuth}">
+  <div v-if="getIsAuth" :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
     <div class="locale">
       <div class="lang" @click="setLocale('uk')">UK</div>
-      <div class="lang" @click="setLocale('en')">EN</div>
+      <div class="lang " @click="setLocale('en')">EN</div>
     </div>
     <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">{{ this.$t('profile')}}</router-link>
     <a class="logout-button" @click="onLogoutClick">
       <LogoutIcon width="15" height="15"/>
     </a>
   </div>
-  <div v-else class="login-container" :class="{'slide-in-left': !getIsAuth, 'slide-out-right': getIsAuth}">
+  <div v-else :class="{'login-container animate__animated':true, 'animate__slideInDown': !getIsAuth, 'animate__slideOutDown': getIsAuth}">
     <a ref="login-popup" @click="openPopup('login')">{{ this.$t('login')}}</a>
     <a @click="openPopup('reg')">{{ this.$t('registration')}}</a>
   </div>
@@ -106,28 +106,23 @@ export default {
   padding: 0 2rem;
   font-weight: bold;
   cursor: pointer;
+  color: #f2f2f2;
 }
-
+.login-container a:hover{
+}
+.login-container a.router-link-active,
+.login-container a.router-link-active{
+  color: var(--color-link-text-hover);
+}
 .login-container span {
   cursor: pointer;
   transition: 0.4s;
 }
 
 .login-container a:hover, .login-container span:hover {
-  text-decoration: underline;
+  color: var(--color-link-text-hover);
 }
 
-.logout-button {
-  background-color: transparent;
-}
-
-.slide-in-left {
-  animation: slide-in-left .9s ease-out both;
-}
-
-.slide-out-right {
-  animation: slide-out-right .9s ease-out both;
-}
 .lang{
   cursor: pointer;
 }
@@ -146,31 +141,7 @@ export default {
   .login-container a {
     width: 100%;
     padding: 2rem 1rem;
-
-  }
-}
-
-@keyframes slide-in-left {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slide-out-right {
-  0% {
-    transform: translateY(0);
-    opacity: 0;
-
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 1;
-
+    color: var(--color-link-text-hover);
   }
 }
 </style>

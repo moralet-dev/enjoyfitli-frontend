@@ -29,6 +29,6 @@ export default {
 <style scoped>
 
 .logout_icon{
-  fill: var(--color-link);
+  fill: var(--color-link-text);
 }
 </style>

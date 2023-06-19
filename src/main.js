@@ -2,7 +2,7 @@ import {createApp} from 'vue'
 import App from './App.vue'
 import {createVuetify} from 'vuetify'
 
-import './assets/main.css'
+import './assets/base.css'
 import {router} from "@/routers/router";
 import store from "@/store/store";
 import i18n from "@/messages/config";

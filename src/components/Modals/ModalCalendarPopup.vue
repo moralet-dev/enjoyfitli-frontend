@@ -217,13 +217,13 @@ button.close:hover{
   transition: 0.3s, transform 2s;
   transition-timing-function: ease-in-out;
   border-radius: 10px;
-  color: var(--color-link);
+  color: var(--color-link-text);
   border: 2px solid rgba(0, 156, 6, 1);
 }
 
 .sign button:hover, .unsign button:hover {
   background-color: rgba(0, 156, 6, 1);
-  color: var(--color-link-hover);
+  color: var(--color-link-bg);
 }
 
 .sign .disabled {
@@ -233,7 +233,7 @@ button.close:hover{
 
 .sign .disabled:hover {
   background-color: inherit;
-  color: var(--color-link);
+  color: var(--color-link-text);
 }
 
 .unsign button {

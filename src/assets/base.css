@@ -19,7 +19,11 @@
     --vt-c-black-soft: #222222;
     --vt-c-black-mute: #282828;
 
-    --vt-c-indigo: #2c3e50;
+    --vt-c-main-green: #1F6661;
+    --vt-c-second-green: #4D807C;
+    --vt-c-third-green: #6BB3AE;
+    --vt-c-blue-mute: #6C5BC2;
+    --vt-c-indigo: rgb(44, 62, 80);
 
     --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
     --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
@@ -41,9 +45,10 @@
 
 /* semantic color variables for this project */
 :root {
-    --color-background: var(--vt-c-white);
-    --color-background-soft: var(--vt-c-white-soft);
-    --color-background-mute: var(--vt-c-white-mute);
+    --color-background: var(--vt-c-main-green);
+    --color-background-soft: var(--vt-c-second-green);
+    --color-background-mute: var(--vt-c-third-green);
+    --color-background-header: var(--vt-c-black-mute);
     --color-background-section-dark: var(--vt-c-black);
     --color-background-section-dark-arrows: var(--vt-c-white-soft);
 
@@ -51,10 +56,14 @@
     --color-border-hover: var(--vt-c-divider-light-1);
 
     --color-headings: var(--vt-c-text-light-1);
-    --color-text: var(--vt-c-text-light-2);
-    --color-link: var(--vt-c-link-light-1);
-    --color-link-hover: var(--vt-c-link-light-2);
+    --color-text: var(--vt-c-text-light-1);
+    --color-link-text: var(--vt-c-text-light-1);
+    --color-link-bg: var(--vt-c-second-green);
+    --color-link-text-hover: var(--vt-c-text-light-1);
+    --color-link-bg-hover: var(--vt-c-second-green);
     --color-header-shadow: var(--vt-c-header-shadow-light);
+    --color-elements: var(--vt-c-second-green);
+    --color-helper: var(--vt-c-third-green);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,6 +71,7 @@
         --color-background: var(--vt-c-black);
         --color-background-soft: var(--vt-c-black-soft);
         --color-background-mute: var(--vt-c-black-mute);
+        --color-background-header: var(--vt-c-main-green);
         --color-background-section-dark: transparent;
         --color-background-section-dark-arrows: var(--vt-c-white-soft);
 
@@ -70,9 +80,13 @@
 
         --color-headings: var(--vt-c-text-dark-1);
         --color-text: var(--vt-c-text-dark-2);
-        --color-link: var(--vt-c-link-dark-1);
-        --color-link-hover: var(--vt-c-link-dark-2);
+        --color-link-text: var(--vt-c-link-dark-1);
+        --color-link-bg: var(--vt-c-second-green);
+        --color-link-text-hover: var(--vt-c-black-soft);
+        --color-link-bg-hover: var(--vt-c-second-green);
         --color-header-shadow: var(--vt-c-header-shadow-dark);
+        --color-elements: var(--vt-c-second-green);
+        --color-helper: var(--vt-c-blue-mute);
 
     }
 }
@@ -84,7 +98,7 @@
     margin: 0;
     position: relative;
     font-weight: normal;
-    scrollbar-color: var(--color-link) var(--color-background);
+    scrollbar-color: var(--color-link-text) var(--color-background);
     scrollbar-width: thin;
 }
 
@@ -95,7 +109,6 @@ body {
     transition: color 0.3s, background-color 0.3s;
     font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    letter-spacing: 0.02em;
     font-size: 18px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -105,8 +118,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-headings);
-    font-family: 'Futura New', sans-serif;
-    letter-spacing: 0.02em;
+    font-family: "Helvetica Neue", sans-serif;
+    font-weight: bold;
     cursor: default;
     text-transform: capitalize;
 }
@@ -119,39 +132,40 @@ footer {
 }
 
 a {
-    color: var(--color-link);
+    font-family: "Helvetica Neue", sans-serif;
+    color: var(--color-link-text);
     text-decoration: none;
     transition: .4s;
 }
 
 a:hover {
-    color: var(--color-link-hover);
-    background-color: var(--color-link);
+    color: var(--color-link-text-hover);
+    background-color: var(--color-link-bg-hover);
 }
 
 .router-link-active {
-    color: var(--color-link-hover);
-    background-color: var(--color-link);
+    color: var(--color-link-text-hover);
+    background-color: var(--color-link-bg-hover);
 }
 
 .router-link-exact-active {
-    color: var(--color-link-hover);
-    background-color: var(--color-link);
+    color: var(--color-link-text-hover);
+    background-color: var(--color-link-bg-hover);
 }
 
 form input {
     background: transparent;
-    color: var(--color-link);
+    color: var(--color-headings);
     border: none;
     font-size: 18px;
     padding: .5rem 0 .2rem 0;
-    border-bottom: solid 2px var(--color-link);
+    border-bottom: solid 2px var(--color-text);
     transition: .6s;
     box-sizing: border-box;
 }
 
 form input:focus {
-    border-bottom: solid 2px #005BE3;
+    border-bottom: solid 2px var(--color-elements);
 }
 @media (max-width: 767px) {
     form input{
@@ -160,25 +174,27 @@ form input:focus {
 }
 form select {
     border: none;
-    color: var(--color-link);
+    color: var(--color-link-text);
     font-size: 18px;
     padding: .3rem .3rem;
     word-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
-    border-bottom: solid 2px var(--color-link);
+    border-bottom: solid 2px var(--color-link-text);
     background-color: transparent;
     transition: .6s;
 }
 
 form select:focus {
-    border-bottom: solid 2px #005BE3;
+    border-bottom: solid 2px var(--color-elements);
 }
 
 form select option {
     background: var(--color-background-soft);
     max-width: 100%;
     word-wrap: break-word;
+    padding: 1.3rem 1.3rem;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -199,20 +215,21 @@ input[type=number] {
 button {
     width: fit-content;
     padding: 1rem 2rem;
-    background-color: var(--vt-c-black-soft);
-    color: var(--vt-c-white-soft);
+    font-family: "Helvetica Neue", sans-serif;
+    background-color: var(--color-link-bg-hover);
+    color: var(--color-link-text-hover);
     font-size: 16px;
     font-weight: 700;
-    border: 2px solid var(--vt-c-black-soft);
+    border: 2px solid var(--color-headings);
     transition: .3s;
     border-radius: 15px;
     text-transform: capitalize;
 }
 
 button:hover {
-    color: var(--vt-c-black-soft);
-    background-color: var(--vt-c-white-soft);
-    border: 2px solid var(--vt-c-black-soft);
+    color: var(--color-link-text-hover);
+    background-color: var(--color-helper);
+    border: 2px solid var(--color-headings);
 }
 
 ::-webkit-scrollbar {
@@ -250,3 +267,10 @@ button:hover {
     }
 }
 
+#app {
+    margin: 0 auto;
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

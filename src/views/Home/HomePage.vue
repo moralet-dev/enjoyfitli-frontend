@@ -4,7 +4,7 @@
       <Preloader v-if="loading"/>
     </transition>
     <div class="banner">
-      <h1>YOUR PERSONAL<br>FITNESS COUCH</h1>
+      <h1>ENJOY FITNESS<br>STUDIO</h1>
       <h4>Let's make your body healthy and you happy.</h4>
     </div>
     <div class="content-block">

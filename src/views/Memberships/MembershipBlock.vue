@@ -136,7 +136,7 @@ export default defineComponent({
   min-height: 200px;
   width: 100%;
   background: linear-gradient(to bottom right, rgb(244, 150, 73), rgb(220, 20, 60));
-  color: var(--color-link-hover);
+  color: var(--color-link-bg);
   border-radius: 25px;
   display: flex;
   justify-content: center;

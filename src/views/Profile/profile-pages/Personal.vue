@@ -3,7 +3,7 @@
     <div class="title-wrapper">
       <h3>{{ this.$t('ProfilePage.myPersonalTrainings') }}:</h3>
     </div>
-    <div v-if="trainingsList" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
+    <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
       <h4>{{ this.$t('ProfilePage.personalTraining') }}:</h4>
       <div class="training">
         <div class="item">
@@ -12,7 +12,7 @@
           {{
             new Date(t.when).toLocaleString(
                 `${this.$store.getters.getLocale}`,
-                {weekday: 'short', day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit'})
+                {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})
           }}
           </span>
         </div>
@@ -25,6 +25,9 @@
         </div>
       </div>
     </div>
+    <div v-else-if="trainingsList?.length <= 0" class="trainings-block animate__animated animate__fadeIn">
+      <h4>{{ this.$t('ProfilePage.noPersonalTraining') }}:</h4>
+    </div>
     <div v-else>
       <PreloaderSmall/>
     </div>
@@ -34,15 +37,9 @@
 <script>
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
-import {tr} from "vuetify/locale";
 
 export default {
   name: "Personal",
-  computed: {
-    tr() {
-      return tr
-    }
-  },
   data(){
     return{
       trainingsList: null,
@@ -57,10 +54,9 @@ export default {
       this.trainingsList = await trainingsAPI.getPersonalTrainings().then(response=>response.data.results)
     },
     async onCheck(id){
-      await trainingsAPI.userConfirmPersonal(id).then(response=> {
-        console.log(response)
+      await trainingsAPI.userConfirmPersonal(id).then(()=>{
+        this.getPersonalTr()
       })
-      await this.getPersonalTr()
     },
   }
 }
