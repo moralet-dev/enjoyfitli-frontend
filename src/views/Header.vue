@@ -77,7 +77,7 @@ export default {
   width: 100%;
   background-color: var(--color-background-header);
   grid-template-columns: 4fr 8fr;
-  box-shadow: 0 0 45px var(--color-header-shadow);
+  box-shadow: 0 0 5px var(--color-header-shadow);
   padding: 0 9rem;
   position: fixed;
   left: 0;
@@ -96,16 +96,15 @@ export default {
   display: none;
 }
 .header a{
-  padding: 3px;
+  /*padding: 3px;*/
   font-size: 14px;
-  /*color: var(--color-link-text);*/
-  color: #f2f2f2;
+  color: var(--color-link-text);
 }
 .header a.router-link-active{
-  color: var(--color-link-text-hover);
+  color: var(--color-link-text);
 }
 .header a:hover{
-  color: var(--color-link-text-hover);
+  color: var(--color-link-text);
 }
 .header-label {
   display: flex;
@@ -160,6 +159,12 @@ export default {
     z-index: 2;
     background: var(--color-background-header);
   }
+  .header a.router-link-active{
+    background: var(--color-background);
+  }
+  .header a:hover{
+    background: var(--color-background);
+  }
   .header__burger{
     display: block;
     width: 30px;
@@ -192,7 +197,7 @@ export default {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 4px;
+    height: 5px;
     top: 12px;
     background-color: var(--color-elements);
     transition: .3s;
@@ -216,7 +221,7 @@ export default {
     width: 100%;
     max-height: 100%;
     padding: 6rem 0 3rem 0;
-    background-color: var(--color-background-mute);
+    background-color: var(--color-background-soft);
     display: flex;
     flex-direction: column;
     transition: .5s;
@@ -237,7 +242,7 @@ export default {
   }
   .nav-list li a{
     padding: 2rem 1rem;
-    color: var(--color-link-text-hover);
+    color: var(--color-link-text);
   }
   .header-label{
     z-index: 3;
@@ -245,5 +250,6 @@ export default {
   .header-label a img{
     max-height: 50px;
   }
+
 }
 </style>

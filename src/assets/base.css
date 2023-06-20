@@ -14,16 +14,17 @@
     --vt-c-white: #ffffff;
     --vt-c-white-soft: #f8f8f8;
     --vt-c-white-mute: #f2f2f2;
+    --vt-c-white-fourth: #ebf2f1;
 
     --vt-c-black: #181818;
     --vt-c-black-soft: #222222;
     --vt-c-black-mute: #282828;
 
-    --vt-c-main-green: #1F6661;
-    --vt-c-second-green: #4D807C;
-    --vt-c-third-green: #6BB3AE;
-    --vt-c-blue-mute: #6C5BC2;
-    --vt-c-indigo: rgb(44, 62, 80);
+    --vt-c-main-green:  #7EBFB3;
+    --vt-c-second-green: #A7F2E4;
+    --vt-c-third-green: #4F7369;
+    --vt-c-blue-mute: #194759;
+    --vt-c-indigo: #2c3e50;
 
     --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
     --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
@@ -48,22 +49,22 @@
     --color-background: var(--vt-c-main-green);
     --color-background-soft: var(--vt-c-second-green);
     --color-background-mute: var(--vt-c-third-green);
-    --color-background-header: var(--vt-c-black-mute);
+    --color-background-header: var(--vt-c-main-green);
     --color-background-section-dark: var(--vt-c-black);
     --color-background-section-dark-arrows: var(--vt-c-white-soft);
 
     --color-border: var(--vt-c-divider-light-2);
     --color-border-hover: var(--vt-c-divider-light-1);
 
-    --color-headings: var(--vt-c-text-light-1);
-    --color-text: var(--vt-c-text-light-1);
-    --color-link-text: var(--vt-c-text-light-1);
+    --color-headings: var(--vt-c-white-fourth);
+    --color-text: var(--vt-c-blue-mute);
+    --color-link-text: var(--vt-c-blue-mute);
     --color-link-bg: var(--vt-c-second-green);
-    --color-link-text-hover: var(--vt-c-text-light-1);
+    --color-link-text-hover: var(--vt-c-blue-mute);
     --color-link-bg-hover: var(--vt-c-second-green);
-    --color-header-shadow: var(--vt-c-header-shadow-light);
-    --color-elements: var(--vt-c-second-green);
-    --color-helper: var(--vt-c-third-green);
+    --color-header-shadow: var(--vt-c-third-green);
+    --color-elements: var(--vt-c-blue-mute);
+    --color-helper: var(--vt-c-white-fourth);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -78,15 +79,15 @@
         --color-border: var(--vt-c-divider-dark-2);
         --color-border-hover: var(--vt-c-divider-dark-1);
 
-        --color-headings: var(--vt-c-text-dark-1);
-        --color-text: var(--vt-c-text-dark-2);
+        --color-headings: var(--vt-c-white-soft);
+        --color-text: var(--vt-c-white-mute);
         --color-link-text: var(--vt-c-link-dark-1);
         --color-link-bg: var(--vt-c-second-green);
         --color-link-text-hover: var(--vt-c-black-soft);
         --color-link-bg-hover: var(--vt-c-second-green);
         --color-header-shadow: var(--vt-c-header-shadow-dark);
-        --color-elements: var(--vt-c-second-green);
-        --color-helper: var(--vt-c-blue-mute);
+        --color-elements: var(--vt-c-third-green);
+        --color-helper: var(--vt-c-white-fourth);
 
     }
 }
@@ -107,8 +108,9 @@ body {
     color: var(--color-text);
     background: var(--color-background);
     transition: color 0.3s, background-color 0.3s;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    /*font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,*/
+    /*Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
+    font-family: 'Futura New', sans-serif;
     font-size: 18px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -119,21 +121,26 @@ body {
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-headings);
     font-family: "Helvetica Neue", sans-serif;
+    text-shadow: 1px 1px 3px black;
+
     font-weight: bold;
     cursor: default;
     text-transform: capitalize;
 }
-
+h1{
+    color: var(--vt-c-white-fourth);
+    text-shadow: 1px 1px 3px black;
+}
 
 footer {
     padding: 0 9rem;
     margin-top: auto;
-    background: #000000;
+    background: var(--vt-c-blue-mute);
 }
 
 a {
-    font-family: "Helvetica Neue", sans-serif;
     color: var(--color-link-text);
+
     text-decoration: none;
     transition: .4s;
 }
@@ -152,10 +159,12 @@ a:hover {
     color: var(--color-link-text-hover);
     background-color: var(--color-link-bg-hover);
 }
-
+form label{
+    font-size: 20px;
+}
 form input {
     background: transparent;
-    color: var(--color-headings);
+    color: var(--color-text);
     border: none;
     font-size: 18px;
     padding: .5rem 0 .2rem 0;
@@ -165,7 +174,7 @@ form input {
 }
 
 form input:focus {
-    border-bottom: solid 2px var(--color-elements);
+    border-bottom: solid 2px var(--color-helper);
 }
 @media (max-width: 767px) {
     form input{
@@ -186,11 +195,11 @@ form select {
 }
 
 form select:focus {
-    border-bottom: solid 2px var(--color-elements);
+    border-bottom: solid 2px var(--color-helper);
 }
 
 form select option {
-    background: var(--color-background-soft);
+    background: var(--color-helper);
     max-width: 100%;
     word-wrap: break-word;
     padding: 1.3rem 1.3rem;
@@ -198,8 +207,6 @@ form select option {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-form select option:hover {
 }
 
 input[type=number]::-webkit-outer-spin-button,
@@ -216,20 +223,20 @@ button {
     width: fit-content;
     padding: 1rem 2rem;
     font-family: "Helvetica Neue", sans-serif;
-    background-color: var(--color-link-bg-hover);
-    color: var(--color-link-text-hover);
+    background-color: var(--color-background);
+    color: var(--color-link-text);
     font-size: 16px;
     font-weight: 700;
-    border: 2px solid var(--color-headings);
-    transition: .3s;
+    border: 3px solid var(--color-elements);
+    transition: .2s;
     border-radius: 15px;
     text-transform: capitalize;
 }
 
 button:hover {
-    color: var(--color-link-text-hover);
-    background-color: var(--color-helper);
-    border: 2px solid var(--color-headings);
+    color: var(--vt-c-white-fourth);
+    background-color: var(--color-elements);
+    border: 3px solid var(--color-elements);
 }
 
 ::-webkit-scrollbar {

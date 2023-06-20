@@ -106,13 +106,13 @@ export default {
   padding: 0 2rem;
   font-weight: bold;
   cursor: pointer;
-  color: #f2f2f2;
+  color: var(--color-link-text);
 }
 .login-container a:hover{
 }
 .login-container a.router-link-active,
-.login-container a.router-link-active{
-  color: var(--color-link-text-hover);
+.login-container a.router-link-exact-active{
+  color: var(--color-link-text);
 }
 .login-container span {
   cursor: pointer;
@@ -120,7 +120,7 @@ export default {
 }
 
 .login-container a:hover, .login-container span:hover {
-  color: var(--color-link-text-hover);
+  color: var(--color-link-text);
 }
 
 .lang{
@@ -141,7 +141,11 @@ export default {
   .login-container a {
     width: 100%;
     padding: 2rem 1rem;
-    color: var(--color-link-text-hover);
+  }
+  .login-container a.router-link-active,
+  .login-container a.router-link-exact-active{
+    color: var(--color-link-text);
+    background: var(--color-background);
   }
 }
 </style>

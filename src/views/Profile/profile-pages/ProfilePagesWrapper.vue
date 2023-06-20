@@ -1,93 +1,15 @@
 <template>
   <div class="pages-wrapper">
     <aside class="animate__animated animate__fadeIn">
-      <div class="pages-link">
-        <router-link :to="{name: 'my-memberships'}" @click="goBack">
-          <MembershipIcon/>
-          <span>{{this.$t('memberships')}}</span>
+      <div v-for="link in links" class="pages-link">
+        <router-link :to="link.to">
+          <component :is="link.icon"/>
+          <span>{{ $t(link.text) }}</span>
         </router-link>
-        <router-view class="pages-content-wrapper"
-                     v-if="$vuetify.display.smAndDown"
-                     name="mob_membership"
-                     v-slot="{Component, route}"
-        >
+        <router-view class="pages-content-wrapper" v-if="$vuetify.display.smAndDown"
+                     :name="link.mobileName" v-slot="{Component, route}">
           <transition name="slide-down">
             <component :is="Component" :key="route.path"/>
-          </transition>
-        </router-view>
-      </div>
-      <div class="pages-link">
-        <router-link :to="{name: 'my-schedule'}">
-          <ScheduleIcon/>
-          <span>{{this.$t('schedule')}}</span>
-        </router-link>
-        <router-view class="pages-content-wrapper"
-                     v-if="$vuetify.display.smAndDown"
-                     name="mob_schedule"
-                     v-slot="{Component, route}"
-        >
-          <transition name="slide-down">
-            <component :is="Component" :key="route.path"/>
-          </transition>
-        </router-view>
-      </div>
-      <div class="pages-link">
-        <router-link :to="{name: 'personal'}">
-          <ScheduleIcon/>
-          <span>{{this.$t('ProfilePage.personalTrainings')}}</span>
-        </router-link>
-        <router-view class="pages-content-wrapper"
-                     v-if="$vuetify.display.smAndDown"
-                     name="mob_personal"
-                     v-slot="{Component, route}"
-        >
-          <transition name="slide-down">
-            <component :is="Component" :key="route.path"/>
-          </transition>
-        </router-view>
-      </div>
-      <div class="pages-link">
-        <router-link :to="{name:'my-nutrition-balance'}">
-          <MyPFCCIcon/>
-          <span>{{this.$t('myNutritionBalance')}}</span>
-        </router-link>
-        <router-view class="pages-content-wrapper"
-                     v-if="$vuetify.display.smAndDown"
-                     name="mob_my_nutrition_balance"
-                     v-slot="{Component, route}"
-        >
-          <transition name="slide-down">
-            <component :is="Component" :key="route.path"/>
-          </transition>
-        </router-view>
-      </div>
-      <div class="pages-link">
-        <router-link :to="{name: 'purchase-history'}">
-          <PurchaseHistoryIcon/>
-          <span>{{ this.$t('purchaseHistory') }}</span>
-        </router-link>
-        <router-view class="pages-content-wrapper"
-                     v-if="$vuetify.display.smAndDown"
-                     name="mob_purchase_history"
-                     v-slot="{Component, route}"
-        >
-          <transition name="slide-down">
-            <component :is="Component" :key="route.path"/>
-          </transition>
-        </router-view>
-      </div>
-      <div class="pages-link">
-        <router-link :to="{name: 'settings'}">
-          <EditIcon/>
-          <span>{{ this.$t('settings') }}</span>
-        </router-link>
-        <router-view class="pages-content-wrapper"
-                     v-if="$vuetify.display.smAndDown"
-                     name="mob_settings"
-                     v-slot="{Component, route}"
-        >
-          <transition name="slide-down">
-            <component :me="me" :is="Component" :key="route.path"/>
           </transition>
         </router-view>
       </div>
@@ -115,6 +37,48 @@ import {th} from "vuetify/locale";
 
 export default {
   name: "ProfilePagesWrapper",
+  data() {
+    return {
+      links: [
+        {
+          to: { name: 'my-memberships' },
+          icon: MembershipIcon,
+          text: 'memberships',
+          mobileName: 'mob_membership'
+        },
+        {
+          to: { name: 'my-schedule' },
+          icon: ScheduleIcon,
+          text: 'schedule',
+          mobileName: 'mob_schedule'
+        },
+        {
+          to: { name: 'personal' },
+          icon: ScheduleIcon,
+          text: 'ProfilePage.personalTrainings',
+          mobileName: 'mob_personal'
+        },
+        {
+          to: { name: 'my-nutrition-balance' },
+          icon: MyPFCCIcon,
+          text: 'myNutritionBalance',
+          mobileName: 'mob_my_nutrition_balance'
+        },
+        {
+          to: { name: 'purchase-history' },
+          icon: PurchaseHistoryIcon,
+          text: 'purchaseHistory',
+          mobileName: 'mob_purchase_history'
+        },
+        {
+          to: { name: 'settings' },
+          icon: EditIcon,
+          text: 'settings',
+          mobileName: 'mob_settings'
+        }
+      ]
+    };
+  },
   computed: {
     th() {
       return th
@@ -141,7 +105,7 @@ export default {
 aside {
   display: flex;
   flex-direction: column;
-  border-right: solid 1px rgb(217, 217, 217);
+  border-right: solid 1px var(--color-helper);
 }
 
 .pages-link {
@@ -149,14 +113,26 @@ aside {
   padding: 0 0 1.25em 0;
 }
 
-a {
+.pages-link a {
   display: flex;
   align-items: center;
+  border: 3px solid transparent;
   border-radius: 10px;
   padding: 0.5em 1rem;
 }
-
-a span {
+.pages-link a.router-link-active, .pages-link a.router-link-exact-active{
+  background: var(--color-link-text-hover);
+  color: var(--color-helper);
+  border: 3px solid var(--color-link-text);
+}
+.pages-link a.router-link-active:hover, .pages-link a.router-link-exact-active:hover{
+  background: var(--color-link-text-hover);
+}
+.pages-link a:hover{
+  background: transparent;
+  border: 3px solid var(--color-link-text);
+}
+.pages-link a span {
   margin: 0 10px;
   text-transform: capitalize;
 }
@@ -190,8 +166,7 @@ a span {
   }
 
   .pages-content-wrapper {
-    /*max-height: 200vh;*/
-    padding: 0 0 2rem 0;
+    padding: 1rem 0.5rem 0 0.5rem;
   }
 }
 

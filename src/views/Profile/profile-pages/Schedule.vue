@@ -4,7 +4,7 @@
       <h3>{{ this.$t('ProfilePage.myTrainings') }}:</h3>
     </div>
     <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
-      <h4>{{ this.$t('ProfilePage.training') }}: {{ t.type[`name_${this.$store.getters.getLocale}`] }}</h4>
+      <p>{{ this.$t('ProfilePage.training') }}: {{ t.type[`name_${this.$store.getters.getLocale}`] }}</p>
       <div class="training">
         <div class="item"><span>{{ this.$t('ProfilePage.specification') }}:</span> {{ t.specification[`name_${this.$store.getters.getLocale}`] }}</div>
         <div class="item">
@@ -75,11 +75,14 @@ h3 {
 .trainings-block {
   padding: 1rem 0;
 }
-
+.trainings-block p{
+  text-transform: capitalize;
+  font-size: 20px;
+}
 .training {
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
-  border-bottom: solid 1px rgb(217, 217, 217);
+  border-bottom: solid 1px var(--color-helper);
 }
 
 .item {
@@ -92,7 +95,6 @@ h3 {
   font-weight: 600;
   padding: 0 0 0.5rem 0;
   word-wrap: break-word;
-  color: var(--color-headings);
   text-transform: capitalize;
 }
 
@@ -113,9 +115,9 @@ h3 {
 }
 
 .unsign button:hover {
-  border: none;
   background-color: darkred;
-  color: var(--color-link-bg);
+  border: 2px solid darkred;
+  color: var(--vt-c-white-soft);
 }
 
 @media (max-width: 767px) {

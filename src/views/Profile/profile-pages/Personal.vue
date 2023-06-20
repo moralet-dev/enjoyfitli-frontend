@@ -4,7 +4,7 @@
       <h3>{{ this.$t('ProfilePage.myPersonalTrainings') }}:</h3>
     </div>
     <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
-      <h4>{{ this.$t('ProfilePage.personalTraining') }}:</h4>
+      <p>{{ this.$t('ProfilePage.personalTraining') }}:</p>
       <div class="training">
         <div class="item">
           <p>{{ this.$t('ProfilePage.when') }}:</p>
@@ -74,7 +74,10 @@ h3 {
 .trainings-block {
   padding: 1rem 0;
 }
-
+.trainings-block p{
+  text-transform: capitalize;
+  font-size: 20px;
+}
 .training {
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
@@ -95,7 +98,7 @@ h3 {
   font-weight: 600;
   padding: 0 0 0.5rem 0;
   word-wrap: break-word;
-  color: var(--color-headings);
+  color: var(--color-text);
   text-transform: capitalize;
 }
 .item button{
@@ -103,7 +106,7 @@ h3 {
 }
 .checked button{
   background-color: crimson;
-  color: #181818;
+  color: var(--vt-c-white-soft);
 }
 .unchecked button{
   background-color: chartreuse;

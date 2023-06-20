@@ -13,8 +13,8 @@
           <div class="membership-info">
             <span class="m-name">{{ m.membership[`name_${this.$store.getters.getLocale}`] }}</span>
             <div class="m-count-block">
-              <p>{{ this.$t('ProfilePage.trainingsCount') }}</p>
-              <h4>{{ m.membership.count }}</h4>
+              <span class="trainings-title">{{ this.$t('ProfilePage.trainingsCount') }}:</span>
+              <span class="trainings-title">{{ m.membership.count }}</span>
             </div>
           </div>
           <div class="membership-info-current">
@@ -110,7 +110,7 @@ h3 {
 .m-name {
   font-weight: 700;
   font-size: 24px;
-  padding: 1.5rem 0 1.5rem 0;
+  margin: 0 0 1.5rem 0;
 }
 
 .m-count-block {
@@ -123,7 +123,7 @@ h3 {
 }
 
 .m-count-block h4, .trainings-title {
-  font-family: 'Futura New', sans-serif;
+  display: block;
   font-weight: 700;
   font-size: 50px;
   letter-spacing: 0.02em;

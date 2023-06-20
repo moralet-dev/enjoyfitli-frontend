@@ -14,8 +14,8 @@
       </div>
       <div class="welcome-block_text">
         <h1>{{ this.$t('profile') }}</h1>
-        <h3 >{{ this.$t('welcome') }}, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
-          {{ this.$store.getters['authModule/getCurrentUser'].last_name }}!</h3>
+        <p>{{ this.$t('welcome') }}, {{ `${this.$store.getters['authModule/getCurrentUser'].first_name}` }}
+          {{ this.$store.getters['authModule/getCurrentUser'].last_name }}!</p>
       </div>
     </div>
     <ProfilePagesWrapper :me="this.$store.getters['authModule/getCurrentUser']"/>
@@ -196,14 +196,14 @@ h3 {
   .welcome-block{
   }
   h1{
-    font-size: 30px;
+    font-size: 40px;
   }
-  h3{
+  p{
     font-size: 20px;
   }
   .user-avatar{
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 90px;
   }
   .pages-wrapper{
     flex-direction: column;

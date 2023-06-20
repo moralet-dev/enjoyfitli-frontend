@@ -2,8 +2,8 @@
   <footer>
     <div class="wrapper">
       <div class="footer-block icons">
-        <TikTokLogo :border="'white'"/>
-        <InstagramLogo :border="'white'"/>
+        <TikTokLogo :border="'var(--color-headings)'" :icon-color="'transparent'"/>
+        <InstagramLogo :border="'var(--color-headings)'" :icon-color="'transparent'"/>
       </div>
       <div class="footer-block">
         <span>м.Шулявка, ТЦ Мармелад</span>
@@ -36,6 +36,9 @@ export default {
   margin: 1rem 0;
   justify-content: center;
   align-items: center;
+}
+.footer-block span{
+  color: var(--color-headings);
 }
 .icons{
   flex-direction: row;
