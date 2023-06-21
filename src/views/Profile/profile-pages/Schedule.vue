@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <div class="title-wrapper">
-      <h3>{{ this.$t('ProfilePage.myTrainings') }}:</h3>
+      <h2>{{ this.$t('ProfilePage.myTrainings') }}:</h2>
     </div>
     <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
       <p>{{ this.$t('ProfilePage.training') }}: {{ t.type[`name_${this.$store.getters.getLocale}`] }}</p>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div v-else-if="trainingsList?.length <= 0" class="trainings-block animate__animated animate__fadeIn">
-      <h4>{{ this.$t('ProfilePage.noGroupTraining') }}:</h4>
+      <p>{{ this.$t('ProfilePage.noGroupTrainings') }}</p>
     </div>
     <div v-else>
       <PreloaderSmall/>
@@ -68,16 +68,16 @@ export default {
   padding: 0.5em 0 1rem 0;
 }
 
-h3 {
-  font-size: 30px;
+h2 {
+  font-size: 40px;
 }
 
 .trainings-block {
   padding: 1rem 0;
 }
 .trainings-block p{
+  font-size: 22px;
   text-transform: capitalize;
-  font-size: 20px;
 }
 .training {
   display: grid;
@@ -119,17 +119,18 @@ h3 {
   border: 2px solid darkred;
   color: var(--vt-c-white-soft);
 }
-
+@media(max-width: 991px){
+  .training {
+    grid-template-columns: 6fr 6fr;
+  }
+}
 @media (max-width: 767px) {
-  h3 {
-    font-size: 25px;
+  h2 {
+    font-size: 30px;
   }
 
   .training {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /*grid-template-columns: 6fr 6fr;*/
+    grid-template-columns: 6fr 6fr;
   }
 
   .item {

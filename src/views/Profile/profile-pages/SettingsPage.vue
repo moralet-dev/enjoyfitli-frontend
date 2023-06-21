@@ -4,7 +4,7 @@
       <h3>{{ this.$t('settings') }}:</h3>
     </div>
     <div class="main_info">
-      <h4>{{ this.$t('ProfilePage.mainInfo')}}</h4>
+      <p>{{ this.$t('ProfilePage.mainInfo')}}</p>
       <form @submit.prevent="onSubmit">
         <div class="form-group">
           <label for="phone">{{ this.$t('ProfilePage.phone') }}</label>
@@ -97,9 +97,12 @@ export default {
 .title-wrapper {
   padding: 0.5em 0 1rem 0;
 }
-
+.main_info p{
+  font-size: 22px;
+  text-transform: capitalize;
+}
 h3 {
-  font-size: 30px;
+  font-size: 40px;
 }
 form{
   display: flex;
@@ -120,5 +123,10 @@ form button{
 .error-msg{
   font-size: 14px;
   color: red;
+}
+@media (max-width: 767px) {
+  h3 {
+    font-size: 30px;
+  }
 }
 </style>

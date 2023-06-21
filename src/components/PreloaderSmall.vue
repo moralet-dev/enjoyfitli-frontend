@@ -19,8 +19,8 @@ export default {
 }
 
 .loader-small {
-  border: 5px solid grey;
-  border-top: 5px solid coral;
+  border: 5px solid var(--color-headings);
+  border-top: 5px solid var(--color-link-text);
   border-radius: 50%;
   width: 50px;
   height: 50px;

@@ -54,6 +54,8 @@ export default {
             personalTraining: 'personal training',
             check: 'i\'ll be',
             uncheck: 'uncheck',
+            noGroupTrainings: 'No active signs on trainings',
+            confirmation: ''
         },
         MembershipsPage: {
             mainDescription: 'Choose most comfortable variant for you',
@@ -140,6 +142,7 @@ export default {
             checkIn: 'Відмітитись',
             check: 'буду',
             uncheck: 'відмінити',
+            noGroupTrainings: 'Немає активних записів на тренування',
         },
         MembershipsPage: {
             mainDescription: 'Оберіть найбільш привабливий варіант для вас',

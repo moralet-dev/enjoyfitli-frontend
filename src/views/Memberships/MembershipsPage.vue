@@ -11,7 +11,7 @@
           {{ type[`description_${this.$store.getters.getLocale}`] }}
         </p>
       </div>
-      <MembershipBlock :memberships="memberships.filter(el => el.type.id === type.id)" />
+      <MembershipBlock :memberships="memberships.filter(el => el.type.id === type.id)" arrow-color="var(--color-link-text)"/>
     </div>
     <PreloaderSmall v-else/>
 
@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .wrapper{
-  padding: 12rem 0;
+  padding: 6rem 0;
 }
 h1, h4 {
   font-size: 50px;
@@ -74,21 +74,15 @@ p{
   grid-template-columns: 4fr 8fr;
   padding: 9rem 9rem;
 }
-.dark{
-  background: var(--color-background-section-dark);
-}
-.dark h1, .dark h4{
-  color: var(--vt-c-white-soft);
-}
 @media (max-width: 767px) {
   .wrapper{
-    padding: 8rem 0 0 0 ;
+    padding: 3rem 0 0 0 ;
   }
   .title{
     padding: 0 1rem 3rem 1rem;
   }
   h1{
-    font-size: 30px;
+    font-size: 40px;
   }
   h4{
     font-size: 25px;
@@ -102,9 +96,9 @@ p{
     line-height: inherit;
   }
 }
-@media (min-width: 678px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .wrapper{
-    padding: 10rem 0 0 0;
+    padding: 6rem 0 0 0;
   }
   .title{
     padding: 0 5rem 3rem 5rem;

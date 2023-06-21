@@ -4,18 +4,15 @@
       <div class="title-wrapper">
         <h3>{{ this.$t('ProfilePage.myMemberships') }}</h3>
       </div>
-    <div class="" v-if="loading">
+    <div class="loading" v-if="loading">
       <PreloaderSmall/>
     </div>
-    <div class="loading" v-else>
+    <div v-else>
       <div v-if="isMembList" class="animate__animated animate__fadeIn">
-        <div v-for="m in membList" :key="m.id">
+        <div v-for="m in membList" :key="m.id" class="membership">
           <div class="membership-info">
             <span class="m-name">{{ m.membership[`name_${this.$store.getters.getLocale}`] }}</span>
-            <div class="m-count-block">
-              <span class="trainings-title">{{ this.$t('ProfilePage.trainingsCount') }}:</span>
-              <span class="trainings-title">{{ m.membership.count }}</span>
-            </div>
+
           </div>
           <div class="membership-info-current">
             <span class="trainings-title">{{ this.$t('ProfilePage.trainingsStatus') }}:</span>
@@ -27,7 +24,7 @@
                                    radius="40"
                                    width="100" height="100"/>
               <div class="trainings-info__description">
-                <span>{{ this.$t('ProfilePage.trainingsLeft') }}: {{ m.trainings_left }}</span>
+                <span>{{ this.$t('ProfilePage.trainingsLeft') }}: {{ m.trainings_left }}/{{ m.membership.count }}</span>
                 <span class="expired">{{ this.$t('ProfilePage.expiringAt') }}:<br>{{
                     new Date(m.date_end).toLocaleString()
                   }}</span>
@@ -94,44 +91,35 @@ export default {
 }
 
 h3 {
-  font-size: 30px;
+  font-size: 40px;
 }
-
+.membership{
+  margin: 0 0 1rem 0;
+}
 .membership-info, .membership-info-current {
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
+  padding: 0 0 1rem 0;
 }
 
 .membership-info-current {
-  border-bottom: solid 1px rgb(217, 217, 217);
+  border-bottom: solid 1px var(--color-helper);
 }
 
 .m-name {
   font-weight: 700;
-  font-size: 24px;
-  margin: 0 0 1.5rem 0;
-}
-
-.m-count-block {
-  padding: 0 0 1.5rem 0;
+  font-size: 30px;
 }
 
 .m-count-block p {
   font-size: 18px;
   padding: 0 0 0.75rem 0;
 }
-
-.m-count-block h4, .trainings-title {
+.trainings-title {
   display: block;
   font-weight: 700;
-  font-size: 50px;
   letter-spacing: 0.02em;
-}
-
-.trainings-title {
-  font-size: 30px;
-  padding: 0 0 1.5rem 0;
+  padding: 0 0 .5rem 0;
 }
 
 .trainings-info {
@@ -150,21 +138,24 @@ h3 {
   padding: 1rem;
   margin: 1rem;
 }
-
+.m-count-block {
+  display: flex;
+}
 .expired {
-  border: 2px solid orangered;
+  border: 2px solid var(--color-link-text);
   border-radius: 15px;
 }
 .loading{
   margin-top: 1rem;
 }
 @media (max-width: 767px) {
+  h3{
+    font-size: 30px;
+  }
   .title-wrapper {
-    padding: 1rem 0;
   }
 
   .membership-info, .membership-info-current {
-    padding: 0;
   }
 
   .m-name {
@@ -176,17 +167,23 @@ h3 {
 
   }
 
-  .m-count-block h4, .trainings-title {
-    font-size: 22px;
+  .trainings-title {
   }
 
   .trainings-info {
-    flex-direction: column;
-    align-items: start;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .trainings-info__description span {
+    padding: 0 0 .5rem 0;
     margin: 0;
+  }
+  span.expired {
+    padding: 1rem;
+    border: 2px solid var(--color-link-text);
+    border-radius: 15px;
   }
 }
 </style>

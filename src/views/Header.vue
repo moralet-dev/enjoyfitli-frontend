@@ -122,7 +122,7 @@ export default {
 
 .header-label a img{
   display: block;
-  max-height: 100px;
+  height: 5rem;
   max-width: 100%;
 }
 .nav__container{
@@ -150,7 +150,6 @@ export default {
   .header{
     display: flex;
     width: 100%;
-    height: 70px;
     padding: 0;
     justify-content: space-between;
     align-items: center;
@@ -164,6 +163,8 @@ export default {
   }
   .header a:hover{
     background: var(--color-background);
+  }
+  .header-label a img{
   }
   .header__burger{
     display: block;
@@ -247,9 +248,7 @@ export default {
   .header-label{
     z-index: 3;
   }
-  .header-label a img{
-    max-height: 50px;
-  }
+
 
 }
 </style>

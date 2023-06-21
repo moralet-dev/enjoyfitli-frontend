@@ -7,7 +7,7 @@
       <p>{{ this.$t('ProfilePage.personalTraining') }}:</p>
       <div class="training">
         <div class="item">
-          <p>{{ this.$t('ProfilePage.when') }}:</p>
+          <span>{{ this.$t('ProfilePage.when') }}:</span>
           <span>
           {{
             new Date(t.when).toLocaleString(
@@ -17,10 +17,15 @@
           </span>
         </div>
         <div class="item">
-          <p>{{ this.$t('ProfilePage.where') }}:</p>
-          <span>{{ t[`where_${this.$store.getters.getLocale}`] || t.where }}</span></div>
+          <span>{{ this.$t('ProfilePage.where') }}:</span>
+          <span>{{ t[`where_${this.$store.getters.getLocale}`] || t.where }}</span>
+        </div>
+        <div class="item">
+          <span>{{ this.$t('status') }}:</span>
+          <span>{{ t.user_confirmed? '✅': '➖'}}</span>
+        </div>
         <div :class="{'item':true, 'checked': t?.user_confirmed, 'unchecked': !t?.user_confirmed}">
-          <p>{{ this.$t('ProfilePage.checkIn') }}:</p>
+          <span>{{ this.$t('ProfilePage.checkIn') }}:</span>
           <button type="button" @click="onCheck(t.id)">{{ t.user_confirmed? this.$t('ProfilePage.uncheck'): this.$t('ProfilePage.check')}}</button>
         </div>
       </div>
@@ -76,12 +81,12 @@ h3 {
 }
 .trainings-block p{
   text-transform: capitalize;
-  font-size: 20px;
+  font-size: 22px;
 }
 .training {
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
-  border-bottom: solid 1px rgb(217, 217, 217);
+  border-bottom: solid 1px var(--color-helper);
 }
 
 .item {
@@ -93,7 +98,7 @@ h3 {
   text-align: center;
 }
 
-.item p {
+.item span {
   display: block;
   font-weight: 600;
   padding: 0 0 0.5rem 0;
@@ -105,16 +110,20 @@ h3 {
   padding: 3px 15px;
 }
 .checked button{
-  background-color: crimson;
+}
+.checked button:hover{
+  background-color: darkred;
   color: var(--vt-c-white-soft);
 }
 .unchecked button{
+}
+.unchecked button:hover{
   background-color: chartreuse;
-  color: #181818;
+  color: var(--color-link-text);
 }
 @media (max-width: 767px) {
   h3 {
-    font-size: 25px;
+    font-size: 30px;
   }
 
   .training {
@@ -126,6 +135,14 @@ h3 {
 
   .item {
     flex: 0 0 25%;
+  }
+  .checked button{
+    color: var(--vt-c-white-soft);
+
+    background-color: darkred;
+  }
+  .unchecked button{
+    background-color: chartreuse;
   }
 }
 </style>

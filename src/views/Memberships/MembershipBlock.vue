@@ -135,11 +135,12 @@ export default defineComponent({
 .carousel__item {
   min-height: 200px;
   width: 100%;
-  background: linear-gradient(to bottom right, rgb(244, 150, 73), rgb(220, 20, 60));
-  color: var(--color-link-bg);
+  background: transparent;
   border-radius: 25px;
+  border: 5px solid var(--color-link-text);
   display: flex;
   justify-content: center;
+  transition: .3s;
 }
 @media (max-width: 767px) {
   .carousel{

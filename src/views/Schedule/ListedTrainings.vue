@@ -21,14 +21,13 @@
       </thead>
       <tbody>
         <tr v-for="i in trList" class="animate__animated animate__fadeIn" :key="i.id">
-          <td>{{ i.name }}</td>
           <td>{{ i.type.name }}</td>
           <td>{{ i.specification.name }}</td>
           <td>{{ i.specification.level }}</td>
           <td>
             {{
               new Date(i.when).toLocaleString('uk',
-                  {weekday: 'short', day: '2-digit', month: 'long', hour: '2-digit', minute: '2-digit'})
+                  {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})
             }}
           </td>
           <td>{{ i.where }}</td>
@@ -60,7 +59,7 @@ export default {
   },
   data() {
     return {
-      headings: ['name', 'type', 'specification', 'level', 'when', 'where', 'visitors'],
+      headings: ['type', 'specification', 'level', 'when', 'where', 'visitors'],
       selectedFilter: null,
     }
   },
@@ -111,25 +110,23 @@ th,
 td {
   padding: 1rem;
   font-size: 20px;
-  font-family: 'Futura New', sans-serif;
   text-align: center;
   word-wrap: break-word;
 }
 @media (max-width: 767px) {
   table{
     table-layout: auto;
-
   }
   .table-container{
     overflow-x: scroll;
   }
   th, td{
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   th, td{
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 th {
@@ -141,13 +138,12 @@ tr:first-child {
 }
 
 td {
-  font-family: Inter, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 thead {
-  background: coral;
-  color: var(--color-link-bg);
+  background: var(--color-text);
+  color: var(--color-helper);
 }
 .clear-filter{
   display: flex;
@@ -160,27 +156,28 @@ thead {
 }
 thead tr th{
   cursor: pointer;
-  transition: .5s;
+  transition: .3s;
 }
 thead tr th:hover{
-  background: #000;
-  color: white;
+  background: var(--color-helper);
+  color: var(--color-text);
 }
-.selected-up::after{
-  content: '<';
+.selected-up::after,
+.selected-down::after{
+  content: '⬆️';
+  color: var(--color-helper);
   display: inline-block;
   position: absolute;
-  transition: .5s;
-  margin: 0 1rem;
-  transform: rotate(90deg);
+  transition: .3s;
+  margin: 0 .2rem;
+  /*transform: rotate(90deg);*/
 }
 .selected-down::after{
-  content: '>';
-  margin: 0 1rem;
-  position: absolute;
-  display: inline-block;
-  transition: .5s;
-  transform: rotate(90deg);
+  content: '⬇️';
+}
+.selected-up:hover::after,
+.selected-down:hover::after{
+  color: var(--color-text);
 }
 tbody tr {
   border-bottom: 1px solid #ddd;

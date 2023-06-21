@@ -1,5 +1,8 @@
 <template>
   <div class="wrapper" >
+    <div class="title">
+      <h1>{{this.$t('SchedulePage')}}</h1>
+    </div>
     <div class="show-toggle">
       <span>Switch view</span>
       <Switcher :is-toggled="showCalendar" @toggle="showCalendar= !showCalendar"/>
@@ -113,7 +116,10 @@ export default {
 
 <style scoped>
 .wrapper {
-  padding: 12rem 9rem;
+  padding: 6rem 9rem;
+}
+h1 {
+  font-size: 50px;
 }
 .show-toggle{
   display: flex;
@@ -132,20 +138,28 @@ export default {
   display: inline-block;
   margin: 0 0 1rem 0;
   padding: 1rem;
-  border: 2px solid coral;
+  border: 2px solid var(--color-text);
+  border-radius: 10px;
 }
 .warning span{
   font-weight: 700;
-  color: crimson;
 }
+
 @media (max-width: 767px) {
-  .wrapper{
-    padding: 8rem 1rem;
+  .wrapper {
+    padding: 3rem 1rem;
   }
+  h1 {
+    font-size: 30px;
+  }
+
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 767px) and (max-width: 991px) {
   .wrapper{
-    padding: 10rem 1rem;
+    padding: 6rem 1rem;
+  }
+  h1 {
+    font-size: 40px;
   }
 }
 

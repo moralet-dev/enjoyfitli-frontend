@@ -7,67 +7,10 @@
       <h1>ENJOY FITNESS<br>STUDIO</h1>
       <h4>Let's make your body healthy and you happy.</h4>
     </div>
-    <div class="content-block">
-      <p>Привіт! Мене звати Ліза і я твій майбутній тренер.</p>
-      <p>Моя спеціалізація - це функціональний тренінг (робота з власною вагою), силовий тренінг (робота з додатковою
-        вагою) та Pilates.</p>
-      <p>Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність». Тож, йдучи до мене, ти
-        потраплятимеш не просто на тренування, а туди, де можна поспілкуватися, вивільнити емоції та зробити тіло
-        прикладом власного ідеалу! Я чекаю саме на тебе!</p>
-    </div>
+    <GreetingsBlock/>
+    <GlobalTrainingWays/>
+    <TrTypesBlock/>
     <!--    Media section-->
-    <div class="content-block-media">
-      <div class="content-block-media-l">
-        <div class="content-block-media-l__text">
-          <span class="number">01</span>
-          <span class="title">FatBurning</span>
-          <p>Це ідеальне функціональне тренування на всі групи м’язів, яке чудово підійде для тих хто хоче скинути зайву
-            вагу та зробити тіло більш підтягнутим!</p>
-          <p>Ще більше активних вправ для формування нереального рельєфу вашого тіла.</p>
-        </div>
-      </div>
-      <div class="content-block-media-r">
-        <div class="content-block-media-r__video">
-          <video/>
-        </div>
-      </div>
-    </div>
-    <div class="content-block-media reverse">
-      <div class="content-block-media-l">
-        <div class="content-block-media-l__video">
-
-        </div>
-      </div>
-      <div class="content-block-media-r">
-        <div class="content-block-media-r__text">
-          <span class="number">02</span>
-          <span class="title">Power</span>
-          <p>Якщо ти хочеш підтягнути своє тіло, зробити його міцним та виносливим, зменшити болі в спині, наростити
-            м’язи, скинути лишню вагу та зробити красивий рельєф-тоді тобі точно допоможуть в цьому силові тренування.
-
-          </p>
-          <p>Працюй з різним обладненням, вдосконалюй ті зони тіла, які тебе турбують і качай міцні та великі ягодиці
-            разом зі мною!</p>
-        </div>
-      </div>
-    </div>
-    <div class="content-block-media">
-      <div class="content-block-media-l">
-        <div class="content-block-media-l__text">
-          <span class="number">03</span>
-          <span class="title">Rehab</span>
-          <p>Незабувай твої м’язи також прагнуть розслаблення та відновлення.Моє тренування допоможе тобі розслабити всі
-            групи м’язів і при цьому щей підтягнути тіло. Від втоми чи стресу не залишиться ані сліду!
-          </p>
-          <p>Релексуй та кайфуй від кожної частинки свого тіла під спокійну музику разом зі мною!</p>
-        </div>
-      </div>
-      <div class="content-block-media-r">
-        <div class="content-block-media-r__video">
-          <video/>
-        </div>
-      </div>
-    </div>
     <!--    Media section-->
     <div class="content-block full">
       <div class="title">
@@ -175,14 +118,18 @@ import MembershipCardsBlock from "@/views/Home/MembershipCardsBlock.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import Preloader from "@/components/Preloader.vue";
 import HomeTrTypesSwiper from "@/components/HomeTrTypesSwiper.vue";
-import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
+import GreetingsBlock from "@/views/Home/blocks/GreetingsBlock.vue";
+import GlobalTrainingWays from "@/views/Home/blocks/GlobalTrainingWays.vue";
+import TrTypesBlock from "@/views/Home/blocks/TrTypesBlock.vue";
 
 export default {
   name: "HomePage",
-  components: {HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard},
+  components: {
+    TrTypesBlock,
+    GlobalTrainingWays,
+    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard},
   mounted() {
     this.loaded()
-    this.getTrTypes()
   },
   data() {
     return {
@@ -196,18 +143,12 @@ export default {
           () => (this.loading = false), 0
       )
     },
-    async getTrTypes(){
-      this.types = await trainingsAPI.getTrTypes().then(response=>response.data.results)
-    }
+
   }
 }
 </script>
 
 <style scoped>
-.wrapper {
-  padding: 0;
-}
-
 h1 {
   text-transform: uppercase;
   font-size: 70px;
@@ -244,7 +185,6 @@ p {
   align-items: center;
   position: relative;
   padding: 16rem 9rem;
-  margin: 0 0 4rem 0;
 }
 
 .banner::before {
@@ -317,60 +257,6 @@ p {
   .full .title{
     padding: 0 0 2rem 0;
     text-align: center;
-  }
-}
-
-.content-block-media {
-  display: flex;
-  flex-direction: row;
-}
-
-.content-block-media-r, .content-block-media-l {
-  min-width: 50%;
-}
-
-.content-block-media-r__text, .content-block-media-l__text {
-  padding: 3rem 9rem 15rem 9rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.content-block-media-r__text {
-  text-align: right;
-}
-
-.content-block-media-r__video, .content-block-media-l__video {
-  min-height: 100%;
-  background-color: grey;
-}
-
-span.number, span.title {
-  font-size: 50px;
-  font-family: 'Futura New', sans-serif;
-  color: var(--color-headings);
-  margin: 0 0 1rem 0;
-}
-
-span.title {
-  font-size: 30px;
-}
-
-@media (max-width: 767px) {
-  .content-block-media {
-    flex-direction: column;
-  }
-  .content-block-media.reverse{
-    flex-direction: column-reverse;
-  }
-  .content-block-media-l__text, .content-block-media-r__text {
-    padding: 2rem 1rem;
-  }
-  .content-block-media-r__video, .content-block-media-l__video{
-    height: 300px;
-    margin: 0 0 2rem 0;
-  }
-  span.title {
-    font-size: 24px;
   }
 }
 

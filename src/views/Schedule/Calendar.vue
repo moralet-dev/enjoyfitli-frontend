@@ -166,7 +166,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Futura New', sans-serif;
 }
 
 .calendar-header {
@@ -203,16 +202,19 @@ export default {
 .calendar-cell {
   display: flex;
   justify-content: center;
-  color: var(--color-headings);
   align-items: center;
   height: 50px;
   font-size: 20px;
   pointer-events: none;
-  background: #2c3e50;
+  border: 1px solid var(--color-background-mute);
+  background: var(--color-background-soft);
 }
 @media (max-width: 767px) {
   .calendar-header{
     align-items: center;
+  }
+  .calendar-grid{
+    gap: .3rem;
   }
   .calendar-month{
     font-size: 20px;
@@ -223,8 +225,8 @@ export default {
   }
 }
 .disabled {
+  color: #808080;
   background: #616161;
-
 }
 
 .bg-red {
@@ -233,8 +235,8 @@ export default {
 }
 
 .bg-green {
-  background-color: greenyellow;
-  color: var(--vt-c-black-soft);
+  background-color: var(--color-background-mute);
+  color: var(--color-helper);
 }
 
 .has-trainings {

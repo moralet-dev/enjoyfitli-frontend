@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <div class="title">
-      <span>Hi!</span>
       <h1>I am Liza! Your future coach.</h1>
     </div>
     <div class="content">
@@ -26,7 +25,7 @@ export default {
 
 <style scoped>
 .wrapper{
-  padding: 12rem 9rem;
+  padding: 6rem 9rem;
 }
 h1 {
   padding: 1.5rem 0;
@@ -40,7 +39,7 @@ h1 {
 }
 @media (max-width: 767px) {
   .wrapper{
-    padding: 8rem 1rem;
+    padding: 3rem 1rem;
   }
   h1{
     font-size: 30px;
@@ -51,7 +50,7 @@ h1 {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .wrapper{
-    padding: 10rem 5rem 5rem 5rem;
+    padding: 6rem 5rem;
   }
 }
 </style>

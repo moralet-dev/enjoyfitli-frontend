@@ -1,14 +1,14 @@
 <template>
-  <Carousel :itemsToShow="1" :wrapAround="false" ref="carousel" v-model="currentSlide">
+  <Carousel :itemsToShow="1.2" :wrapAround="false" ref="carousel" v-model="currentSlide">
     <Slide v-for="m in types" :key="m.id">
       <div class="carousel__item">
         <div class="carousel__card">
           <span class="carousel__card__title">{{ m.name.toUpperCase() }}</span>
-          <p class="carousel__card__descr">{{ m.description }}</p>
         </div>
       </div>
     </Slide>
     <template #addons>
+
       <div class="carousel__nav">
         <button class="carousel__nav__arrow" @click="prev">
           <ArrowLeftIcon :icon-color="arrowColor"/>
@@ -17,13 +17,14 @@
           <ArrowRightIcon :icon-color="arrowColor"/>
         </button>
       </div>
+      <Pagination/>
     </template>
   </Carousel>
 </template>
 
 <script>
 import {defineComponent} from 'vue'
-import {Carousel, Slide} from 'vue3-carousel'
+import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon.vue";
@@ -36,6 +37,8 @@ export default defineComponent({
   name: "HomeTrTypesSwiper",
   components: {
     ArrowRightIcon,
+    Navigation,
+    Pagination,
     ArrowLeftIcon,
     Carousel,
     Slide,
@@ -45,14 +48,13 @@ export default defineComponent({
     arrowColor: {type: String, default: 'var(--color-headings)'},
     types: Array,
   },
-  data() {
-    return {
-      showModal: false,
-      current: null,
-      nextMessage: null,
-      showNextModal: false,
-    }
-  },
+  data: () => ({
+    currentSlide: 1,
+    showModal: false,
+    current: null,
+    nextMessage: null,
+    showNextModal: false,
+  }),
   methods: {
     next() {
       this.$refs.carousel.next()
@@ -87,7 +89,6 @@ export default defineComponent({
 .carousel__viewport{
 }
 .carousel__item {
-  min-height: 200px;
   width: 100%;
   background: linear-gradient(to bottom right, rgb(244, 150, 73), rgb(220, 20, 60));
   color: var(--color-link-bg);
@@ -97,7 +98,7 @@ export default defineComponent({
 }
 
 .carousel__slide {
-  padding: 10px;
+  /*padding: 10px;*/
 }
 
 .carousel__prev,
@@ -112,15 +113,10 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /*padding: 0.5rem 11rem;*/
 }
 
 .carousel__card__title {
   font-weight: 700;
-}
-.carousel__card__descr{
-  font-weight: 400;
-  padding: 0 2rem;
 }
 .carousel__card__price {
   font-size: 25px;
@@ -138,7 +134,7 @@ export default defineComponent({
 }
 
 .carousel__track {
-  transform-style: preserve-3d;
+  transform-style: flat;
 }
 
 .carousel__slide--sliding {
@@ -147,22 +143,22 @@ export default defineComponent({
 
 .carousel__slide {
   opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.1);
+  transform: rotateY(-20deg) scale(0.9);
 }
 
 .carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(40deg) scale(0.75);
+  transform: rotateY(20deg) scale(0.9);
 }
 
 .carousel__slide--prev {
   opacity: 1;
-  transform: rotateY(-40deg) scale(0.75);
+  transform: rotateY(-20deg) scale(0.9);
 }
 
-/*.carousel__slide--next {*/
-/*  opacity: 1;*/
-/*  transform: rotateY(20deg) scale(0.15);*/
-/*}*/
+.carousel__slide--next {
+  opacity: 1;
+  transform: rotateY(20deg) scale(0.15);
+}
 
 .carousel__slide--active {
   opacity: 1;

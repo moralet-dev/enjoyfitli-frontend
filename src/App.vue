@@ -8,17 +8,16 @@
     </router-view>
   </main>
   <div class="unavailable animate__animated animate__slideInDown" v-else-if="serverAvailable===false">
-    <h6>Oops... Server is unavailable:(</h6>
+    <h6>Server is unavailable:(</h6>
     <p>We're working on it. Please, try again later on report about the problem, if it seems strange</p>
     <GearAnimatedIcon/>
   </div>
-  <Footer/>
+  <Footer v-if="serverAvailable"/>
 </template>
 
 <script>
 import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
-import axios from "axios";
 import GearAnimatedIcon from "@/components/icons/GearAnimatedIcon.vue";
 import {pingRequest} from "@/api";
 
@@ -45,6 +44,9 @@ export default {
 }
 </script>
 <style scoped>
+main, .unavailable{
+  margin: 5rem 0 0 0;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

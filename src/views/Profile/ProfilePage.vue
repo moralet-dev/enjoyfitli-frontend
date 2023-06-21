@@ -106,7 +106,7 @@ export default {
   display: grid;
   grid-template-columns: 12fr;
   min-width: 100%;
-  padding: 12rem 9rem 0 9rem;
+  padding: 6rem 9rem 0 9rem;
 }
 
 .welcome-block {
@@ -189,9 +189,15 @@ h3 {
 .modal_upload button{
 
 }
+@media (max-width: 991px) {
+  .wrapper{
+    padding: 6rem 5rem 0 5rem;
+
+  }
+}
 @media (max-width: 767px) {
   .wrapper{
-    padding: 8rem 1rem 0 1rem;
+    padding: 3rem 1rem 0 1rem;
   }
   .welcome-block{
   }
