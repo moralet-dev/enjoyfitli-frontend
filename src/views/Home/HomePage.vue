@@ -12,37 +12,6 @@
     <TrTypesBlock/>
     <!--    Media section-->
     <!--    Media section-->
-    <div class="content-block full">
-      <div class="title">
-        <h2>Training Types</h2>
-        <span>Join and learn more about trainings</span>
-      </div>
-      <div class="cards">
-        <TrainingTypeCard
-            :imageSrc="'assets/personal-card-bg.jpg'"
-            title="Personal"
-            desc="Тренувальний комплекс повністю налаштовується під тебе, адже головний герой - ти!"
-        />
-        <TrainingTypeCard
-            :imageSrc="'assets/split-card-bg.jpg'"
-            title="Split"
-            desc="Тренування для двох, а саме: закохана пара, друзі, рідні люди або з тим, з ким хочеться проводити час"
-        />
-        <TrainingTypeCard
-            :imageSrc="'src/assets/bg-images/4girls-card-bg.png'"
-            title="4girls"
-            desc="Тренуйся в хорошій команії да досягай своєї мети з легкістю та задоволенням"
-        />
-        <TrainingTypeCard
-            :imageSrc="'src/assets/bg-images/party-group-card-bg.jpg'"
-            title="Party Group"
-            desc="Тренуйся під наглядом тренера,спілкуйся у топовій компанії та отримуй максимум задоволення від процесу!"
-        />
-      </div>
-      <div class="cards-swiper">
-        <HomeTrTypesSwiper :types="types"/>
-      </div>
-    </div>
     <div class="content-block">
       <div class="title">
         <h2>Memberships</h2>
@@ -117,7 +86,7 @@ import TrainingTypeCard from "@/views/Home/TrainingTypeCardsList.vue";
 import MembershipCardsBlock from "@/views/Home/MembershipCardsBlock.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import Preloader from "@/components/Preloader.vue";
-import HomeTrTypesSwiper from "@/components/HomeTrTypesSwiper.vue";
+import HomeTrTypesSwiper from "@/views/Home/blocks/TrTypesSwiper.vue";
 import GreetingsBlock from "@/views/Home/blocks/GreetingsBlock.vue";
 import GlobalTrainingWays from "@/views/Home/blocks/GlobalTrainingWays.vue";
 import TrTypesBlock from "@/views/Home/blocks/TrTypesBlock.vue";
@@ -127,7 +96,8 @@ export default {
   components: {
     TrTypesBlock,
     GlobalTrainingWays,
-    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard},
+    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard
+  },
   mounted() {
     this.loaded()
   },

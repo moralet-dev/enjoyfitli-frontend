@@ -4,7 +4,7 @@
       <h2>Training Types</h2>
       <span>Join and learn more about trainings</span>
     </div>
-    <HomeTrTypesSwiper v-if="types" :types="this.types"/>
+    <TrTypesSwiper v-if="types" :types="this.types"/>
     <div v-else>
       <PreloaderSmall/>
     </div>
@@ -14,13 +14,15 @@
 <script>
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
-import HomeTrTypesSwiper from "@/components/HomeTrTypesSwiper.vue";
+import TrTypesSwiper from "@/views/Home/blocks/TrTypesSwiper.vue";
+import SchedulePage from "@/views/Profile/profile-pages/Schedule.vue";
 
 
 export default {
   name: "TrTypesBlock",
   components: {
-    HomeTrTypesSwiper,
+    SchedulePage,
+    TrTypesSwiper,
     PreloaderSmall,
   },
   data() {
@@ -50,5 +52,28 @@ export default {
 </script>
 
 <style scoped>
-.wrapper{}
+.wrapper{
+  background: var(--color-link-text);
+  padding: 3rem 0;
+}
+.title{
+  padding: 2rem 9rem 5rem 9rem;
+}
+h2{
+  font-size: 50px;
+  margin-bottom: 1rem;
+}
+.title span{
+  color: var(--color-headings);
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .title{
+    padding: 2rem 5rem 2rem 5rem;
+  }
+}
+@media (max-width: 767px) {
+  .title{
+    padding: 2rem 1rem 2rem 1rem;
+  }
+}
 </style>

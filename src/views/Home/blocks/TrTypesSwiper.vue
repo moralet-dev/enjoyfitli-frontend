@@ -1,41 +1,39 @@
 <template>
-  <Carousel :itemsToShow="1.2" :wrapAround="false" ref="carousel" v-model="currentSlide">
-    <Slide v-for="m in types" :key="m.id">
+  <Carousel :itemsToShow="1.1" :transition="700" :wrap-around="true" ref="carousel" v-model="currentSlide">
+    <Slide v-for="t in types" :key="t.id">
       <div class="carousel__item">
-        <div class="carousel__card">
-          <span class="carousel__card__title">{{ m.name.toUpperCase() }}</span>
-        </div>
+        <TrTypeCardContent :trType="t"/>
       </div>
     </Slide>
     <template #addons>
-
-      <div class="carousel__nav">
-        <button class="carousel__nav__arrow" @click="prev">
+      <div class="tr-types-carousel__nav">
+        <button class="tr-types-carousel__nav__arrow" @click="prev">
           <ArrowLeftIcon :icon-color="arrowColor"/>
         </button>
-        <button class="carousel__nav__arrow" @click="next">
+        <button class="tr-types-carousel__nav__arrow" @click="next">
           <ArrowRightIcon :icon-color="arrowColor"/>
         </button>
       </div>
-      <Pagination/>
     </template>
   </Carousel>
 </template>
 
 <script>
 import {defineComponent} from 'vue'
-import { Carousel, Navigation, Slide, Pagination } from 'vue3-carousel'
+import {Carousel, Navigation, Slide, Pagination} from 'vue3-carousel'
 
 import 'vue3-carousel/dist/carousel.css'
 import ArrowRightIcon from "@/components/icons/ArrowRightIcon.vue";
 import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon.vue";
 import ModalMembership from "@/components/Modals/Modal.vue";
 import {profileAPI} from "@/api/profileAPI/profileAPI";
+import TrTypeCardContent from "@/views/Home/blocks/TrTypeCardContent.vue";
 
 
 export default defineComponent({
   name: "HomeTrTypesSwiper",
   components: {
+    TrTypeCardContent,
     ArrowRightIcon,
     Navigation,
     Pagination,
@@ -49,7 +47,7 @@ export default defineComponent({
     types: Array,
   },
   data: () => ({
-    currentSlide: 1,
+    currentSlide: 0,
     showModal: false,
     current: null,
     nextMessage: null,
@@ -68,7 +66,7 @@ export default defineComponent({
         this.showModal = false
         this.showNextModal = true
       }).catch(reason => {
-        if (reason.response.data.status === 'ASR'){
+        if (reason.response.data.status === 'ASR') {
           this.nextMessage = 'Sorry, but you are already sent request for that type of membership.\nIf you think that here is some mistake - connect to us.'
           this.showModal = false
           this.showNextModal = true
@@ -81,106 +79,76 @@ export default defineComponent({
 
 <style scoped>
 .carousel {
-  display: grid;
-  grid-template-columns: 12fr;
-  height: fit-content;
   margin: 0;
-}
-.carousel__viewport{
-}
-.carousel__item {
-  width: 100%;
-  background: linear-gradient(to bottom right, rgb(244, 150, 73), rgb(220, 20, 60));
-  color: var(--color-link-bg);
-  border-radius: 25px;
-  display: flex;
-  justify-content: center;
-}
-
-.carousel__slide {
-  /*padding: 10px;*/
-}
-
-.carousel__prev,
-.carousel__next {
-  box-sizing: content-box;
-  border: 5px solid white;
-  bottom: 0;
-}
-
-.carousel__card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.carousel__card__title {
-  font-weight: 700;
-}
-.carousel__card__price {
-  font-size: 25px;
-}
-
-.carousel__card button {
-  display: flex;
-  /*padding: 0.5rem 1rem;*/
-  text-transform: uppercase;
-
+  padding: 0;
 }
 
 .carousel__viewport {
-  perspective: 2000px;
+}
+
+.carousel__item {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, var(--color-background-soft), var(--color-background));
+  color: var(--color-link-bg);
+  border-radius: 15px;
+  display: flex;
 }
 
 .carousel__track {
   transform-style: flat;
 }
 
-.carousel__slide--sliding {
-  transition: 0.5s;
-}
-
 .carousel__slide {
-  opacity: 0.9;
-  transform: rotateY(-20deg) scale(0.9);
+  display: flex;
+  transform: none;
+  padding: 0;
 }
 
 .carousel__slide--active ~ .carousel__slide {
-  transform: rotateY(20deg) scale(0.9);
+  transform: none;
 }
 
 .carousel__slide--prev {
-  opacity: 1;
-  transform: rotateY(-20deg) scale(0.9);
+  opacity: .6;
+  scale: 1;
+  transform: none;
 }
 
 .carousel__slide--next {
-  opacity: 1;
-  transform: rotateY(20deg) scale(0.15);
+  opacity: .6;
+  scale: 1;
+  transform: none;
 }
 
 .carousel__slide--active {
   opacity: 1;
-  transform: rotateY(0) scale(1);
+  transform: none;
 }
 
-.carousel__nav {
-  padding: 1rem 0 0 0;
+.tr-types-carousel__nav {
+  padding: 1rem 0;
+  z-index: 999;
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  /*position: absolute;*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
-.carousel__nav__arrow {
+.tr-types-carousel__nav__arrow {
   padding: 0 1rem;
+  height: 100%;
   background-color: transparent;
   border: none;
 }
-.carousel__nav__arrow:hover {
-  background-color: transparent;
+
+.tr-types-carousel__nav__arrow:hover {
   border: none;
-  transform: scale(120%);
+  transform: scale(110%);
 }
 
 .carousel__pagination-button::after {
@@ -194,5 +162,4 @@ export default defineComponent({
 .carousel__pagination-button--active::after {
   background-color: var(--color-headings);
 }
-
 </style>
