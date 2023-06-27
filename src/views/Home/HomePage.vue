@@ -82,7 +82,6 @@
 </template>
 
 <script>
-import TrainingTypeCard from "@/views/Home/TrainingTypeCardsList.vue";
 import MembershipCardsBlock from "@/views/Home/MembershipCardsBlock.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import Preloader from "@/components/Preloader.vue";
@@ -96,7 +95,7 @@ export default {
   components: {
     TrTypesBlock,
     GlobalTrainingWays,
-    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock, TrainingTypeCard
+    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock,
   },
   mounted() {
     this.loaded()

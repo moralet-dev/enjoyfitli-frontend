@@ -50,6 +50,7 @@
         </div>
       </div>
     </div>
+    <h3>Обийрай та дізнавайся<br>про тренування які<br>підходять тобі найбільше</h3>
   </div>
 </template>
 
@@ -60,33 +61,44 @@ export default {
 </script>
 
 <style scoped>
-.wrapper{
+.wrapper {
   padding: 0 9rem;
 }
+
+.wrapper h3 {
+  font-size: 50px;
+  padding: 6rem 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .media-container {
   display: flex;
   flex-direction: row;
   margin-bottom: 4rem;
 }
-.media-container:nth-child(even) .content-block:first-child{
+
+.media-container:nth-child(even) .content-block:first-child {
   text-align: right;
   order: 1;
 }
-.media-container:nth-child(even) .content-block:first-child .content-block__text{
+
+.media-container:nth-child(even) .content-block:first-child .content-block__text {
   padding: 3rem 0 3rem 3rem;
 }
-.content-block{
+
+.content-block {
   min-width: 50%;
 }
 
-.content-block__text{
+.content-block__text {
   padding: 3rem 3rem 3rem 0;
   min-height: 30rem;
   display: flex;
   flex-direction: column;
 }
 
-.content-block__image{
+.content-block__image {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -110,35 +122,48 @@ span.title {
 }
 
 @media (max-width: 767px) {
-  .wrapper{
+  .wrapper {
     padding: 0 1rem;
   }
+
+  .wrapper h3 {
+    font-size: 30px;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
   .media-container {
     flex-direction: column;
     margin: 0;
   }
-  .media-container.reverse{
+
+  .media-container.reverse {
     flex-direction: column-reverse;
   }
+
   .media-container:nth-child(even) .content-block:first-child .content-block__text,
-  .content-block__text{
+  .content-block__text {
     min-height: auto;
     padding: 1rem 0 2rem 0;
   }
-  .media-container:nth-child(even) .content-block:first-child{
+
+  .media-container:nth-child(even) .content-block:first-child {
     text-align: right;
     order: 0;
   }
-  .content-block__image, .content-block__image{
+
+  .content-block__image, .content-block__image {
     height: 300px;
     margin: 0 0 2rem 0;
   }
+
   span.title {
     font-size: 24px;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
-  .wrapper{
+  .wrapper {
     padding: 0 5rem;
   }
 }

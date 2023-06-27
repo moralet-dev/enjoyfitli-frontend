@@ -60,7 +60,7 @@ p.title {
     font-family: "Helvetica Neue", sans-serif;
     color: var(--color-headings);
     text-shadow: 1px 1px 1px black;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 700;
     text-transform: uppercase;
   }
