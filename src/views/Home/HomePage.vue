@@ -10,15 +10,7 @@
     <GreetingsBlock/>
     <GlobalTrainingWays/>
     <TrTypesBlock/>
-    <!--    Media section-->
-    <!--    Media section-->
-    <div class="content-block">
-      <div class="title">
-        <h2>Memberships</h2>
-        <span>Choose what you want</span>
-      </div>
-      <MembershipCardsBlock/>
-    </div>
+    <MembershipsBlock/>
     <div class="content-block">
       <div class="title">
         <h2>Questions and answers</h2>
@@ -82,20 +74,21 @@
 </template>
 
 <script>
-import MembershipCardsBlock from "@/views/Home/MembershipCardsBlock.vue";
 import Dropdown from "@/components/Dropdown.vue";
 import Preloader from "@/components/Preloader.vue";
 import HomeTrTypesSwiper from "@/views/Home/blocks/TrTypesSwiper.vue";
 import GreetingsBlock from "@/views/Home/blocks/GreetingsBlock.vue";
 import GlobalTrainingWays from "@/views/Home/blocks/GlobalTrainingWays.vue";
 import TrTypesBlock from "@/views/Home/blocks/TrTypesBlock.vue";
+import MembershipsBlock from "@/views/Home/blocks/MembershipsBlock.vue";
 
 export default {
   name: "HomePage",
   components: {
+    MembershipsBlock,
     TrTypesBlock,
     GlobalTrainingWays,
-    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown, MembershipCardsBlock,
+    GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown,
   },
   mounted() {
     this.loaded()

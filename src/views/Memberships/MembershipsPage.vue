@@ -38,8 +38,6 @@ export default {
     this.getTypes()
     this.getMemberships()
   },
-  updated() {
-  },
   methods: {
     async getTypes(){
       this.types = await trainingsAPI.getTrTypes().then(response => response.data.results)

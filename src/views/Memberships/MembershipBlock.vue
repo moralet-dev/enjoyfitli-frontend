@@ -161,19 +161,11 @@ export default defineComponent({
   padding: 10px;
 }
 
-.carousel__prev,
-.carousel__next {
-  box-sizing: content-box;
-  border: 5px solid white;
-  bottom: 0;
-}
-
 .carousel__card {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  /*padding: 0.5rem 11rem;*/
 }
 
 .carousel__card__title {
@@ -187,7 +179,6 @@ export default defineComponent({
 
 .carousel__card button {
   display: flex;
-  /*padding: 0.5rem 1rem;*/
   text-transform: uppercase;
 
 }
@@ -222,11 +213,6 @@ export default defineComponent({
   transform: rotateY(-40deg) scale(0.75);
 }
 
-/*.carousel__slide--next {*/
-/*  opacity: 1;*/
-/*  transform: rotateY(20deg) scale(0.15);*/
-/*}*/
-
 .carousel__slide--active {
   opacity: 1;
   transform: rotateY(0) scale(1);
@@ -252,18 +238,6 @@ export default defineComponent({
   background-color: transparent;
   border: none;
   transform: scale(120%);
-}
-
-.carousel__pagination-button::after {
-  background-color: #616161;
-}
-
-.carousel__pagination-button:hover::after {
-  background-color: coral;
-}
-
-.carousel__pagination-button--active::after {
-  background-color: var(--color-headings);
 }
 
 </style>

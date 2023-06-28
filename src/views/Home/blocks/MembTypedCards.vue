@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "MembershipCardsList",
+  name: "MembTypedCards",
   props: {
     memberships: {
       type: Array,
@@ -35,14 +35,11 @@ export default {
   flex-direction: column;
   flex: 0 0 25%;
   min-height: 200px;
-  background: linear-gradient(to bottom right, rgb(244, 150, 73), #dc143c);
+  background: linear-gradient(to bottom right, var(--vt-c-blue-mute), var(--vt-c-blue-mute-lighter));
   border-radius: 25px;
   color: var(--color-headings);
   transition: all .5s;
-}
-
-.card-wrapper:hover {
-  transform: scale(1.1);
+  margin: .5rem;
 }
 
 .card {
@@ -53,7 +50,15 @@ export default {
   align-items: center;
   padding: 1rem 0;
 }
-
+.card button{
+  color: var(--color-headings);
+  background: transparent;
+  border-color: var(--color-headings);
+}
+.card button:hover{
+  color: var(--color-text);
+  background: var(--color-headings);
+}
 .card-title {
   font-size: 20px;
 }
