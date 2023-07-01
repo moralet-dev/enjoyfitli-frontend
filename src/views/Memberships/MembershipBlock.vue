@@ -3,7 +3,7 @@
     <Slide v-for="m in memberships" :key="m.id">
       <div class="carousel__item">
         <div class="carousel__card">
-          <span class="carousel__card__title">{{ m[`name_${this.$store.getters.getLocale}`].toUpperCase() }}</span>
+          <span class="carousel__card__title">{{ m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase() }} {{m.count}}</span>
           <span class="carousel__card__price">{{ m.price }} &#8372;</span>
           <button @click="showModal = true; current = m">Придбати</button>
         </div>

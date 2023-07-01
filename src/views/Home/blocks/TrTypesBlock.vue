@@ -72,6 +72,9 @@ h2{
   }
 }
 @media (max-width: 767px) {
+  h2{
+    font-size: 30px;
+  }
   .title{
     padding: 2rem 1rem 2rem 1rem;
   }

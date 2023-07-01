@@ -70,8 +70,9 @@ ul.training-types {
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 0 4rem 0;
-  border: 2px solid var(--color-link-text);
-  border-radius: 100px;
+  padding: .1rem;
+  border: 3px solid var(--color-link-text);
+  border-radius: 29px;
 }
 
 ul.training-types li {
@@ -86,7 +87,9 @@ ul.training-types li {
   }
   ul.training-types{
     display: grid;
-    grid-template-columns: 6fr 6fr;
+    grid-template-columns: 12fr;
+    width: 100%;
+    margin: 0 0 1rem 0;
 
   }
   ul.training-types li {
@@ -105,7 +108,7 @@ ul.training-types li {
   border-radius: 100px;
 }
 .fade-enter-active {
-  transition: all .3s;
+  transition: all .5s;
 }
 
 .fade-leave-active {

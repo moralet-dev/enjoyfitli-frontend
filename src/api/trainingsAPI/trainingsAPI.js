@@ -26,6 +26,10 @@ export const trainingsAPI = {
         const  url = `/tr-types/`
         return defaultAPIInstance.get(url)
     },
+    getTrTypeDetail(id){
+        const  url = `/tr-types/${id}`
+        return defaultAPIInstance.get(url)
+    },
     getPersonalTrainings(){
         const url= `personal-trainings/`
         return defaultAPIInstance.get(url)

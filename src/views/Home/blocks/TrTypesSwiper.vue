@@ -89,8 +89,7 @@ export default defineComponent({
 .carousel__item {
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom right, var(--color-background-soft), var(--color-background));
-  color: var(--color-link-bg);
+  background: linear-gradient(to bottom right, var(--color-background), var(--color-background));
   border-radius: 15px;
   display: flex;
 }
@@ -128,11 +127,8 @@ export default defineComponent({
 
 .tr-types-carousel__nav {
   padding: 1rem 0;
-  z-index: 999;
   display: flex;
   /*position: absolute;*/
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   justify-content: center;

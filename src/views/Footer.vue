@@ -24,6 +24,9 @@ export default {
 </script>
 
 <style scoped>
+footer{
+  z-index: 9997;
+}
 .wrapper{
   padding: 2rem 0;
   font-size: 16px;

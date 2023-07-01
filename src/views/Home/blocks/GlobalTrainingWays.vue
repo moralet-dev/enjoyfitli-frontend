@@ -127,8 +127,8 @@ span.title {
   }
 
   .wrapper h3 {
-    font-size: 30px;
-    padding: 6rem 0;
+    font-size: 20px;
+    padding: 3rem 0;
     text-align: center;
   }
 
@@ -165,6 +165,9 @@ span.title {
 @media (min-width: 768px) and (max-width: 991px) {
   .wrapper {
     padding: 0 5rem;
+  }
+  .wrapper h3{
+    padding: 3rem 0;
   }
 }
 </style>

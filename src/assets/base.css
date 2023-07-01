@@ -20,7 +20,8 @@
     --vt-c-black-soft: #222222;
     --vt-c-black-mute: #282828;
 
-    --vt-c-main-green:  #7EBFB3;
+    --vt-c-main-green: #7EBFB3;
+    --vt-c-second-green-semi-opacity: rgb(126, 191, 179, .5);
     --vt-c-second-green: #A7F2E4;
     --vt-c-third-green: #4F7369;
     --vt-c-blue-mute: #194759;
@@ -118,9 +119,19 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
-
+body:before{
+    content: '';
+    position: fixed;
+    top: 10%;
+    left: -20%;
+    opacity: .3;
+    width: 400px;
+    height: 100%;
+    transform: rotate(45deg);
+    background:  url("icons/gantel.svg") no-repeat
+;
+}
 h1, h2, h3, h4, h5, h6 {
     color: var(--color-headings);
     font-family: "Helvetica Neue", sans-serif;

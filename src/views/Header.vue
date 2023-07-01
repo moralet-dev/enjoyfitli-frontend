@@ -12,6 +12,9 @@
       <nav>
         <ul class="nav-list">
           <li>
+            <router-link :to="{name: 'tr-types'}" @click="isOpened=false">{{ this.$t('trainingTypes') }}</router-link>
+          </li>
+          <li>
             <router-link :to="{name: 'memberships'}" @click="isOpened=false">{{ this.$t('memberships') }}</router-link>
           </li>
           <li>
@@ -83,7 +86,7 @@ export default {
   left: 0;
   top: 0;
   text-transform: uppercase;
-  z-index: 1;
+  z-index: 9997;
 }
 .header::before {
   content: '';
@@ -131,7 +134,7 @@ export default {
 }
 .nav-list {
   display: grid;
-  grid-template-columns: 4fr 4fr 4fr;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
   min-height: 100%;
 }
 

@@ -14,6 +14,8 @@ import AboutMePage from "@/views/AboutMePage.vue";
 import SchedulePage from "@/views/Schedule/SchedulePage.vue";
 import NotFound from "@/views/NotFound.vue";
 import Personal from "@/views/Profile/profile-pages/Personal.vue";
+import TrTypesPage from "@/views/TrTypes/TrTypesPage.vue";
+import TypeDetail from "@/views/TrTypes/TypeDetail.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -23,6 +25,19 @@ const routes = [
     {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
     {path: '/activate/:uid/:token', component: ActivationPage, name: 'activate'},
     {path: '/about', component: AboutMePage, name: 'about'},
+    {
+        path: '/training-types',
+        component: TrTypesPage,
+        name: 'tr-types',
+        children: [
+            {
+                path: '/training-types/detail/:slug',
+                components: {default: TypeDetail},
+                name: 'type-detail',
+                props: true,
+            },
+        ]
+    },
 
     {
         path: '/profile',

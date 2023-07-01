@@ -26,7 +26,7 @@
               <div class="trainings-info__description">
                 <span>{{ this.$t('ProfilePage.trainingsLeft') }}: {{ m.trainings_left }}/{{ m.membership.count }}</span>
                 <span class="expired">{{ this.$t('ProfilePage.expiringAt') }}:<br>{{
-                    new Date(m.date_end).toLocaleString()
+                    new Date(m?.date_end).toLocaleString()
                   }}</span>
               </div>
             </div>

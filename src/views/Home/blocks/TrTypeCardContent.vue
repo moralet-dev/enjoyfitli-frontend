@@ -44,6 +44,7 @@ export default {
   padding: 3rem;
   width: 100%;
   text-align: left;
+  text-shadow: none;
 }
 
 .content-wrapper > *:nth-child(even),
@@ -56,7 +57,7 @@ export default {
 }
 
 .title h3 {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   color: var(--color-text);
   text-shadow: none;
@@ -134,7 +135,10 @@ export default {
     padding: 1rem;
   }
   .title{
-    margin: 2rem 0 2rem 0;
+    margin: 1rem 0;
+  }
+  .title h3 {
+    font-size: 25px;
   }
   .text{
     flex-direction: column-reverse;
@@ -149,6 +153,9 @@ export default {
     padding: 4px;
     width: 8px;
     height: 8px;
+  }
+  .adv{
+    margin-bottom: 1rem;
   }
   .round{
     font-size: inherit;
