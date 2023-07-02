@@ -11,10 +11,10 @@
           </router-link>
         </div>
       </div>
-      <div class="type__detail--wrapper">
+      <div class="type__detail-wrapper">
         <router-view v-slot="{ Component, route }">
           <transition name="fadeIn-fadeOut" mode="out-in" translate="yes">
-            <component class="type__detail" v-if="Component" :is="Component" :key="$route.fullPath"/>
+            <component  v-if="Component" :is="Component" :key="$route.fullPath"/>
           </transition>
         </router-view>
       </div>
@@ -38,14 +38,13 @@ export default {
     selectedType: null,
     detailShowed: false,
   }),
-  computed(){
+  computed() {
   },
   mounted() {
     this.getTypes()
     this.detailShowed = false
   },
   updated() {
-    console.log(this.$route.params?.slug)
     !this.$route.params?.slug ? this.detailShowed = false : this.detailShowed = true
   },
   methods: {
@@ -54,12 +53,10 @@ export default {
     },
     onTypeClick(type) {
       if (type?.slug !== this.$route.params?.slug) {
-        console.log('on click')
         this.selectedType = type
         this.detailShowed = true
       } else {
         this.detailShowed = false
-        this.selectedType = null
         this.$router.push('/training-types')
       }
     }
@@ -74,14 +71,13 @@ export default {
   flex-direction: column;
   min-height: 100%;
 }
-.title{
-  padding: 2rem 9rem;
-}
-.content-box{
+
+.content-box {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
+
 .types {
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
@@ -90,36 +86,42 @@ export default {
   width: 100%;
   transition: all 1s;
 }
-.collapsed{
+
+.collapsed {
   min-height: 200px;
   transition: all 1s;
 }
-.type-card > a.router-link-exact-active, .type-card > a:hover{
+
+.type-card > a.router-link-exact-active, .type-card > a:hover {
   background: var(--color-link-text);
   color: var(--color-headings);
 }
-.type-card{
+
+.type-card {
   flex: 1 1 auto;
   display: flex;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.type-card:before{
+
+.type-card:before {
   content: '';
   position: absolute;
   width: 100%;
   height: 100%;
   background: rgb(0, 0, 0, .35);
 }
-.type-card__link{
+
+.type-card__link {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100%;
   min-width: 100%;
 }
-.type-card__text{
+
+.type-card__text {
   font-size: 25px;
   color: var(--color-headings);
   font-family: "Helvetica Neue", sans-serif;
@@ -127,28 +129,35 @@ export default {
   text-transform: uppercase;
   text-shadow: 1px 1px 1px #000;
 }
-.type__detail--wrapper{
+
+.type__detail-wrapper {
   min-height: 100%;
 }
-.type__detail{
-  padding: 3rem 9rem;
-  z-index: 2;
-  min-height: 100%;
-  transition: all .6s ease-in-out;
-
+@media (max-width: 767px) {
+  .types {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    z-index: 3;
+    min-height: 100vh;
+    width: 100%;
+    transition: all 1s;
+  }
+  .type-card > a:hover{
+    background: transparent;
+  }
+  .type-card > a.router-link-exact-active{
+    background: var(--color-link-text);
+  }
+  .collapsed {
+    min-height: 20vh;
+    transition: all 1s;
+  }
 }
-/*.fadeIn-fadeOut-enter-active {*/
-/*  transition: all 3.3s ease-in-out;*/
-/*}*/
-
-/*.fadeIn-fadeOut-leave-active {*/
-/*  transition: all 3.3s ease-in-out;*/
-/*}*/
-
 .fadeIn-fadeOut-enter-from,
 .fadeIn-fadeOut-leave-to {
   transform: translateY(-100%);
   opacity: 0;
+  margin: 0;
 
 }
 </style>
