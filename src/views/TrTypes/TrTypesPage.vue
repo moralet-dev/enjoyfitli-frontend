@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="content-box" v-if="types">
+    <div class="content-box animate__animated animate__fadeIn" v-if="types">
       <div :class="{'types':true, 'collapsed': detailShowed}">
         <div class="type-card" v-for="t in types" :style="{backgroundImage: `url(${t.image})`}">
           <router-link :to="{ name: 'type-detail', params: { slug: t.slug }, query: { typeID: t.id } }"
@@ -65,6 +65,9 @@ export default {
 </script>
 
 <style scoped>
+.preloader{
+  min-height: 100vh;
+}
 .wrapper {
   padding: 0;
   display: flex;
@@ -80,7 +83,7 @@ export default {
 
 .types {
   display: grid;
-  grid-template-columns: 4fr 4fr 4fr;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
   z-index: 3;
   min-height: 100vh;
   width: 100%;

@@ -1,9 +1,9 @@
 <template>
   <Header v-if="serverAvailable"/>
   <main v-if="serverAvailable">
-    <router-view v-slot="{Component}">
+    <router-view v-slot="{Component, route}">
       <transition name="fade" mode="out-in">
-        <component :is="Component"/>
+        <component :is="Component" :key="`app_${route.fullPath}`"/>
       </transition>
     </router-view>
   </main>
@@ -20,8 +20,14 @@ import Header from "@/views/Header.vue";
 import Footer from "@/views/Footer.vue";
 import GearAnimatedIcon from "@/components/icons/GearAnimatedIcon.vue";
 import {pingRequest} from "@/api";
+import {ro} from "vuetify/locale";
 
 export default {
+  computed: {
+    ro() {
+      return ro
+    }
+  },
   components: {
     GearAnimatedIcon,
     Header,
@@ -44,12 +50,12 @@ export default {
 }
 </script>
 <style scoped>
-main, .unavailable{
-  margin: 5rem 0 0 0;
+main{
+  min-height: 100vh;
 }
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .fade-enter-from,

@@ -10,7 +10,7 @@
             :class="{'selected-up': this.selectedFilter === i, 'selected-down': this.selectedFilter === `-${i}`}"
             class="animate__animated animate__fadeIn"
         >
-          {{ i.slice(0, 8) }}
+          {{ i.slice(0, 9) }}
         </th>
         <th class="clear-filter animate__animated animate__fadeIn"
             @click="sortTrainings('')"
@@ -21,9 +21,9 @@
       </thead>
       <tbody>
         <tr v-for="i in trList" class="animate__animated animate__fadeIn" :key="i.id">
+          <td>{{ i.direction.name }}</td>
           <td>{{ i.type.name }}</td>
-          <td>{{ i.specification.name }}</td>
-          <td>{{ i.specification.level }}</td>
+          <td>{{ i.direction.level }}</td>
           <td>
             {{
               new Date(i.when).toLocaleString('uk',
@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      headings: ['type', 'specification', 'level', 'when', 'where', 'visitors'],
+      headings: ['direction', 'type', 'level', 'when', 'where', 'visitors'],
       selectedFilter: null,
     }
   },
@@ -104,7 +104,6 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
-  table-layout: fixed;
 }
 th,
 td {

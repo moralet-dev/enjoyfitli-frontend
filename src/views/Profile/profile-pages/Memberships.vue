@@ -11,7 +11,7 @@
       <div v-if="isMembList" class="animate__animated animate__fadeIn">
         <div v-for="m in membList" :key="m.id" class="membership">
           <div class="membership-info">
-            <span class="m-name">{{ m.membership[`name_${this.$store.getters.getLocale}`] }}</span>
+            <span class="m-name">{{ m.membership.type[`name_${this.$store.getters.getLocale}`] }}</span>
 
           </div>
           <div class="membership-info-current">

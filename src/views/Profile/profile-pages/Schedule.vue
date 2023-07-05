@@ -4,9 +4,9 @@
       <h2>{{ this.$t('ProfilePage.myTrainings') }}:</h2>
     </div>
     <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
-      <p>{{ this.$t('ProfilePage.training') }}: {{ t.type[`name_${this.$store.getters.getLocale}`] }}</p>
+      <p>{{ t.direction[`name_${this.$store.getters.getLocale}`] }}</p>
       <div class="training">
-        <div class="item"><span>{{ this.$t('ProfilePage.specification') }}:</span> {{ t.specification[`name_${this.$store.getters.getLocale}`] }}</div>
+        <div class="item"><span>{{ this.$t('type') }}:</span> {{ t.type[`name_${this.$store.getters.getLocale}`] }}</div>
         <div class="item">
           <span>{{ this.$t('ProfilePage.when') }}:</span>
           {{

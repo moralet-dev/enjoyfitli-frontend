@@ -1,62 +1,46 @@
 <template>
-  <div class="wrapper" >
+  <div class="wrapper">
     <div class="title">
-      <h1>{{this.$t('SchedulePage')}}</h1>
+      <h1>{{ this.$t('SchedulePage') }}</h1>
+      <button @click="previousWeek()">&lt</button>
+      <button @click="nextWeek()"> ></button>
     </div>
-    <div class="show-toggle">
-      <span>Switch view</span>
-      <Switcher :is-toggled="showCalendar" @toggle="showCalendar= !showCalendar"/>
+
+    <div class="calendar">
+      <div class="calendar__item" v-for="day in daysOfWeek">
+        <span class="day">{{ day.toLocaleDateString(`${this.$store.getters.getLocale}`, {weekday: 'short'}) }}</span>
+        <span class="number" @click="onDayClick(day)">{{ day.getDate() }} </span>
+      </div>
     </div>
-    <transition-group name="fade">
-      <div v-if="showCalendar" class="page-view">
-        <div class="warning"><span>Зверніть увагу</span>, що календарний тиждень розпочинається з НЕДІЛІ!</div>
-        <Calendar :trList="trainingsList" @p-sign="onSign" @unsign="onUnsign"/>
-        <Modal :show="showModal" @close="showModal = false" >
-          <template #header>
-            Confirmed
-          </template>
-          <template #body>
-            <p>
-              {{actionText}}
-            </p>
-          </template>
-        </Modal>
-      </div>
-      <div v-if="!showCalendar" class="page-view">
-        <ListedTrainings @sign="onSign" @unsign="onUnsign" @sorting="getSortedTrList" :trList="trainingsList"/>
-        <Modal :show="showModal" @close="showModal = false">
-          <template #header>
-            {{actionStatus}}
-          </template>
-          <template #body>
-            <p>
-              {{actionText}}
-            </p>
-          </template>
-        </Modal>
-      </div>
-    </transition-group>
+    <WeekTrainings :dailyTr="dailyTrainings"/>
   </div>
 </template>
 
 <script>
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 import {authAPI} from "@/api/authAPI/authAPI";
-import Calendar from "@/views/Schedule/Calendar.vue";
+import Calendar from "@/views/Schedule/legacyPages/Calendar.vue";
 import Modal from "@/components/Modals/Modal.vue";
 import Switcher from "@/components/Switcher.vue";
-import ListedTrainings from "@/views/Schedule/ListedTrainings.vue";
+import ListedTrainings from "@/views/Schedule/legacyPages/ListedTrainings.vue";
+import DailyDetail from "@/views/Schedule/DailyDetail.vue";
+import Preloader from "@/components/Preloader.vue";
+import WeekTrainings from "@/views/Schedule/WeekTrainings.vue";
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "SchedulePage",
-  components: {ListedTrainings, Switcher, Modal, Calendar},
+  components: {PreloaderSmall, WeekTrainings, Preloader, DailyDetail, ListedTrainings, Switcher, Modal, Calendar},
   data() {
     return {
-      trainingsList: null,
-      showModal: false,
-      actionText: null,
-      actionStatus: null,
-      showCalendar: false,
+      startDate: null,
+      endDate: null,
+      selectedDay: new Date(),
+      currentDay: new Date(),
+      daysOfWeek: [],
+      loading: true,
+      trainings: null,
+      dailyTrainings: null,
     }
   },
   created() {
@@ -67,49 +51,53 @@ export default {
     }
   },
   mounted() {
-    this.getGroupTrainingsList()
-    this.getMe()
+    this.calculateWeekDays(this.currentDay)
+    this.getTrainings()
   },
   methods: {
-    async getGroupTrainingsList() {
-      await trainingsAPI.getGroupTrainings().then(response => {
-        this.trainingsList = response.data.results.map(e => e)
-      })
+    calculateWeekDays(date) {
+      this.startDate = new Date(date.setDate(date.getDate() - date.getDay() + 1));
+      this.daysOfWeek = [];
+      for (let i = 0; i < 7; i++) {
+        let date = new Date(this.startDate);
+        date.setDate(this.startDate.getDate() + i);
+        this.daysOfWeek.push(date);
+      }
+      this.endDate = this.daysOfWeek[6]
     },
-    async getSortedTrList(params){
-      await trainingsAPI.getGroupTrainings(params).then(response => {
-        this.trainingsList = response.data.results.map(e => e)
-      })
+    previousWeek() {
+      const previousStartDate = new Date(this.startDate);
+      previousStartDate.setDate(previousStartDate.getDate() - 7);
+      this.startDate = previousStartDate;
+      this.endDate.setDate(this.endDate.getDate() - 7);
+      this.calculateWeekDays(previousStartDate);
     },
-    async getMe() {
-      await authAPI.getMe().then(response => {
-        this.$store.dispatch('authModule/onCurrentUserSet', response.data)
-      }).catch(() => this.currentUserData = null)
+    nextWeek() {
+      const nextStartDate = new Date(this.startDate);
+      nextStartDate.setDate(nextStartDate.getDate() + 7);
+      this.startDate = nextStartDate;
+      this.endDate.setDate(this.endDate.getDate() + 7);
+      this.calculateWeekDays(nextStartDate);
     },
-    async onSign(id) {
-      await trainingsAPI.singGroupTraining(id).then(() => {
-        this.actionStatus = 'Confirmed'
-        this.actionText = 'You have signed training. You can watching your trainings at Profile->Schedule.'
-        this.showModal = true
-        this.getGroupTrainingsList()
-      }).catch(()=>{
-        this.actionStatus = 'Error'
-        this.actionText = 'Oops... Something goes wrong. Check that you have enough free trainings and membership equals to training type.'
-        this.showModal = true
-      })
+    onDayClick(day) {
+      this.selectedDay = day
+      let proxyArray = []
+      if (this.trainings?.length > 0) {
+        proxyArray = this.trainings.filter((i) => {
+          return day.toLocaleDateString() === new Date(i.when).toLocaleDateString();
+        })
+      }
+      this.dailyTrainings = [...proxyArray]
     },
-    async onUnsign(id) {
-      await trainingsAPI.unsignGroupTraining(id).then(() => {
-        this.actionStatus = 'Confirmed'
-        this.actionText = 'You have unsigned training'
-        this.showModal = true
-        this.getGroupTrainingsList()
-      }).catch(()=>{
-        this.actionStatus = 'Error'
-        this.actionText = 'Oops... Something goes wrong. Check that you have a membership that equals to training type.'
-        this.showModal = true
-      })
+    async getTrainings() {
+      this.trainings = await trainingsAPI.getGroupTrainings().then(response => {
+        this.loading = false
+        return response.data.results
+      }).catch(reason => {
+        console.log(reason.response.data)
+      });
     },
+
   }
 }
 </script>
@@ -118,75 +106,34 @@ export default {
 .wrapper {
   padding: 6rem 9rem;
 }
+
+.number {
+  cursor: pointer;
+}
+
 h1 {
   font-size: 50px;
-}
-.show-toggle{
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  margin: 0 0 2rem 0;
-}
-.show-toggle span{
-  font-size: 20px;
-  padding: 1rem 0;
-}
-.page-view{
-  max-height: 50rem;
-}
-.warning{
-  display: inline-block;
-  margin: 0 0 1rem 0;
-  padding: 1rem;
-  border: 2px solid var(--color-text);
-  border-radius: 10px;
-}
-.warning span{
-  font-weight: 700;
 }
 
 @media (max-width: 767px) {
   .wrapper {
     padding: 3rem 1rem;
   }
+
   h1 {
     font-size: 30px;
   }
 
 }
+
 @media (min-width: 767px) and (max-width: 991px) {
-  .wrapper{
+  .wrapper {
     padding: 6rem 1rem;
   }
+
   h1 {
     font-size: 40px;
   }
 }
 
-
-
-.fade-enter-active {
-  transition: all .7s ease-in-out;
-}
-
-.fade-leave-active {
-  transition: all .7s ease-in-out;
-}
-
-.fade-enter-from {
-  position: absolute;
-  width: 100%;
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(0%);
-
-}
-
-.fade-leave-to {
-  /*position: absolute;*/
-  width: 100%;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(-100%);
-}
 </style>

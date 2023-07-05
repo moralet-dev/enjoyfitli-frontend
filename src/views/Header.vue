@@ -82,7 +82,6 @@ export default {
   grid-template-columns: 4fr 8fr;
   box-shadow: 0 0 5px var(--color-header-shadow);
   padding: 0 9rem;
-  position: fixed;
   left: 0;
   top: 0;
   text-transform: uppercase;
