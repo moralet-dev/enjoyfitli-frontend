@@ -259,11 +259,11 @@ button:hover, .btn:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--color-background-soft);
+    background-color: var(--color-headings);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--color-headings);
+    background-color: var(--color-text);
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

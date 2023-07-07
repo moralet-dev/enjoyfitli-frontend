@@ -18,7 +18,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: 'coral'
+      default: 'var(--color-text)',
     },
   },
 }

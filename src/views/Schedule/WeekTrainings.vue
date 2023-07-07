@@ -1,24 +1,35 @@
 <template>
-  <div class="wrapper">
-    <div v-if="dailyTr?.length>0" class="trainings-list">
-      <div v-for="tr in dailyTr" :key="tr.id">
-        <div class="animate__animated animate__fadeIn" >
-          {{ tr }}
-        </div>
-      </div>
+  <div class="training-item animate__animated animate__fadeIn" v-if="dailyTr" v-for="tr in dailyTr" :key="tr.id">
+    <div class="training-item__top">
+      <span>
+      {{ tr?.direction?.name || tr.type.name }}
+      </span>
+      <span>
+      {{
+          new Date(tr?.when).toLocaleTimeString(`${this.$store.getters.getLocale}`, {
+            hour: '2-digit',
+            minute: '2-digit'
+          })
+        }}
+      </span>
+
     </div>
-    <div v-else-if="dailyTr?.length === 0" class="no-trainings animate__animated animate__fadeIn" :key="`${randomFloat}`">
-      <p>No trainings</p>
+    <div class="training-item__middle">
+      {{ tr?.where || this.$t('noPlace') }}
     </div>
-    <div v-else class="preloader">
-      <PreloaderSmall/>
+    <div class="training-item__bottom">
+      <span>
+      {{ this.$t('places') }}: {{ tr?.max_people - tr?.visitors }} / {{ tr?.max_people }}
+      </span>
+      <span>
+        {{ tr?.cost }} &#8372;
+      </span>
     </div>
   </div>
 </template>
 
 <script>
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
-import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 
 export default {
   name: "WeekTrainings",
@@ -29,25 +40,37 @@ export default {
       default: null,
     }
   },
-  updated() {
-    this.randomFloat = Math.random()
-  },
-  mounted() {
-  },
-  data: () => ({
-    randomFloat: Math.random()
-  }),
-  methods: {}
 }
 </script>
 
 <style scoped>
-.wrapper{
-  max-height: 80vh;
-  overflow: hidden;
-  overflow-y: scroll;
+.training-item {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+  background: var(--color-text);
+  border-radius: 20px;
+  color: var(--color-headings);
+  font-family: "Helvetica Neue", sans-serif;
 }
-.trainings-list{
-  padding: 0 2rem;
+
+.training-item > div:nth-child(even),
+.training-item > div:nth-child(odd) {
+  margin-bottom: .5rem;
+}
+
+.training-item__top {
+  font-family: 'Futura New', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.training-item__bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
 }
 </style>
