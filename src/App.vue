@@ -3,7 +3,7 @@
   <main v-if="serverAvailable">
     <router-view v-slot="{Component, route}">
       <transition name="fade" mode="out-in">
-        <component :is="Component" :key="`app_${route.fullPath}`"/>
+        <component :is="Component" :key="`app_`"/>
       </transition>
     </router-view>
   </main>

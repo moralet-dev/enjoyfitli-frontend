@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="content-box animate__animated animate__fadeIn" v-if="types">
       <div :class="{'types':true, 'collapsed': detailShowed}">
-        <div class="type-card" v-for="t in types" :style="{backgroundImage: `url(${t.image})`}">
+        <div class="type-card" v-for="t in types" :style="{backgroundImage: `url(${t.image})`}" :key="t?.id">
           <router-link :to="{ name: 'type-detail', params: { slug: t.slug }, query: { typeID: t.id } }"
                        class="type-card__link" @click="onTypeClick(t)">
             <div class="type-card__text">
@@ -13,8 +13,8 @@
       </div>
       <div class="type__detail-wrapper">
         <router-view v-slot="{ Component, route }">
-          <transition name="fadeIn-fadeOut" mode="out-in" translate="yes">
-            <component  v-if="Component" :is="Component" :key="$route.fullPath"/>
+          <transition name="drop-down" mode="out-in" translate="yes">
+            <component  v-if="Component" :is="Component" :key="Math.random()"/>
           </transition>
         </router-view>
       </div>
@@ -85,13 +85,13 @@ export default {
   display: grid;
   grid-template-columns: 3fr 3fr 3fr 3fr;
   z-index: 3;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   transition: all 1s;
 }
 
-.collapsed {
-  min-height: 200px;
+.types.collapsed {
+  height: 200px;
   transition: all 1s;
 }
 
@@ -156,8 +156,8 @@ export default {
     transition: all 1s;
   }
 }
-.fadeIn-fadeOut-enter-from,
-.fadeIn-fadeOut-leave-to {
+.drop-down-enter-from,
+.drop-down-leave-to {
   transform: translateY(-100%);
   opacity: 0;
   margin: 0;
