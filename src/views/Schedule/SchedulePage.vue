@@ -7,10 +7,11 @@
     <div class="calendar__wrapper">
       <div class="calendar__month" v-if="startDate && endDate">
         <span class="animate__animated animate__fadeIn" :key="whatMonth()">
-            {{whatMonth()}}
+            {{ whatMonth() }}
         </span>
         <div class="calendar__month__nav">
-          <ArrowLeftIcon class="arrow" @click="previousWeek()" height="40" width="40" icon-color="var(--color-headings)"/>
+          <ArrowLeftIcon class="arrow" @click="previousWeek()" height="40" width="40"
+                         icon-color="var(--color-headings)"/>
           <ArrowIcon class="arrow" @click="nextWeek()" height="40" width="40" icon-color="var(--color-headings)"/>
         </div>
       </div>
@@ -24,25 +25,40 @@
             {{ day.toLocaleDateString(`${this.$store.getters.getLocale}`, {weekday: 'short'}) }}
           </span>
           <span :class="{
-            'number animate__animated animate__fadeInRight':true,
+            'number animate__animated animate__fadeIn':true,
             'selected': selectedDay.toLocaleDateString() === day.toLocaleDateString()}"
           >
           {{ day.getDate() }}
         </span>
         </div>
       </div>
-
     </div>
     <div class="trainings-list__wrapper">
-      <WeekTrainings v-if="dailyTrainings?.length>0" :dailyTr="dailyTrainings"/>
-      <div v-else-if="dailyTrainings?.length === 0" class="no-trainings animate__animated animate__fadeIn"
-           :key="randomFloat()">
-        <p>No trainings</p>
-      </div>
-      <div v-else class="preloader">
+      <WeekTrainings class=""
+                     v-if="dailyTrainings?.length>0"
+                     :dailyTr="dailyTrainings"
+                     @onSelect="onTrainingSelect"
+                     @sign="signTraining"
+                     @rescind="rescindTraining"
+                     :key="dailyTrainings"
+      />
+      <div v-if="dailyTrainings?.length === 0" class="no-trainings animate__animated animate__fadeIn">
+        <p>No trainings</p></div>
+      <div v-if="dailyTrainings===null" class="preloader">
         <PreloaderSmall class="trainings-list"/>
       </div>
     </div>
+    <ModalCalendarPopup :show="modalTemplate.show" @close="this.modalTemplate.show = false">
+      <template #header>
+        <div>{{ this.modalTemplate.status===200 ?this.$t('actionComplete'): this.$t('actionDeclined')}}</div>
+      </template>
+      <template #body>
+        <div>
+          {{ this.modalTemplate.body }}
+        </div>
+      </template>
+      <template #footer></template>
+    </ModalCalendarPopup>
   </div>
 </template>
 
@@ -58,10 +74,12 @@ import WeekTrainings from "@/views/Schedule/WeekTrainings.vue";
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
 import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon.vue";
 import ArrowIcon from "@/components/icons/ArrowRightIcon.vue";
+import ModalCalendarPopup from "@/components/Modals/ModalCalendarPopup.vue";
 
 export default {
   name: "SchedulePage",
   components: {
+    ModalCalendarPopup,
     ArrowIcon,
     ArrowLeftIcon,
     PreloaderSmall, WeekTrainings, Preloader, DailyDetail, ListedTrainings, Switcher, Modal, Calendar
@@ -76,6 +94,11 @@ export default {
       loading: true,
       trainings: null,
       dailyTrainings: null,
+      modalTemplate: {
+        show: false,
+        status: 0,
+        body: '',
+      },
     }
   },
   created() {
@@ -94,7 +117,10 @@ export default {
   methods: {
     calculateWeekDays(date) {
       let sd = new Date(date)
-      this.startDate = new Date(sd.setDate(sd.getDate() - sd.getDay() + 1));
+      const currentDayOfWeek = sd.getDay();
+      const startDayOfWeek = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1;
+      this.startDate = new Date(sd.setDate(sd.getDate() - startDayOfWeek));
+
       this.daysOfWeek = [];
       for (let i = 0; i < 7; i++) {
         let date = new Date(this.startDate);
@@ -104,35 +130,68 @@ export default {
       this.endDate = this.daysOfWeek[6]
     },
     previousWeek() {
-      const previousStartDate = new Date(this.startDate);
-      previousStartDate.setDate(previousStartDate.getDate() - 7);
-      this.startDate = previousStartDate;
-      this.endDate.setDate(this.endDate.getDate() - 7);
-      this.calculateWeekDays(previousStartDate);
+      const previousStartDate = new Date(this.startDate)
+      const previousEndDate = new Date(this.endDate)
+      previousStartDate.setDate(previousStartDate.getDate() - 7)
+      previousEndDate.setDate(previousEndDate.getDate() - 7)
+      this.startDate = previousStartDate
+      this.endDate = previousEndDate
+      this.calculateWeekDays(previousStartDate)
     },
     nextWeek() {
-
-      const nextStartDate = new Date(this.startDate);
-      nextStartDate.setDate(nextStartDate.getDate() + 7);
-      this.startDate = nextStartDate;
-      this.endDate.setDate(this.endDate.getDate() + 7);
-      this.calculateWeekDays(nextStartDate);
+      const nextStartDate = new Date(this.startDate)
+      const nextEndDate = new Date(this.endDate)
+      nextStartDate.setDate(nextStartDate.getDate() + 7)
+      nextEndDate.setDate(nextEndDate.getDate() + 7)
+      this.startDate = nextStartDate
+      this.endDate = nextEndDate
+      this.calculateWeekDays(nextStartDate)
     },
     onDayClick(day) {
-      this.selectedDay = day
-      let proxyArray = []
       if (this.trainings?.length > 0) {
-        proxyArray = this.trainings.filter((i) => (day.toLocaleDateString() === new Date(i.when).toLocaleDateString()))
+        this.dailyTrainings = this.trainings.filter((i) => (day.toLocaleDateString() === new Date(i.when).toLocaleDateString()))
       }
-      this.dailyTrainings = [...proxyArray]
+    },
+    onTrainingSelect(t) {
+      this.selectedTr = t
+      this.isDetailView = true
     },
     async getTrainings() {
       this.trainings = await trainingsAPI.getGroupTrainings().then(response => {
         this.loading = false
-        return response.data.results
+         return response.data.results
       }).catch(reason => {
         console.log(reason.response.data)
       });
+    },
+    async signTraining(id) {
+      console.log('sign', id)
+      await trainingsAPI.singGroupTraining(id).then(response => {
+        this.modalTemplate.show = true
+        this.modalTemplate.status = response.status
+        this.modalTemplate.body = this.$t('signComplete')
+        this.getTrainings().then(()=>{
+          this.onDayClick(this.selectedDay)
+        })
+      }).catch(reason => {
+        this.modalTemplate.show = true
+        this.modalTemplate.status = reason.response.status
+        this.modalTemplate.body = this.$t('signDecline')
+      })
+    },
+    async rescindTraining(id) {
+      await trainingsAPI.unsignGroupTraining(id).then(response => {
+        this.modalTemplate.show = true
+        this.modalTemplate.status = response.status
+        this.modalTemplate.body = this.$t('rescindComplete')
+        this.getTrainings().then(()=>{
+          this.onDayClick(this.selectedDay)
+        })
+      }).catch(reason => {
+        this.modalTemplate.show = true
+        this.modalTemplate.status = reason.response.status
+        this.modalTemplate.body = this.$t('rescindDecline')
+      })
     },
     whatMonth() {
       let st = this.startDate
@@ -143,9 +202,9 @@ export default {
       return `${st.toLocaleString(`${this.$store.getters.getLocale}`, {month: 'long'})}` + ' / '
           + `${end.toLocaleString(`${this.$store.getters.getLocale}`, {month: 'long'})}`
     },
-    randomFloat:()=>(`${Math.random()}`)
-  }
+  },
 }
+
 </script>
 
 <style scoped>
@@ -205,9 +264,11 @@ export default {
   transition: .3s;
   font-size: 15px;
 }
-.day{
+
+.day {
   margin: 0 0 .5rem 0;
 }
+
 .number {
   line-height: 20px;
   font-size: 15px;
@@ -224,7 +285,7 @@ export default {
 .number:hover, .selected {
   background: var(--color-background);
   color: var(--color-text);
-  }
+}
 
 .disabled {
   color: slategray;
@@ -247,24 +308,30 @@ h1 {
   .wrapper {
     padding: 0;
   }
-  .title{
+
+  .title {
     padding: 0 1rem;
   }
+
   h1 {
     font-size: 30px;
   }
+
   .calendar__wrapper {
     padding: 2rem 1rem;
     border-radius: 0;
   }
+
   .arrow:hover {
     transform: none;
   }
-  .calendar{
+
+  .calendar {
     padding: 0;
   }
+
   .trainings-list__wrapper {
-    margin: 0 2rem;
+    margin: 0 .5rem;
   }
 }
 
@@ -277,5 +344,6 @@ h1 {
     font-size: 40px;
   }
 }
+
 
 </style>

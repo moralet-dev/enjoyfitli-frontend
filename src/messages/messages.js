@@ -85,6 +85,8 @@ export default {
         firstName: 'first name',
         lastName: 'last name',
         pageNotFound: 'page not found',
+        toSignText: 'Sign and feel advantages of training by yourself!',
+        signedText: 'You\'re already signed this training. Wanna rescind?',
     },
     uk: {
         ProfilePage: {
@@ -168,7 +170,9 @@ export default {
         schedule: 'розклад',
         status: 'статус',
         welcome: 'Вітаємо',
-        pageNotFound: 'сторінка не знайдена'
+        pageNotFound: 'сторінка не знайдена',
+        toSignText: 'Запишіться та відчуйте всі переваги тренування на собі!',
+        signedText: 'Ви вже записані. Бажаєте відмінити?',
+
     },
-    // Додайте інші мови тут
 };

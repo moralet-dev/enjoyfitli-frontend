@@ -14,7 +14,7 @@
       <div class="type__detail-wrapper">
         <router-view v-slot="{ Component, route }">
           <transition name="drop-down" mode="out-in" translate="yes">
-            <component  v-if="Component" :is="Component" :key="Math.random()"/>
+            <component  v-if="Component" :is="Component" :key="route.path"/>
           </transition>
         </router-view>
       </div>
