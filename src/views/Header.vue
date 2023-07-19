@@ -107,13 +107,16 @@ export default {
 .header a{
   /*padding: 3px;*/
   font-size: 14px;
-  color: var(--color-link-text);
+  color: var(--color-header-text);
 }
 .header a.router-link-active{
   color: var(--color-link-text);
+  background: var(--color-header-text-hover-bg);
 }
 .header a:hover{
   color: var(--color-link-text);
+  background: var(--color-header-text-hover-bg);
+
 }
 .header-label {
   display: flex;
@@ -166,12 +169,11 @@ export default {
   }
   .header::before{
     z-index: 2;
-    background: var(--color-background-header);
   }
-  .header a.router-link-active{
+  li a.router-link-active{
     background: var(--color-background);
   }
-  .header a:hover{
+  li a:hover{
     background: var(--color-background);
   }
   .header-label a img{
@@ -188,9 +190,9 @@ export default {
   .header__burger::before,
   .header__burger::after {
     content: '';
-    color: var(--color-elements);
+    color: var(--color-headings);
     position: absolute;
-    background-color: var(--color-elements);
+    background-color: var(--color-headings);
     width: 100%;
     height: 5px;
     left: 0;
@@ -210,7 +212,7 @@ export default {
     width: 100%;
     height: 5px;
     top: 12px;
-    background-color: var(--color-elements);
+    background-color: var(--color-headings);
     transition: .3s;
   }
   .header__burger.active::before{
@@ -233,7 +235,7 @@ export default {
     max-height: 100vh;
     overflow-y: scroll;
     padding: 6rem 0 3rem 0;
-    background-color: var(--color-background-soft);
+    background-color: var(--color-header-burger-bg);
     display: flex;
     flex-direction: column;
     transition: .5s;
@@ -254,7 +256,7 @@ export default {
   }
   .nav-list li a{
     padding: 2rem 1rem;
-    color: var(--color-link-text);
+    color: var(--color-header-text);
   }
   .header-label{
     z-index: 3;

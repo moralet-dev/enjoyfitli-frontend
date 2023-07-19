@@ -51,7 +51,7 @@
     --color-background: var(--vt-c-main-green);
     --color-background-soft: var(--vt-c-second-green);
     --color-background-mute: var(--vt-c-third-green);
-    --color-background-header: var(--vt-c-main-green);
+    --color-background-header: var(--vt-c-blue-mute);
     --color-background-section-dark: var(--vt-c-black);
     --color-background-section-dark-arrows: var(--vt-c-white-soft);
 
@@ -60,11 +60,20 @@
 
     --color-headings: var(--vt-c-white-fourth);
     --color-text: var(--vt-c-blue-mute);
+
+    --color-header-text: var(--vt-c-white-fourth);
+    --color-header-text-hover: var(--vt-c-blue-mute);
+    --color-header-text-hover-bg: var(--vt-c-main-green);
+    --color-header-shadow: var(--vt-c-blue-mute);
+    --color-header-burger-bg: var(--vt-c-blue-mute-lighter);
+
+
+
     --color-link-text: var(--vt-c-blue-mute);
     --color-link-bg: var(--vt-c-second-green);
     --color-link-text-hover: var(--vt-c-blue-mute);
     --color-link-bg-hover: var(--vt-c-second-green);
-    --color-header-shadow: var(--vt-c-third-green);
+
     --color-elements: var(--vt-c-blue-mute);
     --color-helper: var(--vt-c-white-fourth);
 }

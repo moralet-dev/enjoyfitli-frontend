@@ -7,8 +7,8 @@
     <div v-if="getIsAuth"
          :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
       <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">{{ this.$t('profile') }}</router-link>
-      <a class="logout-button" @click="onLogoutClick">
-        <LogoutIcon width="15" height="15"/>
+      <a class="logout" @click="onLogoutClick">
+        {{ this.$t('logout')}}
       </a>
     </div>
     <div v-else
@@ -96,7 +96,8 @@ export default {
 }
 
 .lang {
-  height: 20px;
+  width: 25px;
+  height: 100%;
   margin: 0 .5rem;
   cursor: pointer;
 }
@@ -104,9 +105,12 @@ export default {
 .lang img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  transition: .3s;
 }
-
+.lang img:hover{
+  transform: scale(120%) scale3d(-1, 1, 1);
+}
 .login-container {
   display: flex;
   min-height: 100%;
@@ -123,26 +127,30 @@ export default {
   padding: 0 1rem;
   font-weight: bold;
   cursor: pointer;
-  color: var(--color-link-text);
-}
-
-.login-container a:hover {
+  color: var(--color-header-text);
 }
 
 .login-container a.router-link-active,
-.login-container a.router-link-exact-active {
-  color: var(--color-link-text);
+.login-container a.router-link-exact-active,
+.login-container a:hover{
+  color: var(--color-header-text-hover);
+  background: var(--color-header-text-hover-bg);
 }
 
+.logout-button svg{
+}
 .login-container span {
   cursor: pointer;
   transition: 0.4s;
 }
 
 .login-container a:hover, .login-container span:hover {
-  color: var(--color-link-text);
+  color: var(--color-header-text-hover);
 }
-
+a.logout:hover{
+  color: var(--color-header-text);
+  background: #8C3419;
+}
 @media (min-width: 768px) and (max-width: 991px) {
   .login-container {
     justify-content: center;
