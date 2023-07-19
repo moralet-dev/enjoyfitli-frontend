@@ -1,14 +1,19 @@
 <template>
   <div class="detail-wrapper">
+
     <p class="detail-wrapper__text" v-if="training?.direction">
       {{ training?.direction[`description_${this.$store.getters.getLocale}`] }}
     </p>
-    <p class="detail-wrapper__text">{{this.$t('level')}}
-      {{training.direction?.level}}
+    <p class="detail-wrapper__text">{{ this.$t('level') }}:
+      {{ training.direction?.level }}
     </p>
-    <div v-if="isSigned()" class="actions">
-      <span class="actions__text">{{ this.$t('signedText') }}</span>
-      <button class="next signed" @click="onRescind">{{ this.$t('rescind') }}</button>
+    <div v-if="isSigned()" :class="{'actions': true,}">
+      <p v-if="isLessOneHour()" class="actions__text">
+        {{ this.$t('lessOneOurText') }}
+        <router-link class="text-link" :to="{'name': 'home'}">{{ this.$t('details') }}</router-link>
+      </p>
+      <span v-else class="actions__text">{{ this.$t('signedText') }}</span>
+      <button v-if="!isLessOneHour()" class="next signed" @click="onRescind">{{ this.$t('rescind') }}</button>
     </div>
     <div v-if="!isSigned()" class="actions">
       <span class="actions__text">{{ this.$t('toSignText') }}</span>
@@ -23,11 +28,16 @@ export default {
   props: {
     training: {
       type: Object,
-      default: null,
     }
   },
+  mounted() {
+  },
   methods: {
-    nextStep(event) {
+    isLessOneHour() {
+      const trainingDate = new Date(this.training.when)
+      const now = new Date()
+      const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000))
+      return trainingDate <= oneHourLater
     },
     isSigned() {
       if (this.training?.visitors?.length > 0) {
@@ -39,13 +49,13 @@ export default {
       }
       return false
     },
-    async onSign(event){
-        event.stopPropagation()
-        this.$emit('sign', this.training.id)
+    async onSign(event) {
+      event.stopPropagation()
+      this.$emit('sign', this.training.id)
     },
-    async onRescind(event){
-        event.stopPropagation()
-        this.$emit('rescind', this.training.id)
+    async onRescind(event) {
+      event.stopPropagation()
+      this.$emit('rescind', this.training.id)
     },
   }
 }
@@ -56,10 +66,12 @@ export default {
   white-space: pre-wrap;
   max-height: 200vh;
 }
-.detail-wrapper__text{
+
+.detail-wrapper__text {
   font-size: 16px;
   padding: 1rem .5rem;
 }
+
 .actions {
   display: grid;
   grid-template-columns: 8fr 4fr;
@@ -73,20 +85,25 @@ export default {
 
 .to-sign, .signed {
   justify-self: end;
+  align-self: center;
 }
-.signed{
+
+.signed {
   background: orange;
 }
-@media (max-width: 767px){
-  .actions{
+
+@media (max-width: 767px) {
+  .actions {
     grid-template-columns: 12fr;
     padding: 1rem 0 0 0;
   }
-  .actions__text{
+
+  .actions__text {
     text-align: center;
     margin: 0 0 1rem 0;
   }
-  .to-sign, .signed{
+
+  .to-sign, .signed {
     justify-self: center;
   }
 }

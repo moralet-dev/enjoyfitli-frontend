@@ -1,20 +1,24 @@
 <template>
-  <div v-if="getIsAuth" :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
+  <div class="login-container__wrapper">
     <div class="locale">
-      <div class="lang" @click="setLocale('uk')">UK</div>
-      <div class="lang " @click="setLocale('en')">EN</div>
+      <div class="lang" @click="setLocale('uk')"><img src="src/assets/icons/flags/ukraine.png" alt="uk"/></div>
+      <div class="lang " @click="setLocale('en')"><img src="src/assets/icons/flags/united-kingdom.png" alt="eng"/></div>
     </div>
-    <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">{{ this.$t('profile')}}</router-link>
-    <a class="logout-button" @click="onLogoutClick">
-      <LogoutIcon width="15" height="15"/>
-    </a>
+    <div v-if="getIsAuth"
+         :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
+      <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">{{ this.$t('profile') }}</router-link>
+      <a class="logout-button" @click="onLogoutClick">
+        <LogoutIcon width="15" height="15"/>
+      </a>
+    </div>
+    <div v-else
+         :class="{'login-container animate__animated':true, 'animate__slideInDown': !getIsAuth, 'animate__slideOutDown': getIsAuth}">
+      <a ref="login-popup" @click="openPopup('login')">{{ this.$t('login') }}</a>
+      <a @click="openPopup('reg')">{{ this.$t('registration') }}</a>
+    </div>
+    <ModalLogin :show="this.$store.getters['getTriggerLoginPopup']" @close="closePopup('login')"/>
+    <ModalReg :show="this.$store.getters['getTriggerRegPopup']" @close="closePopup('reg')"/>
   </div>
-  <div v-else :class="{'login-container animate__animated':true, 'animate__slideInDown': !getIsAuth, 'animate__slideOutDown': getIsAuth}">
-    <a ref="login-popup" @click="openPopup('login')">{{ this.$t('login')}}</a>
-    <a @click="openPopup('reg')">{{ this.$t('registration')}}</a>
-  </div>
-  <ModalLogin :show="this.$store.getters['getTriggerLoginPopup']" @close="closePopup('login')"/>
-  <ModalReg :show="this.$store.getters['getTriggerRegPopup']" @close="closePopup('reg')"/>
 </template>
 
 
@@ -28,29 +32,19 @@ export default {
   components: {ModalLogin, LogoutIcon, ModalReg},
   data() {
     return {
-      currentUserId: this.$store.getters['authModule/getCurrentUser'].id,
       showLoginModal: false,
     }
   },
 
   computed: {
     getIsAuth() {
-      if (this.currentUserId) {
-        this.currentUserId = this.$store.getters['authModule/getCurrentUser'].id
-        return Boolean(this.currentUserId)
-      } else {
-        if (this.$store.getters['authModule/isAuthenticated'] === 'true') {
-          return true
-        }
-      }
-      return false
+      return !!this.$store.getters['authModule/isAuthenticated'];
     },
   },
 
   methods: {
     onLogoutClick() {
       this.$store.dispatch('authModule/onLogout')
-      this.currentUserId = null
       this.$emit('closeMenu')
       this.$router.push('/')
     },
@@ -80,7 +74,7 @@ export default {
         }
       }
     },
-    setLocale(lang){
+    setLocale(lang) {
       this.$store.state.locale = lang
       console.log(this.$store.state.locale)
       this.$i18n.locale = lang
@@ -90,6 +84,29 @@ export default {
 </script>
 
 <style scoped>
+.login-container__wrapper {
+  display: flex;
+  justify-self: flex-end;
+}
+
+.locale {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.lang {
+  height: 20px;
+  margin: 0 .5rem;
+  cursor: pointer;
+}
+
+.lang img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .login-container {
   display: flex;
   min-height: 100%;
@@ -103,17 +120,20 @@ export default {
   min-height: 100%;
   align-items: center;
   justify-content: center;
-  padding: 0 2rem;
+  padding: 0 1rem;
   font-weight: bold;
   cursor: pointer;
   color: var(--color-link-text);
 }
-.login-container a:hover{
+
+.login-container a:hover {
 }
+
 .login-container a.router-link-active,
-.login-container a.router-link-exact-active{
+.login-container a.router-link-exact-active {
   color: var(--color-link-text);
 }
+
 .login-container span {
   cursor: pointer;
   transition: 0.4s;
@@ -123,29 +143,41 @@ export default {
   color: var(--color-link-text);
 }
 
-.lang{
-  cursor: pointer;
-}
 @media (min-width: 768px) and (max-width: 991px) {
   .login-container {
     justify-content: center;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
+  .login-container__wrapper{
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
   .login-container {
+    width: 100%;
+
     height: fit-content;
     min-height: fit-content;
   }
 
-  .login-container a {
+  .login-container a, .locale {
     width: 100%;
     padding: 2rem 1rem;
   }
+
   .login-container a.router-link-active,
-  .login-container a.router-link-exact-active{
+  .login-container a.router-link-exact-active {
     color: var(--color-link-text);
     background: var(--color-background);
+  }
+  .locale{
+    justify-content: center;
+  }
+  .lang{
+    height: 30px;
+    margin: 0 2rem;
   }
 }
 </style>

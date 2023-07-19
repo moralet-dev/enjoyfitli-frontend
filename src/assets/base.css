@@ -161,7 +161,12 @@ a:hover {
     color: var(--color-link-text-hover);
     background-color: var(--color-link-bg-hover);
 }
-
+.text-link,
+.text-link:hover{
+    text-transform: capitalize;
+    background: none;
+    text-decoration: underline;
+}
 .router-link-active {
     color: var(--color-link-text-hover);
     background-color: var(--color-link-bg-hover);

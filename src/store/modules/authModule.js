@@ -1,5 +1,5 @@
 import {authAPI} from "@/api/authAPI/authAPI";
-import {defaultAPIInstance, deleteCookie, setCookie} from "@/api";
+import {defaultAPIInstance, deleteCookie, getCookie, setCookie} from "@/api";
 
 export const authModule = {
     namespaced: true,
@@ -7,10 +7,10 @@ export const authModule = {
     state() {
         return {
             credentials: {
-                refresh: localStorage.getItem('refresh') || null,
-                access: localStorage.getItem('access') || null,
+                refresh: getCookie('refresh') || null,
+                access: getCookie('access') || null,
             },
-            isAuthenticated: localStorage.getItem('isAuthenticated') || null,
+            isAuthenticated: !!getCookie('access') && !!getCookie('refresh'),
             isSessionExpired: false,
             currentUser: {
                 id: null,
@@ -39,11 +39,10 @@ export const authModule = {
         },
         setIsAuthenticated(state, isAuthenticated) {
             state.isAuthenticated = isAuthenticated
-            localStorage.setItem('isAuthenticated', isAuthenticated)
         },
         deleteTokens(state) {
             [state.credentials.access, state.credentials.refresh] = [null, null]
-            state.isAuthenticated = 'false'
+            state.isAuthenticated = false
             deleteCookie('access')
             deleteCookie('refresh')
             localStorage.removeItem('isAuthenticated')
@@ -72,13 +71,13 @@ export const authModule = {
             return authAPI.login(email, password).then(response => {
                 commit('setAccess', response.data.access)
                 commit('setRefresh', response.data.refresh)
-                commit('setIsAuthenticated', 'true')
+                commit('setIsAuthenticated', true)
                 defaultAPIInstance.defaults.headers['authorization'] = `JWT ${response.data.access}`
             })
         },
         onLogout({commit}) {
             commit('deleteTokens')
-            commit('setIsAuthenticated', 'false')
+            commit('setIsAuthenticated', false)
             commit('unsetCurrentUser')
         },
         onRegister({commit}, {email, phone, first_name, last_name, password, re_password}) {

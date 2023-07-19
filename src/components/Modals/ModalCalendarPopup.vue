@@ -22,7 +22,7 @@ export default {
 
 <template>
   <Transition name="modal">
-    <div v-if="show" class="modal-mask">
+    <div v-if="show" class="modal-mask" @click="onClose">
       <div class="modal-container">
         <button class="close" @click="onClose">
           <CloseIcon icon-color="var(--color-text)"/>
@@ -39,7 +39,6 @@ export default {
         </div>
         <div class="modal-footer">
           <slot name="footer">
-            <button @click="onClose">{{this.$t('continue')}}</button>
           </slot>
         </div>
       </div>
@@ -66,7 +65,9 @@ export default {
 .modal-container {
   padding: 2rem;
   min-width: 30vw;
-  height: 30vh;
+  max-width: 75vw;
+  min-height: 30vh;
+  max-height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -96,6 +97,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: capitalize;
 }
 
 .modal-body {

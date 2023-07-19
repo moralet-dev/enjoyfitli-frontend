@@ -34,8 +34,6 @@ export const authAPI = {
             {headers: {'Content-Type': 'multipart/form-data'}}
         )
     },
-    logout(){
-    },
     register(data){
         const url = '/auth/users/'
         // HOW IT WORKS?!!

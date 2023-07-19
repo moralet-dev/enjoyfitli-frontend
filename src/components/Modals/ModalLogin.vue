@@ -62,6 +62,7 @@
 import InstagramLogo from "@/components/icons/InstagramLogo.vue";
 import TikTokLogo from "@/components/icons/TikTokLogo.vue";
 import CloseIcon from "@/components/icons/CloseIcon.vue";
+import {authAPI} from "@/api/authAPI/authAPI";
 
 export default {
   name: "ModalLogin",
@@ -79,20 +80,31 @@ export default {
       loginErrors: null,
     }
   },
+  mounted() {
+    window
+  },
   methods: {
     async onSubmit() {
       await this.$store.dispatch('authModule/onLogin', {
         email: this.formData.email,
         password: this.formData.password,
       }).then(() => {
-        this.$router.push('/profile')
+        authAPI.getMe().then(response => {
+          this.$store.dispatch('authModule/onCurrentUserSet', response.data)
+        }).catch((reason) => {
+          console.log('error while getting user data')
+        })
+        this.loginErrors = null
         this.$emit('close')
+        this.$router.push('/profile')
       }).catch(reason => {
+        console.log('error while logging')
         this.loginErrors = reason.response.data
       })
     },
     async nullFormData() {
       this.$emit('close')
+      this.loginErrors = null
       this.formData.email = null
       this.formData.password = null
       this.rememberMe = null
@@ -212,11 +224,6 @@ form button:hover {
 .form-group label {
   font-weight: 700;
   color: var(--color-headings);
-}
-
-.remember {
-  flex-direction: column;
-  align-items: start;
 }
 
 .remember input {

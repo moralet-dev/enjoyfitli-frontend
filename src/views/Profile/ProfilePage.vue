@@ -55,28 +55,19 @@ export default {
     }
   },
   beforeMount() {
-    if (this.$store.getters['authModule/isAuthenticated'] === 'false'
-        || !this.$store.getters['authModule/isAuthenticated']) {
+    if (!this.$store.getters['authModule/isAuthenticated']) {
       this.$router.push({name:'home'})
       this.$store.commit('openLoginPopup')
     }
   },
   updated() {
-    if (this.$store.getters['authModule/isAuthenticated'] === 'false'
-        || !this.$store.getters['authModule/isAuthenticated']) {
+    if (!this.$store.getters['authModule/isAuthenticated']) {
       this.$router.push({name:'home'})
       this.$store.commit('openLoginPopup')
     }
   },
   mounted() {
     this.getMe()
-    // console.log(this.$store.getters['authModule/getCurrentUser'].photo)
-    // this.$store.watch(
-    //     () => this.$store.getters['authModule/getCurrentUser'].photo,
-    //     (newVal) => {
-    //       this.$refs.photo.src = newVal;
-    //     }
-    // );
   },
   methods: {
     async getMe() {
@@ -210,9 +201,6 @@ h3 {
   .user-avatar{
     width: 90px;
     height: 90px;
-  }
-  .pages-wrapper{
-    flex-direction: column;
   }
 }
 </style>

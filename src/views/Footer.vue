@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 footer{
-  z-index: 9997;
+  z-index: 9996;
 }
 .wrapper{
   padding: 2rem 0;

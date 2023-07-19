@@ -3,24 +3,8 @@
     <div class="title-wrapper">
       <h2>{{ this.$t('ProfilePage.myTrainings') }}:</h2>
     </div>
-    <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn" v-for="t in trainingsList">
-      <p>{{ t.direction[`name_${this.$store.getters.getLocale}`] }}</p>
-      <div class="training">
-        <div class="item"><span>{{ this.$t('type') }}:</span> {{ t.type[`name_${this.$store.getters.getLocale}`] }}</div>
-        <div class="item">
-          <span>{{ this.$t('ProfilePage.when') }}:</span>
-          {{
-            new Date(t.when).toLocaleString(
-            `${this.$store.getters.getLocale}`,
-            {day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit'})
-          }}
-        </div>
-        <div class="item"><span>{{ this.$t('ProfilePage.where') }}:</span> {{ t[`where_${this.$store.getters.getLocale}`] || t.where }}</div>
-        <div class="item unsign">
-          <button type="button" v-on:click="onUnsign(t.id)">X {{this.$t('ProfilePage.unsign')}}</button>
-        </div>
-
-      </div>
+    <div v-if="trainingsList?.length > 0" class="trainings-list__wrapper">
+      <WeekTrainings :isProfile="true" :daily-tr="trainingsList" @rescind="onRescind" :key="trainingsList"/>
     </div>
     <div v-else-if="trainingsList?.length <= 0" class="trainings-block animate__animated animate__fadeIn">
       <p>{{ this.$t('ProfilePage.noGroupTrainings') }}</p>
@@ -35,10 +19,11 @@
 <script>
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
+import WeekTrainings from "@/views/Schedule/WeekTrainings.vue";
 
 export default {
   name: "SchedulePage",
-  components: {PreloaderSmall},
+  components: {WeekTrainings, PreloaderSmall},
   data() {
     return {
       trainingsList: null,
@@ -54,7 +39,8 @@ export default {
         return response.data.results
       })
     },
-    async onUnsign(id) {
+    async onRescind(id) {
+      console.log('onRescind father')
       await trainingsAPI.unsignGroupTraining(id).then(() => {
         this.getGroupTrainingsList()
       })
@@ -67,7 +53,12 @@ export default {
 .title-wrapper {
   padding: 0.5em 0 1rem 0;
 }
-
+.trainings-list__wrapper {
+  padding: 0 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 70vh;
+}
 h2 {
   font-size: 40px;
 }
@@ -79,62 +70,17 @@ h2 {
   font-size: 22px;
   text-transform: capitalize;
 }
-.training {
-  display: grid;
-  grid-template-columns: 4fr 4fr 4fr;
-  border-bottom: solid 1px var(--color-helper);
-}
 
-.item {
-  padding: 1rem 0;
-  text-align: center;
-}
 
-.item span {
-  display: block;
-  font-weight: 600;
-  padding: 0 0 0.5rem 0;
-  word-wrap: break-word;
-  text-transform: capitalize;
-}
 
-.unsign {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.unsign button {
-  padding: .5rem;
-  background-color: transparent;
-  transition: 0.3s, transform 2s;
-  transition-timing-function: ease-in-out;
-  border-radius: 10px;
-  color: var(--color-link-text);
-  border: 2px solid darkred;
-}
-
-.unsign button:hover {
-  background-color: darkred;
-  border: 2px solid darkred;
-  color: var(--vt-c-white-soft);
-}
 @media(max-width: 991px){
-  .training {
-    grid-template-columns: 6fr 6fr;
-  }
 }
 @media (max-width: 767px) {
   h2 {
     font-size: 30px;
   }
 
-  .training {
-    grid-template-columns: 6fr 6fr;
-  }
 
-  .item {
-    flex: 0 0 25%;
-  }
 }
 </style>

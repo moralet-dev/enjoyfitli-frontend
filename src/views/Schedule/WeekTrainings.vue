@@ -1,22 +1,24 @@
 <template>
   <div>
-    <div class="training-item animate__animated animate__fadeIn" @click="onTrClick(t)" v-if="dailyTr.length > 0"
+    <div :class="{'training-item animate__animated animate__fadeIn': true, 'disabled': isLessOneHour(t) && isSigned(t)}"
+         @click="onTrClick(t)"
+         v-if="dailyTr.length > 0"
          v-for="t in dailyTr" :key="t.id">
       <div class="training-item__top">
-      <span>
-        {{
-          t?.direction?.name
-              ? t?.direction[`name_${this.$store.getters.getLocale}`]
-              : t?.type[`name_${this.$store.getters.getLocale}`]
-        }}
-      </span>
-
         <span>
-      {{
-            new Date(t?.when).toLocaleTimeString(`${this.$store.getters.getLocale}`, {
-              hour: '2-digit',
-              minute: '2-digit'
-            })
+          {{ isSigned(t) && !isProfile ? '✅ ' : ''}}
+          {{
+            t?.direction?.name ? t?.direction[`name_${this.$store.getters.getLocale}`] : t?.type[`name_${this.$store.getters.getLocale}`]
+          }}
+
+        </span>
+        <span></span>
+        <span>
+          {{ !isProfile
+            ? new Date(t?.when).toLocaleTimeString(`${this.$store.getters.getLocale}`, {hour: '2-digit', minute: '2-digit'})
+            : new Date(t?.when).toLocaleDateString(
+                `${this.$store.getters.getLocale}`,
+                {month:'2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit'})
           }}
       </span>
 
@@ -26,7 +28,7 @@
       </div>
       <div class="training-item__bottom">
         <span>
-          {{ `${this.$t('places')}: ${Math.max(0, t?.max_people - (t?.visitors?.length || 0))}` }}
+          {{ `${this.$t('freePlaces')}: ${Math.max(0, t?.max_people - (t?.visitors?.length || 0))}` }}
         </span>
         <span>
         {{ t?.cost }} &#8372;
@@ -63,16 +65,23 @@ export default {
     dailyTr: {
       type: Array,
       default: null,
-    }
+    },
+    isProfile: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     isDetailView: false,
     selectedTr: null,
   }),
-  updated() {
-    console.log('upd')
-  },
   methods: {
+    isLessOneHour(training) {
+      const trainingDate = new Date(training.when)
+      const now = new Date()
+      const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000))
+      return trainingDate <= oneHourLater
+    },
     onTrClick(t = null) {
       if (t?.id !== this.selectedTr?.id) {
         this.selectedTr = t
@@ -81,10 +90,20 @@ export default {
       }
       [this.selectedTr, this.isDetailView] = [null, false]
     },
+    isSigned(t) {
+      if (t?.visitors?.length > 0) {
+        for (let i of t.visitors) {
+          if (i?.visitor === this.$store.getters['authModule/getCurrentUser'].id) {
+            return true
+          }
+        }
+      }
+      return false
+    },
     onSign(id) {
       this.$emit('sign', id)
     },
-    onRescind(id){
+    onRescind(id) {
       this.$emit('rescind', id)
     }
   }
@@ -102,6 +121,10 @@ export default {
   border-radius: 20px;
   color: var(--color-headings);
   font-family: "Helvetica Neue", sans-serif;
+}
+
+.training-item.disabled {
+  background: slategray;
 }
 
 .training-item > div:nth-child(even),
@@ -147,7 +170,7 @@ export default {
 
 .d_fade-enter-active,
 .d_fade-leave-active {
-  transition: all .5s;
+  transition: all .7s ease-in-out;
 }
 
 .d_fade-enter-from,

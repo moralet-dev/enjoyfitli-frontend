@@ -33,7 +33,6 @@ import MyPFCCIcon from "@/components/icons/MyPFCCIcon.vue";
 import PurchaseHistoryIcon from "@/components/icons/PurchaseHistoryIcon.vue";
 import EditIcon from "@/components/icons/EditIcon.vue";
 import 'animate.css'
-import {th} from "vuetify/locale";
 
 export default {
   name: "ProfilePagesWrapper",
@@ -78,11 +77,6 @@ export default {
         }
       ]
     };
-  },
-  computed: {
-    th() {
-      return th
-    }
   },
   components: {EditIcon, PurchaseHistoryIcon, MyPFCCIcon, ScheduleIcon, MembershipIcon},
   props: {
@@ -157,12 +151,6 @@ aside {
 
   .pages-link {
     flex-direction: column;
-  }
-
-  .pages-link a {
-  }
-
-  .pages-wrapper {
   }
 
   .pages-content-wrapper {

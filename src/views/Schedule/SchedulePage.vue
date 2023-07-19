@@ -34,12 +34,11 @@
       </div>
     </div>
     <div class="trainings-list__wrapper">
-      <WeekTrainings class=""
-                     v-if="dailyTrainings?.length>0"
+      <WeekTrainings v-if="dailyTrainings?.length>0"
                      :dailyTr="dailyTrainings"
                      @onSelect="onTrainingSelect"
-                     @sign="signTraining"
-                     @rescind="rescindTraining"
+                     @sign="onSign"
+                     @rescind="onRescind"
                      :key="dailyTrainings"
       />
       <div v-if="dailyTrainings?.length === 0" class="no-trainings animate__animated animate__fadeIn">
@@ -48,16 +47,19 @@
         <PreloaderSmall class="trainings-list"/>
       </div>
     </div>
-    <ModalCalendarPopup :show="modalTemplate.show" @close="this.modalTemplate.show = false">
+    <ModalCalendarPopup :show="modalTemplate.show" @close="modalTemplate.show = false">
       <template #header>
-        <div>{{ this.modalTemplate.status===200 ?this.$t('actionComplete'): this.$t('actionDeclined')}}</div>
+        <div>{{ !modalTemplate.status ? this.$t('confirm') : this.modalTemplate.heading }}</div>
       </template>
       <template #body>
         <div>
           {{ this.modalTemplate.body }}
         </div>
       </template>
-      <template #footer></template>
+      <template #footer>
+        <button class="popup-btn" v-if="modalTemplate.action==='sign'" @click="signTraining(modalTemplate.t_id)">{{this.$t('confirm')}}</button>
+        <button class="popup-btn" v-else-if="modalTemplate.action==='rescind'" @click="rescindTraining(modalTemplate.t_id)">{{this.$t('confirm')}}</button>
+      </template>
     </ModalCalendarPopup>
   </div>
 </template>
@@ -96,8 +98,11 @@ export default {
       dailyTrainings: null,
       modalTemplate: {
         show: false,
+        action: false,
         status: 0,
-        body: '',
+        heading: null,
+        body: null,
+        t_id: null,
       },
     }
   },
@@ -107,8 +112,6 @@ export default {
       this.$router.push({name: 'home'})
       this.$store.commit('openLoginPopup')
     }
-  },
-  updated() {
   },
   mounted() {
     this.calculateWeekDays(this.currentDay)
@@ -148,8 +151,11 @@ export default {
       this.calculateWeekDays(nextStartDate)
     },
     onDayClick(day) {
+      this.selectedDay = day
       if (this.trainings?.length > 0) {
-        this.dailyTrainings = this.trainings.filter((i) => (day.toLocaleDateString() === new Date(i.when).toLocaleDateString()))
+        this.dailyTrainings = this.trainings.filter((i) => (
+            day.toLocaleDateString() === new Date(i.when).toLocaleDateString() && new Date() < new Date(i.when))
+        )
       }
     },
     onTrainingSelect(t) {
@@ -159,32 +165,59 @@ export default {
     async getTrainings() {
       this.trainings = await trainingsAPI.getGroupTrainings().then(response => {
         this.loading = false
-         return response.data.results
+        return response.data.results
       }).catch(reason => {
         console.log(reason.response.data)
       });
     },
+    onSign(id){
+      this.modalTemplate.action = 'sign'
+      this.modalTemplate.status = 0
+      this.modalTemplate.heading = this.$t('confirm')
+      const training = this.dailyTrainings.filter(el => el.id === id)[0]
+      const date = new Date(training.when).toLocaleDateString(
+          `${this.$store.getters.getLocale}`,
+          {month:'2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit'})
+      this.modalTemplate.t_id = training.id
+      this.modalTemplate.body = `${this.$t('sign')}: ${training?.direction?.name} ${date}`
+      this.modalTemplate.show = true
+    },
     async signTraining(id) {
-      console.log('sign', id)
+      event.stopPropagation()
+      this.modalTemplate.action = null
       await trainingsAPI.singGroupTraining(id).then(response => {
-        this.modalTemplate.show = true
+        this.modalTemplate.heading = this.$t('actionComplete')
         this.modalTemplate.status = response.status
         this.modalTemplate.body = this.$t('signComplete')
-        this.getTrainings().then(()=>{
+        this.getTrainings().then(() => {
           this.onDayClick(this.selectedDay)
         })
       }).catch(reason => {
-        this.modalTemplate.show = true
+        this.modalTemplate.heading = this.$t('error')
         this.modalTemplate.status = reason.response.status
-        this.modalTemplate.body = this.$t('signDecline')
+        this.modalTemplate.body = reason.response.data?.text
       })
     },
+    onRescind(id){
+      this.modalTemplate.action = 'rescind'
+      this.modalTemplate.status = 0
+      this.modalTemplate.heading = this.$t('confirm')
+      const training = this.dailyTrainings.filter(el => el.id === id)[0]
+      const date = new Date(training.when).toLocaleDateString(
+          `${this.$store.getters.getLocale}`,
+          {month:'2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit'})
+      this.modalTemplate.t_id = training.id
+      this.modalTemplate.body = `${this.$t('rescind')}: ${training?.direction?.name} ${date}`
+      this.modalTemplate.show = true
+    },
     async rescindTraining(id) {
+      event.stopPropagation()
+      this.modalTemplate.action = null
       await trainingsAPI.unsignGroupTraining(id).then(response => {
-        this.modalTemplate.show = true
+        this.modalTemplate.heading = this.$t('actionComplete')
         this.modalTemplate.status = response.status
         this.modalTemplate.body = this.$t('rescindComplete')
-        this.getTrainings().then(()=>{
+        this.getTrainings().then(() => {
           this.onDayClick(this.selectedDay)
         })
       }).catch(reason => {
@@ -299,7 +332,10 @@ export default {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
+.popup-btn{
+  background: var(--color-text);
+  color: var(--color-headings);
+}
 h1 {
   font-size: 50px;
 }

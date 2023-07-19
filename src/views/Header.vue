@@ -1,18 +1,18 @@
 <template>
-  <header class="header">
+  <header class="header animate__animated animate__fadeInDown">
     <div class="header-label">
       <router-link :to="{name:'home'}" @click="isOpened=false">
-        <img src="../assets/logos/logo_transparent_1.png" alt=""/>
+        <img src="../assets/logos/logo_transparent_1.png" alt="E.F.S. LOGO"/>
       </router-link>
-    </div>
-    <div :class="{'header__burger':true, 'active': isOpened}"  @click="toggleOpen">
-      <span></span>
     </div>
     <div :class="{'nav__container':true, 'active': isOpened}">
       <nav>
         <ul class="nav-list">
           <li>
-            <router-link :to="{name: 'tr-types'}" @click="isOpened=false">{{ this.$t('trainingTypes') }}</router-link>
+            <router-link :to="{name: 'home'}" @click="isOpened=false">{{ this.$t('home') }}</router-link>
+          </li>
+          <li>
+            <router-link :to="{name: 'tr-types'}" @click="isOpened=false">{{ this.$t('trainings') }}</router-link>
           </li>
           <li>
             <router-link :to="{name: 'memberships'}" @click="isOpened=false">{{ this.$t('memberships') }}</router-link>
@@ -25,8 +25,13 @@
           </li>
         </ul>
       </nav>
-      <HeaderLoginLogout @closeMenu="this.isOpened=false"/>
+      <HeaderLoginLogout v-if="$vuetify.display.mdAndDown" @closeMenu="this.isOpened=false"/>
     </div>
+
+    <div v-if="$vuetify.display.mdAndDown" :class="{'header__burger':true, 'active': isOpened}"  @click="toggleOpen">
+      <span></span>
+    </div>
+    <HeaderLoginLogout v-if="$vuetify.display.lgAndUp" @closeMenu="this.isOpened=false"/>
   </header>
 
 </template>
@@ -41,6 +46,7 @@ export default {
   data(){
     return{
       isOpened:false,
+      scrollTop: 0,
     }
   },
   updated() {
@@ -53,15 +59,14 @@ export default {
       this.isOpened = !this.isOpened
       if (this.isOpened) {
         // Зберегти початкову позицію прокрутки
-        this.scrollTop = window.scrollY;
         // Заблокувати прокрутку
-        window.addEventListener('scroll', this.blockScroll);
+        this.scrollTop = window.scrollY;
         document.body.style.overflow = 'hidden';
       } else {
+        console.log(this.scrollTop)
         // Повернути початкову позицію прокрутки
         window.scrollTo(0, this.scrollTop);
         // Розблокувати прокрутку
-        window.removeEventListener('scroll', this.blockScroll);
         document.body.style.overflow = 'auto';
       }
     },
@@ -76,12 +81,14 @@ export default {
 <style scoped>
 
 .header{
+  position: fixed;
   display: grid;
   width: 100%;
+  min-height: 5rem;
   background-color: var(--color-background-header);
-  grid-template-columns: 4fr 8fr;
+  grid-template-columns: auto auto 3fr;
   box-shadow: 0 0 5px var(--color-header-shadow);
-  padding: 0 9rem;
+  padding: 0 5rem;
   left: 0;
   top: 0;
   text-transform: uppercase;
@@ -110,8 +117,9 @@ export default {
 }
 .header-label {
   display: flex;
+  flex: 0 1 auto;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 
 .header-label a,
@@ -124,16 +132,15 @@ export default {
 
 .header-label a img{
   display: block;
-  height: 5rem;
+  max-height: 5rem;
   max-width: 100%;
 }
 .nav__container{
   display: grid;
-  grid-template-columns: 6fr 6fr;
+  grid-template-columns: 12fr;
 }
 .nav-list {
-  display: grid;
-  grid-template-columns: 3fr 3fr 3fr 3fr;
+  display: flex;
   min-height: 100%;
 }
 
@@ -141,14 +148,15 @@ export default {
   display: flex;
   min-height: 100%;
   align-items: center;
+  padding: 0 .5rem;
   justify-content: center;
 }
-@media (min-width: 768px) and (max-width: 991px) {
-  .header{
-    padding: 0 0 0;
-  }
-}
-@media (max-width: 767px) {
+/*@media (min-width: 768px) and (max-width: 991px) {*/
+/*  .header{*/
+/*    padding: 0 0 0;*/
+/*  }*/
+/*}*/
+@media (max-width: 991px) {
   .header{
     display: flex;
     width: 100%;
@@ -222,7 +230,8 @@ export default {
     opacity: 0;
     top: -100%;
     width: 100%;
-    max-height: 100%;
+    max-height: 100vh;
+    overflow-y: scroll;
     padding: 6rem 0 3rem 0;
     background-color: var(--color-background-soft);
     display: flex;
@@ -241,7 +250,7 @@ export default {
   }
   .nav-list li{
     width: 100%;
-    margin: 1rem 0;
+    margin: 0;
   }
   .nav-list li a{
     padding: 2rem 1rem;
@@ -250,7 +259,6 @@ export default {
   .header-label{
     z-index: 3;
   }
-
 
 }
 </style>

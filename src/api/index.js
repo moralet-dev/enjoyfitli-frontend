@@ -46,14 +46,15 @@ defaultAPIInstance.interceptors.request.use(
         return config
     }
 )
-// Функція для отримання значення куки по імені
+
+// get cookie function
 export function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-// Функція для встановлення значення куки
+// set cookie function
 export function setCookie(name, value, days = 7) {
     const date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);

@@ -1,8 +1,5 @@
 <template>
   <div class="wrapper">
-    <transition name="preloader">
-      <Preloader v-if="loading"/>
-    </transition>
     <div class="banner">
       <h1>ENJOY FITNESS<br>STUDIO</h1>
       <h4>Let's make your body healthy and you happy.</h4>
@@ -91,6 +88,7 @@ export default {
     GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown,
   },
   mounted() {
+    window.scroll(0, 0)
     this.loaded()
   },
   data() {
@@ -102,7 +100,7 @@ export default {
   methods: {
     loaded() {
       setTimeout(
-          () => (this.loading = false), 0
+          () => (this.loading = false), 1000
       )
     },
 
@@ -202,10 +200,6 @@ p {
   margin: 0 0 2rem 0;
 }
 
-.full {
-  padding: 3rem 0;
-}
-
 .full > .title {
   padding: 3rem 9rem;
 }
@@ -229,16 +223,9 @@ p {
   width: 100%;
   transition: .5s;
 }
-.cards-swiper{
-  display: none;
-}
+
 @media (max-width: 767px){
-  .cards{
-    display: none;
-  }
-  .cards-swiper{
-    display: block;
-  }
+
 }
 .dropdown-block {
   display: flex;
@@ -247,21 +234,5 @@ p {
 
 .dropdown-block .dropdown {
   margin: 2rem 0 1rem 0;
-}
-
-.preloader-enter-active {
-  transition: all 0.0s;
-}
-
-.preloader-leave-active {
-  transition: all 0.5s;
-}
-
-.preloader-enter-from {
-  opacity: 1;
-}
-
-.preloader-leave-to {
-  opacity: 0;
 }
 </style>
