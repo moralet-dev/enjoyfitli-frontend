@@ -185,7 +185,7 @@ export default {
 
 .modal-container {
   padding: 0;
-  min-width: 80vw;
+  max-width: 80vw;
   font-size: 18px;
   display: flex;
   flex-direction: row;
@@ -298,6 +298,7 @@ form {
 @media (max-width: 767px) {
   .modal-container{
     position: absolute;
+    max-width: 100vw;
     top: 0;
     left: 0;
   }
