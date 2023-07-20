@@ -1,15 +1,16 @@
+vw
 <template>
   <Teleport to="body">
     <Transition name="modal">
-      <div v-if="show" class="modal-mask">
-        <div class="modal-container">
+      <div v-if="show" class="modal-mask" @click="nullFormData">
+        <div class="modal-container" @click.stop>
           <div class="modal-content">
             <button class="mobile-close" @click="nullFormData">
               <CloseIcon/>
             </button>
             <div class="modal-header">
-              <span>Hello!</span>
-              <h3>Enter to personal cabinet</h3>
+              <span>{{ $t('hello') }}!</span>
+              <h3>{{ $t('enterCabinet') }}</h3>
             </div>
             <div class="modal-body">
               <form @submit.prevent="onSubmit">
@@ -17,29 +18,23 @@
                   <span>{{ loginErrors.detail }}</span>
                 </div>
                 <div class="form-group">
-                  <label for="email">E-mail:</label>
-                  <input id="email" type="email" placeholder="Enter your e-mail" v-model="formData.email" required/>
+                  <label for="email">{{ $t('email') }}:</label>
+                  <input id="email" type="email" :placeholder="$t('enterEmail')" v-model="formData.email" required/>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password:</label>
-                  <input id="password" type="password" placeholder="Enter your password" v-model="formData.password"
+                  <label for="password">{{ $t('password') }}:</label>
+                  <input id="password" type="password" :placeholder="$t('enterPSWD')" v-model="formData.password"
                          required/>
                 </div>
-                <!--                <div class="form-group remember">-->
-                <!--                  <label for="rememberMe">Remember me:</label>-->
-                <!--                  <input name="rememberMe" type="checkbox" v-model="formData.rememberMe"/>-->
-                <!--                </div>-->
                 <div class="login-block">
-                  <button type="submit" value="Log-in">Log-in</button>
-                  <a v-on:click="$emit('close'); this.$router.push({name:'reset-password'})">Forgot password?</a>
+                  <button type="submit" value="Log-in">{{ $t('login') }}</button>
+                  <a class="text-link"
+                     @click="$emit('close'); this.$router.push({name:'reset-password'})">{{ $t('forgotPSWD') }}?</a>
                 </div>
               </form>
             </div>
-
-            <div class="modal-footer">
-            </div>
             <div class="post-info">
-              <h4>Social networks</h4>
+              <h4>{{ $t('socialNetworks') }}</h4>
               <div class="">
                 <InstagramLogo/>
                 <TikTokLogo/>
@@ -81,7 +76,6 @@ export default {
     }
   },
   mounted() {
-    window
   },
   methods: {
     async onSubmit() {
@@ -129,13 +123,12 @@ export default {
 .modal-container {
   margin: auto;
   padding: 0;
-  min-width: 80%;
+  min-width: 80vw;
   font-size: 18px;
   display: flex;
   flex-direction: row;
-  background-color: var(--color-background-soft);
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  background-color: var(--color-background);
+  border-radius: 25px;
   transition: all 0.3s ease;
 }
 
@@ -160,31 +153,6 @@ export default {
   padding: 2rem 0;
 }
 
-.modal-footer {
-  display: flex;
-}
-
-.modal-footer button {
-  border: none;
-  margin: 0 10px;
-  border-radius: 15px;
-  padding: 5px 10px;
-}
-
-.post-info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0 1rem 0;
-  border-top: solid 1px grey;
-  margin: 2rem 0 0 0;
-}
-
-.post-info a {
-  margin: 10px 10px;
-}
 
 form {
   display: flex;
@@ -192,42 +160,10 @@ form {
   padding: 1rem 0;
 }
 
-form button {
-  width: fit-content;
-  padding: 1rem 2rem;
-  background-color: var(--color-background-soft);
-  color: var(--color-link-text);
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 100px;
-  border: 1px solid var(--color-link-text);
-  transition: .3s;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  form button{
-    padding: 0.5rem 1rem;
-    font-size: 14px;
-  }
-}
-form button:hover {
-  color: var(--color-link-bg);
-  background-color: var(--color-link-text);
-  border: 1px solid var(--color-link-text);
-}
-
 .form-group {
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
-}
-
-.form-group label {
-  font-weight: 700;
-  color: var(--color-headings);
-}
-
-.remember input {
-  margin: 0.5rem 0;
 }
 
 .login-block {
@@ -237,7 +173,6 @@ form button:hover {
 }
 
 .login-block a {
-  color: var(--color-link-text);
   cursor: pointer;
 }
 
@@ -246,12 +181,16 @@ form button:hover {
   background: none;
 }
 
+.text-link {
+  text-align: right;
+}
+
 .modal-bg {
   position: relative;
   background: url("../../assets/bg-images/login-popup.png") center no-repeat;
   background-size: cover;
   min-width: 50%;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .modal-bg button {
@@ -264,17 +203,43 @@ form button:hover {
   background: transparent;
   width: fit-content;
 }
-.mobile-close{
+
+.mobile-close {
   display: none;
 }
+
+.error-msg {
+  font-size: 14px;
+  color: var(--vt-c-red-dark);
+}
+
+.post-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 1rem 0;
+  border-top: solid 1px var(--color-helper);
+  margin: 2rem 0 0 0;
+}
+.post-info h4{
+  margin-bottom: .5rem;
+}
+.post-info a {
+  margin: 10px 10px;
+}
+
 @media (max-width: 767px) {
-  .modal-content{
+  .modal-content {
     width: 100%;
     padding: 0 1rem;
   }
-  .modal-bg{
+
+  .modal-bg {
     display: none;
   }
+
   .mobile-close {
     display: block;
     position: absolute;
@@ -285,10 +250,6 @@ form button:hover {
     z-index: 9999;
 
   }
-}
-.error-msg {
-  font-size: 14px;
-  color: rgb(255, 69, 0);
 }
 
 .modal-enter-from {

@@ -1,110 +1,104 @@
 <template>
   <Teleport to="body">
     <Transition name="modal">
-      <div v-if="show" class="modal-mask">
-        <div class="modal-container">
+      <div v-if="show" class="modal-mask" @click="nullFormData">
+        <div class="modal-container" @click.stop>
           <div class="modal-content">
-            <button class="mobile-close" @click="nullFormData">
+            <button class="close" @click="nullFormData">
               <CloseIcon/>
             </button>
             <div class="modal-header">
-              <span>Welcome!</span>
-              <h3>Create personal cabinet</h3>
+              <span>{{ $t('welcome') }}!</span>
+              <h3>{{ $t('createPersonalCab') }}</h3>
             </div>
             <div class="modal-body">
               <form @submit.prevent="onSubmit">
-                <div class="fields-container">
-                  <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input id="email" type="email" placeholder="Enter your e-mail" v-model="formData.email" required/>
-                    <div class="error-msg" v-if="errors && errors.email">
-                      {{ errors.email[0] }}
-                    </div>
+                <div class="form-group">
+                  <label for="email">{{ $t('email') }}:</label>
+                  <input id="email" type="email" :placeholder="$t('enterEmail')" v-model="formData.email" required/>
+                  <div class="error-msg" v-if="errors && errors.email">
+                    {{ errors.email[0] }}
                   </div>
-                  <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input id="phone" type="tel" v-model="formData.phone" placeholder="380..." required/>
-                    <div class="error-msg" v-if="errors && errors.phone">
-                      {{ errors.phone[0] }}
-                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="phone">{{ $t('tel') }}</label>
+                  <input id="phone" type="tel" v-model="formData.phone" placeholder="380..." required/>
+                  <div class="error-msg" v-if="errors && errors.phone">
+                    {{ errors.phone[0] }}
                   </div>
-                  <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input id="first_name" maxlength="30" v-model="formData.first_name" required/>
-                    <div class="error-msg" v-if="errors && errors.first_name">
-                      {{ errors.first_name[0] }}
-                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="first_name">{{ $t('firstName') }}</label>
+                  <input id="first_name" maxlength="30" v-model="formData.first_name" required/>
+                  <div class="error-msg" v-if="errors && errors.first_name">
+                    {{ errors.first_name[0] }}
                   </div>
-                  <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input id="last_name" maxlength="30" v-model="formData.last_name" required/>
-                    <div class="error-msg" v-if="errors && errors.last_name">
-                      {{ errors.last_name[0] }}
-                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="last_name">{{ $t('lastName') }}</label>
+                  <input id="last_name" maxlength="30" v-model="formData.last_name" required/>
+                  <div class="error-msg" v-if="errors && errors.last_name">
+                    {{ errors.last_name[0] }}
                   </div>
-                  <div class="form-group">
-                    <label for="rememberMe">Password</label>
-                    <input id="password" type="password" v-model="formData.password" required/>
-                    <div class="error-msg" v-if="errors && errors.password">
-                      {{ errors.password[0] }}
-                    </div>
-                    <div class="error-msg" v-if="errors && errors.non_field_errors">
-                      {{ errors.non_field_errors[0] }}
-                    </div>
+                </div>
+                <div class="form-group">
+                  <label for="rememberMe">{{ $t('password') }}:</label>
+                  <input id="password" type="password" :placeholder="$t('enterPSWD')" v-model="formData.password"
+                         required/>
+                  <div class="error-msg" v-if="errors && errors.password">
+                    {{ errors.password[0] }}
                   </div>
-                  <div class="form-group">
-                    <label for="re_password">Repeat password</label>
-                    <input name="re_password" type="password" v-model="formData.re_password" required/>
+                  <div class="error-msg" v-if="errors && errors.non_field_errors">
+                    {{ errors.non_field_errors[0] }}
                   </div>
+                </div>
+                <div class="form-group">
+                  <label for="re_password">{{ $t('repeatPSWD') }}:</label>
+                  <input name="re_password" type="password" :placeholder="$t('repeatPSWD')"
+                         v-model="formData.re_password" required/>
                 </div>
                 <div class="form-group privacy-policy">
                   <input name="agree" type="checkbox" required/>
-                  <label for="agree">I agree with <a>privacy policy</a></label>
+                  <label for="agree">
+                    {{ $t('iAgreeWith') }}
+                    <a class="text-link">{{ $t('termsOfServiceUse') }}</a>
+                    {{ $t('and') }}
+                    <a class="text-link">{{ $t('privacyPolicy') }}</a>
+                  </label>
                 </div>
                 <div class="login-block">
-                  <button type="submit" value="Log-in">Registration</button>
+                  <button type="submit" value="Log-in">{{ $t('confirm') }}</button>
                 </div>
               </form>
             </div>
-
-            <div class="modal-footer">
-            </div>
-          </div>
-          <div class="modal-bg">
-            <button @click="nullFormData">
-              <CloseIcon/>
-            </button>
           </div>
         </div>
       </div>
     </Transition>
     <Transition name="modal">
-      <div v-if="showNext" class="modal-mask">
-        <div class="modal-container">
+      <div v-if="showNext" class="modal-mask" @click="showNext=false">
+        <div class="modal-container success" @click.stop>
+          <button class="close" @click="showNext = false">
+            <CloseIcon/>
+          </button>
           <div class="modal-content">
             <div class="modal-header">
-              <h3>Successfully created Personal Cabinet</h3>
+              <h3>{{ $t('successCreateCab') }}</h3>
             </div>
             <div class="modal-body">
               <p>
-                We have sent you an activation email.
-                Please check your email inbox (and spam folder, if necessary) and activate your account by following the instructions.
+                {{ $t('successCreateCabMessage') }}
               </p>
             </div>
             <div class="modal-footer">
             </div>
             <div class="post-info">
-              <h4>Social networks</h4>
-              <div class="">
-                <InstagramLogo/>
-                <TikTokLogo/>
+              <h4>{{ $t('socialNetworks') }}</h4>
+              <div class="social">
+                <InstagramLogo />
+                <TikTokLogo />
               </div>
             </div>
-          </div>
-          <div class="modal-bg">
-            <button @click="showNext = false">
-              <CloseIcon/>
-            </button>
           </div>
         </div>
       </div>
@@ -134,12 +128,12 @@ export default {
         re_password: null,
       },
       errors: null,
-      showNext: false,
+      showNext: true,
     }
   },
   methods: {
     async onSubmit() {
-      await this.$store.dispatch('authModule/onRegister', {...this.formData}).then(() => {
+      // await this.$store.dispatch('authModule/onRegister', {...this.formData}).then(() => {
         this.$router.push({name: 'home'})
         this.formData.email = null
         this.formData.phone = null
@@ -150,9 +144,13 @@ export default {
         this.errors = null
         this.$emit('close')
         this.showNext = true
-      }).catch(reason => {
-        this.errors = reason.response.data
-      })
+      // }).catch(reason => {
+      //   this.showNext = true
+      //
+      //   if (reason.response.status!==500){
+      //     return this.errors = reason.response.data
+      //   }
+      // })
     },
     async nullFormData() {
       this.formData.email = null
@@ -171,38 +169,50 @@ export default {
 <style scoped>
 .modal-mask {
   position: fixed;
-  z-index: 9998;
+  z-index: 9999;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+  align-items: center;
+  justify-content: center;
   transition: opacity 0.3s ease;
-  overflow-y: auto;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .modal-container {
-  margin: auto;
   padding: 0;
-  min-width: 80%;
+  min-width: 80vw;
   font-size: 18px;
   display: flex;
   flex-direction: row;
-  background-color: var(--color-background-soft);
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  background-color: var(--color-background);
+  border-radius: 25px;
   transition: all 0.3s ease;
 }
-.mobile-close{
-  display: none;
+.success{
+  max-width: 70vw;
 }
-.modal-content {
-  padding: 0 3rem;
-  width: 50%;
-  border-radius: 15px;
-  overflow-y: auto;
+.close {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border: none;
+  z-index: 9999;
 
+}
+
+.modal-content {
+  flex-direction: column;
+  align-items: center;
+  padding: 0 3rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .modal-header {
@@ -217,91 +227,18 @@ export default {
 .modal-body {
   padding: 2rem 0;
 }
-
-.modal-footer {
-  display: flex;
-}
-
-.modal-footer button {
-  border: none;
-  margin: 0 10px;
-  border-radius: 15px;
-  padding: 5px 10px;
-}
-
-.post-info {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0 1rem 0;
-  border-top: solid 1px grey;
-  margin: 2rem 0 0 0;
-}
-
 form {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-}
-.fields-container {
   display: grid;
   grid-template-columns: 6fr 6fr;
   grid-column-gap: 10px;
-
-}
-@media (max-width: 767px) {
-  .modal-content{
-    width: 100%;
-    padding: 0 2rem;
-  }
-  .modal-bg{
-    display: none;
-  }
-  .fields-container{
-    display: flex;
-    flex-direction: column;
-  }
-  .mobile-close {
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: transparent;
-    border: none;
-    z-index: 9999;
-
-  }
+  padding: 1rem 0;
 }
 
-form button {
-  width: fit-content;
-  padding: 1rem 2rem;
-  background-color: var(--color-background-soft);
-  color: var(--color-link-text);
-  font-size: 16px;
-  font-weight: 700;
-  border-radius: 100px;
-  border: 1px solid var(--color-link-text);
-  transition: .3s;
-}
-
-form button:hover {
-  color: var(--color-link-bg);
-  background-color: var(--color-link-text);
-  border: 1px solid var(--color-link-text);
-}
 
 .form-group {
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
-}
-
-.form-group label {
-  font-weight: 700;
-  color: var(--color-headings);
 }
 
 .privacy-policy {
@@ -315,11 +252,11 @@ form button:hover {
 
 .privacy-policy label a {
   cursor: pointer;
-  color: #005BE3;
 }
 
 .privacy-policy label a:hover {
   background-color: transparent;
+  color: #005BE3;
 }
 
 .login-block {
@@ -330,7 +267,6 @@ form button:hover {
 }
 
 .login-block a {
-  color: var(--color-link-text);
   cursor: pointer;
 }
 
@@ -339,40 +275,52 @@ form button:hover {
   background: none;
 }
 
-.modal-bg {
-  position: relative;
-  background: url("../../assets/bg-images/reg-popup.png") center no-repeat;
-  background-size: cover;
-  min-width: 50%;
-  border-radius: 15px;
-
-}
-
-.modal-bg button {
-  position: absolute;
-  padding: 0;
-  border: none;
-  margin: 1rem;
-  top: 0;
-  right: 0;
-  background: transparent;
-  width: fit-content;
-}
-
 .error-msg {
   font-size: 14px;
-  color: rgb(255, 69, 0);
+  color: var(--vt-c-red-dark);
 }
+.post-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 1rem 0;
+  border-top: solid 1px var(--color-helper);
+  margin: 2rem 0 0 0;
+}
+.post-info h4{
+  margin-bottom: .5rem;
+}
+.social a{
+  padding: 0 .5rem;
+}
+@media (max-width: 767px) {
+  .modal-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .success{
+    position: relative;
+  }
+  .modal-content {
+    width: 100%;
+    padding: 0 2rem;
+  }
 
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
+  .modal-bg {
+    display: none;
+  }
 
+  form {
+    grid-template-columns: 12fr;
+  }
+  .text-link {
+    color: rgba(0, 91, 227, 1);
+    background: none;
+  }
+}
 .modal-enter-from {
   opacity: 0;
 }

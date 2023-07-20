@@ -2,8 +2,8 @@
   <footer>
     <div class="wrapper">
       <div class="footer-block icons">
-        <TikTokLogo :border="'var(--color-headings)'" :icon-color="'transparent'"/>
-        <InstagramLogo :border="'var(--color-headings)'" :icon-color="'transparent'"/>
+        <TikTokLogo />
+        <InstagramLogo />
       </div>
       <div class="footer-block">
         <span>м.Шулявка, ТЦ Мармелад</span>

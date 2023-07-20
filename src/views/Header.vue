@@ -126,6 +126,7 @@ export default {
 }
 
 .header-label a,
+.header-label a:hover,
 .header-label a.router-link-active,
 .header-label a.router-link-exact-active{
   box-shadow: none;
@@ -153,12 +154,14 @@ export default {
   align-items: center;
   padding: 0 .5rem;
   justify-content: center;
+  transition: .3s;
 }
-/*@media (min-width: 768px) and (max-width: 991px) {*/
-/*  .header{*/
-/*    padding: 0 0 0;*/
-/*  }*/
-/*}*/
+.nav-list li a:hover{
+  padding: 0 1rem;
+}
+.nav-list li a.router-link-active:hover{
+  padding: 0 .5rem;
+}
 @media (max-width: 991px) {
   .header{
     display: flex;
@@ -230,7 +233,7 @@ export default {
     position: fixed;
     left: 0;
     opacity: 0;
-    top: -100%;
+    top: -100vh;
     width: 100%;
     max-height: 100vh;
     overflow-y: scroll;

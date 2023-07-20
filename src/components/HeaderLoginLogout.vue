@@ -109,7 +109,7 @@ export default {
   transition: .3s;
 }
 .lang img:hover{
-  transform: scale(120%) scale3d(-1, 1, 1);
+  transform: scale(120%);
 }
 .login-container {
   display: flex;
@@ -149,7 +149,7 @@ export default {
 }
 a.logout:hover{
   color: var(--color-header-text);
-  background: #8C3419;
+  background: var(--vt-c-red-dark);
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .login-container {

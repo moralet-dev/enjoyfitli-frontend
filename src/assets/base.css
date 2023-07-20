@@ -20,6 +20,7 @@
     --vt-c-black-soft: #222222;
     --vt-c-black-mute: #282828;
 
+    --vt-c-red-dark: #8C3419;
     --vt-c-main-green: #7EBFB3;
     --vt-c-second-green-semi-opacity: rgb(126, 191, 179, .5);
     --vt-c-second-green: #A7F2E4;
@@ -186,7 +187,11 @@ a:hover {
     background-color: var(--color-link-bg-hover);
 }
 form label{
+    color: var(--color-text);
     font-size: 20px;
+}
+form label:first-letter{
+    text-transform: uppercase;
 }
 form input {
     background: transparent;
@@ -202,6 +207,12 @@ form input {
 
 form input:focus {
     border-bottom: solid 2px var(--color-helper);
+}
+form input::placeholder{
+    color: slategrey;
+}
+form input:-webkit-autofill{
+    background: transparent;
 }
 @media (max-width: 767px) {
     form input{
