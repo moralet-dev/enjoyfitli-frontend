@@ -261,6 +261,12 @@ export default {
     padding: 2rem 1rem;
     color: var(--color-header-text);
   }
+  .nav-list li a:hover{
+    padding: 2rem 1rem;
+  }
+  .nav-list li a.router-link-active:hover{
+    padding: 2rem 1rem;
+  }
   .header-label{
     z-index: 3;
   }

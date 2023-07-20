@@ -107,7 +107,7 @@ export default {
         enterPSWD: 'enter password',
         forgotPSWD: 'forgot password',
         socialNetworks: 'social networks',
-        createPersonalCab: 'Створити персональний кабінет',
+        createPersonalCab: 'Create personal cabinet',
         tel: 'phone',
         firstName: 'first name',
         lastName: 'last name',
