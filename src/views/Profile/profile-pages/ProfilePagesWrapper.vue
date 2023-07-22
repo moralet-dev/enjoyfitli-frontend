@@ -54,7 +54,7 @@ export default {
         {
           to: { name: 'personal' },
           icon: ScheduleIcon,
-          text: 'ProfilePage.personalTrainings',
+          text: 'personalTrainings',
           mobileName: 'mob_personal'
         },
         {
@@ -93,13 +93,14 @@ export default {
 .pages-wrapper {
   display: grid;
   grid-template-columns: 4fr 8fr;
-  padding: 6rem 0;
+  border-top: 1px solid white;
 }
 
 aside {
   display: flex;
   flex-direction: column;
   border-right: solid 1px var(--color-helper);
+  padding: 1rem 0 0 0;
 }
 
 .pages-link {
@@ -114,12 +115,16 @@ aside {
   border-radius: 10px;
   padding: 0.5em 1rem;
 }
-.pages-link a.router-link-active, .pages-link a.router-link-exact-active{
+.pages-link a.router-link-active {
+  background: transparent;
+}
+.pages-link a.router-link-exact-active{
   background: var(--color-link-text-hover);
   color: var(--color-helper);
   border: 3px solid var(--color-link-text);
 }
-.pages-link a.router-link-active:hover, .pages-link a.router-link-exact-active:hover{
+
+.pages-link a.router-link-exact-active:hover{
   background: var(--color-link-text-hover);
 }
 .pages-link a:hover{
@@ -135,7 +140,7 @@ aside {
   display: flex;
   max-width: 100%;
   flex-direction: column;
-  padding: 0 0 0 7rem;
+  padding: 1rem 0 0 5rem;
 }
 
 @media (max-width: 767px) {
@@ -146,15 +151,18 @@ aside {
   .pages-wrapper {
     display: grid;
     grid-template-columns: 12fr;
-    padding: 6rem 0 0 0;
   }
 
   .pages-link {
     flex-direction: column;
+    padding: 0;
   }
-
+  .pages-link a{
+    border: 3px solid var(--color-link-text);
+    margin-bottom: 2px;
+  }
   .pages-content-wrapper {
-    padding: 1rem 0.5rem 0 0.5rem;
+    padding: 1rem 0.5rem 0 ;
   }
 }
 

@@ -1,8 +1,7 @@
 <template>
   <div>
-
       <div class="title-wrapper">
-        <h3>{{ this.$t('ProfilePage.myMemberships') }}</h3>
+        <h3>{{ this.$t('myMemberships') }}</h3>
       </div>
     <div class="loading" v-if="loading">
       <PreloaderSmall/>
@@ -12,21 +11,22 @@
         <div v-for="m in membList" :key="m.id" class="membership">
           <div class="membership-info">
             <span class="m-name">{{ m.membership.type[`name_${this.$store.getters.getLocale}`] }}</span>
-
           </div>
           <div class="membership-info-current">
-            <span class="trainings-title">{{ this.$t('ProfilePage.trainingsStatus') }}:</span>
+            <span class="trainings-title">{{ this.$t('trainingsStatus') }}:</span>
             <div class="trainings-info">
               <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left"
                                    :trainings-count="m.membership.count" radius="80"
                                    width="180" height="180"/>
               <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="m.membership.count"
                                    radius="40"
-                                   width="100" height="100"/>
+                                   width="90" height="90"/>
               <div class="trainings-info__description">
-                <span>{{ this.$t('ProfilePage.trainingsLeft') }}: {{ m.trainings_left }}/{{ m.membership.count }}</span>
-                <span class="expired">{{ this.$t('ProfilePage.expiringAt') }}:<br>{{
-                    new Date(m?.date_end).toLocaleString()
+                <span>{{ this.$t('trainingsLeft') }}: {{ m.trainings_left }}/{{ m.membership.count }}</span>
+                <span class="expired">{{ this.$t('expiresAt') }}: {{
+                    new Date(m?.date_end).toLocaleDateString(
+                        `${this.$store.getters.getLocale}`,
+                        {month:'2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit'})
                   }}</span>
               </div>
             </div>
@@ -34,12 +34,12 @@
 
         </div>
       </div>
-      <div v-else>
-        <p>{{ this.$t('ProfilePage.noMembershipText') }}
+      <div v-else class="no-memberships">
+        <p>{{ this.$t('noMembershipText') }}
         </p>
         <br>
-        <div class="">
-          <router-link :to="{name: 'memberships'}">{{ this.$t('ProfilePage.chooseMembership') }}</router-link>
+        <div class="text-link">
+          <router-link :to="{name: 'memberships'}">{{ this.$t('chooseMembership') }}</router-link>
         </div>
       </div>
     </div>
@@ -91,7 +91,14 @@ export default {
 }
 
 h3 {
-  font-size: 40px;
+  font-size: 30px;
+}
+.no-memberships{
+  padding: 0 0 2rem 0;
+  text-align: center;
+}
+.text-link{
+  font-size: 1.5rem;
 }
 .membership{
   margin: 0 0 1rem 0;
@@ -108,11 +115,10 @@ h3 {
 
 .m-name {
   font-weight: 700;
-  font-size: 30px;
+  font-size: 22px;
 }
 
 .m-count-block p {
-  font-size: 18px;
   padding: 0 0 0.75rem 0;
 }
 .trainings-title {
@@ -125,6 +131,7 @@ h3 {
 .trainings-info {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 0 1.5rem 0;
 }
 
@@ -132,16 +139,16 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: flex-end;
 }
 
 .trainings-info__description span {
   padding: 1rem;
   margin: 1rem;
 }
-.m-count-block {
-  display: flex;
-}
 .expired {
+  display: block;
+  flex: 0 1 auto;
   border: 2px solid var(--color-link-text);
   border-radius: 15px;
 }
@@ -150,7 +157,7 @@ h3 {
 }
 @media (max-width: 767px) {
   h3{
-    font-size: 30px;
+    font-size: 25px;
   }
   .title-wrapper {
   }
@@ -159,12 +166,8 @@ h3 {
   }
 
   .m-name {
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
-  }
-
-  .m-count-block {
-
   }
 
   .trainings-title {
@@ -173,12 +176,12 @@ h3 {
   .trainings-info {
     flex-direction: row;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   .trainings-info__description span {
     padding: 0 0 .5rem 0;
     margin: 0;
+    text-align: right;
   }
   span.expired {
     padding: 1rem;

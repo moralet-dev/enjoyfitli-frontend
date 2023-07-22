@@ -13,9 +13,9 @@ import ResetPassword from "@/views/ResetPassword.vue";
 import AboutMePage from "@/views/AboutMePage.vue";
 import SchedulePage from "@/views/Schedule/SchedulePage.vue";
 import NotFound from "@/views/NotFound.vue";
-import Personal from "@/views/Profile/profile-pages/Personal.vue";
 import TrTypesPage from "@/views/TrTypes/TrTypesPage.vue";
 import TypeDetail from "@/views/TrTypes/TypeDetail.vue";
+import PersonalTrainings from "@/views/Profile/profile-pages/PersonalTrainings.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -56,7 +56,7 @@ const routes = [
             },
             {
                 path: 'personal',
-                components: {default: Personal, mob_personal: Personal},
+                components: {default: PersonalTrainings, mob_personal: PersonalTrainings},
                 name: 'personal'
             },
             {

@@ -1,8 +1,8 @@
 <template>
   <div class="login-container__wrapper">
     <div class="locale">
-      <div class="lang" @click="setLocale('uk')"><img src="src/assets/icons/flags/ukraine.png" alt="uk"/></div>
-      <div class="lang " @click="setLocale('en')"><img src="src/assets/icons/flags/united-kingdom.png" alt="eng"/></div>
+      <div class="lang" @click="setLocale('uk')"><Flag /></div>
+      <div class="lang " @click="setLocale('en')"><Flag  country="gb"/></div>
     </div>
     <div v-if="getIsAuth"
          :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
@@ -26,10 +26,11 @@
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 import ModalLogin from "@/components/Modals/ModalLogin.vue";
 import ModalReg from "@/components/Modals/ModalReg.vue";
+import Flag from "@/components/icons/Flag.vue";
 
 export default {
   name: "HeaderLoginLogout",
-  components: {ModalLogin, LogoutIcon, ModalReg},
+  components: {Flag, ModalLogin, LogoutIcon, ModalReg},
   data() {
     return {
       showLoginModal: false,
@@ -96,19 +97,19 @@ export default {
 }
 
 .lang {
-  width: 25px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   margin: 0 .5rem;
   cursor: pointer;
 }
 
-.lang img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.lang svg {
   transition: .3s;
 }
-.lang img:hover{
+.lang:hover > svg{
   transform: scale(120%);
 }
 .login-container {

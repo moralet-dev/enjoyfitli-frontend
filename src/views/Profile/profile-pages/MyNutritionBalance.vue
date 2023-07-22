@@ -1,57 +1,57 @@
 <template>
   <div class="">
     <div class="title-wrapper">
-      <h3>{{this.$t('ProfilePage.nutritionCalc')}}</h3>
+      <h3>{{$t('nutritionCalc')}}</h3>
     </div>
     <div class="table">
       <form @submit.prevent="calculate">
         <div class="form-group">
-          <label for="weight">{{ this.$t('ProfilePage.weightKG') }}</label>
-          <input type="number" v-model="weight" min="30" max="150" id="weight" required>
+          <label for="weight">{{ $t('weightKG') }}</label>
+          <input type="number" v-model="weight" min="30" max="250" id="weight" required>
         </div>
         <div class="form-group">
-          <label for="height">{{ this.$t('ProfilePage.heightKG') }}</label>
-          <input type="number" v-model="height" min="140" max="205" id="height" required>
+          <label for="height">{{ $t('heightKG') }}</label>
+          <input type="number" v-model="height" min="140" max="235" id="height" required>
         </div>
         <div class="form-group">
-          <label for="age">{{ this.$t('ProfilePage.age') }}</label>
+          <label for="age">{{ $t('age') }}</label>
           <input type="number" v-model="age" min="10" max="100" id="age" required>
         </div>
         <div class="form-group">
-          <label>{{ this.$t('ProfilePage.gender') }}</label>
+          <label>{{ $t('gender') }}</label>
           <select v-model="gender" id="gender" required>
-            <option value="male">{{ this.$t('ProfilePage.male') }}</option>
-            <option value="female">{{ this.$t('ProfilePage.female') }}</option>
+            <option value="male">{{ $t('male') }}</option>
+            <option value="female">{{ $t('female') }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="activity">{{ this.$t('ProfilePage.activityLVL') }}</label>
+          <label for="activity">{{ $t('activityLVL') }}</label>
           <select v-model="activity" id="activity" required>
-            <option value="sedentary" title="Сидячий спосіб життя">{{ this.$t('ProfilePage.week0') }}</option>
-            <option value="lightlyActive" title="Легка активність (тренування 1-2 рази на тиждень)">{{ this.$t('ProfilePage.week12') }}</option>
-            <option value="moderatelyActive" title="Середня активність (тренування 3-5 разів на тиждень)">{{ this.$t('ProfilePage.week35') }}</option>
-            <option value="veryActive" title="Висока активність (тренування 6-7 разів на тиждень)">{{ this.$t('ProfilePage.week67') }}</option>
-            <option value="1.9" title="Дуже висока активність (тренування 2 рази на день)">{{ this.$t('ProfilePage.day2') }}</option>
+            <option value="sedentary" title="Сидячий спосіб життя">{{ $t('week0') }}</option>
+            <option value="lightlyActive" title="Легка активність (тренування 1-2 рази на тиждень)">{{ $t('week12') }}</option>
+            <option value="moderatelyActive" title="Середня активність (тренування 3-5 разів на тиждень)">{{ $t('week35') }}</option>
+            <option value="veryActive" title="Висока активність (тренування 6-7 разів на тиждень)">{{ $t('week67') }}</option>
+            <option value="1.9" title="Дуже висока активність (тренування 2 рази на день)">{{ $t('day2') }}</option>
           </select>
         </div>
         <div class="form-group">
-          <label>{{ this.$t('ProfilePage.goal') }}</label>
+          <label>{{ $t('goal') }}</label>
           <select v-model="goal" id="goal" required>
-            <option value="weightLoss">{{ this.$t('ProfilePage.weightLoss') }}</option>
-            <option value="weightMaintenance">{{ this.$t('ProfilePage.weightKeep') }}</option>
+            <option value="weightLoss">{{ $t('weightLoss') }}</option>
+            <option value="weightMaintenance">{{ $t('weightKeep') }}</option>
           </select>
         </div>
         <div class="form-group">
-          <button type="submit">{{ this.$t('ProfilePage.calculate') }}</button>
+          <button type="submit">{{ $t('calculate') }}</button>
         </div>
 
       </form>
       <div class="result" v-if="result">
-        <h3>{{ this.$t('ProfilePage.result') }}:</h3>
-        <p>{{ this.$t('ProfilePage.calories') }}: {{ result.calories }}</p>
-        <p>{{ this.$t('ProfilePage.protein') }}: {{ result.protein }}</p>
-        <p>{{ this.$t('ProfilePage.fats') }}: {{ result.fat }}</p>
-        <p>{{ this.$t('ProfilePage.carbs') }}: {{ result.carbs }}</p>
+        <h3>{{ $t('result') }}:</h3>
+        <p>{{ $t('calories') }}: {{ result.calories }}</p>
+        <p>{{ $t('protein') }}: {{ result.protein }}</p>
+        <p>{{ $t('fats') }}: {{ result.fat }}</p>
+        <p>{{ $t('carbs') }}: {{ result.carbs }}</p>
       </div>
     </div>
 
@@ -75,7 +75,6 @@ export default {
   },
   methods: {
     calculate() {
-      // Обчислення калорій
       const bmr =
           this.gender === "male"
               ? 66.5   + 13.75 * this.weight + 5.003 * this.height - 6.75 * this.age
@@ -99,7 +98,6 @@ export default {
       } else if (this.goal === "weightMaintenance") {
         calorieIntake = calories;
       }
-      console.log(calorieIntake)
       let protein = 0, fat = 0, carbs = 0;
 
       if (this.goal === 'weightLoss') {
@@ -112,13 +110,6 @@ export default {
         carbs = (calorieIntake - ((protein * 4) + (fat * 9))) / 4;
       }
 
-
-      // Обчислення КБЖУ
-      // const protein = this.weight * (this.goal === "weightLoss" ? 1.8 : 2.2);
-      // const fat = calories * (this.goal === "weightLoss" ? 0.25 : 0.3) / 9;
-      // const carbs = (calories - protein * 4 - fat * 9) / 4;
-
-      // Збереження результату
       this.result = {
         calories: Math.round(calorieIntake),
         protein: Math.round(protein),
@@ -176,6 +167,9 @@ label:first-letter{
   .title-wrapper{
     padding: 1rem 0 0 0;
   }
+  .table{
+    padding: 1rem 0;
+  }
   h3{
     font-size: 25px;
   }
@@ -183,7 +177,6 @@ label:first-letter{
     display: grid;
     grid-template-columns: 12fr;
     grid-gap: 10px;
-    font-size: 16px;
   }
   .form-group select{
     font-size: 16px;

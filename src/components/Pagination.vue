@@ -1,17 +1,28 @@
 <template>
   <div class="pagination">
-    <div class="page animate__animated  animate__bounceIn" v-if="currentPage > 2 && pageCount > 3" @click="changePage(1)">First</div>
-    <div class="num-pages">
-      <div :class="{'selected': i=== currentPage, 'page': true}" @click="changePage(i)" v-if="pageCount > 1" v-for="i in pageCount" :key="i">
-        {{ i }}
+    <div class="page animate__animated  animate__bounceIn display" v-if="currentPage >= 3 && pageCount >= 3"
+         @click="changePage(1)">
+      &lt;&lt;
+    </div>
+    <div class="num-pages" v-if="pageCount>1">
+      <div v-for="i in pageCount"
+           :class="{'selected': i === currentPage, 'page': true, 'display': currentPage-3<i && i<currentPage+3}"
+           @click="changePage(i)"
+           :key="i">
+        <span >
+          {{ i }}
+        </span>
       </div>
     </div>
-    <div class="page animate__animated  animate__bounceIn" v-if="currentPage < pageCount-2 && pageCount > 1" @click="changePage(pageCount)">Last</div>
+    <div class="page animate__animated  animate__bounceIn display" v-if="currentPage <= pageCount-3 && pageCount >= 3"
+         @click="changePage(pageCount)">>>
+    </div>
   </div>
 </template>
 
 <script>
 import 'animate.css'
+
 export default {
   name: "Pagination",
   props: {
@@ -25,37 +36,58 @@ export default {
       currentPage: 1,
     }
   },
-  methods:{
-    changePage(num){
+  methods: {
+    changePage(num) {
       this.$emit('page', num)
-      this.currentPage=num
+      this.currentPage = num
     }
   }
 }
 </script>
 
 <style scoped>
-.pagination{
+.pagination {
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  margin: .5rem 0;
   justify-content: center;
 }
-.num-pages{
+
+.num-pages {
   display: flex;
 }
-.page{
+
+.page, .display {
+  display: none;
   cursor: pointer;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  border-radius: 15px;
+  padding: 5px 9px;
+  margin: 0 1px;
+}
+.display{
+  display: block;
+}
+.page:hover {
+  color: var(--color-link-text-hover);
+  background: var(--color-link-bg-hover);
+}
+
+.selected {
   color: var(--color-headings);
-  padding: 5px;
-}
-.page:hover{
-  background: coral;
-  color: black;
-}
-.selected{
-  color: var(--color-background-soft);
-  background: var(--color-headings);
+  background: var(--color-text);
   pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .page {
+    margin: 0 4px;
+  }
+
+  .page:hover {
+    color: var(--color-headings);
+    background: var(--color-text);
+  }
 }
 </style>

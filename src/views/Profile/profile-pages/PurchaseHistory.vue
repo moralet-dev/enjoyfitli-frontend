@@ -1,26 +1,39 @@
 <template>
-  <div>
+  <div >
     <div class="title-wrapper">
-      <h3>{{ this.$t('ProfilePage.myPurchases') }}:</h3>
+      <h3>{{ this.$t('myPurchases') }}:</h3>
     </div>
-    <div class="purchase">
-      <div class="block"><span>{{ this.$t('ProfilePage.purchaseID') }}</span></div>
-      <div class="block"><span>{{ this.$t('status') }}</span></div>
-      <div class="block"><span>{{ this.$t('membership') }}</span></div>
-      <div class="block"><span>{{ this.$t('date') }}</span></div>
+    <div class="">
+      <Pagination v-if="pageCount" :pageCount="pageCount" @page="toPage"/>
     </div>
-    <div v-if="purchaseList" v-for="i in purchaseList" class="purchase animate__animated animate__fadeIn" :key="i.id">
-      <div class="block"> {{ i.id }}</div>
-      <div class="block"> {{ this.$t(`ProfilePage.${i.status}`) }}</div>
-      <div class="block"> {{ i.membership }}</div>
-      <div class="block"> {{ new Date(i.date).toLocaleString() }}</div>
+    <div v-if="purchaseList" class="purchase-wrapper">
+      <div v-for="i in purchaseList"
+           :class="{'purchase animate__animated animate__fadeIn':true, 'ok': i?.status === 'confirmed',
+         'declined': i?.status === 'declined' }"
+           :key="i.id">
+        <div class="block">
+          <span>{{ $t('purchaseID') }}: </span>
+          <span>{{ i.id }}</span>
+        </div>
+        <div class="block">
+          <span>{{ $t('status') }}: </span>
+          <span>{{ $t(`${i.status}`) }}</span>
+        </div>
+        <div class="block">
+          <span>{{ $t('membership') }}: </span>
+          <span>{{ i.membership }}</span>
+        </div>
+        <div class="block">
+          <span>{{ $t('date') }}: </span>
+          <span>{{ new Date(i.date).toLocaleString() }}</span>
+        </div>
+      </div>
+
     </div>
     <div class="loader animate__animated animate__fadeIn" v-else>
       <PreloaderSmall/>
     </div>
-    <div class="" v-if="purchaseList?.length > 10">
-      <Pagination :pageCount="pageCount" @page="toPage"/>
-    </div>
+
   </div>
 </template>
 
@@ -46,7 +59,7 @@ export default {
     async getHistory() {
       await profileAPI.getRequestsHistory().then(response => {
         this.purchaseList = response.data.results
-        this.pageCount = Math.ceil(response.data.count/2)
+        this.pageCount = Math.ceil(response.data.count/5)
       })
     },
     async toPage(page){
@@ -59,6 +72,7 @@ export default {
 </script>
 
 <style scoped>
+
 .title-wrapper {
   padding: 0.5em 0 1rem 0;
 }
@@ -66,38 +80,55 @@ export default {
 h3 {
   font-size: 30px;
 }
-
+.purchase-wrapper{
+  max-height: 50vh;
+  overflow: hidden;
+  overflow-y: scroll;
+}
 .purchase {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border-bottom: 2px solid #f2f2f2;
-}
+  font-family: "Helvetica Neue", sans-serif;
+  background: radial-gradient(circle at left, var(--color-background-header) 0, var(--color-background-header) 70%, orange 100%);
+  color: var(--color-header-text);
+  grid-template-columns: 25vw 25vw 25vw 25vw;
+  flex-direction: column;
+  padding: 1rem;
+  margin: .5rem 1rem .5rem ;
+  border-radius: 25px;
 
+}
+.ok{
+  background: radial-gradient(circle at left, var(--color-background-header) 0, var(--color-background-header) 70%, green 100%);
+}
+.declined{
+  background: radial-gradient(circle at left, var(--color-background-header) 0, var(--color-background-header) 70%, darkred 100%);
+}
 .purchase .block {
   display: flex;
-  flex: 0 0 20%;
-  flex-direction: column;
-  justify-content: space-between;
   flex-wrap: wrap;
-  margin: 1rem 0;
   text-align: center;
   align-items: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .purchase .block span {
-  display: block;
-  padding: 1rem 0;
-  height: 100%;
-  width: 100%;
+  flex: 0 1 auto;
+  padding: .5rem;
   text-align: center;
+  word-wrap: break-word;
+}
+.purchase .block span:first-child{
+  font-family: 'Futura New', sans-serif;
+
 }
 .loader{
   display: flex;
   margin-top: 1rem;
 }
 @media (max-width: 767px) {
+  .title-wrapper{
+    padding: 1rem 0 0 0;
+  }
   .purchase{
     flex-wrap: wrap;
   }

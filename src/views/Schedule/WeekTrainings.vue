@@ -6,19 +6,22 @@
          v-for="t in dailyTr" :key="t.id">
       <div class="training-item__top">
         <span>
-          {{ isSigned(t) && !isProfile ? '✅ ' : ''}}
+          {{ isSigned(t) && !isProfile ? '✅ ' : '' }}
           {{
             t?.direction?.name ? t?.direction[`name_${this.$store.getters.getLocale}`] : t?.type[`name_${this.$store.getters.getLocale}`]
           }}
 
         </span>
-        <span></span>
-        <span>
-          {{ !isProfile
-            ? new Date(t?.when).toLocaleTimeString(`${this.$store.getters.getLocale}`, {hour: '2-digit', minute: '2-digit'})
-            : new Date(t?.when).toLocaleDateString(
-                `${this.$store.getters.getLocale}`,
-                {month:'2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit'})
+        <span class="date">
+          {{
+            !isProfile
+                ? new Date(t?.when).toLocaleTimeString(`${this.$store.getters.getLocale}`, {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+                : new Date(t?.when).toLocaleDateString(
+                    `${this.$store.getters.getLocale}`,
+                    {month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'})
           }}
       </span>
 
@@ -30,7 +33,7 @@
         <span>
           {{ `${this.$t('freePlaces')}: ${Math.max(0, t?.max_people - (t?.visitors?.length || 0))}` }}
         </span>
-        <span>
+        <span v-if="!isProfile">
         {{ t?.cost }} &#8372;
         </span>
       </div>
@@ -43,6 +46,7 @@
       <transition name="d_fade" mode="out-in">
         <DailyDetail @sign="onSign" @rescind="onRescind"
                      :training="t"
+                     :isProfile="isProfile"
                      v-if="isDetailView && selectedTr?.id === t?.id"
                      :key="`s_tr_${t?.id}`"/>
       </transition>
@@ -140,6 +144,10 @@ export default {
   justify-content: space-between;
 }
 
+.date {
+  text-align: right;
+}
+
 .training-item__middle {
   font-size: 16px;
   font-style: italic;
@@ -162,21 +170,44 @@ export default {
   background: transparent;
 }
 
-@media (max-width: 767px) {
-  .training-item {
-    padding: 1rem;
-  }
-}
-
 .d_fade-enter-active,
 .d_fade-leave-active {
-  transition: all .7s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 .d_fade-enter-from,
 .d_fade-leave-to {
   max-height: 0;
-  opacity: 0;
+  opacity: .5;
 }
 
+@media (max-width: 767px) {
+  .training-item {
+    padding: 1rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .training-item__top {
+    font-size: 18px;
+  }
+
+  .training-item__middle {
+    font-size: 14px;
+  }
+
+  .training-item__bottom {
+    font-size: 16px;
+  }
+
+  .d_fade-enter-active,
+  .d_fade-leave-active {
+    transition: max-height .5s ease-in-out;
+  }
+
+  .d_fade-enter-from,
+  .d_fade-leave-to {
+    max-height: 0;
+    opacity: 1;
+  }
+}
 </style>

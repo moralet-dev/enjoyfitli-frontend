@@ -1,15 +1,14 @@
 <template>
   <div class="detail-wrapper">
-
-    <p class="detail-wrapper__text" v-if="training?.direction">
+    <p  class="detail-wrapper__text" v-if="training?.direction && !isProfile">
       {{ training?.direction[`description_${this.$store.getters.getLocale}`] }}
     </p>
-    <p class="detail-wrapper__text">{{ this.$t('level') }}:
+    <p v-if="!isProfile" class="detail-wrapper__text">{{ this.$t('level') }}:
       {{ training.direction?.level }}
     </p>
     <div v-if="isSigned()" :class="{'actions': true,}">
       <p v-if="isLessOneHour()" class="actions__text">
-        {{ this.$t('lessOneOurText') }}
+        {{ this.$t('lessOneHourText') }}
         <router-link class="text-link" :to="{'name': 'home'}">{{ this.$t('details') }}</router-link>
       </p>
       <span v-else class="actions__text">{{ this.$t('signedText') }}</span>
@@ -28,7 +27,11 @@ export default {
   props: {
     training: {
       type: Object,
-    }
+    },
+    isProfile: {
+      type: Boolean,
+      default: false,
+    },
   },
   mounted() {
   },
@@ -86,12 +89,19 @@ export default {
 .to-sign, .signed {
   justify-self: end;
   align-self: center;
+  border: 2px solid transparent;
 }
 
 .signed {
   background: orange;
 }
-
+.to-sign:hover{
+  color: var(--color-link-text);
+  background: var(--color-helper);
+}
+.signed:hover{
+  color: var(--color-link-text);
+}
 @media (max-width: 767px) {
   .actions {
     grid-template-columns: 12fr;
