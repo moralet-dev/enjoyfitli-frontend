@@ -188,7 +188,7 @@ a:hover {
 }
 form label{
     color: var(--color-text);
-    font-size: 20px;
+    font-size: 18px;
 }
 form label:first-letter{
     text-transform: uppercase;
@@ -199,7 +199,7 @@ form input {
     color: var(--color-text);
     border: none;
     font-size: 18px;
-    padding: .5rem 0 .1rem 0;
+    padding: .3rem 0 0;
     border-bottom: solid 2px var(--color-text);
     transition: .6s;
     box-sizing: border-box;
@@ -220,7 +220,7 @@ form select {
     color: var(--color-link-text);
     font-family: Arial, sans-serif;
     font-size: 18px;
-    padding: .5rem 0 .1rem 0;
+    padding: .3rem 0 0;
     word-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;

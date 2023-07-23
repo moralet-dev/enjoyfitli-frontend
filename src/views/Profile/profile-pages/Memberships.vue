@@ -1,8 +1,8 @@
 <template>
   <div>
-      <div class="title-wrapper">
-        <h3>{{ this.$t('myMemberships') }}</h3>
-      </div>
+    <div class="title-wrapper">
+      <h3>{{ this.$t('myMemberships') }}</h3>
+    </div>
     <div class="loading" v-if="loading">
       <PreloaderSmall/>
     </div>
@@ -13,7 +13,7 @@
             <span class="m-name">{{ m.membership.type[`name_${this.$store.getters.getLocale}`] }}</span>
           </div>
           <div class="membership-info-current">
-            <span class="trainings-title">{{ this.$t('trainingsStatus') }}:</span>
+            <!--            <span class="trainings-title">{{ this.$t('trainingsStatus') }}:</span>-->
             <div class="trainings-info">
               <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left"
                                    :trainings-count="m.membership.count" radius="80"
@@ -22,11 +22,13 @@
                                    radius="40"
                                    width="90" height="90"/>
               <div class="trainings-info__description">
-                <span>{{ this.$t('trainingsLeft') }}: {{ m.trainings_left }}/{{ m.membership.count }}</span>
-                <span class="expired">{{ this.$t('expiresAt') }}: {{
+                <span class="trainings-info__description__title">{{ this.$t('trainingsLeft') }}:</span>
+                <span> {{ m.trainings_left }}/{{ m.membership.count }}</span>
+                <span class="trainings-info__description__title">{{ this.$t('expiresAt') }}:</span>
+                <span>{{
                     new Date(m?.date_end).toLocaleDateString(
                         `${this.$store.getters.getLocale}`,
-                        {month:'2-digit', day:'2-digit', hour: '2-digit', minute: '2-digit'})
+                        {month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'})
                   }}</span>
               </div>
             </div>
@@ -93,16 +95,20 @@ export default {
 h3 {
   font-size: 30px;
 }
-.no-memberships{
+
+.no-memberships {
   padding: 0 0 2rem 0;
   text-align: center;
 }
-.text-link{
+
+.text-link {
   font-size: 1.5rem;
 }
-.membership{
+
+.membership {
   margin: 0 0 1rem 0;
 }
+
 .membership-info, .membership-info-current {
   display: flex;
   flex-direction: column;
@@ -121,6 +127,7 @@ h3 {
 .m-count-block p {
   padding: 0 0 0.75rem 0;
 }
+
 .trainings-title {
   display: block;
   font-weight: 700;
@@ -130,35 +137,39 @@ h3 {
 
 .trainings-info {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
   padding: 0 0 1.5rem 0;
 }
 
 .trainings-info__description {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-end;
+  align-items: stretch;
 }
 
 .trainings-info__description span {
+  display: block;
   padding: 1rem;
-  margin: 1rem;
+  text-align: right;
 }
-.expired {
+
+span.trainings-info__description__title {
   display: block;
   flex: 0 1 auto;
-  border: 2px solid var(--color-link-text);
   border-radius: 15px;
+  text-align: left;
 }
-.loading{
+
+.loading {
   margin-top: 1rem;
 }
+
 @media (max-width: 767px) {
-  h3{
+  h3 {
     font-size: 25px;
   }
+
   .title-wrapper {
   }
 
@@ -183,6 +194,7 @@ h3 {
     margin: 0;
     text-align: right;
   }
+
   span.expired {
     padding: 1rem;
     border: 2px solid var(--color-link-text);

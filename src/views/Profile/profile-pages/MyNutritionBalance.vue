@@ -6,24 +6,25 @@
     <div class="table">
       <form @submit.prevent="calculate">
         <div class="form-group">
-          <label for="weight">{{ $t('weightKG') }}</label>
-          <input type="number" v-model="weight" min="30" max="250" id="weight" required>
-        </div>
-        <div class="form-group">
-          <label for="height">{{ $t('heightKG') }}</label>
-          <input type="number" v-model="height" min="140" max="235" id="height" required>
-        </div>
-        <div class="form-group">
-          <label for="age">{{ $t('age') }}</label>
-          <input type="number" v-model="age" min="10" max="100" id="age" required>
-        </div>
-        <div class="form-group">
           <label>{{ $t('gender') }}</label>
           <select v-model="gender" id="gender" required>
             <option value="male">{{ $t('male') }}</option>
             <option value="female">{{ $t('female') }}</option>
           </select>
         </div>
+        <div class="form-group">
+          <label for="age">{{ $t('age') }}</label>
+          <input type="number" v-model="age" min="10" max="100" id="age" required>
+        </div>
+        <div class="form-group">
+          <label for="height">{{ $t('heightKG') }}</label>
+          <input type="number" v-model="height" min="140" max="235" id="height" required>
+        </div>
+        <div class="form-group">
+          <label for="weight">{{ $t('weightKG') }}</label>
+          <input type="number" v-model="weight" min="30" max="250" id="weight" required>
+        </div>
+
         <div class="form-group">
           <label for="activity">{{ $t('activityLVL') }}</label>
           <select v-model="activity" id="activity" required>
@@ -42,7 +43,7 @@
           </select>
         </div>
         <div class="form-group">
-          <button type="submit">{{ $t('calculate') }}</button>
+          <button class="btn" type="submit">{{ $t('calculate') }}</button>
         </div>
 
       </form>
@@ -142,9 +143,8 @@ form{
 .form-group{
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
   width: 100%;
-
+  padding: 0 0 1rem 0;
 }
 .form-group input{
   width: 100%;

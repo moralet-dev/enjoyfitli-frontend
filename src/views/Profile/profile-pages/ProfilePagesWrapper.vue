@@ -9,13 +9,13 @@
         <router-view class="pages-content-wrapper" v-if="$vuetify.display.smAndDown"
                      :name="link.mobileName" v-slot="{Component, route}">
           <transition name="slide-down">
-            <component :is="Component" :key="route.path"/>
+            <component :me="me" :is="Component" :key="route.path"/>
           </transition>
         </router-view>
       </div>
     </aside>
 
-    <div v-if="$vuetify.display.mdAndUp" class="pages-content-wrapper">
+    <div v-if="$vuetify.display.mdAndUp && me?.id" class="pages-content-wrapper">
       <router-view v-slot="{Component, route}">
         <transition name="fade" translate="yes" mode="out-in">
           <component :me="me" :is="Component" :key="route.path"/>
@@ -105,7 +105,7 @@ aside {
 
 .pages-link {
   display: flex;
-  padding: 0 0 1.25em 0;
+  padding: 0 0 .5em 0;
 }
 
 .pages-link a {

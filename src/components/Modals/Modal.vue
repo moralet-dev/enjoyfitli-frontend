@@ -62,7 +62,7 @@ export default {
         </div>
         <div class="post-info">
           <h4>Social networks</h4>
-          <div class="">
+          <div class="logos">
             <InstagramLogo/>
             <TikTokLogo/>
           </div>
@@ -89,14 +89,12 @@ export default {
 .modal-container {
   margin: auto;
   padding: 1rem 2rem;
-  min-width: 40%;
-  font-size: 18px;
+  min-width: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-background-soft);
+  background-color: var(--color-background);
   border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
 
@@ -125,9 +123,16 @@ export default {
   border-top: solid 1px grey;
   margin: 2rem 0 0 0;
 }
-
-.post-info svg {
-  margin: 10px 10px;
+.logos{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.logos a{
+  display: flex;
+  height: 100%;
+  padding: .5rem;
 }
 
 .modal-footer button {

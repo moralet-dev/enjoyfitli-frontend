@@ -88,7 +88,7 @@ h3 {
 .purchase {
   display: flex;
   font-family: "Helvetica Neue", sans-serif;
-  background: radial-gradient(circle at left, var(--color-background-header) 0, var(--color-background-header) 70%, orange 100%);
+  background: var(--color-background-header) ;
   color: var(--color-header-text);
   grid-template-columns: 25vw 25vw 25vw 25vw;
   flex-direction: column;
@@ -98,10 +98,10 @@ h3 {
 
 }
 .ok{
-  background: radial-gradient(circle at left, var(--color-background-header) 0, var(--color-background-header) 70%, green 100%);
+  background: radial-gradient(circle at left, var(--color-background-header) 60%, lightseagreen 100%);
 }
 .declined{
-  background: radial-gradient(circle at left, var(--color-background-header) 0, var(--color-background-header) 70%, darkred 100%);
+  background: radial-gradient(circle at left, var(--color-background-header) 60%, lightcoral 100%);
 }
 .purchase .block {
   display: flex;
@@ -126,6 +126,9 @@ h3 {
   margin-top: 1rem;
 }
 @media (max-width: 767px) {
+  h3 {
+    font-size: 25px;
+  }
   .title-wrapper{
     padding: 1rem 0 0 0;
   }

@@ -1,45 +1,45 @@
 <template>
   <div class="">
     <div class="title-wrapper">
-      <h3>{{ this.$t('settings') }}:</h3>
+      <h3>{{ $t('settings') }}:</h3>
     </div>
     <div class="main_info">
-      <p>{{ this.$t('ProfilePage.mainInfo')}}</p>
+      <p>{{ $t('mainInfo')}}</p>
       <form @submit.prevent="onSubmit">
         <div class="form-group">
-          <label for="phone">{{ this.$t('ProfilePage.phone') }}</label>
+          <label for="phone">{{ $t('phone') }}</label>
           <input id="phone" type="tel" v-model="formData.phone" required/>
           <div class="error-msg" v-if="errors.phone">
             {{ errors.phone[0] }}
           </div>
         </div>
         <div class="form-group">
-          <label for="first_name">{{ this.$t('ProfilePage.firstName') }}</label>
+          <label for="first_name">{{ $t('firstName') }}</label>
           <input id="first_name" maxlength="30" v-model="formData.first_name" required/>
           <div class="error-msg" v-if="errors.first_name">
             {{ errors.first_name[0] }}
           </div>
         </div>
         <div class="form-group">
-          <label for="last_name">{{ this.$t('ProfilePage.lastName') }}</label>
+          <label for="last_name">{{ $t('lastName') }}</label>
           <input id="last_name" maxlength="30" v-model="formData.last_name" required/>
           <div class="error-msg" v-if="errors.last_name">
             {{ errors.last_name[0]  }}
           </div>
         </div>
-        <button type="submit">{{ this.$t('ProfilePage.submit') }}</button>
+        <button type="submit">{{ $t('submit') }}</button>
       </form>
     </div>
     <Teleport to="body">
       <Modal :show="showModal" @close="showModal = false" class="modal_upload">
         <template #header>
-          <h6>{{ this.$t('ProfilePage.confirmed') }}</h6>
+          <h6>{{ isConfirmed?$t('confirmed'):$t('error') }}</h6>
         </template>
         <template #body>
-          Data updated
+          {{ isConfirmed? $t('profileDataUpdated'): $t('errorWhileUpdating') }}
         </template>
         <template #footer>
-          <button @click="showModal = false">{{ this.$t('close') }}</button>
+          <button @click="[showModal, isConfirmed] = [false, false]">{{ $t('close') }}</button>
         </template>
       </Modal>
     </Teleport>
@@ -67,12 +67,13 @@ export default {
         last_name: null,
       },
       showModal: false,
+      isConfirmed:false,
     }
   },
   props: {
     me: Object,
   },
-  beforeMount() {
+  mounted() {
     if (this.me) {
       [this.formData.first_name, this.formData.last_name, this.formData.phone] = [this.me.first_name, this.me.last_name, this.me.phone]
     }
@@ -83,10 +84,13 @@ export default {
       await authAPI.updateMe({...this.formData}).then(response => {
         this.$store.dispatch('authModule/onCurrentUserSet', response.data)
         this.errors.phone = null
+        this.isConfirmed = true
         this.showModal = true
+
         return response.data
       }).catch(reason => {
-        this.errors = reason.response.data
+        console.log('errro')
+        this.showModal = true
       })
     }
   }
@@ -98,7 +102,6 @@ export default {
   padding: 0.5em 0 1rem 0;
 }
 .main_info p{
-  font-size: 22px;
   text-transform: capitalize;
 }
 h3 {
@@ -126,7 +129,7 @@ form button{
 }
 @media (max-width: 767px) {
   h3 {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 </style>
