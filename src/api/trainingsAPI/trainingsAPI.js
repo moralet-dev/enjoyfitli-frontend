@@ -14,6 +14,10 @@ export const trainingsAPI = {
         const url = '/group-trainings/me'
         return defaultAPIInstance.get(url)
     },
+    getDirs(){
+        const url = '/dirs'
+        return defaultAPIInstance.get(url)
+    },
     singGroupTraining(id){
         const url = `/group-trainings/${id}/sign/`
         return defaultAPIInstance.post(url)

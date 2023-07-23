@@ -58,15 +58,10 @@ export default {
     toggleOpen(){
       this.isOpened = !this.isOpened
       if (this.isOpened) {
-        // Зберегти початкову позицію прокрутки
-        // Заблокувати прокрутку
         this.scrollTop = window.scrollY;
         document.body.style.overflow = 'hidden';
       } else {
-        console.log(this.scrollTop)
-        // Повернути початкову позицію прокрутки
         window.scrollTo(0, this.scrollTop);
-        // Розблокувати прокрутку
         document.body.style.overflow = 'auto';
       }
     },

@@ -245,7 +245,7 @@ export default {
   padding: 2rem 9rem;
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 90vh;
 }
 
 .title {

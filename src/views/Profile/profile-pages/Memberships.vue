@@ -10,20 +10,19 @@
       <div v-if="isMembList" class="animate__animated animate__fadeIn">
         <div v-for="m in membList" :key="m.id" class="membership">
           <div class="membership-info">
-            <span class="m-name">{{ m.membership.type[`name_${this.$store.getters.getLocale}`] }}</span>
+            <span class="m-name">{{ m.user_type_connector?.type[`name_${this.$store.getters.getLocale}`] }}</span>
           </div>
           <div class="membership-info-current">
-            <!--            <span class="trainings-title">{{ this.$t('trainingsStatus') }}:</span>-->
             <div class="trainings-info">
               <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left"
-                                   :trainings-count="m.membership.count" radius="80"
+                                   :trainings-count="12" radius="80"
                                    width="180" height="180"/>
-              <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="m.membership.count"
+              <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="12"
                                    radius="40"
                                    width="90" height="90"/>
               <div class="trainings-info__description">
                 <span class="trainings-info__description__title">{{ this.$t('trainingsLeft') }}:</span>
-                <span> {{ m.trainings_left }}/{{ m.membership.count }}</span>
+                <span> {{ m.trainings_left }}/ 12</span>
                 <span class="trainings-info__description__title">{{ this.$t('expiresAt') }}:</span>
                 <span>{{
                     new Date(m?.date_end).toLocaleDateString(

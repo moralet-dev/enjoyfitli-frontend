@@ -1,18 +1,20 @@
 <template>
-  <div class="wrapper" v-if="this.$store.getters['authModule/getCurrentUser'].id">
+  <div class="wrapper" v-if="$store.getters['authModule/getCurrentUser'].id">
     <div class="welcome-block animate__animated animate__fadeIn">
       <div class="avatar-section">
         <div class="user-avatar">
-          <img ref="photo" v-bind:src="this.$store.getters['authModule/getCurrentUser'].photo" alt="">
-
-
+          <img ref="photo" class="animate__animated animate__fadeIn"
+               v-if="$store.getters['authModule/getCurrentUser']?.photo"
+               :src="$store.getters['authModule/getCurrentUser']?.photo" alt="user_avatar">
+          <img v-else class="animate__animated animate__fadeIn"
+               src="src/assets/icons/user-avatar.png" alt="user_avatar">
         <div class="controllers">
           <label class="ctrl upload" for="photo_input">
             <UploadIcon width="30" height="30" icon-color="var(--color-helper)"/>
             <input id="photo_input" type="file" ref="profilePhoto" accept="image/jpeg, image/png" hidden="hidden"
                    @change="showModalUpload = true">
           </label>
-          <span class="ctrl delete" type="button">
+          <span class="ctrl delete" @click="del_photo" >
             <DeleteIcon width="30" height="30" icon-color="var(--color-helper)"/>
           </span>
         </div>
@@ -84,7 +86,6 @@ export default {
       await authAPI.getMe().then(response => {
         this.$store.dispatch('authModule/onCurrentUserSet', response.data)
       }).catch((reason) => {
-        console.log(reason.response)
       })
     },
     async changePhoto() {
@@ -98,6 +99,20 @@ export default {
         this.$store.dispatch('authModule/onCurrentUserSet', response.data)
         this.showModalUpload = false
       })
+    },
+    async del_photo(){
+      if (this.$store.getters['authModule/getCurrentUser']?.photo){
+        await authAPI.updateMe({
+              'first_name': this.$store.getters['authModule/getCurrentUser'].first_name,
+              'last_name': this.$store.getters['authModule/getCurrentUser'].last_name,
+              'photo': ''
+            }
+        ).then(response => {
+          this.$store.dispatch('authModule/onCurrentUserSet', response.data)
+          this.showModalUpload = false
+        })
+      }
+
     }
   }
 }

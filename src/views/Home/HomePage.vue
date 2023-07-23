@@ -5,7 +5,7 @@
       <h4>Let's make your body healthy and you happy.</h4>
     </div>
     <GreetingsBlock/>
-    <GlobalTrainingWays/>
+    <TrainingDirections/>
     <TrTypesBlock/>
     <MembershipsBlock/>
     <div class="content-block">
@@ -75,16 +75,16 @@ import Dropdown from "@/components/Dropdown.vue";
 import Preloader from "@/components/Preloader.vue";
 import HomeTrTypesSwiper from "@/views/Home/blocks/TrTypesSwiper.vue";
 import GreetingsBlock from "@/views/Home/blocks/GreetingsBlock.vue";
-import GlobalTrainingWays from "@/views/Home/blocks/GlobalTrainingWays.vue";
 import TrTypesBlock from "@/views/Home/blocks/TrTypesBlock.vue";
 import MembershipsBlock from "@/views/Home/blocks/MembershipsBlock.vue";
+import TrainingDirections from "@/views/Home/blocks/TrainingDirections.vue";
 
 export default {
   name: "HomePage",
   components: {
+    TrainingDirections,
     MembershipsBlock,
     TrTypesBlock,
-    GlobalTrainingWays,
     GreetingsBlock, HomeTrTypesSwiper, Preloader, Dropdown,
   },
   mounted() {
