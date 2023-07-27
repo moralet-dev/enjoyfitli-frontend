@@ -22,10 +22,13 @@
           <h3>{{this.$t('memberships')}}:</h3>
           <div class="memb-cards__box">
             <div v-for="m in trType?.memberships" class="memb-card">
-              <span>{{m.count}} {{this.$t('trainings')}}</span>
-              <span>{{Math.round(m.price / m.count)}} &#8372; {{this.$t('perTraining')}}</span>
-              <span :class="{'economy': true}">{{this.$t('economy')}} {{ this.countEconomy(m.price, m.count, trType.memberships[0].price)}} &#8372;</span>
-              <router-link to="/memberships" class="btn">{{this.$t('learnMore')}}</router-link>
+              <span>{{m.count}} {{$t('trainings')}}</span>
+              <span>{{Math.round(m.price / m.count)}} &#8372; {{$t('perTraining')}}</span>
+              <span v-if="countEconomy(m.price, m.count, trType.memberships[0].price)>0"
+                    :class="{'economy': true}">
+                {{this.$t('economy')}} {{ this.countEconomy(m.price, m.count, trType.memberships[0].price)}} &#8372;
+              </span>
+              <router-link to="/memberships" class="btn">{{$t('buy')}}</router-link>
             </div>
           </div>
         </div>
@@ -127,7 +130,7 @@ h3{
 .memb-cards__box{
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
 }
 
@@ -135,7 +138,7 @@ h3{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border: 5px solid var(--color-text);
   padding: 1rem;
   margin: 1rem;

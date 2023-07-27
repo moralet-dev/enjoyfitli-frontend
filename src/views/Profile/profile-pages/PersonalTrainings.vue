@@ -1,13 +1,13 @@
 <template>
   <div class="">
     <div class="title-wrapper">
-      <h3>{{ this.$t('personalTrainings') }}:</h3>
+      <h3>{{ $t('personalTrainings') }}:</h3>
     </div>
     <div v-if="trainingsList?.length > 0" class="trainings-block animate__animated animate__fadeIn">
       <PersonalWeekTrainings :trainings="trainingsList" @toggle="toggle"/>
     </div>
     <div v-else-if="trainingsList?.length <= 0" class="trainings-block animate__animated animate__fadeIn">
-      <h4>{{ this.$t('ProfilePage.noPersonalTraining') }}:</h4>
+      <p>{{ $t('noPersonalTrainings') }}</p>
     </div>
     <div v-else>
       <PreloaderSmall/>

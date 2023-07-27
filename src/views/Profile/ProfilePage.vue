@@ -7,7 +7,7 @@
                v-if="$store.getters['authModule/getCurrentUser']?.photo"
                :src="$store.getters['authModule/getCurrentUser']?.photo" alt="user_avatar">
           <img v-else class="animate__animated animate__fadeIn"
-               src="src/assets/icons/user-avatar.png" alt="user_avatar">
+               src="" alt="user_avatar">
         <div class="controllers">
           <label class="ctrl upload" for="photo_input">
             <UploadIcon width="30" height="30" icon-color="var(--color-helper)"/>
@@ -35,7 +35,7 @@
           <span>{{ this.$t('confirmChanges') }}</span>
         </template>
         <template #body>
-          {{ this.$t('ProfilePage.updatePhotoText') }}
+          {{ this.$t('updatePhotoText') }}
         </template>
         <template #footer>
           <button @click="showModalUpload = false">{{ this.$t('close') }}</button>
@@ -236,6 +236,9 @@ h1 {
   h1 {
     font-size: 30px;
     margin: 0 0 1rem 1rem;
+  }
+  .avatar-section{
+    justify-content: flex-end;
   }
   .upload {
     background: rgba(0, 156, 6, 1);

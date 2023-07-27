@@ -3,9 +3,9 @@
     <div :class="{'card-wrapper':true, 'clicked': current?.id === m.id}"  v-for="m in memberships"
          :key="m.id">
       <div class="card" @click="setCurrent(m)">
-        <span class="card-title">{{ m.count }} trainings</span>
+        <span class="card-title">{{ m.count }} {{ $t('trn') }}</span>
         <span class="card-price">{{ m.price }} &#8372;</span>
-        <button @click="showModal = true; current = m">Придбати</button>
+        <button @click="showModal = true; current = m">{{$t('buy')}}</button>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@ export default {
   flex: 0 1 33.33%;
   min-height: 200px;
   background: transparent;
-  border-radius: 0px;
+  border-radius: 0;
   border: 5px solid var(--color-text);
   transition: all .5s;
   margin: .5rem;

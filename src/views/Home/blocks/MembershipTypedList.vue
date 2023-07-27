@@ -2,7 +2,12 @@
   <div class="wrapper-types">
     <ul class="training-types">
       <li v-for="t in types" @click="trigger(t.id)" :class="{'active-membership': triggerID === t.id }" :key="t.id">
-        {{ t.name }}
+        <span v-if="t?.name_en && t?.name_uk">
+          {{ t[`name_${this.$store.getters.getLocale}`] }}
+        </span>
+        <span v-else>
+          {{ t?.name}}
+        </span>
       </li>
     </ul>
     <div>

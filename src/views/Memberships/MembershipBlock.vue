@@ -5,7 +5,7 @@
         <div class="carousel__card">
           <span class="carousel__card__title">{{ m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase() }} {{m.count}}</span>
           <span class="carousel__card__price">{{ m.price }} &#8372;</span>
-          <button @click="showModal = true; current = m">Придбати</button>
+          <button @click="[current, showModal] = [m, true]">{{ $t('buy') }}</button>
         </div>
       </div>
     </Slide>
@@ -26,7 +26,9 @@
         <h3>{{ this.$t('confirmation') }}</h3>
       </template>
       <template #body>
-        <p>{{ current.name }}</p>
+        <p v-if="current.type?.name_uk && current.type?.name_en">
+          {{ current.type[`name_${$store.getters.getLocale}`] }} - {{current?.count}}
+        </p>
       </template>
       <template #footer>
         <button @click="showModal = false">{{ this.$t('cancel') }}</button>
@@ -108,12 +110,12 @@ export default defineComponent({
     },
     async getNewMembership(pk) {
       await profileAPI.requestMembership(pk).then(() => {
-        this.nextMessage = this.$t('MembershipsPage.requestAccepted')
+        this.nextMessage = this.$t('requestAccepted')
         this.showModal = false
         this.showNextModal = true
       }).catch(reason => {
         if (reason.response.data.status === 'ASR'){
-          this.nextMessage = this.$t('MembershipsPage.requestDeclined')
+          this.nextMessage = this.$t('requestDeclined')
           this.showModal = false
           this.showNextModal = true
         }

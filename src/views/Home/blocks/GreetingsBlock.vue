@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <div>
-      <p class="title">Моя спеціалізація - це<br>функціональний тренінг,<br>силовий тренінг та Pilates.</p>
-      <p>Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність». <br>Тож, йдучи до мене, ти
-        потраплятимеш не просто на тренування, а туди, де можна поспілкуватися, вивільнити емоції та зробити тіло
-        прикладом власного ідеалу!<br> Я чекаю саме на тебе!</p>
+      <p class="title">
+        {{ $t('homePage.greetingTitle') }}
+      </p>
+      <p>{{ $t('homePage.greetingSubtitle') }}</p>
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
 <style scoped>
 .wrapper {
   padding: 6rem 9rem;
+  white-space: pre-wrap;
 }
 
 .content {

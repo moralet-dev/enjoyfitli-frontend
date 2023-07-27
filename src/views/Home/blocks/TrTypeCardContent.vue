@@ -1,18 +1,22 @@
 <template>
   <div class="content-wrapper">
     <div class="title">
-      <h3>{{ trType?.name }}</h3>
+      <h3 v-if="trType?.name_en && trType?.name_uk">
+        {{ trType[`name_${this.$store.getters.getLocale}`] }}
+      </h3>
+      <h3 v-else>{{ trType?.name }}</h3>
     </div>
     <div class="text">
       <div class="text__section description">
         <div class="description__wrapper">
-          <p>
+          <p v-if="trType?.description_en && trType?.description_uk ">
+            {{ trType[`description_${this.$store.getters.getLocale}`] }}
+          </p>
+          <p v-else>
             {{ trType?.description }}
-
-
           </p>
         </div>
-        <router-link class="btn" :to="{'name': 'memberships'}">{{this.$t('signUp')}}</router-link>
+        <router-link class="btn" :to="{'name': 'memberships'}">{{this.$t('sign')}}</router-link>
       </div>
       <div class="text__section advantages">
         <div class="adv" v-if="trType.advantages.length > 0" v-for="[index, item] in trType.advantages.entries()">
@@ -21,7 +25,6 @@
             {{ item?.adv }}
           </p>
         </div>
-
       </div>
     </div>
   </div>

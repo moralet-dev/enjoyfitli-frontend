@@ -1,22 +1,22 @@
 <template>
   <div class="detail-wrapper">
     <p  class="detail-wrapper__text" v-if="training?.direction && !isProfile">
-      {{ training?.direction[`description_${this.$store.getters.getLocale}`] }}
+      {{ training?.direction[`description_${$store.getters.getLocale}`] }}
     </p>
-    <p v-if="!isProfile" class="detail-wrapper__text">{{ this.$t('level') }}:
+    <p v-if="!isProfile" class="detail-wrapper__text">{{ $t('level') }}:
       {{ training.direction?.level }}
     </p>
     <div v-if="isSigned()" :class="{'actions': true,}">
       <p v-if="isLessOneHour()" class="actions__text">
         {{ this.$t('lessOneHourText') }}
-        <router-link class="text-link" :to="{'name': 'home'}">{{ this.$t('details') }}</router-link>
+        <router-link class="text-link" :to="{'name': 'home'}">{{ $t('details') }}</router-link>
       </p>
-      <span v-else class="actions__text">{{ this.$t('signedText') }}</span>
-      <button v-if="!isLessOneHour()" class="next signed" @click="onRescind">{{ this.$t('rescind') }}</button>
+      <span v-else class="actions__text">{{ $t('signedText') }}</span>
+      <button v-if="!isLessOneHour()" class="next signed" @click="onRescind">{{ $t('rescind') }}</button>
     </div>
     <div v-if="!isSigned()" class="actions">
-      <span class="actions__text">{{ this.$t('toSignText') }}</span>
-      <button class="next to-sign" @click="onSign">{{ this.$t('sign') }}</button>
+      <span class="actions__text">{{ $t('toSignText') }}</span>
+      <button class="next to-sign" @click="onSign">{{ $t('sign') }}</button>
     </div>
   </div>
 </template>

@@ -1,5 +1,63 @@
 export default {
     en: {
+        homePage: {
+            title: 'Make your body healthy and yourself happy!',
+
+            greetingTitle: 'My specialization is\nfunctional training,\nstrength training, and Pilates.',
+            greetingSubtitle: 'I have a higher education in "Psychology" and "Coaching Activities". So, coming to me, you will' +
+                ' not just attend workouts, but a place where you can chat, release emotions, and make your body an example of your ideal!' +
+                ' I am looking forward to meeting you!',
+            TrDirsBottomTitle: 'Choose and find out\nabout the trainings that\nsuit you the most',
+            qAndA: 'Questions and Answers',
+            qAndATitle: 'Answers to the most common questions',
+            whatIGot: 'What will I get by training with you?',
+            willBurnTraining: 'Will the training from the subscription be lost if I cannot attend?',
+            whatNeedPrePay: 'Why is full prepayment required if I train occasionally?',
+            oneTimeOrMemb: 'Is it better to train occasionally or with a subscription?',
+
+            whatIGotText1: 'I am confident that the training will bring you only positive emotions and will be enjoyable.' +
+                ' My clients are my family, whom I love and take care of. There will be no "I am your teacher - listen to me and repeat",' +
+                ' we will become friends, and I will help, motivate, and support you.',
+
+            whatIGotText2: 'Want to exercise to your favorite song? No problem, we will turn it up! Don\'t like lunges?' +
+                ' We will compensate with other exercises! Want to find like-minded people? You will make cool friends and a team!' +
+                ' My support is also available 24/7 ❤️',
+
+            whatIGotText3: 'Improve your body and enjoy it! By training with me, you will forget the saying "Sport is not for me!"' +
+                ' I am waiting for you!',
+
+            willBurnTrainingText: 'The training will only be canceled if we are not informed at least 3 hours before the session that you' +
+                ' cannot come. In case of advance notice, the training will be rescheduled for another convenient day for you.)',
+
+            whatNeedPrePayText: 'Full prepayment is required because we form closed groups for training, and in order to secure your place,' +
+                ' we need to take precautions. In case of notice at least 10 hours in advance that you won\'t be able to attend, the training' +
+                ' will be rescheduled for another convenient day for you.',
+
+            oneTimeOrMembText1: 'The answer is obvious - the subscription! Especially if you train individually or in split workouts.',
+            oneTimeOrMembText2: '1. The subscription is designed to be beneficial, first of all, to YOU!',
+
+            oneTimeOrMembText3: '2. The subscriptions for individual or split workouts come in two types: 8 or 12 workouts per month,' +
+                ' depending on how often you are willing to train and improve your body!',
+
+            oneTimeOrMembText4: '3. Having a subscription, you will definitely train, as it often happens that you want to get your body in shape,' +
+                ' but after attending one or two workouts, you lose motivation or become lazy... You will get used to training and will enjoy it,' +
+                ' as the habit forms in about two weeks, and having a subscription, you are unlikely to give up!)',
+
+            trTypesSubtitle: 'Join and get unforgettable impressions from workouts!',
+            membSubtitle: 'Choose the subscription that suits you the most'
+        },
+        buy: 'buy',
+        advantages: 'advantages',
+        trainingTypes: 'Training types',
+        perTraining: 'per trn.',
+        economy: 'economy',
+        trn: 'trn.',
+        training: 'training',
+        membershipsPageSubtitle: 'Choose most comfortable variant for you',
+        requestAccepted: 'Thank you for your request. We will connect you to confirm the details.',
+        requestDeclined: 'Sorry, but you are already sent request for that type of membership. If you think that here is some mistake - connect to us.',
+        noTrainingsInSchedule: 'No trainings',
+
         ProfilePage: {
             updatePhotoText: 'Are you sure that you want to update photo?',
             myMemberships: 'My Memberships',
@@ -56,11 +114,6 @@ export default {
             uncheck: 'uncheck',
             noGroupTrainings: 'No active signs on trainings',
             confirmation: ''
-        },
-        MembershipsPage: {
-            mainDescription: 'Choose most comfortable variant for you',
-            requestAccepted: 'Thank you for your request. We will connect you to confirm the details.',
-            requestDeclined: 'Sorry, but you are already sent request for that type of membership. If you think that here is some mistake - connect to us.',
         },
         about: 'about',
         confirmChanges: 'Confirm changes',
@@ -120,12 +173,65 @@ export default {
         successCreateCabMessage: 'We have sent you an activation email. Please check your email inbox and activate your account by following the instructions. If you didn\'t find message, check the spam folder.',
     },
     uk: {
+        homePage: {
+            title: 'Зробимо твоє тіло здоровим, а тебе щасливим!',
+
+            greetingTitle: 'Моя спеціалізація - це\nфункціональний тренінг,\nсиловий тренінг та Pilates.',
+            greetingSubtitle: 'Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність».\nТож, йдучи до мене, ти' +
+                'потраплятимеш не просто на тренування, а туди, де можна поспілкуватися, вивільнити емоції та зробити тіло' +
+                'прикладом власного ідеалу!\nЯ чекаю саме на тебе!',
+            TrDirsBottomTitle: 'Обийрай та дізнавайся\nпро тренування які\nпідходять тобі найбільше',
+            qAndA: 'Запитання та відповіді',
+            qAndATitle: 'Відповіді на найпоширеніші запитання',
+            whatIGot: 'Що я отримаю займаючись з вами?',
+            willBurnTraining: 'Чи згорить тренування з абонементу, якщо я не матиму змоги прийти?',
+            whatNeedPrePay: 'Для чого потрібна повна передоплата, якщо я займаюсь разово?',
+            oneTimeOrMemb: 'Краще займатись разово чи з абонементом?',
+
+            whatIGotText1: 'Я впевнена, що тренування приноситимуть вам лише позитивні емоції та проходитимуть з кайфом. ' +
+                'Мої клієнти - моя сім’я, яку я люблю та про яку піклуюсь. В нас точно не буде «Я твій вчитель-слухайся мене і повторюй», ' +
+                'ми станем друзями та я буду допомагати, мотивувати та підтримувати тебе.',
+
+            whatIGotText2: 'Хочеш займатися під свою улюблену пісню? Не проблема, ввімкнем на повну! Не любиш випади?' +
+                ' Компенсуємо їх іншою вправою! Хочеш знайти однодумців? Знайдеш класних друзів та команду! Також тебе чекатиме моя підтримка 24/7 ❤️',
+
+            whatIGotText3: 'Вдосконалюй своє тіло і отримуй від цього задоволення! Займаючись зі мною ти точно забудеш' +
+                ' про висловлювання «Спорт-це не моє!» Чекаю саме на тебе!',
+
+            willBurnTrainingText: 'Тренування згорить лише у тому випадку, якщо за 3 години до тренування' +
+                ' ми не будемо попередженні про те, що ви не зможете прийти. В разі попередження тренування переноситься на інший зручний для Вас день)',
+
+            whatNeedPrePayText: 'Повна передоплата потрібна, оскільки ми набираємо закриті групи для тренувань, і для того, щоб ваше місце не пропало,' +
+                ' ми змушені себе перестраховувати. У разі попередження за 10 годин, що Вас не буде - тренування переноситься на інший зручний для Вас день.',
+
+            oneTimeOrMembText1: 'Відповідь очевидна - абонемент! Особливо якщо Ви займаєтесь персонально або ж на спліт тренуваннях.',
+            oneTimeOrMembText2: '1. Абонемент продумано так, щоб вигідно, перш за все, було ВАМ!',
+
+            oneTimeOrMembText3: '2. Абонементи на персональні або спліт тренування є двох видів: 8 або ' +
+                '12 тренувань на місяць, зоорієнтовано це на те, скільки разів на тиждень Ви готові займатися та вдосконалювати своє тіло!',
+
+            oneTimeOrMembText4: '3. Маючи абонемент Ви точно будете займатися, ' +
+                'оскільки не рідко трапляється так, що Ви хочете привести своє тіло у форму,але сходивши' +
+                ' на одне-два тренування втрачається мотивація чи з’являється лінь… Ви привчите себе займатися та' +
+                ' будете кайфувати від тренувань, оскільки звичка виробляється близько двох тижнів,' +
+                ' а маючи абонемент ви наврядчи здастесь!)',
+
+            trTypesSubtitle: 'Приєднуйся та отримуй незабутні враження від тренувань!',
+            membSubtitle: 'Оберіть абонемент, який вам найбільш імпонує'
+        },
+        advantages:'Переваги',
+        perTraining: 'за трн.',
+        economy: 'економія',
+        buy: 'Придбати',
+        trainingTypes: 'Типи тренувань',
+        membershipsPageSubtitle: 'Обирайте найбільш привабливі для вас варіанти',
         updatePhotoText: 'Впевнені, що хочете змінити фото профілю?',
         trainingsCount: 'Кількість тренувань',
         chooseMembership: 'Обрати абонемент',
         myTrainings: 'Мої тренування',
         myPurchases: 'Мої покупки',
         purchaseID: 'ID',
+        trn: 'трн.',
         training: 'тренування',
         name: 'назва',
         trType: 'тип',
@@ -162,7 +268,7 @@ export default {
         checkIn: 'Відмітитись',
         noGroupTrainings: 'Немає активних записів на тренування',
         myMemberships: 'Мої абонементи',
-        noMembershipText: 'У вас немає активного абонементу. Оберіть найкращий варіант для себе, або, якщо ви вже відправили запит на отримання абонементу, дочекайтесь дзівнку нашого контакт-менеджеру',
+        noMembershipText: 'У вас немає активного абонементу. Оберіть найкращий варіант для себе, або, якщо ви вже відправили запит на отримання абонементу, дочекайтесь дзівнку від нас.',
         trainingsStatus: 'Статус тренувань',
         trainingsLeft: 'Залишилось тренувань',
         expiresAt: 'Закінчується',
@@ -173,16 +279,15 @@ export default {
         check: 'відмітитись',
         uncheck: 'не підтверджую',
         unchecked: 'не підтверджено',
+        noTrainingsInSchedule: 'На цей день ще немає розкладу або ж тренування відсутні, спробуйте обрати інший день для перегляду.',
+        noPersonalTrainings: 'Персональні тренування відсутні',
 
-        mainDescription: 'Оберіть найбільш привабливий варіант для вас',
+        membershipsPageDescription: 'Оберіть найбільш привабливий варіант для вас',
         requestAccepted: 'Дякуємо за ваш запит. Ми зв\'яжемось із вами для підтвердження абонементу.',
         requestDeclined: 'Вибачте, але ви вже надсилали запит на цей абонемент. В найближчий час ми обробимо ваш запит і звяжемось із вами. Якщо ви вважаєте, що сталась якась помилка - звяжіться із нашою службою підтримки клієнтів',
 
-        ProfilePage: {
+        welcomeProfileText: 'Ви зайшли на сторінку профілю. Звідси відбувається керування записами на тренування, відслідковується поточний статус ваших абонементів та здійснюється керування особистими данними.',
 
-        },
-        MembershipsPage: {
-            },
         about: 'про нас',
         confirmChanges: 'Підтвердіть зміни',
         close: 'закрити',

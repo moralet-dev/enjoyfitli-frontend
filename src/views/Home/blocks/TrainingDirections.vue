@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <h3>Обийрай та дізнавайся<br>про тренування які<br>підходять тобі найбільше</h3>
+    <h3>{{ $t('homePage.TrDirsBottomTitle')}}</h3>
   </div>
 </template>
 

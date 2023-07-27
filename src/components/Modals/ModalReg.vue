@@ -128,12 +128,12 @@ export default {
         re_password: null,
       },
       errors: null,
-      showNext: true,
+      showNext: false,
     }
   },
   methods: {
     async onSubmit() {
-      // await this.$store.dispatch('authModule/onRegister', {...this.formData}).then(() => {
+      await this.$store.dispatch('authModule/onRegister', {...this.formData}).then(() => {
         this.$router.push({name: 'home'})
         this.formData.email = null
         this.formData.phone = null
@@ -144,13 +144,13 @@ export default {
         this.errors = null
         this.$emit('close')
         this.showNext = true
-      // }).catch(reason => {
-      //   this.showNext = true
-      //
-      //   if (reason.response.status!==500){
-      //     return this.errors = reason.response.data
-      //   }
-      // })
+      }).catch(reason => {
+        this.showNext = true
+
+        if (reason.response.status!==500){
+          return this.errors = reason.response.data
+        }
+      })
     },
     async nullFormData() {
       this.formData.email = null

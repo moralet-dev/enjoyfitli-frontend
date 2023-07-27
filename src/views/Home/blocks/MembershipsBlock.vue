@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="title">
-      <h2>{{ this.$t('memberships') }}</h2>
-      <span>Оберіть абонемент, який вам найбільш імпонує</span>
+      <h2>{{ $t('memberships') }}</h2>
+      <span>{{$t('homePage.membSubtitle')}}</span>
     </div>
     <MembershipTypedList v-if="types && memberships" :types="this.types" :memberships="this.memberships"/>
     <div v-else>

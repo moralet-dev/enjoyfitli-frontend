@@ -42,7 +42,8 @@
                      :key="dailyTrainings"
       />
       <div v-if="dailyTrainings?.length === 0" class="no-trainings animate__animated animate__fadeIn">
-        <p>No trainings</p></div>
+        <p class="no-tr">{{selectedDay.getDate()}}: {{ $t('noTrainingsInSchedule') }} </p>
+      </div>
       <div v-if="dailyTrainings===null" class="preloader">
         <PreloaderSmall class="trainings-list"/>
       </div>
@@ -331,6 +332,10 @@ export default {
   padding: 0 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.no-tr{
+  font-size: 1.5rem;
+  padding: 3rem 1rem;
 }
 .popup-btn{
   background: var(--color-text);

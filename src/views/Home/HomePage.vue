@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="banner">
       <h1>ENJOY FITNESS<br>STUDIO</h1>
-      <h4>Let's make your body healthy and you happy.</h4>
+      <h4>{{$t('homePage.title')}}</h4>
     </div>
     <GreetingsBlock/>
     <TrainingDirections/>
@@ -10,58 +10,33 @@
     <MembershipsBlock/>
     <div class="content-block">
       <div class="title">
-        <h2>Questions and answers</h2>
-        <span>Answer on most popular questions</span>
+        <h2>{{ $t('homePage.qAndA') }}</h2>
+        <span>{{ $t('homePage.qAndATitle') }}</span>
       </div>
       <div class="dropdown-block">
-        <dropdown heading="Що я отримаю займаючись з вами?">
+        <dropdown :heading="$t('homePage.whatIGot')">
           <template #content>
-            <p>
-              Я впевнена, що тренування приноситимуть вам лише позитивні емоції та проходитимуть з кайфом.
-              Мої клієнти - моя сім’я, яку я люблю та про яку піклуюсь. В нас точно не буде «Я твій вчитель-слухайся
-              мене і повторюй», ми станем друзями та я буду допомагати, мотивувати та підтримувати тебе.
-            </p>
-            <p>
-              Хочеш займатися під свою улюблену пісню? Не проблема, ввімкнем на повну! Не любиш випади? Компенсуємо їх
-              іншою вправою! Хочеш знайти однодумців? Знайдеш класних друзів та команду! Також тебе чекатиме моя
-              підтримка 24/7 ❤️
-            </p>
-            <p>
-              Вдосконалюй своє тіло і отримуй від цього задоволення!
-              Займаючись зі мною ти точно забудеш про висловлювання «Спорт-це не моє!»
-              Чекаю саме на тебе!
-            </p>
+            <p>{{$t('homePage.whatIGotText1')}}</p>
+            <p>{{$t('homePage.whatIGotText2')}}</p>
+            <p>{{$t('homePage.whatIGotText3')}}</p>
           </template>
         </dropdown>
-        <dropdown heading="Чи згорить тренування з абонементу, якщо я не матиму змоги прийти?">
+        <dropdown :heading="$t('homePage.willBurnTraining')">
           <template #content>
-            <p>Тренування згорить лише у тому випадку, якщо за 3 години до тренування ми не будемо попередженні про те,
-              що ви не зможете прийти. В разі попередження тренування переноситься на інший зручний для Вас день)</p>
+            <p>{{$t('homePage.willBurnTrainingText')}}</p>
           </template>
         </dropdown>
-        <dropdown heading="Для чого потрібна повна передоплата, якщо я займаюсь разово?">
+        <dropdown :heading="$t('homePage.whatNeedPrePay')">
           <template #content>
-            <p>Повна передоплата потрібна, оскільки ми набираємо закриті групи для тренувань, і для того, щоб ваше місце
-              не пропало, ми змушені себе перестраховувати. У разі попередження за 10 годин, що Вас не буде - тренування
-              переноситься на інший зручний для Вас день.</p>
+            <p>{{$t('homePage.whatNeedPrePayText')}}</p>
           </template>
         </dropdown>
-        <dropdown heading="Краще займатись разово чи з абонементом?">
+        <dropdown :heading="$t('homePage.oneTimeOrMemb')">
           <template #content>
-            <p>Відповідь очевидна - абонемент!
-              Особливо якщо Ви займаєтесь персонально або ж на спліт тренуваннях.
-              1. абонемент продумано так, щоб вигідно, перш за все, було ВАМ!
-            </p>
-            <p>
-              2. абонементи на персональні або спліт тренування є двох видів: 8 або 12 тренувань на місяць,
-              зоорієнтовано це на те, скільки разів на тиждень Ви готові займатися та вдосконалювати своє тіло!
-            </p>
-            <p>
-              3. маючи абонемент Ви точно будете займатися, оскільки не рідко трапляється так, що Ви хочете привести
-              своє тіло у форму,але сходивши на одне-два тренування втрачається мотивація чи з’являється лінь… Ви
-              привчите себе займатися та будете кайфувати від тренувань, оскільки звичка виробляється близько двох
-              тижнів, а маючи абонемент ви наврядчи здастесь!)
-            </p>
+            <p>{{$t('homePage.oneTimeOrMembText1')}}</p>
+            <p>{{$t('homePage.oneTimeOrMembText2')}}</p>
+            <p>{{$t('homePage.oneTimeOrMembText3')}}</p>
+            <p>{{$t('homePage.oneTimeOrMembText4')}}</p>
           </template>
         </dropdown>
       </div>
@@ -122,8 +97,11 @@ h2 {
 
 h4 {
   font-size: 18px;
+  text-transform: lowercase;
 }
-
+h4:first-letter{
+  text-transform: uppercase;
+}
 p {
   font-size: 20px;
   margin: 0 0 2rem 0;

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
     <div class="title">
-      <h2>Training Types</h2>
-      <span>Join and learn more about trainings</span>
+      <h2>{{ $t('trainingTypes') }}</h2>
+      <span>{{$t('homePage.trTypesSubtitle')}}</span>
     </div>
     <TrTypesSwiper v-if="types" :types="this.types"/>
     <div v-else>

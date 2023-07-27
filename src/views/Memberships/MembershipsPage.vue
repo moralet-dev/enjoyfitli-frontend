@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="title animate__animated animate__fadeIn">
       <h1>{{ this.$t('memberships') }}</h1>
-      <p>{{ this.$t('MembershipsPage.mainDescription')}}</p>
+      <p>{{ this.$t('membershipsPageSubtitle')}}</p>
     </div>
     <div v-for="type in types" v-if="memberships" class="membership-block animate__animated animate__fadeIn">
       <div class="descr">
@@ -65,7 +65,7 @@ p{
   line-height: 31px;
 }
 .title {
-  padding: 0 9rem 5rem 9rem;
+  padding: 0 9rem;
 }
 
 .membership-block {
