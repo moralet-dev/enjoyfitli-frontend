@@ -5,7 +5,9 @@
         v-if="trainings.length > 0"
         v-for="t in trainings" :key="t.id">
       <div class="training-item__top">
-        <span>{{ $t('personalTraining') }}</span>
+        <span>
+          {{ t?.type }}
+        </span>
         <span class="date">
           {{
             new Date(t?.when).toLocaleDateString(`${this.$store.getters.getLocale}`,

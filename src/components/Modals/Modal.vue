@@ -56,18 +56,17 @@ export default {
         <div class="modal-footer">
           <slot name="footer">
             <button class="modal-default-button" @click="onClose">
-              Cancel
+              {{ $t('cancel') }}
             </button>
           </slot>
         </div>
         <div class="post-info">
-          <h4>Social networks</h4>
+          <h4>{{ $t('socialNetworks') }}</h4>
           <div class="logos">
             <InstagramLogo/>
             <TikTokLogo/>
           </div>
         </div>
-
       </div>
     </div>
   </Transition>
