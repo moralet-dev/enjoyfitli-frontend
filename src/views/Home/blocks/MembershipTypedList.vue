@@ -6,7 +6,7 @@
           {{ t[`name_${this.$store.getters.getLocale}`] }}
         </span>
         <span v-else>
-          {{ t?.name}}
+          {{ t?.name }}
         </span>
       </li>
     </ul>
@@ -76,7 +76,7 @@ ul.training-types {
   flex-wrap: wrap;
   margin: 0 0 4rem 0;
   padding: .1rem;
-  border: 3px solid var(--color-link-text);
+  border: 3px solid var(--color-elements);
   border-radius: 29px;
 }
 
@@ -86,17 +86,25 @@ ul.training-types li {
   padding: 1rem 3rem;
 }
 
+.active-membership {
+  color: var(--color-headings);
+  background: var(--color-elements);
+  border-radius: 100px;
+}
+
 @media (max-width: 767px) {
   .wrapper-types {
     padding: 0 1rem;
   }
-  ul.training-types{
+
+  ul.training-types {
     display: grid;
     grid-template-columns: 12fr;
     width: 100%;
     margin: 0 0 1rem 0;
 
   }
+
   ul.training-types li {
 
   }
@@ -106,12 +114,6 @@ ul.training-types li {
 
 }
 
-.active-membership {
-  color: var(--color-headings);
-  border: solid 2px var(--color-text);
-  background: var(--color-text);
-  border-radius: 100px;
-}
 .fade-enter-active {
   transition: all .5s;
 }

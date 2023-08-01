@@ -71,7 +71,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--color-headings);
+  background-color: var(--color-background);
   border-radius: 10px;
   border: 2px solid var(--color-text);
   color: var(--color-text);

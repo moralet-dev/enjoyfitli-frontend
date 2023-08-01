@@ -7,12 +7,12 @@
       {{ training.direction?.level }}
     </p>
     <div v-if="isSigned()" :class="{'actions': true,}">
-      <p v-if="isLessOneHour()" class="actions__text">
+      <p v-if="isLessThreeHours()" class="actions__text">
         {{ this.$t('lessOneHourText') }}
         <router-link class="text-link" :to="{'name': 'home'}">{{ $t('details') }}</router-link>
       </p>
       <span v-else class="actions__text">{{ $t('signedText') }}</span>
-      <button v-if="!isLessOneHour()" class="next signed" @click="onRescind">{{ $t('rescind') }}</button>
+      <button v-if="!isLessThreeHours()" class="next signed" @click="onRescind">{{ $t('rescind') }}</button>
     </div>
     <div v-if="!isSigned()" class="actions">
       <span class="actions__text">{{ $t('toSignText') }}</span>
@@ -36,11 +36,11 @@ export default {
   mounted() {
   },
   methods: {
-    isLessOneHour() {
+    isLessThreeHours() {
       const trainingDate = new Date(this.training.when)
       const now = new Date()
-      const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000))
-      return trainingDate <= oneHourLater
+      const threeHoursLater = new Date(now.getTime() + (3 * 60 * 60 * 1000))
+      return trainingDate <= threeHoursLater
     },
     isSigned() {
       if (this.training?.visitors?.length > 0) {

@@ -36,9 +36,9 @@ export const authAPI = {
     },
     register(data){
         const url = '/auth/users/'
-        // HOW IT WORKS?!!
+        // ?
         return loginAPIInstance.post(url, data,{headers: {'X-CSRFToken': '{{ csrf_token }}'}})
-        // HOW IT WORKS?!!
+        // ?
     },
 
 }

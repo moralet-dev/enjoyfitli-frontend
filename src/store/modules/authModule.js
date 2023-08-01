@@ -1,5 +1,6 @@
 import {authAPI} from "@/api/authAPI/authAPI";
 import {defaultAPIInstance, deleteCookie, getCookie, setCookie} from "@/api";
+import {router} from "@/routers/router";
 
 export const authModule = {
     namespaced: true,
@@ -10,7 +11,7 @@ export const authModule = {
                 refresh: getCookie('refresh') || null,
                 access: getCookie('access') || null,
             },
-            isAuthenticated: !!getCookie('access') && !!getCookie('refresh'),
+            isAuthenticated: !!getCookie('refresh'),
             isSessionExpired: false,
             currentUser: {
                 id: null,
@@ -31,11 +32,11 @@ export const authModule = {
     mutations: {
         setAccess(state, access) {
             state.credentials.access = access
-            setCookie('access', access)
+            setCookie('access', access, {days:0, minutes:15})
         },
         setRefresh(state, refresh) {
             state.credentials.refresh = refresh
-            setCookie('refresh', refresh)
+            setCookie('refresh', refresh, {days:14, minutes:0})
         },
         setIsAuthenticated(state, isAuthenticated) {
             state.isAuthenticated = isAuthenticated
@@ -79,6 +80,7 @@ export const authModule = {
             commit('deleteTokens')
             commit('setIsAuthenticated', false)
             commit('unsetCurrentUser')
+            router.push('/')
         },
         onRegister({commit}, {email, phone, first_name, last_name, password, re_password}) {
             return authAPI.register(

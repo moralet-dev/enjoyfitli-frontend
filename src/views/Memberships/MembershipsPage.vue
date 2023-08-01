@@ -71,7 +71,7 @@ p{
 .membership-block {
   display: grid;
   grid-template-columns: 4fr 8fr;
-  padding: 9rem 9rem;
+  padding: 1.5rem 9rem;
 }
 @media (max-width: 767px) {
   .wrapper{
@@ -89,7 +89,7 @@ p{
   .membership-block{
     display: flex;
     flex-direction: column;
-    padding: 3rem 1rem;
+    padding: 1.5rem 1rem;
   }
   p{
     line-height: inherit;
@@ -103,7 +103,7 @@ p{
     padding: 0 5rem 3rem 5rem;
   }
   .membership-block{
-    padding: 5rem;
+    padding: 1.5rem;
     grid-template-columns: 6fr 6fr;
   }
   p{

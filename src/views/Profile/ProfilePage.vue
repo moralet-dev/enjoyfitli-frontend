@@ -10,12 +10,12 @@
                src="" alt="user_avatar">
         <div class="controllers">
           <label class="ctrl upload" for="photo_input">
-            <UploadIcon width="30" height="30" icon-color="var(--color-helper)"/>
+            <UploadIcon width="30" height="30" icon-color="white"/>
             <input id="photo_input" type="file" ref="profilePhoto" accept="image/jpeg, image/png" hidden="hidden"
                    @change="showModalUpload = true">
           </label>
           <span class="ctrl delete" @click="del_photo" >
-            <DeleteIcon width="30" height="30" icon-color="var(--color-helper)"/>
+            <DeleteIcon width="30" height="30" icon-color="white"/>
           </span>
         </div>
         </div>

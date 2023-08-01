@@ -4,43 +4,39 @@ import store from "@/store/store";
 const locale = store.getters.getLocale;
 
 const loginConfig = {
-    baseURL: `http://localhost:8000/${locale}/api`,
+    baseURL: `http://34.88.25.2/${locale}/api`,
 };
 
 export const loginAPIInstance = axios.create(loginConfig);
 
 const defaultConfig = {
-    baseURL: `http://localhost:8000/${locale}/api`,
+    baseURL: `http://34.88.25.2/${locale}/api`,
 }
 
 export const defaultAPIInstance = axios.create(defaultConfig);
 
 defaultAPIInstance.interceptors.request.use(
     async (config) => {
-        config.baseURL = `http://localhost:8000/${store.getters.getLocale}/api`
+        config.baseURL = `http://34.88.25.2/${store.getters.getLocale}/api`
         const access = !!getCookie("access");
         const refresh = !!getCookie("refresh");
-        if (access && refresh) {
-            const accessToken = getCookie("access");
-            console.log('verify')
-            const accessStatus = await axios.post('/auth/jwt/verify/', {'token': accessToken}, defaultConfig)
-                .then((response) => {
-                    config.headers['authorization'] = `JWT ${accessToken}`
-                    return response.status
-                }).catch(reason => {
-                    return reason.request.status
-                })
-            if (accessStatus === 401) {
+        if (refresh && access){
+            config.headers['authorization'] = `JWT ${getCookie('access')}`
+            return config
+        }
+        if (!access) {
+            if (refresh){
                 const refreshToken = getCookie("refresh");
-                await axios.post('/auth/jwt/refresh/',
-                    {'refresh': refreshToken}, defaultConfig)
+                await axios.post('/auth/jwt/refresh/',{'refresh': refreshToken}, defaultConfig)
                     .then(response => {
                         config.headers['authorization'] = `JWT ${response.data.access}`
-                        setCookie("access", response.data.access); // Зберегти токен доступу в куці
-                    }).catch(() => {
+                        setCookie("access", response.data.access, {days:0, minutes:15});
+                    })
+                    .catch(() => {
                         store.dispatch('authModule/onLogout')
                         store.dispatch('authModule/onSessionExpired', true)
                     })
+
             }
         }
         return config
@@ -55,9 +51,17 @@ export function getCookie(name) {
 }
 
 // set cookie function
-export function setCookie(name, value, days = 7) {
+export function setCookie(name, value, { days = 0, minutes = 0 } = {}) {
     const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+
+    if (days > 0) {
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    }
+
+    if (minutes > 0) {
+        date.setTime(date.getTime() + minutes * 60 * 1000);
+    }
+
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
 }
 export function deleteCookie(name) {

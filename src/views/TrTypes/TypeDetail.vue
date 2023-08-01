@@ -139,7 +139,10 @@ h3{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 5px solid var(--color-text);
+  background: var(--color-background);
+  border-radius: 15px;
+  border: 2px solid var(--color-text);
+  box-shadow: 0 0 5px var(--color-text);
   padding: 1rem;
   margin: 1rem;
   flex: 0 1 auto;
@@ -173,7 +176,6 @@ h3{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
   }
   .detail-content__title:before{
     content: '';
@@ -188,7 +190,7 @@ h3{
     padding: 1rem 5rem;
   }
   .memb-card{
-    flex: 0 1 auto;
+    flex: 0 1 25%;
   }
 
 }
@@ -225,7 +227,6 @@ h3{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-attachment: fixed;
   }
   .detail-content__title:before{
     content: '';
@@ -247,6 +248,9 @@ h3{
     padding: 0 0 2rem 1rem;
   }
   .memb-cards{
+    padding: 0;
+  }
+  .memb-cards h3{
     padding: 0 1rem;
   }
 }

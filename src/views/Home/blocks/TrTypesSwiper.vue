@@ -1,5 +1,5 @@
 <template>
-  <Carousel :itemsToShow="1.1" :transition="700" :wrap-around="true" ref="carousel" v-model="currentSlide">
+  <Carousel :itemsToShow="1" :transition="500" :wrap-around="true" :mouse-drag="false" :touch-drag="true" ref="carousel" v-model="currentSlide">
     <Slide v-for="t in types" :key="t.id">
       <div class="carousel__item">
         <TrTypeCardContent :trType="t"/>
@@ -88,9 +88,11 @@ export default defineComponent({
 
 .carousel__item {
   width: 100%;
+
   height: 100%;
   background: linear-gradient(to bottom right, var(--color-background), var(--color-background));
   border-radius: 15px;
+  border: none;
   display: flex;
 }
 
@@ -157,5 +159,12 @@ export default defineComponent({
 
 .carousel__pagination-button--active::after {
   background-color: var(--color-headings);
+}
+@media (max-width: 767px) {
+  .carousel__item{
+    max-height: 50vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
 }
 </style>

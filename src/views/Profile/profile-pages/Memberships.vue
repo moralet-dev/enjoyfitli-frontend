@@ -15,14 +15,14 @@
           <div class="membership-info-current">
             <div class="trainings-info">
               <TrainingsLeftCircle v-if="$vuetify.display.mdAndUp" :trainings-left="m.trainings_left"
-                                   :trainings-count="12" radius="80"
+                                   :trainings-count="20" radius="80"
                                    width="180" height="180"/>
-              <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="12"
+              <TrainingsLeftCircle v-else :trainings-left="m.trainings_left" :trainings-count="20"
                                    radius="40"
                                    width="90" height="90"/>
               <div class="trainings-info__description">
                 <span class="trainings-info__description__title">{{ this.$t('trainingsLeft') }}:</span>
-                <span> {{ m.trainings_left }}/ 12</span>
+                <span> {{ m.trainings_left }}/ 20</span>
                 <span class="trainings-info__description__title">{{ this.$t('expiresAt') }}:</span>
                 <span>{{
                     new Date(m?.date_end).toLocaleDateString(

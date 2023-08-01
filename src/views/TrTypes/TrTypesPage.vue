@@ -66,7 +66,7 @@ export default {
 
 <style scoped>
 .preloader{
-  min-height: 100vh;
+  min-height: 100svh;
 }
 .wrapper {
   padding: 0;
@@ -78,14 +78,14 @@ export default {
 .content-box {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 .types {
   display: grid;
   grid-template-columns: 3fr 3fr 3fr 3fr;
   z-index: 3;
-  height: 100vh;
+  height: 100svh;
   width: 100%;
   transition: all 1s;
 }
@@ -96,7 +96,7 @@ export default {
 }
 
 .type-card > a.router-link-exact-active, .type-card > a:hover {
-  background: var(--color-link-text);
+  background: var(--color-elements);
   color: var(--color-headings);
 }
 
@@ -149,7 +149,7 @@ export default {
     background: transparent;
   }
   .type-card > a.router-link-exact-active{
-    background: var(--color-link-text);
+    background: var(--color-elements);
   }
   .collapsed {
     min-height: 20vh;

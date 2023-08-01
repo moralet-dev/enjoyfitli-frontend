@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="{'training-item animate__animated animate__fadeIn': true, 'disabled': isLessOneHour(t) && isSigned(t)}"
+    <div :class="{'training-item animate__animated animate__fadeIn': true, 'disabled': isLessThreeHour(t) && isSigned(t)}"
          @click="onTrClick(t)"
          v-if="dailyTr.length > 0"
          v-for="t in dailyTr" :key="t.id">
@@ -80,11 +80,11 @@ export default {
     selectedTr: null,
   }),
   methods: {
-    isLessOneHour(training) {
+    isLessThreeHour(training) {
       const trainingDate = new Date(training.when)
       const now = new Date()
-      const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000))
-      return trainingDate <= oneHourLater
+      const threeHoursLater = new Date(now.getTime() + (3 * 60 * 60 * 1000))
+      return trainingDate <= threeHoursLater
     },
     onTrClick(t = null) {
       if (t?.id !== this.selectedTr?.id) {
@@ -121,7 +121,7 @@ export default {
   flex-direction: column;
   margin: 2rem 0;
   padding: 1rem 2rem;
-  background: var(--color-text);
+  background: var(--color-elements);
   border-radius: 20px;
   color: var(--color-headings);
   font-family: "Helvetica Neue", sans-serif;

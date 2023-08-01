@@ -1,8 +1,8 @@
 <template>
   <div class="login-container__wrapper">
     <div class="locale">
-      <div class="lang" @click="setLocale('uk')"><Flag /></div>
-      <div class="lang " @click="setLocale('en')"><Flag  country="gb"/></div>
+      <div class="lang uk" @click="setLocale('uk')"></div>
+      <div class="lang en" @click="setLocale('en')"></div>
     </div>
     <div v-if="getIsAuth"
          :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
@@ -104,12 +104,20 @@ export default {
   height: 100%;
   margin: 0 .5rem;
   cursor: pointer;
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
-
-.lang svg {
+.uk{
+  background-image: url("@/assets/icons/flags/uk_flag.png");
+}
+.en{
+  background-image: url("@/assets/icons/flags/gb_flag.png");
+}
+.lang{
   transition: .3s;
 }
-.lang:hover > svg{
+.lang:hover{
   transform: scale(120%);
 }
 .login-container {

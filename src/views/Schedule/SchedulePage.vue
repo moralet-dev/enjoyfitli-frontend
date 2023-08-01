@@ -256,7 +256,7 @@ export default {
 
 .calendar__wrapper {
   padding: 0 9rem;
-  background: var(--color-text);
+  background: var(--color-elements);
   color: var(--color-headings);
   border-radius: 20px;
   font-family: "Helvetica Neue", sans-serif;
@@ -338,8 +338,8 @@ export default {
   padding: 3rem 1rem;
 }
 .popup-btn{
-  background: var(--color-text);
-  color: var(--color-headings);
+  background: var(--color-background);
+  color: var(--color-elements);
 }
 h1 {
   font-size: 50px;

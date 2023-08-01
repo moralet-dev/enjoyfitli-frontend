@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .wrapper{
-  background: var(--color-link-text);
+  background: var(--color-elements);
   padding: 3rem 0;
 }
 .title{

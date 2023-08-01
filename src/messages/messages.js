@@ -177,12 +177,13 @@ export default {
         signComplete: 'You have successfully signed up for the workout',
         rescindComplete: 'You have successfully canceled the reservation',
 
-        lessOneHourText: 'According to our rules, you cannot cancel the workout reservation less than an hour before' +
+        lessOneHourText: 'According to our rules, you cannot cancel the workout reservation less than 3 hours before' +
             ' the session (except for force majeure situations).',
 
         details: 'Details',
         trainings: 'workouts',
-
+        weUseCookies: 'We use cookies to improve security and your experience on our website.',
+        accept: 'Accept',
     },
     uk: {
         homePage: {
@@ -352,8 +353,10 @@ export default {
         successCreateCabMessage: 'Лист з інструкціями щодо активації відправлений на вказану вами пошту. Перевірте вашу поштову скриньку та слідуйте інструкціям для активації аккаунту. Якщо ви не бачите листа, перевірте розділ "спам" або зв\'яжіться із нами для вирішення проблеми.',
         signComplete: 'Ви успішно записались на тренування',
         rescindComplete: 'Ви успішно відмінили запис',
-        lessOneHourText: 'Згідно наших правил, ви не можете відмінити запис на тренування менш ніж за годину (окрім форс-мажорних ситуацій).',
+        lessOneHourText: 'Згідно наших правил, ви не можете відмінити запис на тренування менш ніж за 3 години (окрім форс-мажорних ситуацій).',
         details: 'Детальніше',
         trainings: 'тренування',
+        weUseCookies: 'Ми використовуємо cookies для покращення безпеки та працездатності нашого сайту і поліпшення ваших вражень від перебування на платформі.',
+        accept: 'Погоджуюсь',
     },
 };

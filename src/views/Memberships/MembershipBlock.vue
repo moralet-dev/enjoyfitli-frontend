@@ -114,10 +114,14 @@ export default defineComponent({
         this.showModal = false
         this.showNextModal = true
       }).catch(reason => {
+        console.log('err')
         if (reason.response.data.status === 'ASR'){
           this.nextMessage = this.$t('requestDeclined')
           this.showModal = false
           this.showNextModal = true
+        } else if (reason.request.status === 401){
+          this.showModal = false
+          this.$store.dispatch('onOpenLoginPopup')
         }
       })
     }
@@ -137,9 +141,9 @@ export default defineComponent({
 .carousel__item {
   min-height: 200px;
   width: 100%;
-  background: transparent;
+  background: var(--color-background);
   border-radius: 25px;
-  border: 5px solid var(--color-link-text);
+  border: 2px solid var(--color-link-text);
   display: flex;
   justify-content: center;
   transition: .3s;

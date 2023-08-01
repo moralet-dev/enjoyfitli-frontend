@@ -8,6 +8,7 @@
     </router-view>
   </main>
   <Footer v-if="serverAvailable"/>
+  <AcceptCookie v-if="serverAvailable"/>
   <div class="unavailable animate__animated animate__slideInDown" v-else-if="serverAvailable===false">
     <h6>Server is unavailable:(</h6>
     <p>We're working on it. Please, try again later on report about the problem, if it seems strange</p>
@@ -21,9 +22,11 @@ import Footer from "@/views/Footer.vue";
 import GearAnimatedIcon from "@/components/icons/GearAnimatedIcon.vue";
 import {pingRequest} from "@/api";
 import {authAPI} from "@/api/authAPI/authAPI";
+import AcceptCookie from "@/components/AcceptCookie.vue";
 
 export default {
   components: {
+    AcceptCookie,
     GearAnimatedIcon,
     Header,
     Footer,
@@ -50,7 +53,6 @@ export default {
       await authAPI.getMe().then(response => {
         this.$store.dispatch('authModule/onCurrentUserSet', response.data)
       }).catch((reason) => {
-        console.log(reason.response)
       })
     },
   }

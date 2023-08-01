@@ -8,7 +8,6 @@
               <CloseIcon/>
             </button>
             <div class="modal-header">
-              <span>{{ $t('welcome') }}!</span>
               <h3>{{ $t('createPersonalCab') }}</h3>
             </div>
             <div class="modal-body">
@@ -61,7 +60,7 @@
                   <input name="agree" type="checkbox" required/>
                   <label for="agree">
                     {{ $t('iAgreeWith') }}
-                    <a class="text-link">{{ $t('termsOfServiceUse') }}</a>
+                    <router-link @click="$emit('close')" :to="{name: 'terms'}" class="text-link">{{ $t('termsOfServiceUse') }}</router-link>
                     {{ $t('and') }}
                     <a class="text-link">{{ $t('privacyPolicy') }}</a>
                   </label>
@@ -145,8 +144,6 @@ export default {
         this.$emit('close')
         this.showNext = true
       }).catch(reason => {
-        this.showNext = true
-
         if (reason.response.status!==500){
           return this.errors = reason.response.data
         }

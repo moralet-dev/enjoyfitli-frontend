@@ -4,14 +4,16 @@
          :key="m.id">
       <div class="card" @click="setCurrent(m)">
         <span class="card-title">{{ m.count }} {{ $t('trn') }}</span>
-        <span class="card-price">{{ m.price }} &#8372;</span>
-        <button @click="showModal = true; current = m">{{$t('buy')}}</button>
+        <span class="card-price">{{ Math.ceil( m?.price / m?.count) }} &#8372; <br>{{$t('perTraining')}}</span>
+        <button @click="$router.push('/memberships')">{{$t('buy')}}</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {router} from "@/routers/router";
+
 export default {
   name: "MembTypedCards",
   props: {
@@ -29,6 +31,9 @@ export default {
     }
   },
   methods: {
+    router() {
+      return router
+    },
     setCurrent(membership) {
       this.current = membership
     }
@@ -40,18 +45,22 @@ export default {
 .card-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 0 9rem;
 }
 
 .card-wrapper {
   display: flex;
   flex-direction: column;
-  flex: 0 1 33.33%;
+  flex: 0 1 22%;
   min-height: 200px;
   background: transparent;
-  border-radius: 0;
-  border: 5px solid var(--color-text);
+  border-radius: 15px;
+  background: var(--color-background);
+  box-shadow: 0 0 5px var(--color-text);
+
+  border: 2px solid var(--color-elements);
   transition: all .5s;
   margin: .5rem;
   color: var(--color-text);
@@ -63,7 +72,7 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem .25rem;
 
 }
 
@@ -83,7 +92,8 @@ export default {
 }
 
 .card-price {
-  font-size: 40px;
+  font-size: 30px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {

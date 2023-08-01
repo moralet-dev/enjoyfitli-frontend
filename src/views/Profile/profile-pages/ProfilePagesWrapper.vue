@@ -93,7 +93,7 @@ export default {
 .pages-wrapper {
   display: grid;
   grid-template-columns: 4fr 8fr;
-  border-top: 1px solid white;
+  border-top: 1px solid var(--color-helper);
 }
 
 aside {
@@ -111,6 +111,7 @@ aside {
 .pages-link a {
   display: flex;
   align-items: center;
+  background: var(--color-background);
   border: 3px solid transparent;
   border-radius: 10px;
   padding: 0.5em 1rem;
@@ -120,15 +121,17 @@ aside {
 }
 .pages-link a.router-link-exact-active{
   background: var(--color-link-text-hover);
-  color: var(--color-helper);
-  border: 3px solid var(--color-link-text);
+  color: var(--color-headings);
+  border: 3px solid var(--color-elements);
 }
 
 .pages-link a.router-link-exact-active:hover{
+  color: var(--color-headings);
   background: var(--color-link-text-hover);
 }
 .pages-link a:hover{
-  background: transparent;
+  background: var(--color-background-soft);
+  color: var(--color-elements);
   border: 3px solid var(--color-link-text);
 }
 .pages-link a span {
