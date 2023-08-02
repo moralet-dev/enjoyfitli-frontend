@@ -27,6 +27,7 @@
     --vt-c-third-green: #4F7369;
     --vt-c-blue-mute: #194759;
     --vt-c-blue-mute-lighter: #2d4c5d;
+    --vt-c-blue-mute-darker: #104559;
     --vt-c-indigo: #2c3e50;
 
     --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
@@ -140,14 +141,13 @@ body {
 body:before{
     content: '';
     position: fixed;
-    top: 10lvh;
-    left: -20lvh;
+    top: 10svh;
+    left: -20svh;
     opacity: .3;
     width: 400px;
     height: 100%;
     transform: rotate(45deg);
-    background:  url("icons/gantel.svg") no-repeat
-;
+    background:  url("icons/gantel.svg") no-repeat;
 }
 h1, h2, h3, h4, h5, h6{
     color: var(--color-headings);
@@ -167,7 +167,7 @@ h1{
 footer {
     padding: 0 9rem;
     margin-top: auto;
-    background: var(--vt-c-blue-mute);
+    background: var(--vt-c-blue-mute-darker);
 }
 
 a {
@@ -247,7 +247,6 @@ form select option {
     max-width: 100%;
     word-wrap: break-word;
     padding: 1.3rem 1.3rem;
-
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

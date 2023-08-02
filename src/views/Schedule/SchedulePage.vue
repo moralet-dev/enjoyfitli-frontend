@@ -372,7 +372,7 @@ h1 {
   }
 
   .trainings-list__wrapper {
-    margin: 0 .5rem;
+    margin: 1rem .5rem;
   }
 }
 

@@ -5,9 +5,7 @@
         <div class="type-card" v-for="t in types" :style="{backgroundImage: `url(${t.image})`}" :key="t?.id">
           <router-link :to="{ name: 'type-detail', params: { slug: t.slug }, query: { typeID: t.id } }"
                        class="type-card__link" @click="onTypeClick(t)">
-            <div class="type-card__text">
-              <span>{{ t[`name_${this.$store.getters.getLocale}`] || t?.name }}</span>
-            </div>
+              <span class="type-card__text">{{ t[`name_${this.$store.getters.getLocale}`] || t?.name }}</span>
           </router-link>
         </div>
       </div>
@@ -126,9 +124,10 @@ export default {
 
 .type-card__text {
   font-size: 25px;
+  display: block;
+  text-align: center;
   color: var(--color-headings);
   font-family: "Helvetica Neue", sans-serif;
-  font-weight: 700;
   text-transform: uppercase;
   text-shadow: 1px 1px 1px #000;
 }
@@ -140,6 +139,7 @@ export default {
   .types {
     display: grid;
     grid-template-columns: 6fr 6fr;
+    grid-auto-rows: 2fr;
     z-index: 3;
     min-height: 100vh;
     width: 100%;
