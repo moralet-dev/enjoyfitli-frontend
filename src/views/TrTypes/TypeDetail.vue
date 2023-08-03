@@ -18,7 +18,7 @@
           </div>
 
         </div>
-        <div class="memb-cards" v-if="trType?.advantages?.length > 0">
+        <div class="memb-cards" v-if="trType?.memberships?.length > 0">
           <h3>{{this.$t('memberships')}}:</h3>
           <div class="memb-cards__box">
             <div v-for="m in trType?.memberships" class="memb-card">
