@@ -1,8 +1,8 @@
 <template>
   <Carousel :itemsToShow="3" :wrapAround="true" ref="carousel" :breakpoints="breakpoints" v-model="currentSlide">
     <Slide v-for="m in memberships" :key="m.id">
-      <div class="carousel__item">
-        <div class="carousel__card">
+      <div class="carousel__item" :style="{backgroundImage: `url(${m?.image})`}">
+        <div class="carousel__card" >
           <span class="carousel__card__title">{{ m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase() }} {{m.count}}</span>
           <span class="carousel__card__price">{{ m.price }} &#8372;</span>
           <button @click="[current, showModal] = [m, true]">{{ $t('buy') }}</button>
@@ -91,7 +91,7 @@ export default defineComponent({
           snapAlign:'center',
         },
         991: {
-          itemsToShow: 1.5,
+          itemsToShow: 2,
           snapAlign: 'center',
         },
         1440:{
@@ -129,7 +129,7 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style scoped>
 .carousel {
   display: grid;
   grid-template-columns: 12fr;
@@ -139,14 +139,27 @@ export default defineComponent({
 .carousel__viewport{
 }
 .carousel__item {
-  min-height: 200px;
+  min-height: 250px;
   width: 100%;
-  background: var(--color-background);
+  -webkit-background-size: cover;
+  background-size: cover;
   border-radius: 25px;
   border: 2px solid var(--color-link-text);
+  color: var(--vt-c-white-soft);
   display: flex;
   justify-content: center;
   transition: .3s;
+}
+.carousel__item:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 23px;
+
+  background: var(--color-elements-semi-opacity);
 }
 @media (max-width: 767px) {
   .carousel{
@@ -172,6 +185,7 @@ export default defineComponent({
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+
 }
 
 .carousel__card__title {

@@ -1,6 +1,7 @@
 <template>
   <div class="card-box">
     <div :class="{'card-wrapper':true, 'clicked': current?.id === m.id}"  v-for="m in memberships"
+         :style="{backgroundImage: `url(${m?.image})`}"
          :key="m.id">
       <div class="card" @click="setCurrent(m)">
         <span class="card-title">{{ m.count }} {{ $t('trn') }}</span>
@@ -54,18 +55,28 @@ export default {
   display: flex;
   flex-direction: column;
   flex: 0 1 22%;
-  min-height: 200px;
-  background: transparent;
+  min-height: 250px;
   border-radius: 15px;
-  background: var(--color-background);
   box-shadow: 0 0 5px var(--color-text);
 
-  border: 2px solid var(--color-elements);
+  border: 2px solid var(--color-text);
   transition: all .5s;
   margin: .5rem;
-  color: var(--color-text);
+  color: var(--vt-c-white-soft);
+  -webkit-background-size: cover;
+  background-size: cover;
 }
+.card-wrapper:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
 
+  background: var(--color-elements-semi-opacity);
+}
 .card {
   display: flex;
   min-height: 100%;

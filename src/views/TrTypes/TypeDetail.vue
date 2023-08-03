@@ -5,8 +5,8 @@
         <img :src="trType?.image" alt="training type image">
       </div>
       <div class="detail-content__text">
-        <div class="detail-content__title" :style="{backgroundImage: this.$vuetify.display.mdAndDown ? `url(${trType?.image})`: 'none'}">
-          <h1>{{ trType[`name_${this.$store.getters.getLocale}`] || trType?.name }} {{ this.$t('training') }}</h1>
+        <div class="detail-content__title" :style="{backgroundImage: $vuetify.display.mdAndDown ? `url(${trType?.image})`: 'none'}">
+          <h1>{{ trType[`name_${$store.getters.getLocale}`] || trType?.name }} {{ $t('training') }}</h1>
         </div>
         <div class="detail-content__description">
           <div class="description">
@@ -21,7 +21,10 @@
         <div class="memb-cards" v-if="trType?.memberships?.length > 0">
           <h3>{{this.$t('memberships')}}:</h3>
           <div class="memb-cards__box">
-            <div v-for="m in trType?.memberships" class="memb-card">
+            <div v-for="m in trType?.memberships"
+                 class="memb-card"
+                 :style="{backgroundImage: `url(${m?.image})`}"
+            >
               <span>{{m.count}} {{$t('trainings')}}</span>
               <span>{{Math.round(m.price / m.count)}} &#8372; {{$t('perTraining')}}</span>
               <span v-if="countEconomy(m.price, m.count, trType.memberships[0].price)>0"
@@ -140,13 +143,26 @@ h3{
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: var(--color-background);
-  border-radius: 15px;
+  -webkit-background-size: cover;
+  background-size: cover;
+  border-radius: 17px;
   border: 2px solid var(--color-text);
   box-shadow: 0 0 5px var(--color-text);
   padding: 1rem;
   margin: 1rem;
   flex: 0 1 auto;
+  color: var(--vt-c-white-soft);
+}
+.memb-card:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+
+  background: var(--color-elements-semi-opacity);
 }
 .memb-card span{
   margin-bottom: 3rem;
@@ -257,8 +273,15 @@ h3{
   .memb-cards{
     padding: 0;
   }
+  .memb-cards__box{
+    margin: 1rem 0 0 0;
+
+  }
   .memb-cards h3{
     padding: 0 1rem;
+  }
+  .memb-card{
+    margin: .5rem;
   }
 }
 </style>
