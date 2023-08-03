@@ -93,11 +93,23 @@ export default {
   transition: all 1s;
 }
 
-.type-card > a.router-link-exact-active, .type-card > a:hover {
-  background: var(--color-elements);
-  color: var(--color-headings);
+
+.type-card__text {
+  font-size: 25px;
+  display: block;
+  text-align: center;
+  color: var(--vt-c-white-soft);
+  font-family: "Helvetica Neue", sans-serif;
+  text-transform: uppercase;
 }
 
+.type-card > a.router-link-exact-active, .type-card > a:hover {
+  background: var(--color-background);
+  color: var(--color-headings);
+}
+.type-card a.router-link-exact-active span, .type-card a:hover span{
+  color: var(--color-headings);
+}
 .type-card {
   flex: 1 1 auto;
   display: flex;
@@ -111,7 +123,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgb(0, 0, 0, .35);
+  background: rgb(0, 0, 0, .45);
 }
 
 .type-card__link {
@@ -122,15 +134,6 @@ export default {
   min-width: 100%;
 }
 
-.type-card__text {
-  font-size: 25px;
-  display: block;
-  text-align: center;
-  color: var(--color-headings);
-  font-family: "Helvetica Neue", sans-serif;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 1px #000;
-}
 
 .type__detail-wrapper {
   min-height: 100%;
@@ -145,8 +148,9 @@ export default {
     width: 100%;
     transition: all 1s;
   }
-  .type-card > a:hover{
+  .type-card a:hover, .type-card a:hover span{
     background: transparent;
+    color: var(--vt-c-white-soft);
   }
   .type-card > a.router-link-exact-active{
     background: var(--color-elements);

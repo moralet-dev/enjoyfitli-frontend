@@ -254,7 +254,7 @@ export default {
   }
   .nav-list li a{
     padding: 2rem 1rem;
-    color: var(--color-header-text);
+    color: var(--color-header-text-hover);
   }
   .nav-list li a:hover{
     padding: 2rem 1rem;

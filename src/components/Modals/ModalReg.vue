@@ -201,9 +201,10 @@ export default {
   background: transparent;
   border: none;
   z-index: 9999;
-
 }
-
+.close svg{
+  fill: var(--color-text);
+}
 .modal-content {
   flex-direction: column;
   align-items: center;

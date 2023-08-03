@@ -157,7 +157,7 @@ export default {
   color: var(--color-header-text-hover);
 }
 a.logout:hover{
-  color: var(--color-header-text);
+  color: var(--vt-c-white-soft);
   background: var(--vt-c-red-dark);
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -182,12 +182,14 @@ a.logout:hover{
   .login-container a, .locale {
     width: 100%;
     padding: 2rem 1rem;
+    color: var(--color-header-text-hover);
   }
-
+  .logout{
+    color: var(--vt-c-white-soft);
+    background: var(--vt-c-red-dark);
+  }
   .login-container a.router-link-active,
   .login-container a.router-link-exact-active {
-    color: var(--color-link-text);
-    background: var(--color-background);
   }
   .locale{
     justify-content: center;

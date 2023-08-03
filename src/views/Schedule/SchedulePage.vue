@@ -317,12 +317,12 @@ export default {
 }
 
 .number:hover, .selected {
-  background: var(--color-background);
+  background: var(--color-headings);
   color: var(--color-text);
 }
 
 .disabled {
-  color: slategray;
+  color: dimgrey;
   pointer-events: none;
   cursor: default;
 }

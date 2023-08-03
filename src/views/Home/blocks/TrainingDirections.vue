@@ -58,7 +58,7 @@ export default {
 .media-container {
   display: flex;
   flex-direction: row;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
 }
 
 .media-container:nth-child(even) .content-block:first-child {
@@ -67,7 +67,7 @@ export default {
 }
 
 .media-container:nth-child(even) .content-block:first-child .content-block__text {
-  padding: 3rem 0rem 3rem 3rem;
+  padding: 3rem 0 3rem 3rem;
 }
 
 .content-block {
@@ -75,7 +75,7 @@ export default {
 }
 
 .content-block__text {
-  padding: 3rem 3rem 3rem 0rem;
+  padding: 3rem 3rem 3rem 0;
   min-height: 30rem;
   display: flex;
   flex-direction: column;
@@ -87,20 +87,18 @@ export default {
   background-size: cover;
   min-height: 100%;
   border-radius: 0;
-  -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0 0 5px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 0 5px 1px rgba(0,0,0,0.75);
+  box-shadow: 0 0 5px 1px rgba(0,0,0,0.75);
 }
 .content-block__image.default{
-  background: linear-gradient(var(--color-text) 0, #ffffff 100%);
+  background: var(--color-background);
 }
 span.number, span.title {
   font-size: 50px;
-  font-family: "Helvetica Neue", sans-serif;
   font-weight: 700;
   text-transform: uppercase;
-  text-shadow: 1px 1px 2px black;
-  color: var(--color-headings);
+
   margin: 0 0 1rem 0;
 }
 

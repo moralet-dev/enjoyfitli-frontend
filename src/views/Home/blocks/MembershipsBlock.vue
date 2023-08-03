@@ -50,9 +50,6 @@ h2{
   font-size: 50px;
   margin-bottom: 1rem;
 }
-.title span{
-  color: var(--color-headings);
-}
 @media (min-width: 768px) and (max-width: 991px) {
   .title{
     padding: 2rem 5rem 2rem 5rem;

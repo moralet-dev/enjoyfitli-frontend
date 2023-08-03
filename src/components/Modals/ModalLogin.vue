@@ -195,13 +195,16 @@ form {
 
 .modal-bg button {
   position: absolute;
-  padding: 0;
   border: none;
   margin: 1rem;
   top: 0;
   right: 0;
-  background: transparent;
+  background: var(--color-background);
   width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
 }
 
 .mobile-close {
@@ -243,9 +246,9 @@ form {
   .mobile-close {
     display: block;
     position: absolute;
+    background: transparent;
     right: 0;
     top: 0;
-    background: transparent;
     border: none;
     z-index: 9999;
 

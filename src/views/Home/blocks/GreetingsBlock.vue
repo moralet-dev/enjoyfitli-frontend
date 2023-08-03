@@ -21,21 +21,9 @@ export default {
   white-space: pre-wrap;
 }
 
-.content {
-  padding: 0;
-  margin: 0;
-}
-
-.content p {
-  margin: 0 0 2rem 0;
-  padding: 0 3rem;
-  font-size: 24px;
-}
-
 p.title {
   font-family: "Helvetica Neue", sans-serif;
-  color: var(--color-headings);
-  text-shadow: 1px 1px 2px black;
+
   font-size: 50px;
   font-weight: 700;
   text-transform: uppercase;
@@ -47,23 +35,8 @@ p.title {
     padding: 3rem 1rem;
   }
 
-  .content {
-    margin: 0;
-    padding: 0;
-  }
-
-  .content p {
-    margin: 0 0 2rem 0;
-    font-size: 16px;
-  }
-
   p.title {
-    font-family: "Helvetica Neue", sans-serif;
-    color: var(--color-headings);
-    text-shadow: 1px 1px 1px black;
     font-size: 30px;
-    font-weight: 700;
-    text-transform: uppercase;
   }
 }
 

@@ -49,9 +49,11 @@ footer{
   flex-direction: column;
   justify-content: start;
   align-items: start;
+
 }
-.footer-block span{
+.footer-block span, .footer-block a{
   color: var(--color-headings);
+
 }
 .contacts span{
   margin-bottom: 1rem;

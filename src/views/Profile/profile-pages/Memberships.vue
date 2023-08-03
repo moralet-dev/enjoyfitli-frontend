@@ -115,7 +115,7 @@ h3 {
 }
 
 .membership-info-current {
-  border-bottom: solid 1px var(--color-helper);
+  border-bottom: solid 1px var(--color-elements);
 }
 
 .m-name {
@@ -125,13 +125,6 @@ h3 {
 
 .m-count-block p {
   padding: 0 0 0.75rem 0;
-}
-
-.trainings-title {
-  display: block;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 0 0 .5rem 0;
 }
 
 .trainings-info {
@@ -180,9 +173,6 @@ span.trainings-info__description__title {
     text-align: center;
   }
 
-  .trainings-title {
-  }
-
   .trainings-info {
     flex-direction: row;
     justify-content: space-between;
@@ -194,10 +184,5 @@ span.trainings-info__description__title {
     text-align: right;
   }
 
-  span.expired {
-    padding: 1rem;
-    border: 2px solid var(--color-link-text);
-    border-radius: 15px;
-  }
 }
 </style>

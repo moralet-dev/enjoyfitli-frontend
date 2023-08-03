@@ -94,13 +94,13 @@ export default {
 
 .signed {
   background: orange;
+  color: var(--vt-c-blue-mute);
 }
 .to-sign:hover{
-  color: var(--color-link-text);
   background: var(--color-helper);
 }
 .signed:hover{
-  color: var(--color-link-text);
+  color: var(--vt-c-blue-mute);
 }
 @media (max-width: 767px) {
   .actions {

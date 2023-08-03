@@ -100,7 +100,6 @@ export default {
 .modal-header {
   font-family: 'Futura New', sans-serif;
   font-size: 30px;
-  color: var(--color-headings);
   padding: 1rem 0 0 0;
 }
 

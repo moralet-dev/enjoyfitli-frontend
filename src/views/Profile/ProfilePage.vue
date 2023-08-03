@@ -191,7 +191,7 @@ h1 {
 }
 
 .upload {
-  border-right: 1px solid var(--color-helper);
+  border-right: 1px solid var(--color-headings);
   border-bottom-left-radius: 35px;
   border-top-left-radius: 15px;
 }
@@ -201,7 +201,7 @@ h1 {
 }
 
 .delete {
-  border-left: 1px solid var(--color-helper);
+  border-left: 1px solid var(--color-headings);
   border-bottom-right-radius: 15px;
   border-top-right-radius: 35px;
   transition: .5s;

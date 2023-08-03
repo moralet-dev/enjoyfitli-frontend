@@ -93,13 +93,13 @@ export default {
 .pages-wrapper {
   display: grid;
   grid-template-columns: 4fr 8fr;
-  border-top: 1px solid var(--color-helper);
+  border-top: 1px solid var(--color-elements);
 }
 
 aside {
   display: flex;
   flex-direction: column;
-  border-right: solid 1px var(--color-helper);
+  border-right: solid 1px var(--color-elements);
   padding: 1rem 0 0 0;
 }
 
@@ -111,28 +111,17 @@ aside {
 .pages-link a {
   display: flex;
   align-items: center;
-  background: var(--color-background);
+  background: transparent;
   border: 3px solid transparent;
   border-radius: 10px;
   padding: 0.5em 1rem;
 }
-.pages-link a.router-link-active {
-  background: transparent;
-}
-.pages-link a.router-link-exact-active{
-  background: var(--color-link-text-hover);
-  color: var(--color-headings);
-  border: 3px solid var(--color-elements);
-}
-
-.pages-link a.router-link-exact-active:hover{
-  color: var(--color-headings);
-  background: var(--color-link-text-hover);
-}
+.pages-link a.router-link-exact-active,
+.pages-link a.router-link-exact-active:hover,
 .pages-link a:hover{
-  background: var(--color-background-soft);
-  color: var(--color-elements);
-  border: 3px solid var(--color-link-text);
+  color: var(--vt-c-white-soft);
+  background: var(--color-link-text-hover);
+  border: 3px solid var(--color-elements);
 }
 .pages-link a span {
   margin: 0 10px;

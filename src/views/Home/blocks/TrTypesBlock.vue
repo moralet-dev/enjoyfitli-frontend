@@ -60,6 +60,7 @@ export default {
   padding: 2rem 9rem 5rem 9rem;
 }
 h2{
+  color: var(--color-headings);
   font-size: 50px;
   margin-bottom: 1rem;
 }

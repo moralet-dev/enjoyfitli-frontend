@@ -18,7 +18,7 @@ export default {
     },
     iconColor: {
       type: String,
-      default: '#000000'
+      default: 'var(--color-text)'
     },
   },
 }

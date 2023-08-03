@@ -21,11 +21,11 @@
     --vt-c-black-mute: #282828;
 
     --vt-c-red-dark: #8C3419;
-    --vt-c-main-green: #7EBFB3;
-    --vt-c-second-green-semi-opacity: rgb(126, 191, 179, .5);
-    --vt-c-second-green: #A7F2E4;
-    --vt-c-third-green: #4F7369;
-    --vt-c-blue-mute: #194759;
+    /*--vt-c-main-green: #7EBFB3;*/
+    --vt-c-main-green: #22B9A1;
+    --vt-c-second-green: #5FC6B4;
+    --vt-c-third-green: #188775;
+    --vt-c-blue-mute: #163F4F;
     --vt-c-blue-mute-lighter: #2d4c5d;
     --vt-c-blue-mute-darker: #104559;
     --vt-c-indigo: #2c3e50;
@@ -62,13 +62,14 @@
 
     --color-headings: var(--vt-c-white-fourth);
     --color-text: var(--vt-c-blue-mute);
+    --color-text-shadow: var(--vt-c-blue-mute);
+
 
     --color-header-text: var(--vt-c-white-fourth);
     --color-header-text-hover: var(--vt-c-blue-mute);
     --color-header-text-hover-bg: var(--vt-c-main-green);
     --color-header-shadow: var(--vt-c-blue-mute);
-    --color-header-burger-bg: var(--vt-c-blue-mute-lighter);
-
+    --color-header-burger-bg: var(--vt-c-second-green);
 
 
     --color-link-text: var(--vt-c-blue-mute);
@@ -78,11 +79,12 @@
 
     --color-elements: var(--vt-c-blue-mute);
     --color-helper: var(--vt-c-white-fourth);
+    --background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3CradialGradient id='a' gradientUnits='objectBoundingBox'%3E%3Cstop offset='0' stop-color='%2322B9A1'/%3E%3Cstop offset='1' stop-color='%2328D8BC'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='750' x2='1550' y2='750'%3E%3Cstop offset='0' stop-color='%2325c9af'/%3E%3Cstop offset='1' stop-color='%2328D8BC'/%3E%3C/linearGradient%3E%3Cpath id='s' fill='url(%23b)' d='M1549.2 51.6c-5.4 99.1-20.2 197.6-44.2 293.6c-24.1 96-57.4 189.4-99.3 278.6c-41.9 89.2-92.4 174.1-150.3 253.3c-58 79.2-123.4 152.6-195.1 219c-71.7 66.4-149.6 125.8-232.2 177.2c-82.7 51.4-170.1 94.7-260.7 129.1c-90.6 34.4-184.4 60-279.5 76.3C192.6 1495 96.1 1502 0 1500c96.1-2.1 191.8-13.3 285.4-33.6c93.6-20.2 185-49.5 272.5-87.2c87.6-37.7 171.3-83.8 249.6-137.3c78.4-53.5 151.5-114.5 217.9-181.7c66.5-67.2 126.4-140.7 178.6-218.9c52.3-78.3 96.9-161.4 133-247.9c36.1-86.5 63.8-176.2 82.6-267.6c18.8-91.4 28.6-184.4 29.6-277.4c0.3-27.6 23.2-48.7 50.8-48.4s49.5 21.8 49.2 49.5c0 0.7 0 1.3-0.1 2L1549.2 51.6z'/%3E%3Cg id='g'%3E%3Cuse href='%23s' transform='scale(0.12) rotate(60)'/%3E%3Cuse href='%23s' transform='scale(0.2) rotate(10)'/%3E%3Cuse href='%23s' transform='scale(0.25) rotate(40)'/%3E%3Cuse href='%23s' transform='scale(0.3) rotate(-20)'/%3E%3Cuse href='%23s' transform='scale(0.4) rotate(-30)'/%3E%3Cuse href='%23s' transform='scale(0.5) rotate(20)'/%3E%3Cuse href='%23s' transform='scale(0.6) rotate(60)'/%3E%3Cuse href='%23s' transform='scale(0.7) rotate(10)'/%3E%3Cuse href='%23s' transform='scale(0.835) rotate(-40)'/%3E%3Cuse href='%23s' transform='scale(0.9) rotate(40)'/%3E%3Cuse href='%23s' transform='scale(1.05) rotate(25)'/%3E%3Cuse href='%23s' transform='scale(1.2) rotate(8)'/%3E%3Cuse href='%23s' transform='scale(1.333) rotate(-60)'/%3E%3Cuse href='%23s' transform='scale(1.45) rotate(-30)'/%3E%3Cuse href='%23s' transform='scale(1.6) rotate(10)'/%3E%3C/g%3E%3C/defs%3E%3Cg %3E%3Cg transform=''%3E%3Ccircle fill='url(%23a)' r='3000'/%3E%3Cg opacity='0.5'%3E%3Ccircle fill='url(%23a)' r='2000'/%3E%3Ccircle fill='url(%23a)' r='1800'/%3E%3Ccircle fill='url(%23a)' r='1700'/%3E%3Ccircle fill='url(%23a)' r='1651'/%3E%3Ccircle fill='url(%23a)' r='1450'/%3E%3Ccircle fill='url(%23a)' r='1250'/%3E%3Ccircle fill='url(%23a)' r='1175'/%3E%3Ccircle fill='url(%23a)' r='900'/%3E%3Ccircle fill='url(%23a)' r='750'/%3E%3Ccircle fill='url(%23a)' r='500'/%3E%3Ccircle fill='url(%23a)' r='380'/%3E%3Ccircle fill='url(%23a)' r='250'/%3E%3C/g%3E%3Cg transform=''%3E%3Cuse href='%23g' transform='rotate(10)'/%3E%3Cuse href='%23g' transform='rotate(120)'/%3E%3Cuse href='%23g' transform='rotate(240)'/%3E%3C/g%3E%3Ccircle fill-opacity='0.1' fill='url(%23a)' r='3000'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-background: var(--vt-c-black);
+        --color-background: var(--vt-c-black-mute);
         --color-background-soft: var(--vt-c-black-soft);
         --color-background-mute: var(--vt-c-black-mute);
         --color-background-header: var(--vt-c-third-green);
@@ -92,22 +94,25 @@
         --color-border: var(--vt-c-divider-dark-2);
         --color-border-hover: var(--vt-c-divider-dark-1);
 
-        --color-headings: var(--vt-c-white-soft);
+        --color-headings: var(--vt-c-blue-mute);
         --color-text: var(--vt-c-white-mute);
+        --color-text-shadow: transparent;
 
         --color-link-text: var(--vt-c-link-dark-1);
 
-        --color-header-text: var(--vt-c-white-fourth);
-        --color-header-text-hover: var(--vt-c-blue-mute);
-        --color-header-text-hover-bg: var(--vt-c-third-green);
+        --color-header-text: var(--vt-c-blue-mute);
+        --color-header-text-hover: var(--vt-c-white-soft);
+        --color-header-text-hover-bg: var(--vt-c-blue-mute);
         --color-header-shadow: var(--vt-c-header-shadow-dark);
         --color-header-burger-bg: var(--vt-c-black-soft);
 
         --color-link-bg: var(--vt-c-second-green);
-        --color-link-text-hover: var(--vt-c-black-soft);
+        --color-link-text-hover: var(--vt-c-black-mute);
         --color-link-bg-hover: var(--vt-c-second-green);
         --color-elements: var(--vt-c-third-green);
         --color-helper: var(--vt-c-blue-mute);
+
+        --background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3CradialGradient id='a' gradientUnits='objectBoundingBox'%3E%3Cstop offset='0' stop-color='%23000000'/%3E%3Cstop offset='1' stop-color='%23163F4F'/%3E%3C/radialGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='750' x2='1550' y2='750'%3E%3Cstop offset='0' stop-color='%230b2028'/%3E%3Cstop offset='1' stop-color='%23163F4F'/%3E%3C/linearGradient%3E%3Cpath id='s' fill='url(%23b)' d='M1549.2 51.6c-5.4 99.1-20.2 197.6-44.2 293.6c-24.1 96-57.4 189.4-99.3 278.6c-41.9 89.2-92.4 174.1-150.3 253.3c-58 79.2-123.4 152.6-195.1 219c-71.7 66.4-149.6 125.8-232.2 177.2c-82.7 51.4-170.1 94.7-260.7 129.1c-90.6 34.4-184.4 60-279.5 76.3C192.6 1495 96.1 1502 0 1500c96.1-2.1 191.8-13.3 285.4-33.6c93.6-20.2 185-49.5 272.5-87.2c87.6-37.7 171.3-83.8 249.6-137.3c78.4-53.5 151.5-114.5 217.9-181.7c66.5-67.2 126.4-140.7 178.6-218.9c52.3-78.3 96.9-161.4 133-247.9c36.1-86.5 63.8-176.2 82.6-267.6c18.8-91.4 28.6-184.4 29.6-277.4c0.3-27.6 23.2-48.7 50.8-48.4s49.5 21.8 49.2 49.5c0 0.7 0 1.3-0.1 2L1549.2 51.6z'/%3E%3Cg id='g'%3E%3Cuse href='%23s' transform='scale(0.12) rotate(60)'/%3E%3Cuse href='%23s' transform='scale(0.2) rotate(10)'/%3E%3Cuse href='%23s' transform='scale(0.25) rotate(40)'/%3E%3Cuse href='%23s' transform='scale(0.3) rotate(-20)'/%3E%3Cuse href='%23s' transform='scale(0.4) rotate(-30)'/%3E%3Cuse href='%23s' transform='scale(0.5) rotate(20)'/%3E%3Cuse href='%23s' transform='scale(0.6) rotate(60)'/%3E%3Cuse href='%23s' transform='scale(0.7) rotate(10)'/%3E%3Cuse href='%23s' transform='scale(0.835) rotate(-40)'/%3E%3Cuse href='%23s' transform='scale(0.9) rotate(40)'/%3E%3Cuse href='%23s' transform='scale(1.05) rotate(25)'/%3E%3Cuse href='%23s' transform='scale(1.2) rotate(8)'/%3E%3Cuse href='%23s' transform='scale(1.333) rotate(-60)'/%3E%3Cuse href='%23s' transform='scale(1.45) rotate(-30)'/%3E%3Cuse href='%23s' transform='scale(1.6) rotate(10)'/%3E%3C/g%3E%3C/defs%3E%3Cg %3E%3Cg transform=''%3E%3Ccircle fill='url(%23a)' r='3000'/%3E%3Cg opacity='0.5'%3E%3Ccircle fill='url(%23a)' r='2000'/%3E%3Ccircle fill='url(%23a)' r='1800'/%3E%3Ccircle fill='url(%23a)' r='1700'/%3E%3Ccircle fill='url(%23a)' r='1651'/%3E%3Ccircle fill='url(%23a)' r='1450'/%3E%3Ccircle fill='url(%23a)' r='1250'/%3E%3Ccircle fill='url(%23a)' r='1175'/%3E%3Ccircle fill='url(%23a)' r='900'/%3E%3Ccircle fill='url(%23a)' r='750'/%3E%3Ccircle fill='url(%23a)' r='500'/%3E%3Ccircle fill='url(%23a)' r='380'/%3E%3Ccircle fill='url(%23a)' r='250'/%3E%3C/g%3E%3Cg transform=''%3E%3Cuse href='%23g' transform='rotate(10)'/%3E%3Cuse href='%23g' transform='rotate(120)'/%3E%3Cuse href='%23g' transform='rotate(240)'/%3E%3C/g%3E%3Ccircle fill-opacity='0.1' fill='url(%23a)' r='3000'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 
     }
 }
@@ -119,14 +124,13 @@
     margin: 0;
     position: relative;
     font-weight: normal;
-    scrollbar-color: var(--color-link-text) var(--color-background);
+    scrollbar-color: var(--vt-c-main-green) var(--color-background);
     scrollbar-width: thin;
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100svh;
     color: var(--color-text);
-    background: var(--color-background);
     transition: color 0.3s, background-color 0.3s;
     /*font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,*/
     /*Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;*/
@@ -137,37 +141,43 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-background-soft);
+    background-image: var(--background-image);
+    background-attachment: fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
-body:before{
-    content: '';
-    position: fixed;
-    top: 10svh;
-    left: -20svh;
-    opacity: .3;
-    width: 400px;
-    height: 100%;
-    transform: rotate(45deg);
-    background:  url("icons/gantel.svg") no-repeat;
-}
-h1, h2, h3, h4, h5, h6{
-    color: var(--color-headings);
+
+h1, h2, h3, h4, h5, h6 {
     font-family: "Helvetica Neue", sans-serif;
-    text-shadow: 1px 1px 2px black;
+    /*text-shadow: 0 -1px 0 var(--color-text-shadow),*/
+    /*-1px 0 0 var(--color-text-shadow),*/
+    /*1px 0 0 var(--color-text-shadow),*/
+    /*0 1px 0 var(--color-text-shadow),*/
+    /*-1px -1px 0 var(--color-text-shadow),*/
+    /*-1px 1px 0 var(--color-text-shadow),*/
+    /*1px -1px 0 var(--color-text-shadow),*/
+    /*1px 1px 0 var(--color-text-shadow),*/
+    /*1px 1px 0 var(--color-text-shadow);*/
+
     line-height: 1.2;
     font-weight: 700;
     cursor: default;
 }
-h1:first-letter, h2:first-letter, h3:first-letter, h4:first-letter, h5:first-letter, h6:first-letter{
+
+h1:first-letter, h2:first-letter, h3:first-letter, h4:first-letter, h5:first-letter, h6:first-letter {
     text-transform: uppercase;
 }
-h1{
-    color: var(--vt-c-white-fourth);
+
+h1 {
+    color: var(--color-text);
 }
 
 footer {
     padding: 0 9rem;
     margin-top: auto;
-    background: var(--vt-c-blue-mute-darker);
+    background: var(--color-background-header);
 }
 
 a {
@@ -180,12 +190,14 @@ a:hover {
     color: var(--color-link-text-hover);
     background-color: var(--color-link-bg-hover);
 }
+
 .text-link,
-.text-link:hover{
+.text-link:hover {
     text-transform: capitalize;
     background: none;
     text-decoration: underline;
 }
+
 .router-link-active {
     color: var(--color-link-text-hover);
     background-color: var(--color-link-bg-hover);
@@ -195,13 +207,16 @@ a:hover {
     color: var(--color-link-text-hover);
     background-color: var(--color-link-bg-hover);
 }
-form label{
+
+form label {
     color: var(--color-text);
     font-size: 18px;
 }
-form label:first-letter{
+
+form label:first-letter {
     text-transform: uppercase;
 }
+
 form input {
     background: transparent;
     font-family: Arial, sans-serif;
@@ -217,10 +232,12 @@ form input {
 form input:focus {
     border-bottom: solid 2px var(--color-helper);
 }
-form input::placeholder{
+
+form input::placeholder {
     color: slategrey;
 }
-form input:-webkit-autofill{
+
+form input:-webkit-autofill {
     background: transparent;
 }
 
@@ -251,8 +268,10 @@ form select option {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
 form select option {
 }
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -262,15 +281,18 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
 @media (max-width: 767px) {
-    form label{
+    form label {
         font-size: 18px;
     }
-    form input{
+
+    form input {
         font-size: 16px;
     }
 }
-button, .btn{
+
+button, .btn {
     width: fit-content;
     padding: 1rem 2rem;
     font-family: "Helvetica Neue", sans-serif;
@@ -295,11 +317,11 @@ button:hover, .btn:hover {
 }
 
 ::-webkit-scrollbar-track {
-    background-color: var(--color-headings);
+    background-color: var(--color-text);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--color-text);
+    background-color: var(--color-background);
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -310,7 +332,7 @@ button:hover, .btn:hover {
 }
 
 @media (max-width: 767px) {
-    body{
+    body {
         font-size: 16px;
     }
 }

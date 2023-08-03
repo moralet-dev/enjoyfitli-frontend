@@ -14,9 +14,7 @@
     <transition name="fade">
       <div class="dropdown-content" v-if="isOpen">
         <slot name="content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus deserunt, distinctio doloribus eveniet
-            facere illo illum impedit officiis totam. Iste nostrum praesentium vero voluptatem. A incidunt minima nemo
-            placeat quibusdam?</p>
+
         </slot>
       </div>
     </transition>
@@ -58,7 +56,6 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  color: var(--color-headings);
   font-family: 'Futura New', sans-serif;
   font-size: 24px;
   cursor: pointer;
