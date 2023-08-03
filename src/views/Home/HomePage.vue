@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="banner">
       <div class="banner__logo-wrapper">
-        <img src="src/assets/logos/Asset15@4x-white.png" alt="Enjoy Fitness Studio логотип">
+        <img src="src/assets/logos/Asset15-4x-white.png" alt="Enjoy Fitness Studio логотип">
       </div>
       <h1>ENJOY FITNESS<br>STUDIO</h1>
       <h4>{{$t('homePage.title')}}</h4>
