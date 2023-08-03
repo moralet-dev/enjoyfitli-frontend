@@ -126,7 +126,7 @@ export default {
 .header-label a.router-link-exact-active{
   box-shadow: none;
   background: transparent;
-  padding: 0;
+  padding: 5px 0;
 }
 
 .header-label a,
