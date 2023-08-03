@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="banner">
+      <div class="banner__logo-wrapper">
+        <img src="src/assets/logos/Asset15@4x-white.png" alt="Enjoy Fitness Studio логотип">
+      </div>
       <h1>ENJOY FITNESS<br>STUDIO</h1>
       <h4>{{$t('homePage.title')}}</h4>
     </div>
@@ -88,7 +91,7 @@ h1 {
   text-transform: uppercase;
   font-size: 70px;
   text-align: center;
-  margin: 0 0 5rem 0;
+  margin: 0 0 1rem 0;
 }
 
 h2 {
@@ -96,7 +99,7 @@ h2 {
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 22px;
   text-transform: lowercase;
 }
 h4:first-letter{
@@ -106,14 +109,7 @@ p {
   font-size: 20px;
   margin: 0 0 2rem 0;
 }
-@media (max-width: 767px) {
-  h2{
-    font-size: 30px;
-  }
-  p{
-    font-size: 16px;
-  }
-}
+
 .banner {
   background: url("../../assets/bg-images/home_banner_bg.jpg") center no-repeat;
   background-size: cover;
@@ -122,7 +118,8 @@ p {
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 16rem 9rem;
+  padding-bottom: 80px;
+  min-height: calc(100lvh - 80px);
 }
 
 .banner::before {
@@ -134,40 +131,25 @@ p {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
-
+.banner__logo-wrapper{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: calc(30lvh - 80px);
+}
+.banner__logo-wrapper img{
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
 .banner h1, .banner h4 {
   color: var(--vt-c-white-soft);
 }
-
-@media (max-width: 767px) {
-  .banner {
-    padding: 10rem 0;
-  }
-
-  .banner h1, .banner h4 {
-    padding: 0 2rem;
-    text-align: center;
-    font-size: 14px;
-  }
-
-  .banner h1 {
-    font-size: 40px;
-    padding: 0 1rem;
-  }
+.banner h4{
 }
 
 .content-block {
   padding: 3rem 9rem;
-}
-
-@media (max-width: 767px) {
-  .content-block {
-    padding: 0 1rem;
-  }
-
-  p {
-    font-size: 16px;
-  }
 }
 
 .title {
@@ -181,7 +163,38 @@ p {
 .full > .title {
   padding: 3rem 9rem;
 }
+.dropdown-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-block .dropdown {
+  margin: 2rem 0 1rem 0;
+}
 @media (max-width: 767px) {
+  h2{
+    font-size: 30px;
+  }
+  p{
+    font-size: 16px;
+  }
+  .banner h1, .banner h4 {
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .banner h1 {
+    font-size: 40px;
+    padding: 0 1rem;
+  }
+  .content-block {
+    padding: 0 1rem;
+  }
+
+  p {
+    font-size: 16px;
+  }
   .title {
     padding: 0;
   }
@@ -192,25 +205,5 @@ p {
     padding: 0 0 2rem 0;
     text-align: center;
   }
-}
-
-.cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  transition: .5s;
-}
-
-@media (max-width: 767px){
-
-}
-.dropdown-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-block .dropdown {
-  margin: 2rem 0 1rem 0;
 }
 </style>

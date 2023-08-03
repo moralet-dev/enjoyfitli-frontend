@@ -127,6 +127,7 @@ h3{
 .detail-content__title{
   padding: 0 0 3rem 0;
 }
+
 .memb-cards__box{
   display: flex;
   justify-content: center;
@@ -179,12 +180,15 @@ h3{
   }
   .detail-content__title:before{
     content: '';
-    background: rgb(0, 0, 0, 0.3);
+    background: rgb(0, 0, 0, 0.45);
     position: absolute;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
+  }
+  .detail-content__title h1{
+    color: var(--vt-c-white-soft);
   }
   .memb-cards{
     padding: 1rem 5rem;
@@ -236,6 +240,9 @@ h3{
     height: 100%;
     left: 0;
     top: 0;
+  }
+  .detail-content__title h1{
+    color: var(--vt-c-white-soft);
   }
   .detail-content__text p{
     display: flex;

@@ -61,7 +61,7 @@ export default {
 <style scoped>
 main{
   min-height: 100vh;
-  margin: 5rem 0 0 0 ;
+  margin: 79px 0 0 0 ;
 }
 .fade-enter-active,
 .fade-leave-active {

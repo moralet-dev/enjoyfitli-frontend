@@ -184,12 +184,9 @@ a.logout:hover{
     padding: 2rem 1rem;
     color: var(--color-header-text-hover);
   }
-  .logout{
+  a.logout{
     color: var(--vt-c-white-soft);
     background: var(--vt-c-red-dark);
-  }
-  .login-container a.router-link-active,
-  .login-container a.router-link-exact-active {
   }
   .locale{
     justify-content: center;

@@ -1,6 +1,7 @@
 <template>
   <footer>
     <div class="wrapper">
+
       <div class="footer-block contacts">
         <div class="icons">
           <TikTokLogo />
@@ -9,6 +10,9 @@
         <span>{{$t('studioAddress')}}</span>
         <a class="text-link" href="tel:+380737304509">+380 (73) 730 45 09</a>
         <a class="text-link" href="mailto:enfoyfit@gmail.com">enjoyfitnessstudio@gmail.com</a>
+      </div>
+      <div class="footer-logo__wrapper">
+        <Asset14x1 icon-color="var(--color-headings)"/>
       </div>
       <div class="footer-block pages">
         <router-link class="text-link" :to="{name:'home'}">{{$t('home')}}</router-link>
@@ -27,10 +31,11 @@
 <script>
 import TikTokLogo from "@/components/icons/TikTokLogo.vue";
 import InstagramLogo from "@/components/icons/InstagramLogo.vue";
+import Asset14x1 from "@/components/logos/Asset1x1.vue";
 
 export default {
   name: "Footer",
-  components: {TikTokLogo, InstagramLogo},
+  components: {Asset14x1, TikTokLogo, InstagramLogo},
 }
 </script>
 
@@ -79,15 +84,31 @@ footer{
   text-transform: lowercase;
   text-decoration: underline;
 }
-.text-link.router-link-exact-active{
+.text-link.router-link-exact-active,
+.text-link.router-link-active{
   background: transparent;
 }
 @media (max-width: 767px) {
   footer{
     padding: 0;
   }
+  .footer-logo__wrapper{
+    display: flex;
+    max-width: 50vw;
+    align-items: center;
+    order: 0;
+    margin-bottom: 2rem;
+  }
   .wrapper{
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .pages{
+    order: 1;
+  }
+  .contacts{
+    order: 2;
   }
   .pages, .contacts{
     align-items: center;

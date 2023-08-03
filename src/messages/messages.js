@@ -1,7 +1,7 @@
 export default {
     en: {
         homePage: {
-            title: 'Let\'s make your body healthy and you happy!',
+            title: 'Feel joy - feel pride!',
 
             greetingTitle: 'My specialization includes functional training, strength training, and Pilates.',
             greetingSubtitle: 'I have higher education in "Psychology" and "Coaching." So, when you come to me, you\'ll not only get a workout but also a place where you can communicate, release emotions, and make your body a model of your own ideal! I\'m waiting for you!',
@@ -188,7 +188,7 @@ export default {
     },
     uk: {
         homePage: {
-            title: 'Зробимо твоє тіло здоровим, а тебе щасливим!',
+            title: 'Feel joy - feel pride!',
 
             greetingTitle: 'Моя спеціалізація - це\nфункціональний тренінг,\nсиловий тренінг та Pilates.',
             greetingSubtitle: 'Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність».\nТож, йдучи до мене, ти' +

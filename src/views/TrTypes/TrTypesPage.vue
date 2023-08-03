@@ -41,6 +41,7 @@ export default {
   mounted() {
     this.getTypes()
     this.detailShowed = false
+    window.scroll(0,0)
   },
   updated() {
     !this.$route.params?.slug ? this.detailShowed = false : this.detailShowed = true
@@ -104,11 +105,10 @@ export default {
 }
 
 .type-card > a.router-link-exact-active, .type-card > a:hover {
-  background: var(--color-background);
-  color: var(--color-headings);
+  background: var(--vt-c-blue-mute);
 }
 .type-card a.router-link-exact-active span, .type-card a:hover span{
-  color: var(--color-headings);
+  color: var(--vt-c-white-soft);
 }
 .type-card {
   flex: 1 1 auto;
@@ -153,7 +153,8 @@ export default {
     color: var(--vt-c-white-soft);
   }
   .type-card > a.router-link-exact-active{
-    background: var(--color-elements);
+    background: var(--vt-c-blue-mute);
+
   }
   .collapsed {
     min-height: 20vh;

@@ -19,37 +19,47 @@
 
 <script>
 export default {
-  name: "AboutMePage"
+  name: "AboutMePage",
+  mounted() {
+    window.scroll(0, 0)
+  }
 }
 </script>
 
 <style scoped>
-.wrapper{
+.wrapper {
   padding: 6rem 9rem;
 }
+
 h1 {
   padding: 1.5rem 0;
   font-size: 50px;
 }
-.content{
+
+.content {
   width: 50%;
 }
-.content p{
+
+.content p {
   margin: 1rem 0;
 }
+
 @media (max-width: 767px) {
-  .wrapper{
+  .wrapper {
     padding: 3rem 1rem;
   }
-  h1{
+
+  h1 {
     font-size: 30px;
   }
-  .content{
+
+  .content {
     width: 100%;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
-  .wrapper{
+  .wrapper {
     padding: 6rem 5rem;
   }
 }

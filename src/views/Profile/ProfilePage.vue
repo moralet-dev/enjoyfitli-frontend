@@ -79,7 +79,10 @@ export default {
     }
   },
   mounted() {
+    window.scroll(0,0)
+
     this.getMe()
+
   },
   methods: {
     async getMe() {

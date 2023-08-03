@@ -2,7 +2,7 @@
   <header class="header animate__animated animate__fadeInDown">
     <div class="header-label">
       <router-link :to="{name:'home'}" @click="isOpened=false">
-        <img src="../assets/logos/logo_transparent_1.png" alt="E.F.S. LOGO"/>
+        <Asset14x1 icon-color="var(--color-header-text"/>
       </router-link>
     </div>
     <div :class="{'nav__container':true, 'active': isOpened}">
@@ -39,10 +39,11 @@
 <script>
 import HeaderLoginLogout from "@/components/HeaderLoginLogout.vue";
 import SchedulePage from "@/views/Schedule/SchedulePage.vue";
+import Asset14x1 from "@/components/logos/Asset1x1.vue";
 
 export default {
   name: "Header",
-  components: {SchedulePage, HeaderLoginLogout},
+  components: {Asset14x1, SchedulePage, HeaderLoginLogout},
   data(){
     return{
       isOpened:false,
@@ -100,7 +101,6 @@ export default {
   display: none;
 }
 .header a{
-  /*padding: 3px;*/
   font-size: 14px;
   color: var(--color-header-text);
 }
@@ -129,10 +129,17 @@ export default {
   padding: 0;
 }
 
-.header-label a img{
+.header-label a,
+.header-label a.router-link-active,
+.header-label a.router-link-exact-active{
   display: block;
-  max-height: 5rem;
+  padding: 5px 0;
+  margin: 0 1rem;
+}
+.header-label svg{
+  display: block;
   max-width: 100%;
+  max-height: 70px;
 }
 .nav__container{
   display: grid;
@@ -173,8 +180,6 @@ export default {
   }
   li a:hover{
     background: var(--color-background);
-  }
-  .header-label a img{
   }
   .header__burger{
     display: block;
