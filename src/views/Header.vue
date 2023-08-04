@@ -21,6 +21,9 @@
             <router-link :to="{name: 'schedule'}" @click="isOpened=false">{{ this.$t('schedule') }}</router-link>
           </li>
           <li>
+            <router-link :to="{name: 'payments'}" @click="isOpened=false">{{ this.$t('payments') }}</router-link>
+          </li>
+          <li>
             <router-link :to="{name: 'about'}" @click="isOpened=false">{{ this.$t('about') }}</router-link>
           </li>
         </ul>
@@ -80,7 +83,7 @@ export default {
   position: fixed;
   display: grid;
   width: 100%;
-  min-height: 5rem;
+  min-height: 80px;
   background-color: var(--color-background-header);
   grid-template-columns: auto auto 3fr;
   box-shadow: 0 0 5px var(--color-header-shadow);

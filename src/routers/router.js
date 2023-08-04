@@ -17,6 +17,8 @@ import TrTypesPage from "@/views/TrTypes/TrTypesPage.vue";
 import TypeDetail from "@/views/TrTypes/TypeDetail.vue";
 import PersonalTrainings from "@/views/Profile/profile-pages/PersonalTrainings.vue";
 import TermsOfServiceUse from "@/views/TermsOfServiceUse.vue";
+import PaymentsPage from "@/views/Payments/PaymentsPage.vue";
+import PublicOffer from "@/views/PublicOffer.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -25,8 +27,10 @@ const routes = [
     {path: '/password-reset', component: ResetPassword, name: 'reset-password'},
     {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
     {path: '/activate/:uid/:token', component: ActivationPage, name: 'activate'},
+    {path: '/payments', component: PaymentsPage, name: 'payments'},
     {path: '/about', component: AboutMePage, name: 'about'},
     {path: '/terms-of-service', component: TermsOfServiceUse, name: 'terms'},
+    {path: '/public-offer', component: PublicOffer, name: 'public-offer'},
     {
         path: '/training-types',
         component: TrTypesPage,

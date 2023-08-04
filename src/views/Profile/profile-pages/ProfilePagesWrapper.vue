@@ -151,7 +151,7 @@ aside {
   }
   .pages-link a{
     border: 3px solid var(--color-link-text);
-    margin-bottom: 2px;
+    margin-bottom: 1rem;
   }
   .pages-content-wrapper {
     padding: 1rem 0.5rem 0 ;

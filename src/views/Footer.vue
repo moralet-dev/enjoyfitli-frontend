@@ -21,7 +21,7 @@
         <router-link class="text-link" :to="{name:'schedule'}">{{$t('schedule')}}</router-link>
         <router-link class="text-link" :to="{name:'about'}">{{$t('about')}}</router-link>
         <router-link class="text-link" :to="{name: 'terms'}">{{$t('termsOfServiceUse')}}</router-link>
-        <router-link class="text-link" to="">{{$t('')}}</router-link>
+        <router-link class="text-link" :to="{name: 'public-offer'}">{{$t('publicOffer')}}</router-link>
       </div>
     </div>
 

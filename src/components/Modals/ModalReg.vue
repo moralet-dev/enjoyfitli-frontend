@@ -62,7 +62,7 @@
                     {{ $t('iAgreeWith') }}
                     <router-link @click="$emit('close')" :to="{name: 'terms'}" class="text-link">{{ $t('termsOfServiceUse') }}</router-link>
                     {{ $t('and') }}
-                    <a class="text-link">{{ $t('privacyPolicy') }}</a>
+                    <router-link @click="$emit('close')" :to="{name: 'public-offer'}" class="text-link">{{ $t('publicOffer') }}</router-link>
                   </label>
                 </div>
                 <div class="login-block">
@@ -251,7 +251,10 @@ form {
 .privacy-policy label a {
   cursor: pointer;
 }
-
+.privacy-policy label a.router-link-exact-active,
+.privacy-policy label a.router-link-active{
+  background: transparent;
+}
 .privacy-policy label a:hover {
   background-color: transparent;
   color: #005BE3;
