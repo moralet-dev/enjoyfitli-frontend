@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div :class="{'training-item animate__animated animate__fadeIn': true, 'disabled': isLessThreeHour(t) && isSigned(t)}"
+    <div :class="{'training-item animate__animated animate__fadeIn': true,
+                  'disabled': isLessThreeHour(t) && isSigned(t),
+                  'outlined': this?.selectedTr?.id===t?.id}"
          @click="onTrClick(t)"
          v-if="dailyTr.length > 0"
          v-for="t in dailyTr" :key="t.id">
@@ -125,8 +127,12 @@ export default {
   border-radius: 20px;
   color: var(--color-headings);
   font-family: "Helvetica Neue", sans-serif;
+  outline: .3rem solid transparent;
+  transition: .3s;
 }
-
+.training-item.outlined{
+  outline: .3rem solid var(--color-input-outline);
+}
 .training-item.disabled {
   background: slategray;
 }
@@ -184,7 +190,7 @@ export default {
 @media (max-width: 767px) {
   .training-item {
     padding: 1rem;
-    margin: 0 0 1rem 0;
+    margin: .5rem 0;
   }
 
   .training-item__top {

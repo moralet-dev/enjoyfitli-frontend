@@ -360,7 +360,7 @@ h1 {
   }
 
   .calendar__wrapper {
-    padding: 2rem 1rem;
+    padding: 0 1rem;
     border-radius: 0;
   }
 

@@ -20,9 +20,9 @@
           <li>
             <router-link :to="{name: 'schedule'}" @click="isOpened=false">{{ this.$t('schedule') }}</router-link>
           </li>
-          <li>
-            <router-link :to="{name: 'payments'}" @click="isOpened=false">{{ this.$t('payments') }}</router-link>
-          </li>
+<!--          <li>-->
+<!--            <router-link :to="{name: 'payments'}" @click="isOpened=false">{{ this.$t('payments') }}</router-link>-->
+<!--          </li>-->
           <li>
             <router-link :to="{name: 'about'}" @click="isOpened=false">{{ this.$t('about') }}</router-link>
           </li>
@@ -177,6 +177,12 @@ export default {
   }
   .header::before{
     z-index: 2;
+  }
+  .header-label {
+    display: flex;
+    flex: 0 1 50%;
+    align-items: center;
+    justify-content: start;
   }
   li a.router-link-active{
     background: var(--color-background);
