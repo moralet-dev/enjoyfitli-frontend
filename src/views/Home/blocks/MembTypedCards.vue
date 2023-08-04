@@ -4,7 +4,8 @@
          :style="{backgroundImage: `url(${m?.image})`}"
          :key="m.id">
       <div class="card" @click="setCurrent(m)">
-        <span class="card-title">{{ m.count }} {{ $t('trn') }}</span>
+        <span class="card-title">{{ m.count }} {{ m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk'?$t('trainingsUA'):$t('trainings') }}</span>
+        <span class="card-price">{{$t('price')}}: {{ m?.price }} &#8372;</span>
         <span class="card-price">{{ Math.ceil( m?.price / m?.count) }} &#8372; <br>{{$t('perTraining')}}</span>
         <button @click="$router.push('/memberships')">{{$t('buy')}}</button>
       </div>

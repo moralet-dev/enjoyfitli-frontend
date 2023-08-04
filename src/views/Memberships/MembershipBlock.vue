@@ -3,8 +3,9 @@
     <Slide v-for="m in memberships" :key="m.id">
       <div class="carousel__item" :style="{backgroundImage: `url(${m?.image})`}">
         <div class="carousel__card" >
-          <span class="carousel__card__title">{{ m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase() }} {{m.count}}</span>
-          <span class="carousel__card__price">{{ m.price }} &#8372;</span>
+          <span class="carousel__card__title">{{ m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase() }}</span>
+          <span class="carousel__card__title">{{ m.count }} {{ m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk'?$t('trainingsUA'):$t('trainings') }}</span>
+          <span class="carousel__card__price">{{$t('price')}}:<br>{{ m.price }} &#8372;</span>
           <button @click="[current, showModal] = [m, true]">{{ $t('buy') }}</button>
         </div>
       </div>
@@ -136,10 +137,12 @@ export default defineComponent({
   margin: 0 10rem 0 10rem;
   height: fit-content;
 }
-.carousel__viewport{
+.carousel__slide--prev,
+.carousel__slide--next{
+  pointer-events: none;
 }
 .carousel__item {
-  min-height: 250px;
+  min-height: 300px;
   width: 100%;
   -webkit-background-size: cover;
   background-size: cover;

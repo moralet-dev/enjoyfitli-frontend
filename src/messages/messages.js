@@ -184,7 +184,8 @@ export default {
         trainings: 'workouts',
         weUseCookies: 'We use cookies to improve security and your experience on our website.',
         accept: 'Accept',
-        studioAddress: 'Kyiv, Solomyanskyi dist.,\nHarmatna str. 38A, 625'
+        studioAddress: 'Kyiv, Solomyanskyi dist.,\nHarmatna str. 38A, 625',
+        price: 'Price',
     },
     uk: {
         homePage: {
@@ -270,6 +271,7 @@ export default {
         purchaseID: 'ID',
         trn: 'трн.',
         training: 'тренування',
+        trainingsUA: 'тренувань',
         name: 'назва',
         trType: 'тип',
         specification: 'спецификація',
@@ -359,6 +361,7 @@ export default {
         trainings: 'тренування',
         weUseCookies: 'Ми використовуємо cookies для покращення безпеки та працездатності нашого сайту і поліпшення ваших вражень від перебування на платформі.',
         accept: 'Погоджуюсь',
-        studioAddress: 'Київ, Солом\'янський р-н,\nвул. Гарматна 38A, 625'
+        studioAddress: 'Київ, Солом\'янський р-н,\nвул. Гарматна 38A, 625',
+        price: 'Вартість',
     },
 };

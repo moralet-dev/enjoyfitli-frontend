@@ -1,11 +1,8 @@
 <template>
   <div class="type__detail" v-if="trType">
     <div class="detail-content">
-      <div class="detail-content__image">
-        <img :src="trType?.image" alt="training type image">
-      </div>
       <div class="detail-content__text">
-        <div class="detail-content__title" :style="{backgroundImage: $vuetify.display.mdAndDown ? `url(${trType?.image})`: 'none'}">
+        <div class="detail-content__title" :style="{backgroundImage: `url(${trType?.image})`}">
           <h1>{{ trType[`name_${$store.getters.getLocale}`] || trType?.name }} {{ $t('training') }}</h1>
         </div>
         <div class="detail-content__description">
@@ -25,7 +22,9 @@
                  class="memb-card"
                  :style="{backgroundImage: `url(${m?.image})`}"
             >
-              <span>{{m.count}} {{$t('trainings')}}</span>
+              <span>{{ m.count }} {{ m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk'?$t('trainingsUA'):$t('trainings') }}</span>
+
+              <span>{{$t('price')}}: {{ m.price}} &#8372;</span>
               <span>{{Math.round(m.price / m.count)}} &#8372; {{$t('perTraining')}}</span>
               <span v-if="countEconomy(m.price, m.count, trType.memberships[0].price)>0"
                     :class="{'economy': true}">
@@ -81,31 +80,18 @@ h3{
 }
 .detail-content {
   display: flex;
-  margin: 3rem 0;
 }
 
-.detail-content__image {
-  flex: 0 0 33.33%;
-}
-
-.detail-content__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .detail-content__description{
-  padding: 0 0 3rem 0;
+  padding: 3rem 9rem;
 }
 .detail-content__text {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  padding: 4rem 2rem;
+  padding: 0;
   border-top: 3px solid var(--color-link-text);
   border-bottom: 3px solid var(--color-link-text);
-  border-right: 3px solid var(--color-link-text);
-  border-top-right-radius: 100px;
-  border-bottom-right-radius: 100px;
 }
 .detail-content__text p{
   display: flex;
@@ -128,9 +114,28 @@ h3{
   background-color: #fff;
 }
 .detail-content__title{
-  padding: 0 0 3rem 0;
+  padding: 5rem 9rem;
+  background-attachment: fixed;
+  background-size: cover;
+  text-align: center;
 }
-
+.detail-content__title:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: .5;
+  width: 100%;
+  height: 100%;
+  background-color: var(--vt-c-blue-mute);
+}
+.detail-content__title h1{
+  color: var(--vt-c-white-soft);
+}
+.memb-cards h3{
+  padding: 0 9rem;
+  margin-bottom: 1rem;
+}
 .memb-cards__box{
   display: flex;
   justify-content: center;
@@ -168,12 +173,9 @@ h3{
   margin-bottom: 3rem;
 }
 .economy{
-  color: darkred;
+  color: var(--vt-c-red-dark);
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .detail-content__image {
-    display: none;
-  }
   .detail-content__description{
     padding: 2rem 5rem;
   }
@@ -193,21 +195,12 @@ h3{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: scroll;
+
   }
-  .detail-content__title:before{
-    content: '';
-    background: rgb(0, 0, 0, 0.45);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-  }
-  .detail-content__title h1{
-    color: var(--vt-c-white-soft);
-  }
-  .memb-cards{
-    padding: 1rem 5rem;
+
+  .memb-cards h3{
+    padding: 0 5rem;
   }
   .memb-card{
     flex: 0 1 25%;
@@ -225,9 +218,6 @@ h3{
   .detail-content {
     display: flex;
     flex-direction: column;
-  }
-  .detail-content__image {
-    display: none;
   }
 
   .detail-content__text {
@@ -247,15 +237,8 @@ h3{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-  }
-  .detail-content__title:before{
-    content: '';
-    background: rgb(0, 0, 0, 0.3);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
+    background-attachment: scroll;
+
   }
   .detail-content__title h1{
     color: var(--vt-c-white-soft);
