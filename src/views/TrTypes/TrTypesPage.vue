@@ -100,7 +100,6 @@ export default {
   display: block;
   text-align: center;
   color: var(--vt-c-white-soft);
-  font-family: "Helvetica Neue", sans-serif;
   text-transform: uppercase;
 }
 

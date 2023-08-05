@@ -1,7 +1,8 @@
 <template>
   <div class="wrapper">
     <div>
-      <p class="title">
+      <h2 class="title">{{$t('homePage.mainTrainingDirections')}}</h2>
+      <p >
         {{ $t('homePage.greetingTitle') }}
       </p>
       <p>{{ $t('homePage.greetingSubtitle') }}</p>
@@ -21,9 +22,7 @@ export default {
   white-space: pre-wrap;
 }
 
-p.title {
-  font-family: "Helvetica Neue", sans-serif;
-
+.title {
   font-size: 50px;
   font-weight: 700;
   text-transform: uppercase;
@@ -35,7 +34,7 @@ p.title {
     padding: 3rem 1rem;
   }
 
-  p.title {
+  .title {
     font-size: 30px;
   }
 }

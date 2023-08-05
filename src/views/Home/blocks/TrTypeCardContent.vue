@@ -100,10 +100,8 @@ export default {
 }
 .btn{
   margin: 1rem 36px;
-  background: transparent;
 }
 .btn:hover{
-  background: var(--color-link-text);
 }
 .advantages {
   display: flex;

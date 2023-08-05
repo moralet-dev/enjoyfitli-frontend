@@ -83,7 +83,6 @@ export default {
   background: var(--color-text);
   border-radius: 20px;
   color: var(--color-headings);
-  font-family: "Helvetica Neue", sans-serif;
 }
 
 .training-item.disabled {
@@ -96,7 +95,6 @@ export default {
 }
 
 .training-item__top {
-  font-family: 'Futura New', sans-serif;
   font-weight: 700;
   font-size: 22px;
   display: flex;

@@ -56,7 +56,6 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Futura New', sans-serif;
   font-size: 24px;
   cursor: pointer;
 }

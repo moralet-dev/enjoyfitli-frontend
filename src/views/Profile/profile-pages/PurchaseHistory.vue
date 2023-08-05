@@ -87,7 +87,6 @@ h3 {
 }
 .purchase {
   display: flex;
-  font-family: "Helvetica Neue", sans-serif;
   background: var(--color-background-header) ;
   color: var(--color-header-text);
   grid-template-columns: 25vw 25vw 25vw 25vw;
@@ -118,7 +117,6 @@ h3 {
   word-wrap: break-word;
 }
 .purchase .block span:first-child{
-  font-family: 'Futura New', sans-serif;
 
 }
 .loader{

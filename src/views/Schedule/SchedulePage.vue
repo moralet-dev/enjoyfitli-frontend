@@ -260,7 +260,6 @@ export default {
   background: var(--color-elements);
   color: var(--color-headings);
   border-radius: 20px;
-  font-family: "Helvetica Neue", sans-serif;
 }
 
 .calendar__month {
@@ -313,7 +312,6 @@ export default {
   transition: .3s;
   border-radius: 50%;
   width: 32px;
-  font-family: 'Futura New', sans-serif;
 
 }
 

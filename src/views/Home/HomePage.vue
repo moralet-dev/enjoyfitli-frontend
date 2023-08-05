@@ -6,6 +6,13 @@
       </div>
       <h1>ENJOY FITNESS<br>STUDIO</h1>
       <h4>{{ $t('homePage.title') }}</h4>
+      <div class="banner__buttons-wrapper">
+        <div class="banner__buttons">
+          <router-link class="btn banner__buttons-btn" :to="{name: 'tr-types'}">{{$t('trainingTypes')}}</router-link>
+          <button class="btn banner__buttons-btn" type="button" @click="scrollDirs">{{$t('trainingDirections')}}</button>
+          <router-link class="btn banner__buttons-btn" :to="{name: 'memberships'}">{{$t('membershipsInfo')}}</router-link>
+        </div>
+      </div>
     </div>
     <GreetingsBlock ref="greetings"/>
     <TrainingDirections/>
@@ -75,11 +82,7 @@ export default {
   },
   mounted() {
     window.scroll(0, 0)
-    window.addEventListener('scroll', this.handleScroll)
     this.loaded()
-  },
-  unmounted() {
-    window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
     loaded() {
@@ -87,35 +90,12 @@ export default {
           () => (this.loading = false), 1000
       )
     },
-    handleScroll() {
-      if (!this.scrolled && !this.backScroll) {
-        if (window.scrollY > 0) {
-          this.scrolled = true;
-          window.scrollTo({
-            top: this.$refs.banner.nextElementSibling.offsetTop,
-            behavior: 'smooth'
-          });
-        }
-      }
-      if (window.scrollY > this.$refs.banner.nextElementSibling.offsetTop && !this.backScroll){
-        this.backScroll = true
-        console.log('move out from banner and backScroll = true')
-        console.log(this.scrolled, this.backScroll)
-      }
-      if (this.backScroll && window.scrollY < this.$refs.banner.nextElementSibling.offsetTop){
-        console.log('move on to banner again and scroll up')
-        console.log(this.$refs.banner.offsetTop)
-        window.scrollTo({
-          top: this.$refs.banner.offsetTop,
-          behavior: 'smooth'
-        })
-        this.backScroll = false
-      }
-
-      if (window.scrollY === 0){
-        this.scrolled = false
-      }
-    }
+    scrollDirs(){
+      window.scrollTo({
+        top: this.$refs.banner.nextElementSibling.offsetTop,
+        behavior: 'smooth'
+      })
+    },
 
   }
 }
@@ -123,6 +103,7 @@ export default {
 
 <style scoped>
 h1 {
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 70px;
   text-align: center;
@@ -130,6 +111,7 @@ h1 {
 }
 
 h2 {
+
   font-size: 50px;
 }
 
@@ -152,10 +134,10 @@ p {
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
   position: relative;
-  padding-bottom: 80px;
+  padding: 80px 0;
   min-height: calc(100lvh - 80px);
 }
 
@@ -173,7 +155,8 @@ p {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: calc(30lvh - 80px);
+  flex: 1 1 calc(20lvh - 80px);
+  max-height: calc(30lvh - 80px);
 }
 
 .banner__logo-wrapper img {
@@ -187,6 +170,7 @@ p {
 }
 
 .banner h4 {
+  font-weight: 400;
 }
 
 .content-block {
@@ -200,9 +184,26 @@ p {
 .title h2 {
   margin: 0 0 2rem 0;
 }
-
-.full > .title {
-  padding: 3rem 9rem;
+.banner__buttons-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  flex: 1 1 auto;
+  width: 100%;
+  margin: 2rem 0 0 0;
+}
+.banner__buttons{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.banner__buttons-btn{
+  text-align: center;
+  padding: .5rem 1rem;
+  margin: 0 1rem;
 }
 
 .dropdown-block {
@@ -249,10 +250,26 @@ p {
   .title h2 {
 
   }
-
-  .full .title {
-    padding: 0 0 2rem 0;
-    text-align: center;
+  .banner__buttons-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1 1 auto;
+    width: 100%;
+    margin: 2rem 0 0 0;
+  }
+  .banner__buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .banner__buttons-btn{
+    min-width: 50lvw;
+    padding: .5rem 1rem;
+    margin-bottom: .5rem;
   }
 }
 </style>

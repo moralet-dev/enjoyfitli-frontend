@@ -126,7 +126,6 @@ export default {
   background: var(--color-elements);
   border-radius: 20px;
   color: var(--color-headings);
-  font-family: "Helvetica Neue", sans-serif;
   outline: .3rem solid transparent;
   transition: .3s;
 }
@@ -143,7 +142,6 @@ export default {
 }
 
 .training-item__top {
-  font-family: 'Futura New', sans-serif;
   font-weight: 700;
   font-size: 22px;
   display: flex;

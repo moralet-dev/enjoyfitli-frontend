@@ -90,16 +90,23 @@ export default {
   justify-self: end;
   align-self: center;
   border: 2px solid transparent;
+  transition: .3s;
 }
-
+.to-sign{
+  background: transparent;
+  color: var(--color-headings);
+  border: 2px solid var(--vt-c-main-green);
+}
 .signed {
-  background: orange;
   color: var(--vt-c-blue-mute);
+  background: orange;
 }
 .to-sign:hover{
-  background: var(--color-helper);
+  background: var(--vt-c-main-green);
+  color: var(--vt-c-blue-mute);
 }
 .signed:hover{
+  border: 2px solid var(--vt-c-blue-mute);
   color: var(--vt-c-blue-mute);
 }
 @media (max-width: 767px) {

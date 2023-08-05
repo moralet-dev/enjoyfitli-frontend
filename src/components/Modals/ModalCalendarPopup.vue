@@ -91,7 +91,6 @@ export default {
   border: 0;
 }
 .modal-header {
-  font-family: 'Futura New', sans-serif;
   padding: 1rem 0;
   font-size: 20px;
   display: flex;
@@ -101,7 +100,6 @@ export default {
 }
 
 .modal-body {
-  font-family: "Helvetica Neue", sans-serif;
   padding: 1rem 0;
 }
 .modal-footer{

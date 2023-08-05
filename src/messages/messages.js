@@ -2,6 +2,7 @@ export default {
     en: {
         homePage: {
             title: 'Feel joy - feel pride!',
+            mainTrainingDirections: 'Main training\'s directions',
 
             greetingTitle: 'My specialization includes functional training, strength training, and Pilates.',
             greetingSubtitle: 'I have higher education in "Psychology" and "Coaching." So, when you come to me, you\'ll not only get a workout but also a place where you can communicate, release emotions, and make your body a model of your own ideal! I\'m waiting for you!',
@@ -186,12 +187,14 @@ export default {
         accept: 'Accept',
         studioAddress: 'Kyiv, Solomyanskyi dist.,\nHarmatna str. 38A, 625',
         price: 'Price',
+        trainingDirections:'Workout directions',
+        membershipsInfo:'Memberships info',
     },
     uk: {
         homePage: {
             title: 'Feel joy - feel pride!',
-
-            greetingTitle: 'Моя спеціалізація - це\nфункціональний тренінг,\nсиловий тренінг та Pilates.',
+            mainTrainingDirections: 'Основні напрями тренувань',
+            greetingTitle: 'Моя спеціалізація - це функціональний тренінг, силовий тренінг та Pilates.',
             greetingSubtitle: 'Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність».\nТож, йдучи до мене, ти ' +
                 'потрапиш не просто на тренування, а туди, де можна поспілкуватися, вивільнити емоції та зробити тіло ' +
                 'прикладом власного ідеалу!\nЯ чекаю саме на тебе!',
@@ -363,5 +366,7 @@ export default {
         accept: 'Погоджуюсь',
         studioAddress: 'Київ, Солом\'янський р-н,\nвул. Гарматна 38A, 625',
         price: 'Вартість',
+        trainingDirections:'Основні напрями',
+        membershipsInfo:'Про абонементи',
     },
 };
