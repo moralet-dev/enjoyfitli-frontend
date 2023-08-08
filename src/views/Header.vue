@@ -9,40 +9,40 @@
       <nav>
         <ul class="nav-list">
           <li class="nav-list__item">
-            <router-link class="nav-list__link" :to="{name: 'home'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('home') }}</router-link>
+            <router-link class="nav-list__link" :to="{name: 'home'}" @click="closeBurger">{{ this.$t('home') }}</router-link>
           </li>
           <li class="nav-list__item" @click="selected=!selected">
-            <span :class="{'nav-list__link': true, 'selected': selected,}">{{$t('trainings')}}</span>
-            <ul :class="{'sub-nav-list': true, 'show': selected, 'hide': !selected}">
+            <span :class="{'nav-list__link': true, 'selected': selected,}">{{$t('trainings')}} <DropdownIcon/></span>
+            <ul :class="{'sub-nav-list': true, 'show': selected, 'hide': !selected}" :key="selected">
               <li>
-                <router-link class="sub-nav__link" :to="{name: 'tr-types'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('trainingTypes') }}</router-link>
+                <router-link class="sub-nav__link" :to="{name: 'tr-types'}" @click.stop="closeBurger">{{ this.$t('trainingTypes') }}</router-link>
               </li>
               <li>
-                <router-link class="sub-nav__link" :to="{name: 'memberships'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('memberships') }}</router-link>
+                <router-link class="sub-nav__link" :to="{name: 'memberships'}" @click.stop="closeBurger">{{ this.$t('memberships') }}</router-link>
               </li>
               <li>
-                <router-link class="sub-nav__link" :to="{name: 'schedule'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('schedule') }}</router-link>
+                <router-link class="sub-nav__link" :to="{name: 'schedule'}" @click.stop="closeBurger">{{ this.$t('schedule') }}</router-link>
               </li>
             </ul>
           </li>
           <li class="nav-list__item">
-            <router-link class="nav-list__link" :to="{name: 'contacts'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('contacts') }}</router-link>
+            <router-link class="nav-list__link" :to="{name: 'contacts'}" @click="closeBurger">{{ this.$t('contacts') }}</router-link>
           </li>
           <li class="nav-list__item">
-            <router-link class="nav-list__link" :to="{name: 'payment'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('payment') }}</router-link>
+            <router-link class="nav-list__link" :to="{name: 'payment'}" @click="closeBurger">{{ this.$t('payment') }}</router-link>
           </li>
           <li class="nav-list__item">
-            <router-link class="nav-list__link" :to="{name: 'about'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('about') }}</router-link>
+            <router-link class="nav-list__link" :to="{name: 'about'}" @click="closeBurger">{{ this.$t('about') }}</router-link>
           </li>
         </ul>
       </nav>
-      <HeaderLoginLogout v-if="$vuetify.display.mdAndDown" @closeMenu="this.isOpened=false"/>
+      <HeaderLoginLogout v-if="$vuetify.display.mdAndDown" @closeMenu="closeBurger"/>
     </div>
 
     <div v-if="$vuetify.display.mdAndDown" :class="{'header__burger':true, 'active': isOpened}"  @click="toggleOpen">
       <span></span>
     </div>
-    <HeaderLoginLogout v-if="$vuetify.display.lgAndUp" @closeMenu="this.isOpened=false"/>
+    <HeaderLoginLogout v-if="$vuetify.display.lgAndUp" @closeMenu="closeBurger"/>
   </header>
 
 </template>
@@ -51,10 +51,11 @@
 import HeaderLoginLogout from "@/components/HeaderLoginLogout.vue";
 import SchedulePage from "@/views/Schedule/SchedulePage.vue";
 import Asset14x1 from "@/components/logos/Asset1x1.vue";
+import DropdownIcon from "@/components/icons/DropdownIcon.vue";
 
 export default {
   name: "Header",
-  components: {Asset14x1, SchedulePage, HeaderLoginLogout},
+  components: {DropdownIcon, Asset14x1, SchedulePage, HeaderLoginLogout},
   data(){
     return{
       isOpened:false,
@@ -67,6 +68,7 @@ export default {
   methods:{
     closeBurger(){
       this.isOpened = false
+      this.selected = false
     },
     toggleOpen(){
       this.isOpened = !this.isOpened
@@ -125,7 +127,9 @@ export default {
   cursor: pointer;
   color: var(--color-link-text);
   background: var(--color-header-text-hover-bg);
-
+}
+.header span:hover svg{
+  fill: var(--color-link-text);
 }
 .header-label {
   display: flex;
@@ -168,6 +172,11 @@ export default {
 .nav-list__item{
   z-index: 12;
 }
+.nav-list__link svg{
+  min-height: 1rem;
+  margin: 0 0 0 5px;
+  fill: var(--color-header-text);
+}
 .nav-list__link{
   position: relative;
   z-index: 2;
@@ -194,7 +203,7 @@ export default {
   width: max-content;
   transition: .3s;
   z-index: 0;
-  opacity: 1;
+  opacity: 0;
   position: absolute;
   background: var(--color-background-header);
   color: var(--color-header-text);
@@ -206,11 +215,14 @@ export default {
   color: var(--color-link-text);
   background: var(--color-header-text-hover-bg);
 }
-.show{
+.selected svg{
+  fill: var(--color-link-text);
+}
+.sub-nav-list.show{
   opacity: 1;
   transform: translateY(0);
 }
-.hide{
+.sub-nav-list.hide{
   opacity: 0;
   transform: translateY(-100%);
 }
@@ -309,23 +321,41 @@ export default {
     align-items: start;
     min-height: auto;
   }
-  .nav-list li{
+  .nav-list .nav-list__item{
     width: 100%;
     margin: 0;
   }
-  .nav-list li a{
-    padding: 2rem 1rem;
+  .nav-list__link{
+    padding: 2rem 0;
+
     color: var(--color-header-text-hover);
-  }
-  .nav-list li a:hover{
-    padding: 2rem 1rem;
-  }
-  .nav-list li a.router-link-active:hover{
-    padding: 2rem 1rem;
+    background: transparent;
   }
   .header-label{
     z-index: 3;
   }
-
+  .sub-nav-list{
+    position: relative;
+    width: 100%;
+    transition: .3s;
+    opacity: 1;
+    background: transparent;
+  }
+  .nav-list__item span{
+    display: none;
+  }
+  .sub-nav__link{
+    color: var(--color-header-text-hover);
+    background: transparent;
+    padding: 1.5rem;
+  }
+  .selected{
+    color: var(--color-link-text);
+    background: var(--color-header-text-hover-bg);
+  }
+  .hide, .show{
+    opacity: 1;
+    transform: none;
+  }
 }
 </style>
