@@ -134,7 +134,6 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  font-weight: bold;
   cursor: pointer;
   color: var(--color-header-text);
 }

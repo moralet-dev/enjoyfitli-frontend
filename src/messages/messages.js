@@ -189,6 +189,10 @@ export default {
         price: 'Price',
         trainingDirections:'Workout directions',
         membershipsInfo:'Memberships info',
+        contacts: 'Contacts',
+        address: 'Address',
+        payment: 'Payment',
+        payments: 'Payments',
     },
     uk: {
         homePage: {
@@ -368,5 +372,9 @@ export default {
         price: 'Вартість',
         trainingDirections:'Основні напрями',
         membershipsInfo:'Про абонементи',
+        contacts: 'Контакти',
+        address: 'Адреса',
+        payment: 'Оплата',
+        payments: 'Оплата',
     },
 };

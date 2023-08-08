@@ -9,7 +9,7 @@
         </div>
         <span>{{$t('studioAddress')}}</span>
         <a class="text-link" href="tel:+380737304509">+380 (73) 730 45 09</a>
-        <a class="text-link" href="mailto:enfoyfit@gmail.com">enjoyfitnessstudio@gmail.com</a>
+        <a class="text-link" href="mailto:enfoyfitnesstudio@gmail.com">enjoyfitnesstudio@gmail.com</a>
       </div>
       <div class="footer-logo__wrapper">
         <Asset14x1 icon-color="var(--color-headings)"/>

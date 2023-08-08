@@ -1,30 +1,38 @@
 <template>
   <header class="header animate__animated animate__fadeInDown">
     <div class="header-label">
-      <router-link :to="{name:'home'}" @click="isOpened=false">
+      <router-link :to="{name:'home'}" @click="[isOpened, selected]=[false, false]">
         <Asset14x1 icon-color="var(--color-header-text"/>
       </router-link>
     </div>
     <div :class="{'nav__container':true, 'active': isOpened}">
       <nav>
         <ul class="nav-list">
-          <li>
-            <router-link :to="{name: 'home'}" @click="isOpened=false">{{ this.$t('home') }}</router-link>
+          <li class="nav-list__item">
+            <router-link class="nav-list__link" :to="{name: 'home'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('home') }}</router-link>
           </li>
-          <li>
-            <router-link :to="{name: 'tr-types'}" @click="isOpened=false">{{ this.$t('trainings') }}</router-link>
+          <li class="nav-list__item" @click="selected=!selected">
+            <span :class="{'nav-list__link': true, 'selected': selected,}">{{$t('trainings')}}</span>
+            <ul :class="{'sub-nav-list': true, 'show': selected, 'hide': !selected}">
+              <li>
+                <router-link class="sub-nav__link" :to="{name: 'tr-types'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('trainingTypes') }}</router-link>
+              </li>
+              <li>
+                <router-link class="sub-nav__link" :to="{name: 'memberships'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('memberships') }}</router-link>
+              </li>
+              <li>
+                <router-link class="sub-nav__link" :to="{name: 'schedule'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('schedule') }}</router-link>
+              </li>
+            </ul>
           </li>
-          <li>
-            <router-link :to="{name: 'memberships'}" @click="isOpened=false">{{ this.$t('memberships') }}</router-link>
+          <li class="nav-list__item">
+            <router-link class="nav-list__link" :to="{name: 'contacts'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('contacts') }}</router-link>
           </li>
-          <li>
-            <router-link :to="{name: 'schedule'}" @click="isOpened=false">{{ this.$t('schedule') }}</router-link>
+          <li class="nav-list__item">
+            <router-link class="nav-list__link" :to="{name: 'payment'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('payment') }}</router-link>
           </li>
-<!--          <li>-->
-<!--            <router-link :to="{name: 'payments'}" @click="isOpened=false">{{ this.$t('payments') }}</router-link>-->
-<!--          </li>-->
-          <li>
-            <router-link :to="{name: 'about'}" @click="isOpened=false">{{ this.$t('about') }}</router-link>
+          <li class="nav-list__item">
+            <router-link class="nav-list__link" :to="{name: 'about'}" @click="[isOpened, selected]=[false, false]">{{ this.$t('about') }}</router-link>
           </li>
         </ul>
       </nav>
@@ -51,6 +59,7 @@ export default {
     return{
       isOpened:false,
       scrollTop: 0,
+      selected: false,
     }
   },
   updated() {
@@ -87,7 +96,7 @@ export default {
   background-color: var(--color-background-header);
   grid-template-columns: auto auto 3fr;
   box-shadow: 0 0 5px var(--color-header-shadow);
-  padding: 0 5rem;
+  padding: 0 2rem;
   left: 0;
   top: 0;
   text-transform: uppercase;
@@ -103,15 +112,17 @@ export default {
 .header__burger{
   display: none;
 }
-.header a{
+.header{
   font-size: 14px;
   color: var(--color-header-text);
 }
-.header a.router-link-active{
+.header a.router-link-active,
+.header span.router-link-active{
   color: var(--color-link-text);
   background: var(--color-header-text-hover-bg);
 }
-.header a:hover{
+.header a:hover, .header span:hover{
+  cursor: pointer;
   color: var(--color-link-text);
   background: var(--color-header-text-hover-bg);
 
@@ -142,6 +153,7 @@ export default {
 .header-label svg{
   display: block;
   max-width: 100%;
+  min-height: 70px;
   max-height: 70px;
 }
 .nav__container{
@@ -151,21 +163,56 @@ export default {
 .nav-list {
   display: flex;
   min-height: 100%;
+  z-index: 15;
 }
-
-.nav-list li a {
+.nav-list__item{
+  z-index: 12;
+}
+.nav-list__link{
+  position: relative;
+  z-index: 2;
+}
+.nav-list__link, .sub-nav__link{
   display: flex;
   min-height: 100%;
   align-items: center;
   padding: 0 .5rem;
   justify-content: center;
   transition: .3s;
+  color: var(--color-header-text);
+  background: var(--color-background-header);
+
 }
-.nav-list li a:hover{
+
+.nav-list__link:hover{
   padding: 0 1rem;
 }
-.nav-list li a.router-link-active:hover{
+.nav-list__link.router-link-active:hover{
   padding: 0 .5rem;
+}
+.sub-nav-list{
+  width: max-content;
+  transition: .3s;
+  z-index: 0;
+  opacity: 1;
+  position: absolute;
+  background: var(--color-background-header);
+  color: var(--color-header-text);
+}
+.sub-nav__link{
+  padding: 1.5rem;
+}
+.selected{
+  color: var(--color-link-text);
+  background: var(--color-header-text-hover-bg);
+}
+.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+.hide{
+  opacity: 0;
+  transform: translateY(-100%);
 }
 @media (max-width: 991px) {
   .header{
