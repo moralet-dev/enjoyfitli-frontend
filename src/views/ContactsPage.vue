@@ -17,7 +17,9 @@
 
 <script>
 export default {
-  name: "ContactsPage"
+  name: "ContactsPage",
+  mounted() {
+  }
 }
 </script>
 

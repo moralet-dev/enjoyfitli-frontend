@@ -13,7 +13,7 @@
           </li>
           <li class="nav-list__item" @click="selected=!selected">
             <span :class="{'nav-list__link': true, 'selected': selected,}">{{$t('trainings')}} <DropdownIcon/></span>
-            <ul :class="{'sub-nav-list': true, 'show': selected, 'hide': !selected}" :key="selected">
+            <ul :class="{'sub-nav-list': true, 'show': selected, 'hide': !selected}">
               <li>
                 <router-link class="sub-nav__link" :to="{name: 'tr-types'}" @click.stop="closeBurger">{{ this.$t('trainingTypes') }}</router-link>
               </li>
@@ -197,7 +197,7 @@ export default {
   padding: 0 1rem;
 }
 .nav-list__link.router-link-active:hover{
-  padding: 0 .5rem;
+  padding: 0 1rem;
 }
 .sub-nav-list{
   width: max-content;
@@ -214,6 +214,7 @@ export default {
 .selected{
   color: var(--color-link-text);
   background: var(--color-header-text-hover-bg);
+  padding: 0 1rem;
 }
 .selected svg{
   fill: var(--color-link-text);
@@ -347,13 +348,13 @@ export default {
   .sub-nav__link{
     color: var(--color-header-text-hover);
     background: transparent;
-    padding: 1.5rem;
+    padding: 2rem 0;
   }
   .selected{
     color: var(--color-link-text);
     background: var(--color-header-text-hover-bg);
   }
-  .hide, .show{
+  .sub-nav-list.hide, .sub-nav-list.show{
     opacity: 1;
     transform: none;
   }

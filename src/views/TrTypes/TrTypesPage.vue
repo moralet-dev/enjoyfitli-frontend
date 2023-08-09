@@ -41,7 +41,7 @@ export default {
   mounted() {
     this.getTypes()
     this.detailShowed = false
-    window.scroll(0,0)
+    window.scrollTo({top:0, left:0, behavior: "smooth"})
   },
   updated() {
     !this.$route.params?.slug ? this.detailShowed = false : this.detailShowed = true

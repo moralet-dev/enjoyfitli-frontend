@@ -18,16 +18,18 @@
         </div>
       </div>
     </div>
-
+    <div class="loader" v-else><PreloaderSmall/></div>
     <h3>{{ $t('homePage.TrDirsBottomTitle')}}</h3>
   </div>
 </template>
 
 <script>
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
+import PreloaderSmall from "@/components/PreloaderSmall.vue";
 
 export default {
   name: "TrainingDirections",
+  components: {PreloaderSmall},
   data: () => ({
     dirs: null
   }),
@@ -120,10 +122,6 @@ span.title {
   .media-container {
     flex-direction: column;
     margin: 0;
-  }
-
-  .media-container.reverse {
-    flex-direction: column-reverse;
   }
 
   .media-container:nth-child(even) .content-block:first-child .content-block__text,

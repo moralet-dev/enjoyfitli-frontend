@@ -81,7 +81,6 @@ export default {
     }
   },
   mounted() {
-    window.scroll(0, 0)
     this.loaded()
   },
   methods: {
@@ -130,7 +129,7 @@ p {
 }
 
 .banner {
-  background: url("../../assets/bg-images/home_banner_bg.jpg") center no-repeat;
+  background: url("../../assets/bg-images/home_banner_bg.webp") center no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;

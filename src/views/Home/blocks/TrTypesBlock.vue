@@ -5,8 +5,8 @@
       <span>{{$t('homePage.trTypesSubtitle')}}</span>
     </div>
     <TrTypesSwiper v-if="types" :types="this.types"/>
-    <div v-else>
-      <PreloaderSmall/>
+    <div v-else class="loader">
+      <PreloaderSmall icon-color="var(--color-headings)"/>
     </div>
   </div>
 </template>

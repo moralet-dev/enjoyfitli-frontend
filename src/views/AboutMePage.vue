@@ -20,9 +20,6 @@
 <script>
 export default {
   name: "AboutMePage",
-  mounted() {
-    window.scroll(0, 0)
-  }
 }
 </script>
 

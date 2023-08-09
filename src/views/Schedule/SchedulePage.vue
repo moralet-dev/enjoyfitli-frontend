@@ -117,7 +117,6 @@ export default {
   mounted() {
     this.calculateWeekDays(this.currentDay)
     this.getTrainings().then(() => (this.onDayClick(this.currentDay)))
-    window.scroll(0,0)
   },
   methods: {
     calculateWeekDays(date) {

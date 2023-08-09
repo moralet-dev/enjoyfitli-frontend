@@ -15,8 +15,8 @@
       </div>
     </aside>
 
-    <div v-if="$vuetify.display.mdAndUp && me?.id" class="pages-content-wrapper">
-      <router-view v-slot="{Component, route}">
+    <div v-if="$vuetify.display.mdAndUp && me?.id" id="router-view-box" class="pages-content-wrapper">
+      <router-view  v-slot="{Component, route}">
         <transition name="fade" translate="yes" mode="out-in">
           <component :me="me" :is="Component" :key="route.path"/>
         </transition>
@@ -82,6 +82,16 @@ export default {
   props: {
     me: {type: Object}
   },
+  watch:{
+    '$route'(to, from) {
+      if (to.matched.some(record => record.path.startsWith('/profile')) && this.$vuetify.display.mdAndUp) {
+        const routerView = document.getElementById('router-view-box');
+        if (routerView) {
+          routerView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    },
+  },
   methods: {
     goBack() {
     },
@@ -134,7 +144,9 @@ aside {
   flex-direction: column;
   padding: 1rem 0 0 5rem;
 }
-
+#router-view-box{
+  scroll-margin-top: 80px;
+}
 @media (max-width: 767px) {
   aside {
     border: none;
