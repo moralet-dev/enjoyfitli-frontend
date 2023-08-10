@@ -5,8 +5,8 @@
         <span class="title">{{ heading }}</span>
       </slot>
       <slot>
-        <div class="toggle-button" @click="toggle">
-          <PlusIcon @click="toggle" :is-minus="isOpen"/>
+        <div class="toggle-button">
+          <PlusIcon :is-minus="isOpen"/>
         </div>
       </slot>
     </div>
@@ -56,7 +56,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
 }
 @media (max-width: 767px) {

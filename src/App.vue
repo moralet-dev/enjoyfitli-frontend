@@ -57,7 +57,7 @@ export default {
   mounted() {
     let scrolled = false
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 1000) {
+      if (window.scrollY > 1000 && scrolled===false) {
         this.$refs.scroller.classList.remove('animate__fadeOutRight')
         this.$refs.scroller.classList.add('visible', 'animate__fadeInRight')
         scrolled = true
@@ -71,9 +71,12 @@ export default {
   },
   watch: {
     '$route'(to, from) {
-      const routerView = document.getElementById('main');
-      if (routerView) {
-        routerView.scrollIntoView({behavior: 'smooth', block: 'start'});
+      const internalPageRegex = /^\/(profile|training-types)\/.*/;
+      if (!internalPageRegex.test(to.path)){
+        const routerView = document.getElementById('main');
+        if (routerView) {
+          routerView.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
       }
     },
   },

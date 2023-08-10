@@ -1,5 +1,5 @@
 <template>
-  <header class="header animate__animated animate__fadeInDown">
+  <header class="header animate__animated animate__fadeIn">
     <div class="header-label">
       <router-link :to="{name:'home'}" @click="[isOpened, selected]=[false, false]">
         <Asset14x1 icon-color="var(--color-header-text"/>
@@ -244,11 +244,9 @@ export default {
     align-items: center;
     justify-content: start;
   }
-  li a.router-link-active{
+  .nav-list__link.router-link-active, .nav-list__link.router-link-exact-active, .nav-list__link:hover{
     background: var(--color-background);
-  }
-  li a:hover{
-    background: var(--color-background);
+    padding: 2rem 0;
   }
   .header__burger{
     display: block;

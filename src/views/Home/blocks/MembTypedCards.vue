@@ -74,7 +74,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 13px;
 
   background: var(--color-elements-semi-opacity);
 }
@@ -104,22 +104,22 @@ export default {
 }
 
 .card-price {
-  font-size: 30px;
+  font-size: 16px;
   text-align: center;
 }
 
 @media (max-width: 767px) {
   .card-box {
     padding: 0;
-    justify-content: center;
+    justify-content: space-around;
   }
 
   .card-wrapper {
-    flex: none;
-    margin: 0;
-    transform: scale3d(0.8, 0.8, 80%);
-  }
+    flex: 0 1 40%;
 
+    margin: 0 0 .5rem 0;
+    transform: scale3d(1, 1, 100%);
+  }
   .clicked {
     transform: scale3d(1, 1, 100%);
   }

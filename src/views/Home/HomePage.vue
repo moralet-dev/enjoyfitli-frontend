@@ -5,7 +5,7 @@
         <img src="../../assets/logos/Asset15-4x-white.png" alt="Enjoy Fitness Studio логотип">
       </div>
       <h1>ENJOY FITNESS<br>STUDIO</h1>
-      <h4>{{ $t('homePage.title') }}</h4>
+      <span>{{ $t('homePage.title') }}</span>
       <div class="banner__buttons-wrapper">
         <div class="banner__buttons">
           <router-link class="btn banner__buttons-btn" :to="{name: 'tr-types'}">{{$t('trainingTypes')}}</router-link>
@@ -124,7 +124,6 @@ h4:first-letter {
 }
 
 p {
-  font-size: 20px;
   margin: 0 0 2rem 0;
 }
 
@@ -164,11 +163,11 @@ p {
   object-fit: contain;
 }
 
-.banner h1, .banner h4 {
+.banner h1, .banner span {
   color: var(--vt-c-white-soft);
 }
 
-.banner h4 {
+.banner span {
   font-weight: 400;
 }
 
@@ -211,16 +210,12 @@ p {
 }
 
 .dropdown-block .dropdown {
-  margin: 2rem 0 1rem 0;
+  margin: 1rem 0;
 }
 
 @media (max-width: 767px) {
   h2 {
     font-size: 30px;
-  }
-
-  p {
-    font-size: 16px;
   }
 
   .banner h1, .banner h4 {
@@ -239,15 +234,10 @@ p {
   }
 
   p {
-    font-size: 16px;
   }
 
   .title {
     padding: 0;
-  }
-
-  .title h2 {
-
   }
   .banner__buttons-wrapper{
     display: flex;

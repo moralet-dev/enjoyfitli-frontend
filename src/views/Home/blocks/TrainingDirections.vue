@@ -4,7 +4,7 @@
       <div class="content-block">
         <div class="content-block__text">
           <span class="number">{{ (index+1)>9 ? index+1 : `0${index +1}` }}</span>
-          <span class="title">{{ d?.name }}</span>
+          <h3 class="title">{{ d?.name }}</h3>
           <p v-if="d?.description_en && d?.description_uk">
             {{ d[`description_${$store.getters.getLocale}`] }}
           </p>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="loader" v-else><PreloaderSmall/></div>
-    <h3>{{ $t('homePage.TrDirsBottomTitle')}}</h3>
+    <span class="bottom-text">{{ $t('homePage.TrDirsBottomTitle')}}</span>
   </div>
 </template>
 
@@ -50,8 +50,10 @@ export default {
   padding: 0 9rem;
 }
 
-.wrapper h3 {
-  font-size: 50px;
+.wrapper .bottom-text {
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
   padding: 6rem 0;
   text-align: center;
   text-transform: uppercase;
@@ -96,7 +98,8 @@ export default {
 .content-block__image.default{
   background: var(--color-background);
 }
-span.number, span.title {
+span.number, .title {
+  font-family: 'Playfair Display', serif;
   font-size: 50px;
   font-weight: 700;
   text-transform: uppercase;
@@ -104,19 +107,13 @@ span.number, span.title {
   margin: 0 0 1rem 0;
 }
 
-span.title {
+.title {
   font-size: 30px;
 }
 
 @media (max-width: 767px) {
   .wrapper {
     padding: 0 1rem;
-  }
-
-  .wrapper h3 {
-    font-size: 20px;
-    padding: 3rem 0;
-    text-align: center;
   }
 
   .media-container {
@@ -139,8 +136,7 @@ span.title {
     height: 300px;
     margin: 0 0 2rem 0;
   }
-
-  span.title {
+  .title {
     font-size: 24px;
   }
 }
@@ -148,10 +144,6 @@ span.title {
 @media (min-width: 768px) and (max-width: 991px) {
   .wrapper {
     padding: 0 5rem;
-  }
-
-  .wrapper h3 {
-    padding: 3rem 0;
   }
 }
 </style>

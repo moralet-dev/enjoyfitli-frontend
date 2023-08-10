@@ -22,7 +22,7 @@ export default {
 
             willBurnTrainingText: 'The training will be considered used only if you notify us 3 hours before the session that you can\'t attend. In case of notification, the training will be rescheduled for another convenient day for you.',
 
-            whatNeedPrePayText: 'Full prepayment is required because we organize closed groups for workouts, and to ensure your spot is secured, we need to take precautions. In case you notify us 10 hours in advance that you won\'t be able to attend, the training will be rescheduled for another convenient day for you.',
+            whatNeedPrePayText: 'Full prepayment is required because we organize closed groups for workouts, and to ensure your spot is secured, we need to take precautions. In case you notify us 3 hours in advance that you won\'t be able to attend, the training will be rescheduled for another convenient day for you.',
 
             oneTimeOrMembText1: 'The answer is obvious – membership! Especially if you\'re doing personal or split workouts.',
             oneTimeOrMembText2: '1. The membership is designed to be beneficial primarily for YOU!',
@@ -224,7 +224,7 @@ export default {
                 ' ми не будемо попередженні про те, що ви не зможете прийти. В разі попередження тренування переноситься на інший зручний для Вас день)',
 
             whatNeedPrePayText: 'Повна передоплата потрібна, оскільки ми набираємо закриті групи для тренувань, і для того, щоб ваше місце не пропало,' +
-                ' ми змушені себе перестраховувати. У разі попередження за 10 годин, що Вас не буде - тренування переноситься на інший зручний для Вас день.',
+                ' ми змушені себе перестраховувати. У разі попередження за 3 години, що Вас не буде - тренування переноситься на інший зручний для Вас день.',
 
             oneTimeOrMembText1: 'Відповідь очевидна - абонемент! Особливо якщо Ви займаєтесь персонально або ж на спліт тренуваннях.',
             oneTimeOrMembText2: '1. Абонемент продумано так, щоб вигідно, перш за все, було ВАМ!',
