@@ -2,11 +2,13 @@
   <div class="pages-wrapper">
     <aside class="animate__animated animate__fadeIn">
       <div v-for="link in links" class="pages-link">
-        <router-link :to="link.to">
+        <router-link :to="$route.name === link.to.name ? {name: 'profile'} : link.to"
+                     :id="`to-${link.to.name}`"
+                     :class="{'router-link-exact-active': $route.name === link.to.name}">
           <component :is="link.icon"/>
           <span>{{ $t(link.text) }}</span>
         </router-link>
-        <router-view class="pages-content-wrapper" v-if="$vuetify.display.smAndDown"
+        <router-view class="pages-content-wrapper" v-if="$vuetify.display.smAndDown" :id="link.to.name"
                      :name="link.mobileName" v-slot="{Component, route}">
           <transition name="slide-down">
             <component :me="me" :is="Component" :key="route.path"/>
@@ -16,7 +18,7 @@
     </aside>
 
     <div v-if="$vuetify.display.mdAndUp && me?.id" id="router-view-box" class="pages-content-wrapper">
-      <router-view  v-slot="{Component, route}">
+      <router-view v-slot="{Component, route}">
         <transition name="fade" translate="yes" mode="out-in">
           <component :me="me" :is="Component" :key="route.path"/>
         </transition>
@@ -40,37 +42,37 @@ export default {
     return {
       links: [
         {
-          to: { name: 'my-memberships' },
+          to: {name: 'my-memberships'},
           icon: MembershipIcon,
           text: 'memberships',
           mobileName: 'mob_membership'
         },
         {
-          to: { name: 'my-schedule' },
+          to: {name: 'my-schedule'},
           icon: ScheduleIcon,
           text: 'schedule',
           mobileName: 'mob_schedule'
         },
         {
-          to: { name: 'personal' },
+          to: {name: 'personal'},
           icon: ScheduleIcon,
           text: 'personalTrainings',
           mobileName: 'mob_personal'
         },
         {
-          to: { name: 'my-nutrition-balance' },
+          to: {name: 'my-nutrition-balance'},
           icon: MyPFCCIcon,
           text: 'myNutritionBalance',
           mobileName: 'mob_my_nutrition_balance'
         },
         {
-          to: { name: 'purchase-history' },
+          to: {name: 'purchase-history'},
           icon: PurchaseHistoryIcon,
           text: 'purchaseHistory',
           mobileName: 'mob_purchase_history'
         },
         {
-          to: { name: 'settings' },
+          to: {name: 'settings'},
           icon: EditIcon,
           text: 'settings',
           mobileName: 'mob_settings'
@@ -82,19 +84,19 @@ export default {
   props: {
     me: {type: Object}
   },
-  watch:{
+  watch: {
     '$route'(to, from) {
-      if (to.matched.some(record => record.path.startsWith('/profile')) && this.$vuetify.display.mdAndUp) {
-        const routerView = document.getElementById('router-view-box');
-        if (routerView) {
-          routerView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (to.matched.some(record => record.path.startsWith('/profile'))) {
+        if (this.$vuetify.display.mdAndUp) {
+          const routerView = document.getElementById('router-view-box');
+          if (routerView) {
+            routerView.scrollIntoView({behavior: 'smooth', block: 'start'});
+          }
         }
       }
     },
   },
   methods: {
-    goBack() {
-    },
   },
 }
 </script>
@@ -126,13 +128,15 @@ aside {
   border-radius: 10px;
   padding: 0.5em 1rem;
 }
+
 .pages-link a.router-link-exact-active,
 .pages-link a.router-link-exact-active:hover,
-.pages-link a:hover{
+.pages-link a:hover {
   color: var(--vt-c-white-soft);
   background: var(--color-link-text-hover);
   border: 3px solid var(--color-elements);
 }
+
 .pages-link a span {
   margin: 0 10px;
   text-transform: capitalize;
@@ -144,9 +148,11 @@ aside {
   flex-direction: column;
   padding: 1rem 0 0 5rem;
 }
-#router-view-box{
-  scroll-margin-top: 80px;
+
+#router-view-box {
+  scroll-margin-top: calc(80px + 2rem);
 }
+
 @media (max-width: 767px) {
   aside {
     border: none;
@@ -161,12 +167,14 @@ aside {
     flex-direction: column;
     padding: 0;
   }
-  .pages-link a{
+
+  .pages-link a {
     border: 3px solid var(--color-link-text);
     margin-bottom: 1rem;
   }
+
   .pages-content-wrapper {
-    padding: 1rem 0.5rem 0 ;
+    padding: 1rem 0.5rem 0;
   }
 }
 
@@ -195,11 +203,11 @@ aside {
 }
 
 .slide-down-enter-to {
-  max-height: 200vh;
+  max-height: 50vh;
 }
 
 .slide-down-leave-from {
-  max-height: 200vh;
+  max-height: 50vh;
 }
 
 .slide-down-leave-to {
