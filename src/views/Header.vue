@@ -1,7 +1,7 @@
 <template>
   <header class="header animate__animated animate__fadeIn">
     <div class="header-label">
-      <router-link :to="{name:'home'}" @click="[isOpened, selected]=[false, false]">
+      <router-link class="header-label__link" :to="{name:'home'}" @click="[isOpened, selected]=[false, false]">
         <Asset14x1 icon-color="var(--color-header-text"/>
       </router-link>
     </div>
@@ -18,12 +18,12 @@
                 <router-link class="sub-nav__link" :to="{name: 'tr-types'}" @click.stop="closeBurger">{{ this.$t('trainingTypes') }}</router-link>
               </li>
               <li>
-                <router-link class="sub-nav__link" :to="{name: 'memberships'}" @click.stop="closeBurger">{{ this.$t('memberships') }}</router-link>
-              </li>
-              <li>
                 <router-link class="sub-nav__link" :to="{name: 'schedule'}" @click.stop="closeBurger">{{ this.$t('schedule') }}</router-link>
               </li>
             </ul>
+          </li>
+          <li class="nav-list__item">
+            <router-link class="nav-list__link" :to="{name: 'memberships'}" @click.stop="closeBurger">{{ this.$t('memberships') }}</router-link>
           </li>
           <li class="nav-list__item">
             <router-link class="nav-list__link" :to="{name: 'contacts'}" @click="closeBurger">{{ this.$t('contacts') }}</router-link>
@@ -118,19 +118,7 @@ export default {
   font-size: 14px;
   color: var(--color-header-text);
 }
-.header a.router-link-active,
-.header span.router-link-active{
-  color: var(--color-link-text);
-  background: var(--color-header-text-hover-bg);
-}
-.header a:hover, .header span:hover{
-  cursor: pointer;
-  color: var(--color-link-text);
-  background: var(--color-header-text-hover-bg);
-}
-.header span:hover svg{
-  fill: var(--color-link-text);
-}
+
 .header-label {
   display: flex;
   flex: 0 1 auto;
@@ -138,27 +126,25 @@ export default {
   justify-content: center;
 }
 
-.header-label a,
-.header-label a:hover,
-.header-label a.router-link-active,
-.header-label a.router-link-exact-active{
+.header-label__link,
+.header-label__link:hover,
+.header-label__link.router-link-active,
+.header-label__link.router-link-exact-active{
   box-shadow: none;
   background: transparent;
   padding: 5px 0;
 }
 
-.header-label a,
-.header-label a.router-link-active,
-.header-label a.router-link-exact-active{
-  display: block;
+.header-label__link,
+.header-label__link.router-link-active,
+.header-label__link.router-link-exact-active{
   padding: 5px 0;
   margin: 0 1rem;
 }
 .header-label svg{
   display: block;
-  max-width: 100%;
-  min-height: 70px;
-  max-height: 70px;
+  width: 100%;
+  height: 70px;
 }
 .nav__container{
   display: grid;
@@ -172,6 +158,7 @@ export default {
 .nav-list__item{
   z-index: 12;
 }
+
 .nav-list__link svg{
   min-height: 1rem;
   margin: 0 0 0 5px;
@@ -190,14 +177,16 @@ export default {
   transition: .3s;
   color: var(--color-header-text);
   background: var(--color-background-header);
-
 }
-
-.nav-list__link:hover{
-  padding: 0 1rem;
+.nav-list__link:hover, .sub-nav__link:hover,
+.nav-list__link.router-link-exact-active, .sub-nav__link.router-link-exact-active{
+  cursor: pointer;
+  color: var(--color-link-text);
+  background: var(--color-header-text-hover-bg);
 }
-.nav-list__link.router-link-active:hover{
-  padding: 0 1rem;
+.nav-list__link:hover svg{
+  transition: .3s;
+  fill: var(--color-link-text);
 }
 .sub-nav-list{
   width: max-content;
@@ -214,7 +203,6 @@ export default {
 .selected{
   color: var(--color-link-text);
   background: var(--color-header-text-hover-bg);
-  padding: 0 1rem;
 }
 .selected svg{
   fill: var(--color-link-text);
