@@ -9,7 +9,7 @@
       </p>
       <p>
         {{ $t('email') }}:
-        <a class="text-link" href="mailto:enfoyfit@gmail.com"> enjoyfitnesstudio@gmail.com</a>
+        <a class="text-link" href="mailto:connect@enjoyfitnes.com"> connect@enjoyfitnes.com</a>
       </p>
     </section>
   </div>
@@ -41,7 +41,7 @@ h1{
 p{
   margin: 1rem 0;
 }
-.text-link{
+.text-link, .text-link:hover{
   text-transform: lowercase;
 }
 @media (max-width: 991px) {

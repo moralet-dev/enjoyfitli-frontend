@@ -1,18 +1,13 @@
 <template>
   <div class="wrapper">
     <div class="title">
-      <h1>I am Liza! Your future coach.</h1>
+      <h1>Ми - фітнес студія Enjoy.</h1>
     </div>
     <div class="content">
       <p>
-        Моя спеціалізація - це функціональний тренінг (робота з власною вагою), силовий тренінг (робота з додатковою
-        вагою) та Pilates.
+        {{ $t('homePage.greetingTitle') }}
       </p>
-      <p>
-        Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність». Тож, йдучи до мене, ти
-        потраплятимеш не просто на тренування, а туди, де можна поспілкуватися, вивільнити емоції та зробити тіло
-        прикладом власного ідеалу! Я чекаю саме на тебе!
-      </p>
+      <p>{{ $t('homePage.greetingSubtitle') }}</p>
     </div>
   </div>
 </template>
@@ -39,6 +34,7 @@ h1 {
 
 .content p {
   margin: 1rem 0;
+  white-space: pre-wrap;
 }
 
 @media (max-width: 767px) {

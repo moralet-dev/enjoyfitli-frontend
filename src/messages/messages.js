@@ -4,8 +4,9 @@ export default {
             title: 'Feel joy - feel pride!',
             mainTrainingDirections: 'Main training\'s directions',
 
-            greetingTitle: 'My specialization includes functional training, strength training, and Pilates.',
-            greetingSubtitle: 'I have higher education in "Psychology" and "Coaching." So, when you come to me, you\'ll not only get a workout but also a place where you can communicate, release emotions, and make your body a model of your own ideal! I\'m waiting for you!',
+            greetingTitle: 'EF Studio specializes in functional and strength training, Pilates and Stretching.',
+            greetingSubtitle: 'By coming to us, you will get not only to a fitness space, but to a place where you will have' +
+                ' the opportunity to communicate, release emotions and make your body an example of your own ideal!\nWe are waiting for you!',
             TrDirsBottomTitle: 'Explore and find out about the workouts that suit you best',
             qAndA: 'Questions and Answers',
             qAndATitle: 'Answers to the most common questions',
@@ -185,7 +186,7 @@ export default {
         trainings: 'workouts',
         weUseCookies: 'We use cookies to improve security and your experience on our website.',
         accept: 'Accept',
-        studioAddress: 'Kyiv, Solomyanskyi dist.,\nHarmatna str. 38A, 625',
+        studioAddress: '03067, Kyiv, Solomyanskyi dist.,\nHarmatna str. 38A, 625',
         price: 'Price',
         trainingDirections:'Workout directions',
         membershipsInfo:'Memberships info',
@@ -193,15 +194,15 @@ export default {
         address: 'Address',
         payment: 'Payment',
         payments: 'Payments',
+        publicOffer: 'Public offer'
     },
     uk: {
         homePage: {
             title: 'Feel joy - feel pride!',
             mainTrainingDirections: 'Основні напрями тренувань',
-            greetingTitle: 'Моя спеціалізація - це функціональний тренінг, силовий тренінг та Pilates.',
-            greetingSubtitle: 'Я маю вищу освіту за спеціальностями «Психологія» та «Тренерська діяльність».\nТож, йдучи до мене, ти ' +
-                'потрапиш не просто на тренування, а туди, де можна поспілкуватися, вивільнити емоції та зробити тіло ' +
-                'прикладом власного ідеалу!\nЯ чекаю саме на тебе!',
+            greetingTitle: 'Спеціалізація EF Studio - функціональний та силовий тренінг, Pilates та Stretching.',
+            greetingSubtitle: 'Йдучи до нас, Ви потрапите не лише в фітнес-простір, а туди, де матимете можливість поспілкуватись, ' +
+                'вивільнити емоції та зробити своє тіло прикладом власного ідеалу!\nМи чекаємо саме на тебе!',
             TrDirsBottomTitle: 'Обийрай та дізнавайся\nпро тренування які\nпідходять тобі найбільше',
             qAndA: 'Запитання та відповіді',
             qAndATitle: 'Відповіді на найпоширеніші запитання',
@@ -368,7 +369,7 @@ export default {
         trainings: 'тренування',
         weUseCookies: 'Ми використовуємо cookies для покращення безпеки та працездатності нашого сайту і поліпшення ваших вражень від перебування на платформі.',
         accept: 'Погоджуюсь',
-        studioAddress: 'Київ, Солом\'янський р-н,\nвул. Гарматна 38A, 625',
+        studioAddress: '03067,\nКиїв, Солом\'янський р-н,\nвул. Гарматна 38A, 625',
         price: 'Вартість',
         trainingDirections:'Основні напрями',
         membershipsInfo:'Про абонементи',
@@ -376,5 +377,6 @@ export default {
         address: 'Адреса',
         payment: 'Оплата',
         payments: 'Оплата',
+        publicOffer: 'Публічна оферта'
     },
 };

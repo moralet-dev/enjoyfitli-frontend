@@ -9,7 +9,7 @@
         </div>
         <span>{{$t('studioAddress')}}</span>
         <a class="text-link" href="tel:+380737304509">+380 (73) 730 45 09</a>
-        <a class="text-link" href="mailto:enfoyfitnesstudio@gmail.com">enjoyfitnesstudio@gmail.com</a>
+        <a class="text-link" href="mailto:connect@enjoyfitnes.com">connect@enjoyfitnes.com</a>
       </div>
       <div class="footer-logo__wrapper">
         <Asset14x1 icon-color="var(--color-headings)"/>
@@ -88,13 +88,20 @@ footer{
 .text-link.router-link-active{
   background: transparent;
 }
+.footer-logo__wrapper{
+  display: flex;
+  max-width: 20vw;
+  align-items: start;
+  order: 0;
+  margin: 2rem;
+}
 @media (max-width: 767px) {
   footer{
     padding: 0;
   }
   .footer-logo__wrapper{
     display: flex;
-    max-width: 50vw;
+    max-width: 30vw;
     align-items: center;
     order: 0;
     margin-bottom: 2rem;
