@@ -26,7 +26,7 @@
 
               <span>{{$t('price')}}: {{ m.price}} &#8372;</span>
               <span>{{Math.round(m.price / m.count)}} &#8372; {{$t('perTraining')}}</span>
-              <span v-if="countEconomy(m.price, m.count, trType.memberships[0].price)>0"
+              <span v-if="countEconomy(m.price, m.count, trType.memberships[0].price)>0 && trType.memberships[0].count === 1"
                     :class="{'economy': true}">
                 {{this.$t('economy')}} {{ this.countEconomy(m.price, m.count, trType.memberships[0].price)}} &#8372;
               </span>

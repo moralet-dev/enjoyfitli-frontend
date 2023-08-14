@@ -115,7 +115,6 @@ export default defineComponent({
         this.showModal = false
         this.showNextModal = true
       }).catch(reason => {
-        console.log('err')
         if (reason.response.data.status === 'ASR'){
           this.nextMessage = this.$t('requestDeclined')
           this.showModal = false
