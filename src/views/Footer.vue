@@ -90,6 +90,7 @@ footer{
   text-decoration: none;
   color: var(--color-header-text);
   margin: 0 0 1rem 0;
+  text-align: center;
 }
 .contacts .text-link{
   text-transform: lowercase;
@@ -112,7 +113,7 @@ footer{
   padding: .5rem;
 }
 .rights-reserved{
-
+  color: var(--vt-c-white-soft);
 }
 @media (max-width: 767px) {
   .footer-logo__wrapper{
@@ -135,6 +136,7 @@ footer{
   }
   .pages, .contacts{
     align-items: center;
+    margin: 1.5rem 0;
   }
 
 }
