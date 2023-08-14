@@ -6,7 +6,7 @@ export default {
 
             greetingTitle: 'EF Studio specializes in functional and strength training, Pilates and Stretching.',
             greetingSubtitle: 'By coming to us, you will get not only to a fitness space, but to a place where you will have' +
-                ' the opportunity to communicate, release emotions and make your body an example of your own ideal!\nWe are waiting for you!',
+                ' the opportunity to communicate, release emotions and make your body an example of your own ideal!\n\nWe are waiting for you!',
             TrDirsBottomTitle: 'Explore and find out about the workouts that suit you best',
             qAndA: 'Questions and Answers',
             qAndATitle: 'Answers to the most common questions',
@@ -221,7 +221,7 @@ export default {
             mainTrainingDirections: 'Основні напрями тренувань',
             greetingTitle: 'Спеціалізація EF Studio - функціональний та силовий тренінг, Pilates та Stretching.',
             greetingSubtitle: 'Йдучи до нас, Ви потрапите не лише в фітнес-простір, а туди, де матимете можливість поспілкуватись, ' +
-                'вивільнити емоції та зробити своє тіло прикладом власного ідеалу!\nМи чекаємо саме на тебе!',
+                'вивільнити емоції та зробити своє тіло прикладом власного ідеалу!\n\nМи чекаємо саме на тебе!',
             TrDirsBottomTitle: 'Обийрай та дізнавайся\nпро тренування які\nпідходять тобі найбільше',
             qAndA: 'Запитання та відповіді',
             qAndATitle: 'Відповіді на найпоширеніші запитання',
