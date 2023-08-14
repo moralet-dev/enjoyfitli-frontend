@@ -21,13 +21,13 @@ export default {
   name: 'ActivationPage',
   data() {
     return {
-      status: 'success'
+      status: 'pending'
     }
   },
   mounted() {
     const uid = this.$route.params.uid;
     const token = this.$route.params.token;
-    // this.activateAccount(uid, token);
+    this.activateAccount(uid, token);
   },
   methods: {
     activateAccount(uid, token) {
