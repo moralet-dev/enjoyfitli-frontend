@@ -192,11 +192,10 @@ export default defineComponent({
 }
 
 .carousel__card__title {
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .carousel__card__price {
-  font-size: 25px;
   font-weight: 600;
 }
 

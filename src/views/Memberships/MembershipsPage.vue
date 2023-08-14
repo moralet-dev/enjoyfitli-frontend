@@ -1,8 +1,17 @@
 <template>
   <div class="wrapper">
-    <div class="title animate__animated animate__fadeIn">
+    <div ref="titleBlock" class="title animate__animated animate__fadeIn">
       <h1>{{ this.$t('memberships') }}</h1>
-      <p>{{ this.$t('membershipsPageSubtitle')}}</p>
+      <button class="scroller" @click="scrollToMemberships" type="button" >
+        <DoubleArrows/>
+        <span>{{ this.$t('membershipsPageSubtitle')}}</span>
+        <DoubleArrows/>
+      </button>
+      <p class="title-descr">
+        {{ this.$t('membershipsPageDescription')}}
+        <router-link class="text-link" :to="{name: 'public-offer'}">{{$t('publicOffer')}}</router-link>
+      </p>
+      <p class="title-descr">{{ this.$t('membershipsPageDescription2')}}</p>
     </div>
     <div v-for="type in types" v-if="memberships" class="membership-block animate__animated animate__fadeIn">
       <div class="descr">
@@ -11,7 +20,7 @@
           {{ type[`description_${this.$store.getters.getLocale}`] }}
         </p>
       </div>
-      <MembershipBlock :memberships="memberships.filter(el => el.type.id === type.id)" arrow-color="var(--color-link-text)"/>
+      <MembershipBlock  :memberships="memberships.filter(el => el.type.id === type.id)" arrow-color="var(--color-link-text)"/>
     </div>
     <PreloaderSmall v-else/>
 
@@ -24,10 +33,11 @@ import {profileAPI} from "@/api/profileAPI/profileAPI";
 import {trainingsAPI} from "@/api/trainingsAPI/trainingsAPI";
 import Preloader from "@/components/Preloader.vue";
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
+import DoubleArrows from "@/components/icons/DoubleArrows.vue";
 
 export default {
   name: "MembershipsPage",
-  components: {PreloaderSmall, Preloader, MembershipBlock},
+  components: {DoubleArrows, PreloaderSmall, Preloader, MembershipBlock},
   data() {
     return {
       types: null,
@@ -44,6 +54,9 @@ export default {
     },
     async getMemberships() {
       this.memberships = await profileAPI.getMemberships().then(response => response.data.results)
+    },
+    scrollToMemberships(){
+      this.$refs.titleBlock.nextElementSibling.scrollIntoView({block:'start', behavior: 'smooth'})
     }
   }
 }
@@ -66,11 +79,32 @@ p{
 .title {
   padding: 0 9rem;
 }
-
+.scroller{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+}
+.scroller svg{
+  fill: var(--color-link-text);
+  height: 20px;
+  width: 20px;
+  margin: 0 .5rem;
+}
+.scroller:hover, .scroller:hover svg{
+  transition: .3s;
+  fill: var(--vt-c-white-soft);
+  color: var(--vt-c-white-soft);
+}
+.title-descr{
+  margin: 1rem 0;
+  white-space: pre-wrap;
+}
 .membership-block {
   display: grid;
   grid-template-columns: 4fr 8fr;
   padding: 1.5rem 9rem;
+  scroll-margin-top: 82px;
 }
 @media (max-width: 767px) {
   .wrapper{

@@ -86,6 +86,7 @@ h1{
 .buttons{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 .btn{
@@ -104,6 +105,15 @@ h1{
   }
   h1{
     font-size: 30px;
+  }
+  .buttons{
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn{
+    margin: .5rem 0;
+    width: 70%;
+    text-align: center;
   }
 }
 </style>

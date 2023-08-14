@@ -90,7 +90,6 @@ footer{
   text-decoration: none;
   color: var(--color-header-text);
   margin: 0 0 1rem 0;
-  text-align: center;
 }
 .contacts .text-link{
   text-transform: lowercase;
@@ -127,6 +126,7 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
   .pages{
     order: 1;

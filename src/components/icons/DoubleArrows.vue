@@ -1,30 +1,28 @@
 <template>
-  <svg :fill="iconColor" :height="height" :width="width" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-       xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-51.18 -51.18 614.16 614.16" xml:space="preserve"
-       :transform="`rotate(${rotate})`"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
-       stroke-width="3.070806"></g>
+  <svg height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+       xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.881 511.881" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier"> <g> <g> <g> <path
-        d="M271.067,255.84l237.76-237.76c4.053-4.267,3.947-10.987-0.213-15.04c-4.16-3.947-10.667-3.947-14.827,0L248.453,248.373 c-4.16,4.16-4.16,10.88,0,15.04l245.333,245.333c4.267,4.053,10.987,3.947,15.04-0.213c3.947-4.16,3.947-10.667,0-14.827 L271.067,255.84z"></path>
+        d="M248.36,263.428c4.16,4.16,10.88,4.16,15.04,0L508.733,18.095c4.053-4.267,3.947-10.987-0.213-15.04 c-4.16-3.947-10.667-3.947-14.827,0l-237.76,237.76L18.173,3.054C13.907-1.106,7.187-0.999,3.027,3.268 c-3.947,4.16-3.947,10.667,0,14.827L248.36,263.428z"></path>
       <path
-          d="M25.733,255.84l237.76-237.76c4.053-4.267,3.947-10.987-0.213-15.04c-4.16-3.947-10.667-3.947-14.827,0L3.12,248.267 c-4.16,4.16-4.16,10.88,0,15.04L248.453,508.64c4.267,4.053,10.987,3.947,15.04-0.213c3.947-4.16,3.947-10.667,0-14.827 L25.733,255.84z"></path> </g> </g> </g> </g></svg>
+          d="M508.627,248.388c-4.267-4.053-10.773-4.053-14.933,0l-237.76,237.76l-237.76-237.76 c-4.267-4.053-10.987-3.947-15.04,0.213c-3.947,4.16-3.947,10.667,0,14.827l245.333,245.333c4.16,4.16,10.88,4.16,15.04,0 L508.84,263.428C512.893,259.161,512.787,252.441,508.627,248.388z"></path> </g> </g> </g> </g></svg>
 </template>
 
 <script>
 export default {
   name: "DoubleArrows",
-  props:{
-    width:{
+  props: {
+    width: {
       type: [Number, String],
       default: 100,
     },
-    height:{
+    height: {
       type: [Number, String],
       default: 100,
     },
     iconColor: {
       type: String,
-      default: 'var(--color-headings)'
+      default: 'none'
     },
     rotate: {
       type: [Number, String],
@@ -35,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-svg{
-  transition: all .3s;
+svg {
+  fill: var(--color-headings);
 }
 </style>
