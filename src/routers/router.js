@@ -20,6 +20,7 @@ import TermsOfServiceUse from "@/views/TermsOfServiceUse.vue";
 import PaymentPage from "@/views/Payments/PaymentPage.vue";
 import PublicOffer from "@/views/PublicOffer.vue";
 import ContactsPage from "@/views/ContactsPage.vue";
+import RegistationPage from "@/views/RegistationPage.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -31,6 +32,7 @@ const routes = [
     {path: '/payment', component: PaymentPage, name: 'payment'},
     {path: '/contacts', component: ContactsPage, name: 'contacts'},
     {path: '/about', component: AboutMePage, name: 'about'},
+    {path: '/registration', component: RegistationPage, name: 'reg'},
     {path: '/terms-of-service', component: TermsOfServiceUse, name: 'terms'},
     {path: '/public-offer', component: PublicOffer, name: 'public-offer'},
     {

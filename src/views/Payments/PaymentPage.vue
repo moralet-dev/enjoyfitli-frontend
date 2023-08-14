@@ -2,9 +2,10 @@
   <div class="wrapper">
     <div class="title">
       <h1>{{ $t('payment') }}</h1>
-      <p>{{ $t('paymentPageTitle') }}</p>
+      <p class="title-descr">{{ $t('paymentPageTitle') }}</p>
     </div>
     <div class="requisites">
+      <h2>{{$t('requisites')}}:</h2>
       <p class="item">
         <span class="item-title">Отримувач:</span>
         ФОП Бухтіярова Єлизавета Дмитрівна
@@ -31,6 +32,12 @@
         21133352
       </p>
     </div>
+    <div class="buttons">
+      <router-link class="btn" :to="{name: 'public-offer'}">{{$t('publicOffer')}}</router-link>
+      <router-link class="btn" :to="{name: 'memberships'}">{{$t('memberships')}}</router-link>
+      <router-link class="btn" :to="{name: 'contacts'}">{{$t('contacts')}}</router-link>
+    </div>
+
   </div>
 </template>
 
@@ -43,22 +50,31 @@ export default {
 <style scoped>
 .wrapper{
   padding: 3rem 9rem;
+  display: flex;
+  flex-direction: column;
 }
 h1{
   font-size: 50px;
   font-weight: 700;
-
+  margin-bottom: 1rem;
 }
 .title{
   margin-bottom: 2rem;
+}
+.title-descr{
+  white-space: pre-wrap;
 }
 .requisites{
   display: flex;
   flex-direction: column;
   align-items: start;
+  margin-bottom: 2rem;
+}
+.requisites h2{
+  font-size: 25px;
 }
 .item{
-  margin-bottom: 1rem;
+  margin: 1rem 0 0 1rem;
   min-height: 2rem;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -66,6 +82,15 @@ h1{
 .item-title{
   font-family: 'Futura New', sans-serif;
   margin-right: .5rem;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.btn{
+  display: block;
+  margin: 0 1rem;
 }
 @media (max-width: 991px) {
   .wrapper{

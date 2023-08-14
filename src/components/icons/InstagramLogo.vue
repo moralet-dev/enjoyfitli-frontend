@@ -1,5 +1,5 @@
 <template>
-  <a href="https://instagram.com/liza_bukhtiyarova/" target="_blank">
+  <a href="https://instagram.com/enjoy_fitness_studio/" target="_blank">
     <svg :width="width" :height="height" viewBox="0 0 40 40" :fill="iconColor" xmlns="http://www.w3.org/2000/svg">
       <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#FF2D55" />

@@ -3,13 +3,22 @@
     <div class="wrapper">
 
       <div class="footer-block contacts">
+        <span>{{$t('studioAddress')}}</span>
+        <a class="text-link" href="tel:+380737304509">+380 (73) 730 45 09</a>
+        <p>
+          <span>{{$t('email')}}:</span>
+          <br>
+          <a class="text-link" href="mailto:connect@enjoyfitnes.com">connect@enjoyfitnes.com</a>
+        </p>
+        <p>
+          <span>{{$t('support')}}:</span>
+          <br>
+          <a class="text-link" href="mailto:support@enjoyfitnes.com">support@enjoyfitnes.com</a>
+        </p>
         <div class="icons">
           <TikTokLogo />
           <InstagramLogo />
         </div>
-        <span>{{$t('studioAddress')}}</span>
-        <a class="text-link" href="tel:+380737304509">+380 (73) 730 45 09</a>
-        <a class="text-link" href="mailto:connect@enjoyfitnes.com">connect@enjoyfitnes.com</a>
       </div>
       <div class="footer-logo__wrapper">
         <Asset14x1 icon-color="var(--color-headings)"/>
@@ -24,7 +33,9 @@
         <router-link class="text-link" :to="{name: 'public-offer'}">{{$t('publicOffer')}}</router-link>
       </div>
     </div>
-
+    <div class="bottom-labels">
+      <div class="rights-reserved"><span>© enjoyfitnes.com, 2023</span></div>
+    </div>
   </footer>
 </template>
 
@@ -44,7 +55,7 @@ footer{
   z-index: 9996;
 }
 .wrapper{
-  padding: 2rem 0;
+  padding: 2rem 6rem;
   font-size: 16px;
   display: flex;
   justify-content: space-between;
@@ -60,14 +71,14 @@ footer{
   color: var(--color-headings);
 
 }
-.contacts span{
+.contacts span, .contacts p{
   margin-bottom: 1rem;
   white-space: pre-wrap;
 }
 .icons{
   flex-direction: row;
   align-self: center;
-  margin: 0 0 1rem 0;
+  margin: 1rem 0 0 0;
 }
 .icons a{
   margin: 0 1rem;
@@ -95,10 +106,15 @@ footer{
   order: 0;
   margin: 2rem;
 }
+.bottom-labels{
+  font-size: 12px;
+  background: var(--vt-c-black-soft);
+  padding: .5rem;
+}
+.rights-reserved{
+
+}
 @media (max-width: 767px) {
-  footer{
-    padding: 0;
-  }
   .footer-logo__wrapper{
     display: flex;
     max-width: 30vw;

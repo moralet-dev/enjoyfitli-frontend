@@ -80,7 +80,7 @@ export default {
   flex-direction: column;
   margin: 2rem 0;
   padding: 1rem 2rem;
-  background: var(--color-text);
+  background: var(--color-elements);
   border-radius: 20px;
   color: var(--color-headings);
 }
@@ -141,14 +141,15 @@ export default {
 }
 
 .signed {
-  background: orange;
+  background: coral;
+  color: var(--vt-c-blue-mute);
+
 }
 .to-sign:hover{
   color: var(--color-link-text);
   background: var(--color-helper);
 }
 .signed:hover{
-  color: var(--color-link-text);
 }
 @media (max-width: 767px) {
   .training-item {

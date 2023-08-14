@@ -1,5 +1,5 @@
 <template>
-  <Carousel :itemsToShow="1" :transition="500" :wrap-around="true" :mouse-drag="false" :touch-drag="true" ref="carousel" v-model="currentSlide">
+  <Carousel :itemsToShow="1.2" :transition="500" :wrap-around="true" :mouse-drag="false" :touch-drag="true" ref="carousel" v-model="currentSlide">
     <Slide v-for="t in types" :key="t.id">
       <div class="carousel__item">
         <TrTypeCardContent :trType="t"/>
@@ -79,8 +79,6 @@ export default defineComponent({
 
 <style scoped>
 .carousel {
-  margin: 0;
-  padding: 0;
 }
 
 .carousel__viewport {
@@ -88,7 +86,8 @@ export default defineComponent({
 
 .carousel__item {
   width: 100%;
-
+  margin: 0 1rem;
+  padding: 1rem 0;
   height: 100%;
   background: linear-gradient(to bottom right, var(--color-background), var(--color-background));
   border-radius: 15px;

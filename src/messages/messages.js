@@ -194,7 +194,26 @@ export default {
         address: 'Address',
         payment: 'Payment',
         payments: 'Payments',
-        publicOffer: 'Public offer'
+        publicOffer: 'Public offer',
+        paymentPageTitle: 'The payment page contains up-to-date details for payment by details in Ukraine.\n' +
+            'Before paying for services, read the rules of the public offer.\n' +
+            'Payment of services by the method of payment by requisites is considered an action,' +
+            'which confirms the consumer\'s acceptance of the terms of the public offer.\n' +
+            'In the absence of a user account on the "enjoyfitnes.com" website, as additional evidence of acceptance of the terms of the public offer, ' +
+            'the executor will provide confirmation of the order in electronic form.\n\n' +
+            'If you decide to pay for services using details, be sure to specify in the purpose of payment:\n' +
+            ' - First of all, indicate that you are paying for a subscription.\n' +
+            ' - Your surname and first name, or the surname and first name of a person who will be considered a consumer (user) of this membership\n' +
+            ' - The type of subscription in a clear form (group, online, personal, etc.). Do not use abbreviations.\n' +
+            ' - The number of workouts in numbers (1, 8, 12, 15 or 20).\n' +
+            ' - The type of subscription and the number of training sessions indicated must match any existing subscription.\n\n' +
+            'Example of recording the purpose of payment:\n\t"Elizaveta Bukhtiyarova membership, group 12", "John Koval membership, personal 8"',
+        requisites: 'Requisites',
+        paymentsPageNote: '',
+        accountActivation: 'Account activation',
+        activated: 'Your account has been successfully activated. Now you can enter your personal account and use all the functionality of the site.',
+        activationError: 'An error occurred while activating the account. Please contact us to resolve the issue.',
+        support: 'Support',
     },
     uk: {
         homePage: {
@@ -357,11 +376,13 @@ export default {
         firstName: 'ім\'я',
         lastName: 'прізвище',
         repeatPSWD: 'повторіть пароль',
-        iAgreeWith: 'я погоджуюсь',
+        iAgreeWith: 'я уважно прочитав(ла) погоджуюсь та приймаю',
         privacyPolicy: 'політика конфіденційності',
         termsOfServiceUse: 'умови користування послугами',
         successCreateCab: 'Аккаунт успішно створено',
-        successCreateCabMessage: 'Лист з інструкціями щодо активації відправлений на вказану вами пошту. Перевірте вашу поштову скриньку та слідуйте інструкціям для активації аккаунту. Якщо ви не бачите листа, перевірте розділ "спам" або зв\'яжіться із нами для вирішення проблеми.',
+        successCreateCabMessage: 'Лист з інструкціями щодо активації відправлений на вказану вами пошту. ' +
+            'Перевірте вашу поштову скриньку та слідуйте інструкціям для активації аккаунту. ' +
+            'Якщо ви не бачите листа, перевірте розділ "спам" або зв\'яжіться із нами для вирішення проблеми.',
         signComplete: 'Ви успішно записались на тренування',
         rescindComplete: 'Ви успішно відмінили запис',
         lessOneHourText: 'Згідно наших правил, ви не можете відмінити запис на тренування менш ніж за 3 години (окрім форс-мажорних ситуацій).',
@@ -377,6 +398,26 @@ export default {
         address: 'Адреса',
         payment: 'Оплата',
         payments: 'Оплата',
-        publicOffer: 'Публічна оферта'
+        publicOffer: 'Публічна оферта',
+        paymentPageTitle: 'Сторінка оплати містить актуальні реквізити для оплати за реквізитами по Україні.\n' +
+            'Перед тим як сплачувати послуги, ознайомтесь із правилами публічної оферти.\n' +
+            'Сплата послуг методом оплати за реквізитами вважається дією,' +
+            'що підтверджує акцептування споживачем умов публічної оферти.\n' +
+            'У випадку відсутності облікового запису користувача на сайті "enjoyfitnes.com", у якості додаткового свідчення акцептування умов публічної оферти, ' +
+            'виконавцем буде надане підтвердження замовлення в електронному вигляді.\n\n' +
+            'Якщо ви вирішите здійснити оплату послуг за реквізитами, обовязково в призначенні платежу вказуйте:\n' +
+            ' - Першочергово, вкажіть, що ви здійснюєте оплату за абонемент.\n' +
+            ' - Ваше прізвище та ім\'я, або прізвище та ім\'я людини, яка буде вважатись споживачем(користувачем) цього абонементу\n' +
+            ' - Тип абонементу в зрозумілій формі (групове(ий), онлайн, персональне(ий), тощо). Не використовуйте скорочень.\n' +
+            ' - Кількість тренувань числом (1, 8, 12, 15 або 20).\n' +
+            ' - Тип абонементу та вказана кількість тренувань мають відповідати будь-якому існуючому абонементу.\n\n' +
+            'Приклад запису призначення платежу:\n\t"Абонемент Бухтіярова Єлизавета, групове 12", " Абонемент Коваль Джон, персональний 8"',
+        requisites: 'Реквізити',
+        paymentsPageNote: '',
+        accountActivation: 'Активація аккаунту',
+        activated: 'Ваш аккаунт було успішно активовано. Тепер ви можете увійти до персонального кабінету і користуватись всім функціоналом сайту.',
+        activationError: 'Виникла помилка при активації аккаунту. Будь ласка, зв\'яжіться із нами для вирішення проблеми.',
+        support: 'Підтримка',
+
     },
 };

@@ -154,12 +154,10 @@ p {
   justify-content: center;
   width: 100%;
   flex: 1 1 calc(20lvh - 80px);
-  max-height: calc(30lvh - 80px);
 }
 
 .banner__logo-wrapper img {
-  max-height: 100%;
-  max-width: 100%;
+  max-height: calc(30lvh - 80px);
   object-fit: contain;
 }
 

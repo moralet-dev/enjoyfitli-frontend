@@ -11,6 +11,10 @@
         {{ $t('email') }}:
         <a class="text-link" href="mailto:connect@enjoyfitnes.com"> connect@enjoyfitnes.com</a>
       </p>
+      <p>
+        {{ $t('support') }}:
+        <a class="text-link" href="mailto:support@enjoyfitnes.com"> support@enjoyfitnes.com</a>
+      </p>
     </section>
   </div>
 </template>
@@ -43,6 +47,7 @@ p{
 }
 .text-link, .text-link:hover{
   text-transform: lowercase;
+  color: inherit;
 }
 @media (max-width: 991px) {
   .wrapper{

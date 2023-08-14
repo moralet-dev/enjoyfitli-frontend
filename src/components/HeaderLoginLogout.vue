@@ -7,17 +7,16 @@
     <div v-if="getIsAuth"
          :class="{'login-container animate__animated':true,'animate__slideInDown': getIsAuth,'animate__slideOutDown': !getIsAuth}">
       <router-link :to="{name: 'profile'}" @click="this.$emit('closeMenu')">{{ this.$t('profile') }}</router-link>
-      <a class="logout" @click="onLogoutClick">
+      <button class="logout" @click="onLogoutClick">
         {{ this.$t('logout')}}
-      </a>
+      </button>
     </div>
     <div v-else
          :class="{'login-container animate__animated':true, 'animate__slideInDown': !getIsAuth, 'animate__slideOutDown': getIsAuth}">
-      <a ref="login-popup" @click="openPopup('login')">{{ this.$t('login') }}</a>
-      <a @click="openPopup('reg')">{{ this.$t('registration') }}</a>
+      <button ref="login-popup" @click="openPopup('login')">{{ this.$t('login') }}</button>
+      <router-link @click="this.$emit('closeMenu')" :to="{name: 'reg'}">{{ this.$t('registration') }}</router-link>
     </div>
     <ModalLogin :show="this.$store.getters['getTriggerLoginPopup']" @close="closePopup('login')"/>
-    <ModalReg :show="this.$store.getters['getTriggerRegPopup']" @close="closePopup('reg')"/>
   </div>
 </template>
 
@@ -125,22 +124,28 @@ export default {
   min-height: 100%;
   align-items: center;
   justify-content: end;
-  font-size: 14px;
 }
 
-.login-container a {
+.login-container a, .login-container button {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
   display: flex;
   min-height: 100%;
+  border-radius: 0;
+  border: 0;
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
   cursor: pointer;
   color: var(--color-header-text);
+  background: var(--color-background-header);
 }
 
 .login-container a.router-link-active,
 .login-container a.router-link-exact-active,
-.login-container a:hover{
+.login-container a:hover,
+.login-container button:hover{
   color: var(--color-header-text-hover);
   background: var(--color-header-text-hover-bg);
 }
@@ -155,7 +160,7 @@ export default {
 .login-container a:hover, .login-container span:hover {
   color: var(--color-header-text-hover);
 }
-a.logout:hover{
+button.logout:hover{
   color: var(--vt-c-white-soft);
   background: var(--vt-c-red-dark);
 }
@@ -178,12 +183,13 @@ a.logout:hover{
     min-height: fit-content;
   }
 
-  .login-container a, .locale {
+  .login-container a, .login-container button, .locale {
     width: 100%;
     padding: 2rem 1rem;
     color: var(--color-header-text-hover);
+    background: transparent;
   }
-  a.logout{
+  button.logout{
     color: var(--vt-c-white-soft);
     background: var(--vt-c-red-dark);
   }

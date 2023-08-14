@@ -1,14 +1,15 @@
 <template>
   <div class="wrapper">
-    <h1>Activate Account</h1>
+    <h1>{{ $t('accountActivation') }}</h1>
     <div class="content" v-if="status === 'pending'">
       <p>Activating your account...</p>
     </div>
     <div class="content" v-else-if="status === 'success'">
-      <p>Your account has been activated. Now you can <a v-on:click="toLogin">LOG-IN</a> in your account</p>
+      <p>{{$t('activated')}} </p>
+      <button class="btn" v-on:click="toLogin">{{ $t('login') }}</button>
     </div>
     <div class="content" v-else>
-      <p>An error occurred while activating your account. Please, contact our support.</p>
+      <p>{{$t('activationError')}}</p>
     </div>
   </div>
 </template>
@@ -20,13 +21,13 @@ export default {
   name: 'ActivationPage',
   data() {
     return {
-      status: 'pending'
+      status: 'success'
     }
   },
   mounted() {
     const uid = this.$route.params.uid;
     const token = this.$route.params.token;
-    this.activateAccount(uid, token);
+    // this.activateAccount(uid, token);
   },
   methods: {
     activateAccount(uid, token) {
@@ -67,6 +68,9 @@ h1{
 }
 .content p a:hover{
   background: transparent;
+}
+.btn{
+  display: block;
 }
 @media (max-width: 767px) {
   .wrapper{
