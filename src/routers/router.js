@@ -16,7 +16,6 @@ import NotFound from "@/views/NotFound.vue";
 import TrTypesPage from "@/views/TrTypes/TrTypesPage.vue";
 import TypeDetail from "@/views/TrTypes/TypeDetail.vue";
 import PersonalTrainings from "@/views/Profile/profile-pages/PersonalTrainings.vue";
-import TermsOfServiceUse from "@/views/TermsOfServiceUse.vue";
 import PaymentPage from "@/views/Payments/PaymentPage.vue";
 import PublicOffer from "@/views/PublicOffer.vue";
 import ContactsPage from "@/views/ContactsPage.vue";
