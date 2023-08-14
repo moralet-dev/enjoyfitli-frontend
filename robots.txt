@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /uk/api/
+Disallow: /en/api/
+Disallow: /uk/api/admin/
+Disallow: /en/api/admin/
+Disallow: /admin/
+Disallow: /static/
+Disallow: /media/
