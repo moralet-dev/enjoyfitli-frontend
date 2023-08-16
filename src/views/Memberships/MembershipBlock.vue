@@ -2,11 +2,18 @@
   <Carousel :itemsToShow="3" :wrapAround="true" ref="carousel" :breakpoints="breakpoints" v-model="currentSlide">
     <Slide v-for="m in memberships" :key="m.id">
       <div class="carousel__item" :style="{backgroundImage: `url(${m?.image})`}">
-        <div class="carousel__card" >
-          <span class="carousel__card__title">{{ m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase() }}</span>
-          <span class="carousel__card__title">{{ m.count }} {{ m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk'?$t('trainingsUA'):$t('trainings') }}</span>
-          <span class="carousel__card__price">{{$t('price')}}:<br>{{ m.price }} &#8372;</span>
-          <button @click="[current, showModal] = [m, true]">{{ $t('buy') }}</button>
+        <div class="carousel__card">
+          <span class="carousel__card__title">{{
+              m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase()
+            }}</span>
+          <span class="carousel__card__title">{{m.count}} {{
+              m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk' ? $t('trainingsUA') : $t('trainings')
+            }}
+          </span>
+          <span class="carousel__card__price">{{ $t('price') }}:<br>{{ m.price }} &#8372;</span>
+          <router-link :to="{name: 'm-payment', params: {id: m.id}}">
+            {{ $t('buy') }}
+          </router-link>
         </div>
       </div>
     </Slide>
@@ -28,12 +35,12 @@
       </template>
       <template #body>
         <p v-if="current.type?.name_uk && current.type?.name_en">
-          {{ current.type[`name_${$store.getters.getLocale}`] }} - {{current?.count}}
+          {{ current.type[`name_${$store.getters.getLocale}`] }} - {{ current?.count }}
         </p>
       </template>
       <template #footer>
         <button @click="showModal = false">{{ this.$t('cancel') }}</button>
-        <button @click="getNewMembership(current.id)">{{ this.$t('confirm')}}</button>
+        <button @click="getNewMembership(current.id)">{{ this.$t('confirm') }}</button>
       </template>
     </ModalMembership>
   </Teleport>
@@ -82,20 +89,20 @@ export default defineComponent({
       current: null,
       nextMessage: null,
       showNextModal: false,
-      breakpoints:{
+      breakpoints: {
         320: {
           itemsToShow: 1,
           snapAlign: 'center',
         },
-        767:{
+        767: {
           itemsToShow: 1.5,
-          snapAlign:'center',
+          snapAlign: 'center',
         },
         991: {
           itemsToShow: 2,
           snapAlign: 'center',
         },
-        1440:{
+        1440: {
           itemsToShow: 3,
           snapAlign: 'center',
         }
@@ -115,11 +122,11 @@ export default defineComponent({
         this.showModal = false
         this.showNextModal = true
       }).catch(reason => {
-        if (reason.response.data.status === 'ASR'){
+        if (reason.response.data.status === 'ASR') {
           this.nextMessage = this.$t('requestDeclined')
           this.showModal = false
           this.showNextModal = true
-        } else if (reason.request.status === 401){
+        } else if (reason.request.status === 401) {
           this.showModal = false
           this.$store.dispatch('onOpenLoginPopup')
         }
@@ -136,10 +143,12 @@ export default defineComponent({
   margin: 0 10rem 0 10rem;
   height: fit-content;
 }
+
 .carousel__slide--prev,
-.carousel__slide--next{
+.carousel__slide--next {
   pointer-events: none;
 }
+
 .carousel__item {
   min-height: 300px;
   width: 100%;
@@ -152,7 +161,8 @@ export default defineComponent({
   justify-content: center;
   transition: .3s;
 }
-.carousel__item:before{
+
+.carousel__item:before {
   content: '';
   position: absolute;
   top: 0;
@@ -163,21 +173,25 @@ export default defineComponent({
 
   background: var(--color-elements-semi-opacity);
 }
+
 @media (max-width: 767px) {
-  .carousel{
+  .carousel {
     margin: 1rem;
   }
 }
+
 @media (max-width: 991px) {
-  .carousel{
+  .carousel {
     margin: 1rem;
   }
 }
-@media (max-width: 1440px){
-  .carousel{
+
+@media (max-width: 1440px) {
+  .carousel {
     margin: 1rem;
   }
 }
+
 .carousel__slide {
   padding: 10px;
 }
@@ -203,11 +217,13 @@ export default defineComponent({
   text-transform: uppercase;
 
 }
+
 @media (max-width: 767px) {
-  .carousel__card button{
+  .carousel__card button {
     padding: .5rem 1rem;
   }
 }
+
 .carousel__viewport {
   perspective: 2000px;
 }
@@ -245,16 +261,19 @@ export default defineComponent({
   justify-content: center;
   align-items: start;
 }
+
 @media (max-width: 767px) {
-  .carousel__nav{
+  .carousel__nav {
     justify-content: space-between;
   }
 }
+
 .carousel__nav__arrow {
   padding: 0 1rem;
   background-color: transparent;
   border: none;
 }
+
 .carousel__nav__arrow:hover {
   background-color: transparent;
   border: none;

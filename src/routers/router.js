@@ -19,11 +19,13 @@ import PersonalTrainings from "@/views/Profile/profile-pages/PersonalTrainings.v
 import PaymentPage from "@/views/Payments/PaymentPage.vue";
 import PublicOffer from "@/views/PublicOffer.vue";
 import ContactsPage from "@/views/ContactsPage.vue";
-import RegistationPage from "@/views/RegistationPage.vue";
+import RegistrationPage from "@/views/RegistrationPage.vue";
+import MembershipPayment from "@/views/Memberships/MembershipPayment.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
     {path: '/memberships', component: MembershipsPage, name: 'memberships'},
+    {path: '/memberships/payment/:id', component:MembershipPayment, name: 'm-payment'},
     {path: '/schedule', component: SchedulePage, name: 'schedule'},
     {path: '/password-reset', component: ResetPassword, name: 'reset-password'},
     {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
@@ -31,8 +33,7 @@ const routes = [
     {path: '/payment', component: PaymentPage, name: 'payment'},
     {path: '/contacts', component: ContactsPage, name: 'contacts'},
     {path: '/about', component: AboutMePage, name: 'about'},
-    {path: '/registration', component: RegistationPage, name: 'reg'},
-    // {path: '/terms-of-service', component: TermsOfServiceUse, name: 'terms'},
+    {path: '/registration', component: RegistrationPage, name: 'reg'},
     {path: '/public-offer', component: PublicOffer, name: 'public-offer'},
     {
         path: '/training-types',

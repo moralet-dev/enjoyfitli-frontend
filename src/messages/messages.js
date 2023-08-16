@@ -214,6 +214,8 @@ export default {
         activated: 'Your account has been successfully activated. Now you can enter your personal account and use all the functionality of the site.',
         activationError: 'An error occurred while activating the account. Please contact us to resolve the issue.',
         support: 'Support',
+        membershipType: 'Membership type',
+        term: 'Membership term'
     },
     uk: {
         homePage: {
@@ -426,6 +428,7 @@ export default {
         activated: 'Ваш аккаунт було успішно активовано. Тепер ви можете увійти до персонального кабінету і користуватись всім функціоналом сайту.',
         activationError: 'Виникла помилка при активації аккаунту. Будь ласка, зв\'яжіться із нами для вирішення проблеми.',
         support: 'Підтримка',
-
+        membershipType: 'Тип тренувань абонементу',
+        term: 'Термін дії'
     },
 };

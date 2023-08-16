@@ -49,7 +49,7 @@ export default {
 
 <style scoped>
 .wrapper{
-  padding: 3rem 9rem;
+  padding: 6rem 9rem;
   display: flex;
   flex-direction: column;
 }

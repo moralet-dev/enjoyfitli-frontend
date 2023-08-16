@@ -6,8 +6,8 @@ export const profileAPI = {
         const url = '/memberships/me/'
         return defaultAPIInstance.get(url)
     },
-    getMemberships(){
-        const url = '/memberships/'
+    getMemberships(pk=null){
+        const url = `/memberships/${pk?pk:''}`
         return defaultAPIInstance.get(url)
     },
     createUserMembership(pk){
