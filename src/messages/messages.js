@@ -188,8 +188,8 @@ export default {
         accept: 'Accept',
         studioAddress: '03067, Kyiv, Solomyanskyi dist.,\nHarmatna str. 38A, 625',
         price: 'Price',
-        trainingDirections:'Workout directions',
-        membershipsInfo:'Memberships info',
+        trainingDirections: 'Workout directions',
+        membershipsInfo: 'Memberships info',
         contacts: 'Contacts',
         address: 'Address',
         payment: 'Payment',
@@ -204,18 +204,28 @@ export default {
             'If you decide to pay for services using details, be sure to specify in the purpose of payment:\n' +
             ' - First of all, indicate that you are paying for a subscription.\n' +
             ' - Your surname and first name, or the surname and first name of a person who will be considered a consumer (user) of this membership\n' +
+            ' - Your phone number whith country code(+380). We need it for confirm your personality and grant membership to you.\n' +
             ' - The type of subscription in a clear form (group, online, personal, etc.). Do not use abbreviations.\n' +
             ' - The number of workouts in numbers (1, 8, 12, 15 or 20).\n' +
             ' - The type of subscription and the number of training sessions indicated must match any existing subscription.\n\n' +
-            'Example of recording the purpose of payment:\n\t"Elizaveta Bukhtiyarova membership, group 12", "John Koval membership, personal 8"',
+            'Example of recording the purpose of payment:\n\t"Elizaveta Bukhtiyarova membership, +380123334455, group 12", "John Koval membership, +380887776655, personal 8"',
         requisites: 'Requisites',
         paymentsPageNote: '',
         accountActivation: 'Account activation',
         activated: 'Your account has been successfully activated. Now you can enter your personal account and use all the functionality of the site.',
         activationError: 'An error occurred while activating the account. Please contact us to resolve the issue.',
         support: 'Support',
-        membershipType: 'Membership type',
-        term: 'Membership term'
+        membershipData: 'Membership data',
+        trainingsType: 'Trainings type',
+        term: 'Membership term',
+        day: 'day',
+        paymentNoteTitle: 'Before make payment for membership, please, check details below.',
+        payForMembership: 'Payment for membership',
+        paymentSystems: 'Payment systems',
+        userData: 'User data',
+        paymentPage: 'Payment page',
+        paymentMembershipBottomInfo: 'By made payment for membership you automatically accept and agree with Privacy Policy\n' +
+            'You can read more abut payment and Public Offer using the links below',
     },
     uk: {
         homePage: {
@@ -402,8 +412,8 @@ export default {
         accept: 'Погоджуюсь',
         studioAddress: '03067,\nКиїв, Солом\'янський р-н,\nвул. Гарматна 38A, 625',
         price: 'Вартість',
-        trainingDirections:'Основні напрями',
-        membershipsInfo:'Про абонементи',
+        trainingDirections: 'Основні напрями',
+        membershipsInfo: 'Про абонементи',
         contacts: 'Контакти',
         address: 'Адреса',
         payment: 'Оплата',
@@ -418,17 +428,30 @@ export default {
             'Якщо ви вирішите здійснити оплату послуг за реквізитами, обовязково в призначенні платежу вказуйте:\n' +
             ' - Першочергово, вкажіть, що ви здійснюєте оплату за абонемент.\n' +
             ' - Ваше прізвище та ім\'я, або прізвище та ім\'я людини, яка буде вважатись споживачем(користувачем) цього абонементу\n' +
+            ' - Ваш номер телефону, разом із кодом країни (+380). Це потрібно для зворотнього зв\'язку для підтвердження ващої особистості та надання вам абонементу.\n' +
             ' - Тип абонементу в зрозумілій формі (групове(ий), онлайн, персональне(ий), тощо). Не використовуйте скорочень.\n' +
             ' - Кількість тренувань числом (1, 8, 12, 15 або 20).\n' +
             ' - Тип абонементу та вказана кількість тренувань мають відповідати будь-якому існуючому абонементу.\n\n' +
-            'Приклад запису призначення платежу:\n"Абонемент Бухтіярова Єлизавета, групове 12",\n"Абонемент Коваль Джон, персональний 8"',
+            'Приклад запису призначення платежу:\n"Абонемент Бухтіярова Єлизавета, +380112223344, групове 12",\n"Абонемент Коваль Джон, +380229998877, персональний 8"',
         requisites: 'Реквізити',
         paymentsPageNote: '',
         accountActivation: 'Активація аккаунту',
         activated: 'Ваш аккаунт було успішно активовано. Тепер ви можете увійти до персонального кабінету і користуватись всім функціоналом сайту.',
         activationError: 'Виникла помилка при активації аккаунту. Будь ласка, зв\'яжіться із нами для вирішення проблеми.',
         support: 'Підтримка',
-        membershipType: 'Тип тренувань абонементу',
-        term: 'Термін дії'
+        membershipData: 'Дані абонементу',
+        trainingsType: 'Тип тренувань',
+        term: 'Термін дії',
+        day: 'день',
+        paymentNoteTitle: 'Перед тим, як сплачувати за абонемент, будь ласка, ознайомтесь із правилами Публічної Оферти. Купуючи абонемент, ' +
+            'ви автоматично погоджуєтесь із договором Публічної Оферти. Будь ласка, перевірте дані нижче.',
+        payForMembership: 'Оплата за абонемент',
+        paymentSystems: 'Платіжні системи',
+        userData: 'Дані користувача',
+        notRegistredUserPaymentText: 'Ви не є зареєстрованим користувачем, або ж ви не увійшли у персональний кабінет.' +
+            'Оплата через платіжні системи доступна лише зареєстрованим користувачам.',
+        paymentPage: 'Сторінка оплати',
+        paymentMembershipBottomInfo: 'Сплачуючи за абонемент, ви автоматично підтверджуєте те, що ви прийняли та погодились із договором Публічної Оферти.\n' +
+            'Дізнатись більше про оплату та Публічну Оферту ви можете скориставшись посиланнями нижче',
     },
 };
