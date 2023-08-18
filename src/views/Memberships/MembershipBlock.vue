@@ -6,14 +6,12 @@
           <span class="carousel__card__title">{{
               m?.type[`name_${this.$store.getters.getLocale}`]?.toUpperCase()
             }}</span>
-          <span class="carousel__card__title">{{m.count}} {{
+          <span class="carousel__card__title">{{ m.count }} {{
               m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk' ? $t('trainingsUA') : $t('trainings')
             }}
           </span>
           <span class="carousel__card__price">{{ $t('price') }}:<br>{{ m.price }} &#8372;</span>
-          <router-link :to="{name: 'm-payment', params: {id: m.id}}">
-            {{ $t('buy') }}
-          </router-link>
+          <button @click="[current, showModal] = [m, true]">{{ $t('buy') }}</button>
         </div>
       </div>
     </Slide>
@@ -34,13 +32,20 @@
         <h3>{{ this.$t('confirmation') }}</h3>
       </template>
       <template #body>
-        <p v-if="current.type?.name_uk && current.type?.name_en">
+        <p class="popup-text" v-if="current.type?.name_uk && current.type?.name_en">
           {{ current.type[`name_${$store.getters.getLocale}`] }} - {{ current?.count }}
+        </p>
+        <p class="popup-text">
+          Ви можете перейти на сторінку оплати, щоб сплатити за абонемент, або відправити нам запит на отримання,
+          для подальшого оформлення абонементу в онлайн-режимі.
         </p>
       </template>
       <template #footer>
-        <button @click="showModal = false">{{ this.$t('cancel') }}</button>
-        <button @click="getNewMembership(current.id)">{{ this.$t('confirm') }}</button>
+
+        <router-link class="btn" :to="{name: 'm-payment', params: {id: current.id}}">
+          {{ $t('buy') }}
+        </router-link>
+        <button class="btn" @click="getNewMembership(current.id)">{{ this.$t('makeRequest') }}</button>
       </template>
     </ModalMembership>
   </Teleport>
@@ -211,7 +216,19 @@ export default defineComponent({
 .carousel__card__price {
   font-weight: 600;
 }
-
+.popup-text{
+  margin-bottom: .5rem;
+}
+.modal-footer{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+.btn{
+  padding: 1rem .5rem;
+  margin: 0 1rem;
+}
 .carousel__card button {
   display: flex;
   text-transform: uppercase;

@@ -12,9 +12,7 @@
     </div>
     <div class="content-wrapper" v-if="membership">
       <div class="content-title">
-        <div class="payment-note">
           <p>*{{ $t('paymentNoteTitle') }}</p>
-        </div>
       </div>
       <div class="data">
         <div class="membership-info">
@@ -189,7 +187,7 @@ h1 {
 }
 
 .content-title {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;white-space: pre-wrap;
 }
 
 .data {

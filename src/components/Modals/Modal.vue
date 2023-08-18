@@ -2,9 +2,10 @@
 import InstagramLogo from "@/components/icons/InstagramLogo.vue";
 import TikTokLogo from "@/components/icons/TikTokLogo.vue";
 import vClickOutside from "click-outside-vue3";
+import CloseIcon from "@/components/icons/CloseIcon.vue";
 
 export default {
-  components: {InstagramLogo, TikTokLogo},
+  components: {CloseIcon, InstagramLogo, TikTokLogo},
   props: {
     show: Boolean,
     autoHide: {
@@ -45,6 +46,7 @@ export default {
   <Transition name="modal">
     <div v-if="show" class="modal-mask">
       <div class="modal-container" v-click-outside="onClose">
+        <div class="close" @click="onClose"><CloseIcon/></div>
         <div class="modal-header">
           <slot name="header">default header</slot>
         </div>
@@ -96,7 +98,13 @@ export default {
   border-radius: 15px;
   transition: all 0.3s ease;
 }
-
+.close{
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 1rem;
+}
 .modal-header {
   font-size: 30px;
   padding: 1rem 0 0 0;
