@@ -8,9 +8,11 @@
       <span>{{ $t('homePage.title') }}</span>
       <div class="banner__buttons-wrapper">
         <div class="banner__buttons">
-          <router-link class="btn banner__buttons-btn" :to="{name: 'tr-types'}">{{$t('trainingTypes')}}</router-link>
-          <button class="btn banner__buttons-btn" type="button" @click="scrollDirs">{{$t('trainingDirections')}}</button>
-          <router-link class="btn banner__buttons-btn" :to="{name: 'memberships'}">{{$t('membershipsInfo')}}</router-link>
+          <router-link class="btn banner__buttons-btn" :to="{name: 'tr-types'}">{{ $t('trainingTypes') }}</router-link>
+          <button class="btn banner__buttons-btn" type="button" @click="scrollDirs">{{ $t('trainingDirections') }}
+          </button>
+          <router-link class="btn banner__buttons-btn" :to="{name: 'memberships'}">{{ $t('membershipsInfo') }}
+          </router-link>
         </div>
       </div>
     </div>
@@ -31,6 +33,38 @@
             <p>{{ $t('homePage.whatIGotText3') }}</p>
           </template>
         </dropdown>
+        <dropdown heading="Як записатись на тренування?">
+          <template #content>
+            <p>У вас має бути активований абонемент хоча б із одним доступним тренуванням</p>
+            <p>Якщо ви є зареєстрованим користувачем - все дуже легко! Вам треба перейти на строінку "Розклад",
+              скориставшись меню у шапці сайту, далі обираєте день у календарі, який вам потрібен, після чого ви
+              побачите доступні тренування на обраний день.
+              Далі натискаєте на саме тренування у списку, натискаєте на кнопку записатись і побачите сповіщення про те,
+              що ви успішно записались не тренування.</p>
+            <p>Якщо ви не є користувачем сайту, то просто звяжіться із нами і ми в онлайн режимі проконсультуємо вас
+              щодо наявних тренувань і запишемо вас на те, яке вам буде до вподоби.</p>
+          </template>
+        </dropdown>
+        <dropdown heading="Як підготуватись до тренування?">
+          <template #content>
+            <p>1. Перш за все, ви повинні впевнитись, що стан вашого здоров'я дозволяє вам відвідати тренування. Якщо ви
+              маєте сумніви, проконсультуйтесь із лікарем.</p>
+            <p>2. Поїжте не менш ніж за 1-1.5 години до тренування. Не можна тренувантись на пустий шлунок.</p>
+            <p>3. Перевірте, чи записані ви на бажане тренування, або запишіться на нього. Це легко можна зробити, за
+              наявного абонементу, використовуючи ваш персональний кабінет на сайті, або ж звязавшись із нами, будь-яким
+              зручним для вас способом.</p>
+            <p>4. Підготуйте зручний спортивний одяг та взуття. Ваша нова сукня вам, звісно, дуже пасує, але це не
+              найкращий вибір для тренування.</p>
+            <p>5. Не пийте забагато води перед тренуванням. Натомість візьміть воду із собою, під час тренування вона
+              знадобиться.</p>
+          </template>
+        </dropdown>
+        <dropdown heading="Де проходять тренування?">
+          <template #content>
+            <p>Тренування проходять у нашій студіі (EF-Studio) у Києві, за адресою вул. Гарматна 38А</p>
+            <p>Оналйн тренування відбуваються на зручній для вас платформі (Zoom, Google Meet, тощо)</p>
+          </template>
+        </dropdown>
         <dropdown :heading="$t('homePage.willBurnTraining')">
           <template #content>
             <p>{{ $t('homePage.willBurnTrainingText') }}</p>
@@ -49,6 +83,7 @@
             <p>{{ $t('homePage.oneTimeOrMembText4') }}</p>
           </template>
         </dropdown>
+
       </div>
     </div>
   </div>
@@ -89,7 +124,7 @@ export default {
           () => (this.loading = false), 1000
       )
     },
-    scrollDirs(){
+    scrollDirs() {
       window.scrollTo({
         top: this.$refs.banner.nextElementSibling.offsetTop,
         behavior: 'smooth'
@@ -180,7 +215,8 @@ p {
 .title h2 {
   margin: 0 0 2rem 0;
 }
-.banner__buttons-wrapper{
+
+.banner__buttons-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -189,14 +225,16 @@ p {
   width: 100%;
   margin: 2rem 0 0 0;
 }
-.banner__buttons{
+
+.banner__buttons {
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
 }
-.banner__buttons-btn{
+
+.banner__buttons-btn {
   text-align: center;
   padding: .5rem 1rem;
   margin: 0 1rem;
@@ -237,7 +275,8 @@ p {
   .title {
     padding: 0;
   }
-  .banner__buttons-wrapper{
+
+  .banner__buttons-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -246,14 +285,16 @@ p {
     width: 100%;
     margin: 2rem 0 0 0;
   }
-  .banner__buttons{
+
+  .banner__buttons {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
-  .banner__buttons-btn{
+
+  .banner__buttons-btn {
     min-width: 50lvw;
     padding: .5rem 1rem;
     margin-bottom: .5rem;

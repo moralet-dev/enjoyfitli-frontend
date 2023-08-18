@@ -3,6 +3,7 @@
     <div class="cookie-consent">
       <p>{{$t('weUseCookies')}}</p>
       <button @click="acceptCookies">{{ $t('accept') }}</button>
+      <button @click="cookieConsent = true">{{ $t('decline') }}</button>
     </div>
   </div>
 </template>
@@ -43,6 +44,7 @@ export default {
   background-color: var(--color-background);
   padding: 10px;
   text-align: center;
+  font-size: 14px;
 }
 .cookie-consent button{
   margin-top: 1rem;
