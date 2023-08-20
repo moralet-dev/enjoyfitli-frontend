@@ -1,4 +1,5 @@
 import {defaultAPIInstance, loginAPIInstance} from "@/api";
+import axios from "axios";
 
 
 export const authAPI = {

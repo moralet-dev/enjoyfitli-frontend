@@ -145,7 +145,7 @@
 }
 
 body {
-    min-height: 100svh;
+    min-height: 100lvh;
     color: var(--color-text);
     transition: color 0.3s, background-color 0.3s;
     /*font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,*/
@@ -395,4 +395,5 @@ button:hover, .btn:hover {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    overflow: hidden;
 }

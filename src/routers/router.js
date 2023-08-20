@@ -21,6 +21,8 @@ import PublicOffer from "@/views/PublicOffer.vue";
 import ContactsPage from "@/views/ContactsPage.vue";
 import RegistrationPage from "@/views/RegistrationPage.vue";
 import MembershipPayment from "@/views/Memberships/MembershipPayment.vue";
+import PaymentSuccess from "@/views/Payments/PaymentSuccess.vue";
+import PaymentFail from "@/views/Payments/PaymentFail.vue";
 
 const routes = [
     {path: '/', component: HomePage, name: 'home'},
@@ -31,6 +33,8 @@ const routes = [
     {path: '/password-reset/confirm/:uid/:token', component: ResetPasswordConfirm, name: 'reset-password-confirm'},
     {path: '/activate/:uid/:token', component: ActivationPage, name: 'activate'},
     {path: '/payment', component: PaymentPage, name: 'payment'},
+    {path: '/payment/success/:id', component: PaymentSuccess, name: 'payment-success'},
+    {path: '/payment/fail/:id', component: PaymentFail, name: 'payment-fail'},
     {path: '/contacts', component: ContactsPage, name: 'contacts'},
     {path: '/about', component: AboutMePage, name: 'about'},
     {path: '/registration', component: RegistrationPage, name: 'reg'},

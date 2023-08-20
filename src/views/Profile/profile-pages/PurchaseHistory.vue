@@ -63,7 +63,7 @@ export default {
       })
     },
     async toPage(page){
-      await profileAPI.getRequestsHistory(page).then(response=>{
+      await profileAPI.getRequestsHistory(null, page).then(response=>{
         this.purchaseList = response.data.results
       })
     }

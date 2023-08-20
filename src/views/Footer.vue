@@ -35,6 +35,9 @@
     </div>
     <div class="bottom-labels">
       <div class="rights-reserved"><span>© enjoyfitnes.com, 2023</span></div>
+      <div class="payment-systems">
+        <img src="/src/assets/logos/SVG__Portmone_mc_vs_313x60.svg" alt="portmone visa mastercard">
+      </div>
     </div>
   </footer>
 </template>
@@ -107,12 +110,16 @@ footer{
   margin: 2rem;
 }
 .bottom-labels{
-  font-size: 12px;
-  background: var(--vt-c-black-soft);
-  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  font-size: 14px;
+  background: #aeaeae;
+  align-items: center;
+  padding: 0 1rem;
 }
 .rights-reserved{
-  color: var(--vt-c-white-soft);
+  color: var(--vt-c-black-soft);
 }
 @media (max-width: 767px) {
   .footer-logo__wrapper{
@@ -137,6 +144,9 @@ footer{
   .pages, .contacts{
     align-items: center;
     margin: 1.5rem 0;
+  }
+  .bottom-labels{
+    justify-content: center;
   }
 
 }

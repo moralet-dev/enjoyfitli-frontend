@@ -99,7 +99,7 @@ export default {
 </script>
 <style scoped>
 main {
-  min-height: 100vh;
+  min-height: 100lvh;
   margin: 79px 0 0 0;
   scroll-margin-top: 80px;
 }

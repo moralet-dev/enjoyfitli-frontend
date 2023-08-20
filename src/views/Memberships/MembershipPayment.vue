@@ -12,7 +12,7 @@
     </div>
     <div class="content-wrapper" v-if="membership">
       <div class="content-title">
-          <p>*{{ $t('paymentNoteTitle') }}</p>
+        <p>*{{ $t('paymentNoteTitle') }}</p>
       </div>
       <div class="data">
         <div class="membership-info">
@@ -61,8 +61,8 @@
           <em class="membership-info__title">{{ $t('userData') }}:</em>
           <p>{{ $t('notRegistredUserPaymentText') }}</p>
           <div class="not-reg-links">
-            <button @click="$store.commit('openLoginPopup')">{{$t('login')}}</button>
-            <router-link class="btn" :to="{name: 'reg'}">{{$t('registration')}}</router-link>
+            <button @click="$store.commit('openLoginPopup')">{{ $t('login') }}</button>
+            <router-link class="btn" :to="{name: 'reg'}">{{ $t('registration') }}</router-link>
           </div>
         </div>
       </div>
@@ -98,25 +98,28 @@
             <span class="item-title">Призначення платежу:</span>
             <br>
             "Абонемент
-            {{me?.first_name && me?.last_name ? `${me.first_name} ${me.last_name}`: '(ім\'я) (прізвище)'}},
-            {{me?.phone? me.phone: '(номер телефону)'}}, {{membership?.type.name}} {{membership?.count}}"
+            {{ me?.first_name && me?.last_name ? `${me.first_name} ${me.last_name}` : '(ім\'я) (прізвище)' }},
+            {{ me?.phone ? me.phone : '(номер телефону)' }}, {{ membership?.type.name }} {{ membership?.count }}"
           </p>
         </div>
         <div class="pay-block">
-          <h3>{{$t('paymentSystems')}}:</h3>
-          <div class="links">
-            <p class="note">*Наразі цей функіонал знаходиться у розробці. Як тільки оплата через платіжні системи стане
-              доступна - ми сповістимо наших користувачів.</p>
-            <button class="port" type="button">Future payment 1</button>
-            <button class="port" type="button">Future payment 2</button>
-            <button class="port" type="button">Future payment 3</button>
+          <h3>{{ $t('paymentSystems') }}:</h3>
+          <div class="links" v-if="membership?.id && me?.id">
+            <form action="https://www.portmone.com.ua/gateway/" method="post" target="_blank">
+              <input type="hidden" name="bodyRequest" :value='JSON.stringify(requestData)'/>
+              <input type="hidden" name="typeRequest" value='json'/>
+              <button class="port" type="submit" @click="sendRequest">Portmone.com</button>
+            </form>
+            <p class="note">Оплату картами Visa і Mastercard забезпечує сервіс онлайн-платежів Portmone.com. Безпека
+              оплати підтверджена міжнародним аудитом PCI DSS. Служба підтримки: тел. +380 (44) 2000922,
+              b2bsupport@portmone.me</p>
           </div>
         </div>
       </div>
       <div class="bottom-info">
-        <p>*{{$t('paymentMembershipBottomInfo')}}</p>
-        <router-link class="btn" :to="{name: 'payment'}">{{$t('paymentPage')}}</router-link>
-        <router-link class="btn" :to="{name: 'public-offer'}">{{$t('publicOffer')}}</router-link>
+        <p>*{{ $t('paymentMembershipBottomInfo') }}</p>
+        <router-link class="btn" :to="{name: 'payment'}">{{ $t('paymentPage') }}</router-link>
+        <router-link class="btn" :to="{name: 'public-offer'}">{{ $t('publicOffer') }}</router-link>
       </div>
     </div>
     <div v-else>
@@ -138,20 +141,62 @@ export default {
   data: () => ({
     membership: null,
     me: null,
+    paymentDescription: null,
+    requestData: {
+      payee:
+          {
+            payeeId: "129327",
+          },
+      order:
+          {
+            description: "",
+            shopOrderNumber: "",
+            billAmount: "1",
+            attribute1: "",
+            attribute2: "",
+            successUrl: "http://127.0.0.1:8000/uk/api/payee/",
+            failureUrl: "http://127.0.0.1:8000/uk/api/payee/",
+            billCurrency: "UAH",
+            expTime: "1000",
+          },
+      paymentTypes:{
+        applepay: 'Y',
+        gpay: 'Y',
+      },
+      payer:{
+        emailAddress: '',
+        showEmail: 'Y',
+      }
+    }
   }),
   mounted() {
-    this.getData(this.$route.params.id)
-    this.getMe()
+    this.getData(this.$route.params.id).then(() => {
+      this.getMe().then(() => {
+        this.paymentDescription = `Оплата за абонемент ${this.membership?.type?.name} ${this.membership?.count} від ${this.me?.first_name} ${this.me?.last_name}`
+        this.requestData.order.description = this.paymentDescription
+        this.requestData.order.billAmount = this.membership.price
+        this.requestData.order.shopOrderNumber = `${this.me?.id}.${this.membership?.id}.${new Date().getTime()}`
+        this.requestData.order.attribute1 = this.me?.id
+        this.requestData.order.attribute2 = this.membership?.id
+        this.requestData.payer.emailAddress = this.me?.email
+      })
+    })
+
   },
   methods: {
     async getData(id) {
       this.membership = await profileAPI.getMemberships(id).then(response => response.data)
     },
     async getMe() {
-      this.me = await authAPI.getMe().then(response => response.data).catch((reason)=>{
-        console.log(reason.response)
+      this.me = await authAPI.getMe().then(response => response.data).catch((reason) => {
         return null
       })
+    },
+    async sendRequest() {
+      if (this.me?.id && this.membership?.id) {
+        await profileAPI.requestMembership(this.membership?.id, this.requestData.order.shopOrderNumber).then(response => {
+        }).catch(reason => {console.log(reason.response)})
+      }
     }
   }
 }
@@ -179,15 +224,18 @@ h1 {
   background: var(--color-background-header);
   color: var(--color-header-text);
 }
-.btn{
+
+.btn {
   display: block;
 }
+
 .content-wrapper {
   padding: 2rem 0;
 }
 
 .content-title {
-  margin-bottom: 1rem;white-space: pre-wrap;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
 }
 
 .data {
@@ -240,83 +288,104 @@ h1 {
   display: grid;
   grid-template-columns: 6fr 6fr;
 }
-.pay-block{
+
+.pay-block {
   display: flex;
   flex-direction: column;
 }
-.pay-block h3{
+
+.pay-block h3 {
   font-size: 22px;
   margin-bottom: 2rem;
 }
-.pay-block p{
+
+.pay-block p {
   margin-bottom: 1rem;
 }
-.not-reg-links{
+
+.not-reg-links {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.links{
+
+.links {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.links button{
-  margin: .25rem 0;
+
+.links button {
+  margin: .5rem 0;
 }
+
 .note {
-  font-size: 14px;
+  font-size: 12px;
+  margin: .5rem 0;
 }
-.port{
+
+.port {
   background: #fc3131;
   color: #fff;
   border: 2px solid #fff;
   border-radius: 5px;
-  pointer-events: none;
+  text-transform: lowercase;
 }
-.bottom-info{
+
+.bottom-info {
   display: flex;
   flex-direction: column;
   margin: 2rem 0;
 }
-.bottom-info *:nth-child(even),.bottom-info *:nth-child(odd){
+
+.bottom-info *:nth-child(even), .bottom-info *:nth-child(odd) {
   margin-bottom: .5rem;
 }
+
 @media (max-width: 991px) {
-  .wrapper{
+  .wrapper {
     padding: 3rem 5rem;
   }
 }
+
 @media (max-width: 767px) {
-  .wrapper{
+  .wrapper {
     padding: 3rem 1rem;
   }
-  .title{
+
+  .title {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
-  h1{
+
+  h1 {
     flex: 0 1 30%;
   }
-  .content-wrapper{
+
+  .content-wrapper {
     padding: 1rem 0;
   }
-  .data{
+
+  .data {
     flex-direction: column;
   }
-  .membership-info{
+
+  .membership-info {
     padding: 1rem;
     margin-bottom: .5rem;
   }
-  .pay-methods{
+
+  .pay-methods {
     display: flex;
     flex-direction: column-reverse;
   }
-  .pay-block{
+
+  .pay-block {
     margin-bottom: .5rem;
   }
-  .pay-block h3{
+
+  .pay-block h3 {
     margin-bottom: 1rem;
   }
 }
