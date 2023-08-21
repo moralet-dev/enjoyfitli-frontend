@@ -15,7 +15,6 @@ const defaultConfig = {
     // baseURL: `http://127.0.0.1:8000/${locale}/api`,
     // baseURL: `http://34.88.25.2/${locale}/api`,
     baseURL: `https://enjoyfitnes.com/${locale}/api`,
-
 }
 
 export const defaultAPIInstance = axios.create(defaultConfig);

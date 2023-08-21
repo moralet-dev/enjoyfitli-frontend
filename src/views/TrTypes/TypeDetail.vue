@@ -30,7 +30,7 @@
                     :class="{'economy': true}">
                 {{this.$t('economy')}} {{ this.countEconomy(m.price, m.count, trType.memberships[0].price)}} &#8372;
               </span>
-              <router-link to="/memberships" class="btn">{{$t('buy')}}</router-link>
+              <router-link :to="{name: 'm-payment', params:{id: m.id}}" class="btn">{{$t('buy')}}</router-link>
             </div>
           </div>
         </div>

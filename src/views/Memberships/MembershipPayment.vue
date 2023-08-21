@@ -6,7 +6,6 @@
       </h1>
       <button class="back" type="button" @click="$router.push({name:'memberships'})">
         <arrow-left-icon height="1rem" width="50" icon-color="var(--color-header-text)"/>
-        {{ $t('back') }}
       </button>
 
     </div>
@@ -197,6 +196,7 @@ export default {
         await profileAPI.requestMembership(this.membership?.id, this.requestData.order.shopOrderNumber).then(response => {
         }).catch(reason => {console.log(reason.response)})
       }
+      this.requestData.order.shopOrderNumber = `${this.me?.id}.${this.membership?.id}.${new Date().getTime()}`
     }
   }
 }

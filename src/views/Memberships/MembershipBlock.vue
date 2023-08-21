@@ -36,12 +36,11 @@
           {{ current.type[`name_${$store.getters.getLocale}`] }} - {{ current?.count }}
         </p>
         <p class="popup-text">
-          Ви можете перейти на сторінку оплати, щоб сплатити за абонемент, або відправити нам запит на отримання,
+          Ви можете перейти на сторінку оплати, щоб сплатити за абонемент через платіжні системи, або відправити нам запит на отримання,
           для подальшого оформлення абонементу в онлайн-режимі.
         </p>
       </template>
       <template #footer>
-
         <router-link class="btn" :to="{name: 'm-payment', params: {id: current.id}}">
           {{ $t('buy') }}
         </router-link>

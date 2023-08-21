@@ -226,6 +226,16 @@ export default {
         paymentPage: 'Payment page',
         paymentMembershipBottomInfo: 'By made payment for membership you automatically accept and agree with Privacy Policy\n' +
             'You can read more abut payment and Public Offer using the links below',
+        paidSuccessfully: 'Order successfully paid',
+        paymentData: 'Payment data',
+        requestID: 'Request ID',
+        orderID: 'Order ID',
+        paymentSuccessNote: 'Now you can use membership that you have got and book the trainings. Your order history available into Profile-> Purchase History. ' +
+            'In case you didn\'t see membership in your profile, please, contact us.',
+        paidFail: 'Order declined',
+        paymentFailNote: 'Your order was declined by your own, mechanisms of data processing on enjoyfitnes.com\'s servers or by payment systems. ' +
+            'For more information, or if you think that happened mistake, please, contact us and we solve your problem!',
+
     },
     uk: {
         homePage: {
@@ -453,6 +463,16 @@ export default {
         paymentPage: 'Сторінка оплати',
         paymentMembershipBottomInfo: 'Сплачуючи за абонемент, ви автоматично підтверджуєте те, що ви прийняли та погодились із договором Публічної Оферти.\n' +
             'Дізнатись більше про оплату та Публічну Оферту ви можете скориставшись посиланнями нижче',
-        makeRequest: 'Зробити запит'
+        makeRequest: 'Зробити запит',
+        paidSuccessfully: 'Замовлення успішно сплачено',
+        paymentData: 'Дані оплати',
+        requestID: 'ID запиту',
+        orderID: 'ID замовлення',
+        paymentSuccessNote: 'Тепер ви можете скористатись отриманим абонементом і записатись на тренування. Ваша історія покупок доступна в профілі, розділ - Історія покупок. ' +
+            'У разі, якщо абонемент не відображається у вашому профілі, зверніться до нас.',
+        paidFail: 'Замовлення скасовано',
+        paymentFailNote: 'Ваше замовлення було скасоване вами власноруч, механізмами обробки даних на серверaх enjoyfitnes.com або ж патіжними системами. ' +
+            'Щоб дізнатись більше, або якщо ви вважаєте що сталась якась помилка, звяжіться із нами і ми вирішемо вашу проблему!',
+
     },
 };

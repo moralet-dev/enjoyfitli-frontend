@@ -1,13 +1,17 @@
 <template>
   <div class="card-box">
-    <div :class="{'card-wrapper':true, 'clicked': current?.id === m.id}"  v-for="m in memberships"
+    <div :class="{'card-wrapper':true, 'clicked': current?.id === m.id}" v-for="m in memberships"
          :style="{backgroundImage: `url(${m?.image})`}"
          :key="m.id">
       <div class="card" @click="setCurrent(m)">
-        <span class="card-title">{{ m.count }} {{ m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk'?$t('trainingsUA'):$t('trainings') }}</span>
-        <span class="card-price">{{$t('price')}}: {{ m?.price }} &#8372;</span>
-        <span class="card-price">{{ Math.ceil( m?.price / m?.count) }} &#8372; <br>{{$t('perTraining')}}</span>
-        <button @click="$router.push('/memberships')">{{$t('buy')}}</button>
+        <span class="card-title">{{
+            m.count
+          }} {{
+            m.count < 5 ? $t('training') : $store.getters.getLocale === 'uk' ? $t('trainingsUA') : $t('trainings')
+          }}</span>
+        <span class="card-price">{{ $t('price') }}: {{ m?.price }} &#8372;</span>
+        <span class="card-price">{{ Math.ceil(m?.price / m?.count) }} &#8372; <br>{{ $t('perTraining') }}</span>
+        <button @click="$router.push({name: 'm-payment', params:{id: m?.id }})">{{ $t('buy') }}</button>
       </div>
     </div>
   </div>
@@ -67,7 +71,8 @@ export default {
   -webkit-background-size: cover;
   background-size: cover;
 }
-.card-wrapper:before{
+
+.card-wrapper:before {
   content: '';
   position: absolute;
   top: 0;
@@ -78,6 +83,7 @@ export default {
 
   background: var(--color-elements-semi-opacity);
 }
+
 .card {
   display: flex;
   min-height: 100%;
@@ -120,6 +126,7 @@ export default {
     margin: 0 0 .5rem 0;
     transform: scale3d(1, 1, 100%);
   }
+
   .clicked {
     transform: scale3d(1, 1, 100%);
   }
