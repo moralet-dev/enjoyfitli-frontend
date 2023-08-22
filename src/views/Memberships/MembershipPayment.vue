@@ -133,6 +133,7 @@ import ArrowLeftIcon from "@/components/icons/ArrowLeftIcon.vue";
 import {profileAPI} from "@/api/profileAPI/profileAPI";
 import PreloaderSmall from "@/components/PreloaderSmall.vue";
 import {authAPI} from "@/api/authAPI/authAPI";
+import logo from "@/assets/logos/Asset1-4x-green.png"
 
 export default {
   name: "MembershipPayment",
@@ -140,6 +141,7 @@ export default {
   data: () => ({
     membership: null,
     me: null,
+    logo: logo,
     paymentDescription: null,
     requestData: {
       payee:
@@ -159,13 +161,14 @@ export default {
             expTime: "1000",
           },
       paymentTypes:{
+        card: 'Y',
         applepay: 'Y',
         gpay: 'Y',
       },
       payer:{
         emailAddress: '',
         showEmail: 'Y',
-      }
+      },
     }
   }),
   mounted() {
